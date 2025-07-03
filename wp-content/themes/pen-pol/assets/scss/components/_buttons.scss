@@ -1,0 +1,252 @@
+// Button styles
+// Używamy zmiennych z utils/_variables.scss
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: $font-primary;
+  font-size: 16px;
+  font-weight: map-get($font-weights, "light"); // 400 zamiast medium
+  line-height: 1.2;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all map-get($transitions, "normal");
+  position: relative;
+  background: transparent; // Domyślnie przezroczysty
+  color: $white;
+  border-bottom: 1px solid $light-grey;
+  padding-bottom: 10px;
+  gap: 8px;
+  
+  // Domyślny stan przycisku
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color-blue, 0.3);
+  }
+  
+  &:hover {
+    border-bottom-color: $white;
+    
+    img {
+      transform: translateY(-3px);;
+    }
+  }
+  
+  &:active {
+    opacity: 0.8;
+  }
+  
+  img {
+    width: 15px;
+    height: 15px;
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1); // Sprawia, że SVG będzie białe
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 14px;
+    
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+// Przycisk podstawowy (niebieski) - override nowego stylu
+.btn-primary {
+  background-color: $primary-color-blue;
+  color: $white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 6px;
+  border-bottom: none;
+  gap: 0;
+  
+  &:hover {
+    background-color: $primary-color-blue-hover;
+    color: $white;
+    transform: translateY(-1px);
+    box-shadow: map-get($shadows, "md");
+    border-bottom: none;
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: map-get($shadows, "sm");
+    opacity: 1;
+  }
+  
+  // Przycisk z strzałką dla primary
+  &.btn-arrow {
+    padding-right: 48px;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url('../../assets/images/btn-arrow.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transition: transform map-get($transitions, "normal");
+    }
+    
+    &:hover::after {
+      transform: translateY(-3px);
+    }
+    
+    img {
+      display: none; // Ukryj img gdy używamy ::after
+    }
+  }
+}
+
+// Przycisk wtórny (przezroczysty z obramowaniem)
+.btn-secondary {
+  background-color: transparent;
+  color: $white;
+  border: 2px solid $white;
+  border-radius: 6px;
+  padding: 14px 30px;
+  border-bottom: 2px solid $white; // Override default border-bottom
+  gap: 0;
+  
+  &:hover {
+    background-color: $white;
+    color: $primary-color-blue;
+    transform: translateY(-1px);
+    box-shadow: map-get($shadows, "md");
+    border-bottom-color: $white;
+    
+    img {
+      filter: brightness(0) invert(0); // Ciemne SVG na białym tle
+      transform: translateY(-3px);
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: map-get($shadows, "sm");
+    opacity: 1;
+  }
+  
+  img {
+    filter: brightness(0) invert(1); // Białe SVG
+  }
+}
+
+// Przycisk zielony (akcent)
+.btn-accent {
+  background-color: $accent-green;
+  color: $white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 6px;
+  border-bottom: none;
+  gap: 0;
+  
+  &:hover {
+    background-color: $accent-green-hover;
+    color: $white;
+    transform: translateY(-1px);
+    box-shadow: map-get($shadows, "md");
+    border-bottom: none;
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: map-get($shadows, "sm");
+    opacity: 1;
+  }
+}
+
+// Przycisk z tłem białym
+.btn-white {
+  background-color: $white;
+  color: $primary-text-color;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 6px;
+  border-bottom: none;
+  gap: 0;
+  
+  &:hover {
+    background-color: $white-hover;
+    color: $primary-text-color;
+    transform: translateY(-1px);
+    box-shadow: map-get($shadows, "md");
+    border-bottom: none;
+    
+    img {
+      filter: brightness(0) invert(0); // Ciemne SVG na białym tle
+      transform: translateY(-3px);
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: map-get($shadows, "sm");
+    opacity: 1;
+  }
+  
+  img {
+    filter: brightness(0) invert(0); // Ciemne SVG
+  }
+}
+
+// Przycisk na ciemnym tle
+.btn-dark {
+  color: $primary-text-color;
+  border-bottom-color: $primary-text-color;
+  
+  &:hover {
+    border-bottom-color: $primary-text-color;
+  }
+  
+  img {
+    filter: brightness(0) invert(0); // Ciemne SVG
+  }
+}
+
+// Responsywne rozmiary przycisków
+@media (max-width: map-get($breakpoints, "tablet")) {
+  .btn-primary, .btn-secondary, .btn-accent, .btn-white {
+    padding: 14px 28px;
+    font-size: 14px;
+    
+    &.btn-arrow {
+      padding-right: 44px;
+      
+      &::after {
+        right: 14px;
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: map-get($breakpoints, "mobile")) {
+  .btn-primary, .btn-secondary, .btn-accent, .btn-white {
+    padding: 12px 24px;
+    font-size: 14px;
+    
+    &.btn-arrow {
+      padding-right: 40px;
+      
+      &::after {
+        right: 12px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+}
