@@ -1,41 +1,86 @@
-// Hero Section Styles
-.hero-section {
+// _hero.scss - Pen-pol Theme
+// Hero Section with WCAG compliance and BEM methodology
+// Three-level container structure with proper spacing
+
+// =============================================================================
+// HERO WRAPPER - Full-width background section
+// =============================================================================
+
+.hero-wrapper {
+  background-color: $white;
+  width: 100%;
+  // Brak paddingu - full width background
+}
+
+// =============================================================================
+// HERO CONTAINER - Standard container with padding
+// =============================================================================
+
+.hero-container {
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+// =============================================================================
+// HERO - Slider container with border-radius and shadow
+// =============================================================================
+
+.hero {
   position: relative;
+  width: 100%;
   height: 100vh;
-  min-height: 600px;
+  min-height: 500px;
+  max-height: 800px;
   overflow: hidden;
+  border-radius: 8px;
+  box-shadow: map-get($shadows, "lg");
   
-  @media (max-width: 768px) {
+  @include mobile-up {
     min-height: 500px;
   }
   
-  @media (max-width: 480px) {
-    min-height: 400px;
-  }
-}
-
-.hero-swiper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  
-  .swiper-wrapper {
-    height: 100%;
+  @include desktop-up {
+    min-height: 600px;
   }
   
-  .swiper-slide {
+  // =============================================================================
+  // HERO SLIDER
+  // =============================================================================
+  
+  &__slider {
+    width: 100%;
     height: 100%;
     position: relative;
+    
+    .swiper-wrapper {
+      height: 100%;
+    }
+    
+    .swiper-slide {
+      height: 100%;
+      width: 100%;
+    }
   }
-}
-
-.hero-slide {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end; // Pozycjonowanie na dole
-  justify-content: flex-start; // Pozycjonowanie po lewej
+  
+  // =============================================================================
+  // HERO SLIDE
+  // =============================================================================
+  
+  &__slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  // =============================================================================
+  // HERO BACKGROUND & RESPONSIVE IMAGES
+  // =============================================================================
   
   &__background {
     position: absolute;
@@ -44,11 +89,6 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    
-    // Fallback background gdy brak obrazka
-    &--fallback {
-      background: linear-gradient(135deg, $primary-color-blue 0%, $accent-green 100%);
-    }
   }
   
   &__image {
@@ -56,6 +96,24 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    
+    // Desktop image - hidden on mobile
+    &--desktop {
+      display: none;
+      
+      @include tablet-up {
+        display: block;
+      }
+    }
+    
+    // Mobile image - visible only on mobile
+    &--mobile {
+      display: block;
+      
+      @include tablet-up {
+        display: none;
+      }
+    }
   }
   
   &__overlay {
@@ -66,332 +124,438 @@
     height: 100%;
     background: linear-gradient(
       to top,
-      rgba($black, 0.8) 0%,
-      rgba($black, 0.4) 50%,
-      rgba($black, 0.1) 100%
+      rgba($black, 0.9) 0%,     // Mocniejszy czarny na dole
+      rgba($black, 0.8) 20%,    // Mocniejszy gradient
+      rgba($black, 0.6) 40%,    // Rozciągnięty gradient
+      rgba($black, 0.3) 60%,    // Rozciągnięty gradient
+      rgba($black, 0.2) 80%,    // Lekki gradient na górze
+      rgba($black, 0.0) 100%    // Przezroczysty na samej górze
     );
     z-index: 2;
   }
   
-  &__content {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    padding: 80px 0 80px;
-    transform: translateY(-100px);
-    
-    @media (max-width: 768px) {
-      padding: 80px 0 60px;
-    }
-    
-    @media (max-width: 480px) {
-      padding: 60px 0 40px;
-    }
-  }
-  
-  &__content-wrapper {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0; // Remove gap, handled by sections
-    
-    @media (max-width: 768px) {
-      max-width: 100%;
-    }
-  }
-  
-  // Top section with title and navigation
-  &__top-section {
+  // =============================================================================
+  // NAVIGATION CONTROLS - POPRAWIONE POZYCJONOWANIE
+  // =============================================================================
+
+  &__navigation {
+    position: absolute;
+    top: -50px;
+    left: auto;
+    right: auto;
+    z-index: 15;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    padding-bottom: 24px;
-    border-bottom: 1px solid $light-grey;
-    margin-bottom: 24px;
+    width: auto;
+    box-sizing: border-box;
     
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
+    @include tablet-up {
+      position: static;
+      top: auto;
+      left: auto;
+      right: auto;
+      width: auto;
+      gap: map-get($spacing, "lg");
+      justify-content: flex-start;
+      z-index: auto;
     }
   }
-  
-  // Bottom section with text and button
-  &__bottom-section {
+
+  &__nav-button {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none; 
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-    }
-  }
-  
-  // Left column for title and text
-  &__left-column {
-    flex: 1;
-    max-width: 600px;
-    
-    @media (max-width: 768px) {
-      max-width: 100%;
-    }
-  }
-  
-  // Right column for navigation and button
-  &__right-column {
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    cursor: pointer;
+    transition: transform map-get($transitions, "normal");
     flex-shrink: 0;
     
-    @media (max-width: 768px) {
-      align-self: flex-start;
+    @include tablet-up {
+      width: 48px;
+      height: 48px;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+    
+    img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
+      transition: transform map-get($transitions, "normal");
+      
+      @include tablet-up {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    
+    // Strzałka w lewo - przesunięcie w lewo na hover
+    &--prev:hover {
+      img {
+        transform: translateX(-3px);
+        
+        @include tablet-up {
+          transform: translateX(-5px);
+        }
+      }
+    }
+    
+    // Strzałka w prawo - przesunięcie w prawo na hover
+    &--next:hover {
+      img {
+        transform: translateX(3px);
+        
+        @include tablet-up {
+          transform: translateX(5px);
+        }
+      }
     }
   }
+  
+  // =============================================================================
+  // HERO CONTENT - POPRAWIONE BOX-SIZING
+  // =============================================================================
+  
+  &__content {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding-inline: $section-padding-inline;
+    padding-bottom: map-get($spacing, "lg");
+    box-sizing: border-box;
+    
+    @include tablet-up {
+      padding-inline: $section-padding-inline-tablet;
+      bottom: 7%;
+      padding-bottom: map-get($spacing, "xl");
+    }
+    
+    @include desktop-up {
+      padding-inline: $section-padding-inline-desktop;
+      bottom: 10%;
+    }
+  }
+  
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($spacing, "md");
+    width: 100%;
+    box-sizing: border-box;
+    
+    @include tablet-up {
+      gap: map-get($spacing, "lg");
+    }
+  }
+  
+  // =============================================================================
+  // CONTENT SECTIONS - POPRAWIONE STRUKTURY
+  // =============================================================================
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: map-get($spacing, "md");
+    border-bottom: 1px solid rgba($white, 0.4);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: map-get($spacing, "sm");
+    position: relative;
+    box-sizing: border-box;
+    
+    @include tablet-up {
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
+      padding-bottom: map-get($spacing, "lg");
+    }
+  }
+  
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: map-get($spacing, "sm");
+    box-sizing: border-box;
+    
+    @include tablet-up {
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 0;
+    }
+  }
+  
+  &__text-content {
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    @include tablet-up {
+      width: auto;
+    }
+  }
+  
+  // =============================================================================
+  // TYPOGRAPHY - MOBILE OPTIMIZED
+  // =============================================================================
   
   &__title {
     color: $white;
-    font-family: $font-primary;
-    font-weight: 500;
-    line-height: 1.1;
     margin: 0;
+    margin-bottom: map-get($spacing, "xs");
+    
+    @include tablet-up {
+      margin-bottom: map-get($spacing, "sm");
+    }
   }
   
   &__title-main {
     display: block;
-    font-size: clamp(42px, 6vw, 64px);
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 8px;
+    font-size: clamp(32px, 8vw, 64px);
+    font-weight: map-get($font-weights, "light");
+    line-height: map-get($line-heights, "tight");
   }
   
   &__title-accent {
     display: block;
-    font-size: clamp(28px, 4.5vw, 64px);
+    font-size: clamp(32px, 8vw, 64px);
     font-family: $font-secondary;
     font-style: italic;
+    font-weight: map-get($font-weights, "regular");
     color: $white;
-    font-weight: 400;
-    opacity: 0.95;
   }
   
-  &__text {
-    color: $white;
-    max-width: 600px; // Ograniczona szerokość dla lepszej czytelności
+  &__description {
+    color: $white !important;
     
     p {
-      font-size: clamp(14px, 1.5vw, 18px);
-      line-height: 1.6;
-      opacity: 0.9;
-      font-family: $font-primary;
-      font-weight: 300;
+      font-size: 16px;
+      line-height: map-get($line-heights, "relaxed");
+      font-weight: map-get($font-weights, "light");
       margin: 0;
+      color: $white !important;
+      
+      @include tablet-up {
+        font-size: 18px;
+      }
     }
   }
-
-  // Navigation inside content
-  &__navigation {
+  
+  // =============================================================================
+  // BUTTON CUSTOMIZATION - POPRAWIONE HOVER I BORDER
+  // =============================================================================
+  
+  .btn--link--light {
+    width: 100%;
+    text-align: left;
     display: flex;
-    gap: 16px;
     align-items: center;
+    justify-content: flex-start;
+    padding-right: 8px;
+    position: relative;
+    box-sizing: border-box;
     
-    .hero-swiper-button-prev,
-    .hero-swiper-button-next {
-      width: 40px;
-      height: 40px;
-      background-color: rgba($white, 0.1);
-      border: 1px solid rgba($white, 0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: $white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+    @include tablet-up {
+      width: auto;
+      text-align: left;
+      padding-right: 16px;
+    }
+    
+    // Rozszerzony border-bottom przez pseudo-element
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: -20px;
+      right: -20px;
+      height: 1px;
+      background-color: rgba($white, 0.4);
+      transition: background-color map-get($transitions, "normal");
       
-      &:hover {
-        background-color: rgba($white, 0.2);
-        border-color: rgba($white, 0.3);
-        transform: scale(1.1);
-      }
-      
-      &.swiper-button-disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-        
-        &:hover {
-          transform: none;
-          background-color: rgba($white, 0.1);
-        }
-      }
-      
-      svg {
-        width: 20px;
-        height: 20px;
-        transition: transform 0.3s ease;
-      }
-      
-      @media (max-width: 768px) {
-        width: 36px;
-        height: 36px;
-        
-        svg {
-          width: 18px;
-          height: 18px;
-        }
+      @include tablet-up {
+        left: -12px;
+        right: -12px;
       }
     }
     
-    .hero-swiper-button-prev:hover svg {
-      transform: translateX(-2px);
+    .btn__text {
+      font-size: 16px;
+      position: relative;
+      z-index: 2;
+      
+      @include tablet-up {
+        font-size: 20px;
+      }
     }
     
-    .hero-swiper-button-next:hover svg {
-      transform: translateX(2px);
+    .btn__icon {
+      filter: brightness(0) invert(1);
+      transition: transform map-get($transitions, "normal");
+      height: 14px;
+      width: 14px;
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      
+      @include tablet-up {
+        height: 16px;
+        width: 16px;
+      }
     }
-    
-    @media (max-width: 768px) {
-      gap: 12px;
-    }
-  }
-
-// Pagination styles - pionowo po prawej stronie
-.hero-swiper-pagination {
-  position: absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  
-  @media (max-width: 768px) {
-    right: 20px;
-    gap: 10px;
-  }
-  
-  @media (max-width: 480px) {
-    // Na mobile poziomo na dole
-    right: 50%;
-    top: auto;
-    bottom: 24px;
-    transform: translateX(50%);
-    flex-direction: row;
-    gap: 8px;
-  }
-  
-  .swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-    background-color: rgba($white, 0.4);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 1;
-    border: none;
     
     &:hover {
-      background-color: rgba($white, 0.6);
-      transform: scale(1.2);
+      &::after {
+        background-color: rgba($white, 0.8);
+      }
+      
+      .btn__icon {
+        transform: translateX(4px) !important;
+        
+        @include tablet-up {
+          transform: translateX(6px) !important;
+        }
+      }
     }
     
-    &.swiper-pagination-bullet-active {
-      background-color: $white;
-      transform: scale(1.3);
-      box-shadow: 0 0 0 3px rgba($white, 0.3);
-    }
-    
-    @media (max-width: 480px) {
-      width: 10px;
-      height: 10px;
-    }
-  }
-}
-
-// Animacje
-.hero-swiper {
-  .swiper-slide {
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-    
-    &.swiper-slide-active {
-      opacity: 1;
+    &:focus-visible {
+      &::after {
+        background-color: rgba($white, 1);
+      }
     }
   }
   
-  // Animacja content przy zmianie slajdu
-  .swiper-slide-active {
-    .hero-slide__title-main {
-      animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s both;
-    }
-    
-    .hero-slide__title-accent {
-      animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
-    }
-    
-    .hero-slide__text {
-      animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
-    }
-    
-    .hero-slide__button {
-      animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
-    }
-  }
-}
-
-// Keyframes
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Loading state
-.hero-section {
-  &.loading {
-    .hero-slide__content {
-      opacity: 0;
-    }
-    
-    .hero-swiper-navigation,
-    .hero-swiper-pagination {
-      opacity: 0;
-    }
-  }
+  // =============================================================================
+  // CONTROLS SECTION - POPRAWIONE
+  // =============================================================================
   
-  &.loaded {
-    .hero-slide__content,
-    .hero-swiper-navigation,
-    .hero-swiper-pagination {
-      opacity: 1;
-      transition: opacity 0.5s ease;
+  &__controls {
+    width: 100%;
+    box-sizing: border-box;
+    
+    @include tablet-up {
+      width: auto;
     }
   }
 }
 
-// Accessibility improvements
+// =============================================================================
+// OVERRIDES - Nadpisanie istniejących stylów które mogą powodować problemy
+// =============================================================================
+
+// Usunięcie paginacji punktowej
+.hero-wrapper .swiper-pagination,
+.hero-container .swiper-pagination,
+.hero .swiper-pagination {
+  display: none !important;
+}
+
+// Usunięcie kropek paginacji po lewej stronie
+.hero-wrapper .hero__pagination,
+.hero-container .hero__pagination,
+.hero .hero__pagination {
+  display: none !important;
+}
+
+// Zapewnienie działania efektów hover dla przycisków
+.hero-wrapper .btn:hover .btn__icon--right,
+.hero-container .btn:hover .btn__icon--right,
+.hero .btn:hover .btn__icon--right {
+  transform: translateX(8px) !important;
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion preferences
 @media (prefers-reduced-motion: reduce) {
-  .hero-swiper .swiper-slide {
-    transition: none;
+  .hero {
+    &__slide {
+      transition: none;
+    }
+    
+    &__nav-button {
+      transition: none;
+    }
+    
+    .btn {
+      &::after {
+        transition: none;
+      }
+      
+      .btn__icon {
+        transition: none;
+      }
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .hero {
+    &__overlay {
+      background: linear-gradient(
+        to top,
+        rgba($black, 0.9) 0%,
+        rgba($black, 0.7) 50%,
+        rgba($black, 0.4) 100%
+      );
+    }
+    
+    &__nav-button {
+      border-width: 2px;
+      background-color: rgba($white, 0.2);
+    }
+    
+    .btn--link--light {
+      &::after {
+        border-bottom-width: 2px;
+      }
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .hero-wrapper {
+    // Zachowane - full width background
   }
   
-  .hero-slide__title-main,
-  .hero-slide__title-accent,
-  .hero-slide__text,
-  .hero-slide__button {
-    animation: none !important;
+  .hero-container {
+    padding: 0;
   }
   
-  .hero-swiper-button-prev,
-  .hero-swiper-button-next {
-    transition: none;
+  .hero {
+    height: auto;
+    min-height: auto;
+    page-break-inside: avoid;
+    border-radius: 0;
+    box-shadow: none;
+    
+    &__navigation {
+      display: none;
+    }
+    
+    &__overlay {
+      background: rgba($black, 0.3);
+    }
+    
+    &__title-main,
+    &__title-accent,
+    &__description {
+      color: $black !important;
+    }
   }
-}}
+}
