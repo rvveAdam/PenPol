@@ -195,6 +195,32 @@ function pen_pol_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+	// Accordion Poradniki JS
+	wp_enqueue_script(
+		'accordion-poradniki-js',
+		get_template_directory_uri() . '/assets/dist/accordion-poradniki.js',
+		array('swiper-js'),
+		_S_VERSION,
+		true
+	);
+
+	// FAQ JS
+	wp_enqueue_script(
+		'faq-js',
+		get_template_directory_uri() . '/assets/dist/faq.js',
+		array(), // Nie wymaga Swipera, jest niezależny
+		_S_VERSION,
+		true
+	);
+
+	// Carousel Opinie JS
+	wp_enqueue_script(
+		'home-carousel-js',
+		get_template_directory_uri() . '/assets/dist/home-carousel.js',
+		array('swiper-js'),
+		_S_VERSION,
+		true
+	);
 }
 add_action( 'wp_enqueue_scripts', 'pen_pol_scripts' );
 

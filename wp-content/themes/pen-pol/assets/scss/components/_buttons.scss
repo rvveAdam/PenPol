@@ -75,8 +75,8 @@
   // =============================================================================
   
   &__icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     transition: transform map-get($transitions, "normal");
     flex-shrink: 0;
     
@@ -92,8 +92,8 @@
     }
     
     @include mobile-up {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
     }
   }
   
@@ -113,7 +113,7 @@
       transform: scale(1.05);
       
       &--right {
-        transform: translateX(2px) scale(1.05);
+        transform: translateX(6px) scale(1.05);
       }
       
       &--left {
@@ -284,15 +284,14 @@
 // Link-style Button
 .btn--link {
   background-color: transparent;
-  color: $primary-color-blue;
-  border: none;
-  border-bottom: 1px solid rgba($white, 0.4);
+  color: $black;
+  border-bottom: 1px solid rgba($black, 0.4);
   border-radius: 0;
   padding: map-get($spacing, "xs") 0;
   box-shadow: none;
   
   &:hover:not(:disabled):not(.btn--disabled):not(.btn--loading) {
-    border-bottom-color: $primary-color-blue;
+    border-bottom-color: $black;
     transform: none;
     box-shadow: none;
     
@@ -302,13 +301,13 @@
   }
   
   &:focus-visible {
-    outline-color: $primary-color-blue;
-    border-bottom-color: $primary-color-blue;
+    outline-color: $black;
+    border-bottom-color: $black;
   }
   
   &:active:not(:disabled):not(.btn--disabled):not(.btn--loading) {
-    color: $primary-color-blue-dark;
-    border-bottom-color: $primary-color-blue-dark;
+    color: $black;
+    border-bottom-color: $black;
   }
   
   &::before {
@@ -487,8 +486,8 @@
     min-height: 44px;
     gap: 12px;
     &__icon {
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
     }
   }
 }

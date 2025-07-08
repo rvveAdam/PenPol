@@ -80,7 +80,7 @@ $section-padding-inline-tablet: 32px;
 $section-padding-inline-desktop: 40px;
 
 // Vertical spacing
-$section-padding-block: clamp(40px, 8vw, 80px);
+$section-padding-block: clamp(40px, 8vw, 100px);
 
 // =============================================================================
 // TYPOGRAPHY SYSTEM
@@ -360,3 +360,13 @@ $z-index: (
   "toast": 1080,
   "skip-link": 100000
 );
+
+// =============================================================================
+// DECORATIVE TEXT CLASS - Font Lora dla elementów dekoracyjnych
+// =============================================================================
+
+.decor {
+  font-family: $font-secondary; // Lora
+  font-style: italic;
+  font-weight: map-get($font-weights, "regular");
+}

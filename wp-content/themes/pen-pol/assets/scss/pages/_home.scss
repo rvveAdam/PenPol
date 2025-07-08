@@ -3,7 +3,7 @@
 // Three-level container structure with proper spacing
 
 // =============================================================================
-// HERO WRAPPER - Full-width background section
+// 01. HERO WRAPPER - Full-width background section
 // =============================================================================
 
 .hero-wrapper {
@@ -365,6 +365,7 @@
     justify-content: flex-start;
     padding-right: 8px;
     position: relative;
+    border-bottom: 1px solid rgba($white, 0.4) !important; 
     box-sizing: border-box;
     
     @include tablet-up {
@@ -415,19 +416,72 @@
       }
     }
     
-    &:hover {
+    
+    &:focus-visible {
       &::after {
-        background-color: rgba($white, 0.8);
-      }
-      
-      .btn__icon {
-        transform: translateX(4px) !important;
-        
-        @include tablet-up {
-          transform: translateX(6px) !important;
-        }
+        background-color: rgba($white, 1);
       }
     }
+  }
+
+    .btn--link--dark {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-right: 8px;
+    position: relative;
+    box-sizing: border-box;
+    
+    @include tablet-up {
+      width: auto;
+      text-align: left;
+      padding-right: 16px;
+    }
+    
+    // Rozszerzony border-bottom przez pseudo-element
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: -20px;
+      right: -20px;
+      height: 1px;
+      background-color: rgba($black, 0.4);
+      transition: background-color map-get($transitions, "normal");
+      
+      @include tablet-up {
+        left: -12px;
+        right: -12px;
+      }
+    }
+    
+    .btn__text {
+      font-size: 16px;
+      position: relative;
+      z-index: 2;
+      
+      @include tablet-up {
+        font-size: 20px;
+      }
+    }
+    
+    .btn__icon {
+      filter: brightness(0) invert(1);
+      transition: transform map-get($transitions, "normal");
+      height: 14px;
+      width: 14px;
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      
+      @include tablet-up {
+        height: 16px;
+        width: 16px;
+      }
+    }
+  
     
     &:focus-visible {
       &::after {
@@ -556,6 +610,1766 @@
     &__title-accent,
     &__description {
       color: $black !important;
+    }
+  }
+}
+
+// =============================================================================
+// CATEGORIES SECTION - Product categories grid with Figma layout
+// =============================================================================
+
+.categories-wrapper {
+  background-color: $background-color;
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  background-image: url('/wp-content/uploads/2025/07/Layer_1.png');
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: contain;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+}
+
+.categories-container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vw, 64px);  
+  align-items: center !important;
+  width: 100%;
+  
+  // Desktop layout - text left (50%) | grid right (50%)
+  @include desktop-up {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: clamp(60px, 8vw, 80px); // Zwiększony gap między kolumnami
+  }
+  
+  // =============================================================================
+  // HEADER SECTION - Text content and CTA
+  // =============================================================================
+  
+  &__content-header {
+    flex: 1;
+    min-width: 100%; // Pełna szerokość na telefonach
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Vertically center content
+    
+    @include desktop-up {
+      flex: 1;
+      max-width: 100%; 
+      flex-shrink: 0;
+      padding-top: 40px;
+      min-width: 0; // Reset dla desktopa
+    }
+  }
+  
+  &__subheader {
+    font-size: map-get($font-sizes, "h6") !important;
+    font-weight: map-get($font-weights, "medium");
+    font-family: $font-secondary;
+    color: $black;
+    margin: 0 0 map-get($spacing, "md") 0;
+    
+    @include tablet-up {
+      font-size: map-get($font-sizes, "p");
+    }
+  }
+  
+  &__heading {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "tight");
+    color: $primary-text-color;
+    margin: 0 0 clamp(32px, 5vw, 48px) 0;
+    
+    @include desktop-up {
+      font-size: clamp(36px, 3vw, 54px);
+      margin-bottom: clamp(40px, 4vw, 56px);
+    }
+  }
+  
+// =============================================================================
+// GRID SECTION - 2x2 categories tiles (organiczny układ)
+// =============================================================================
+
+&__grid-wrapper {
+  flex: 1;
+  min-width: 100%; // Pełna szerokość na telefonach
+  
+  @include desktop-up {
+    flex: 1; // 50/50 split
+    max-width: 50%;
+    min-width: 0; // Reset dla desktopa
+  }
+}
+
+&__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 125px);
+  gap: 16px;
+  width: 100%;
+  position: relative;
+  
+  @include mobile-up {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 125px);
+    gap: 20px;
+  }
+  
+  @include tablet-up {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 125px);
+    gap: 20px;
+  }
+  
+  @include desktop-up {
+    display: block; // Zamiast grid używamy block na desktopie dla pozycjonowania absolutnego
+    height: 525px;
+    position: relative;
+  }
+}
+
+// =============================================================================
+// CATEGORY TILES - Individual product category cards
+// =============================================================================
+
+&__tile {
+  position: relative;
+  border-radius: map-get($border-radius, "lg");
+  overflow: hidden;
+  box-shadow: map-get($shadows, "md");
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  height: 125px; // Zmniejszona wysokość na mobile
+  
+  @include desktop-up {
+    // Domyślne style dla desktopa - zostaną nadpisane dla konkretnych artykułów
+    height: auto;
+  }
+
+  // Modifier for tiles with background image
+  &--with-image {
+    background-color: $medium-grey; // Fallback
+  }
+  
+  // Modifier for default tiles (no image) - ciemniejszy kolor #132684 + gradient
+  &--default {
+    background: #132684;
+    position: relative;
+    width: 100%; // Zapewnienie pełnej szerokości
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(
+        to bottom,
+        rgba($black, 0) 0%,
+        rgba($black, 0.2) 100%
+      );
+      z-index: 1;
+    }
+  }
+  
+  // Hover effects
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: map-get($shadows, "lg");
+    z-index: 5; // Dodane dla lepszego efektu przy hover
+  }
+}
+  
+  &__tile-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: all map-get($transitions, "normal");
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+    
+    // Disabled state
+    &--disabled {
+      cursor: default;
+      
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+  
+  &__tile-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden; // Zapobiega wychodzeniu obrazka poza granice przy hover
+  }
+  
+  &__tile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); // Płynniejsza animacja
+  }
+  
+  &__tile-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      rgba($black, 0.7) 0%,
+      rgba($black, 0.4) 40%,
+      rgba($black, 0.1) 100%
+    );
+    z-index: 2;
+    transition: background 0.3s ease;
+  }
+  
+  &__tile-content {
+    position: relative;
+    z-index: 10;
+    padding: 30px; // Zwiększony padding z 20px na 30px
+    color: $white;
+    text-align: left;
+    transform: translateY(0);
+    transition: transform 0.3s ease; // Dodana animacja dla contentu
+    
+    @include desktop-up {
+      padding: 30px; // Utrzymany zwiększony padding również na desktop
+    }
+  }
+  
+  &__tile-title {
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "tight");
+    margin: 0;
+    color: $white;
+    transition: transform 0.3s ease; // Dodana animacja dla tytułu
+    
+    // Obsługa span dekoracyjnego
+    .decor {
+      color: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+    }
+    
+    @include desktop-up {
+      font-size: clamp(20px, 2vw, 24px); // Zmniejszona czcionka
+    }
+  }
+  
+  // Enhanced hover effects for tiles with images
+  &__tile--with-image:hover {
+    .categories__tile-image {
+      transform: scale(1.05); // Bardziej zauważalny, ale płynny efekt
+    }
+    
+    .categories__tile-title {
+      transform: translateY(-3px); // Delikatna animacja tytułu
+    }
+  }
+}
+
+// =============================================================================
+// DESKTOP LAYOUT - Pozycjonowanie kafelków w układzie organicznym
+// =============================================================================
+
+// Osobne selektory dla konkretnych artykułów w desktopie
+@include desktop-up {
+  // Pierwszy kafelek (lewy górny)
+  .categories__grid article:nth-child(1) {
+    position: absolute;
+    width: 48%;
+    height: 350px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  // Drugi kafelek (prawy górny)
+  .categories__grid article:nth-child(2) {
+    position: absolute;
+    width: 48%;
+    height: 150px;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+  
+  // Trzeci kafelek (lewy dolny)
+  .categories__grid article:nth-child(3) {
+    position: absolute;
+    width: 48%;
+    height: 150px;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    
+  }
+  
+  // Czwarty kafelek (prawy dolny)
+  .categories__grid article:nth-child(4) {
+    position: absolute;
+    width: 48%;
+    height: 350px;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .categories {
+    &__tile {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+    
+    &__tile-image {
+      transition: none;
+      
+      .categories__tile--with-image:hover & {
+        transform: none;
+      }
+    }
+    
+    &__tile-title {
+      transition: none;
+      
+      .categories__tile--with-image:hover & {
+        transform: none;
+      }
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .categories {
+    &__tile {
+      border: 2px solid;
+      
+      &--default {
+        border-color: $primary-color-blue-dark;
+      }
+      
+      &--with-image {
+        border-color: $white;
+      }
+    }
+    
+    &__tile-overlay {
+      background: linear-gradient(
+        to top,
+        rgba($black, 0.8) 0%,
+        rgba($black, 0.5) 50%,
+        rgba($black, 0.2) 100%
+      );
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .categories-wrapper {
+    background-color: $white;
+    background-image: none; // Wyłączenie obrazka tła przy drukowaniu
+    padding-block: map-get($spacing, "lg");
+  }
+  
+  .categories {
+    flex-direction: column;
+    
+    &__grid {
+      display: block;
+      
+      .categories__tile {
+        margin-bottom: map-get($spacing, "lg");
+        height: auto !important; // Reset heights for print
+        box-shadow: none;
+        border: 1px solid $light-grey;
+        page-break-inside: avoid;
+        
+        &--default {
+          background: $light-grey;
+        }
+        
+        &:hover {
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    }
+    
+    &__tile-content {
+      color: $black;
+      padding: 16px;
+    }
+    
+    &__tile-title {
+      color: $black;
+      font-size: 18px; // Fixed size for print
+    }
+  }
+}
+
+// =============================================================================
+// PORADNIKI SECTION - Sleeping positions accordion
+// =============================================================================
+
+.poradniki-wrapper {
+  background-color: $background-color;
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  background-image: url('/wp-content/uploads/2025/07/piorko-zawiniete.png');
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: contain;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+}
+
+.poradniki-container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vw, 64px);
+}
+
+// =============================================================================
+// HEADER SECTION - Title, subtitle and description
+// =============================================================================
+
+.poradniki-header {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 5vw, 32px); // Poprawiona kolejność wartości w clamp
+  
+  @include desktop-up {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: clamp(30px, 5vw, 40px); // Zmniejszona przerwa między kolumnami
+  }
+  
+  &__left {
+    flex: 1;
+    min-width: 100%;
+    
+    @include desktop-up {
+      flex: 0 0 65%; 
+      max-width: 65%; 
+      min-width: 0;
+    }
+  }
+  
+  &__right {
+    flex: 1;
+    min-width: 100%;
+    
+    @include desktop-up {
+      flex: 0 0 35%; 
+      max-width: 35%; 
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; 
+      align-self: center; 
+    }
+  }
+  
+  &__heading {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "tight");
+    color: $primary-text-color;
+    margin: 0 0 clamp(24px, 4vw, 32px) 0;
+    max-width: 80%; 
+    
+    @include desktop-up {
+      font-size: clamp(36px, 3vw, 54px);
+    }
+  }
+  
+  &__subheading {
+    font-size: map-get($font-sizes, "p");
+    line-height: map-get($line-heights, "relaxed");
+    color: $primary-text-color;
+    max-width: 90%; 
+  }
+  
+  &__text {
+    font-size: 18px;
+    line-height: map-get($line-heights, "relaxed");
+    color: $primary-text-color;
+    max-width: 100%;
+    text-align: left;
+  }
+}
+
+// =============================================================================
+// ACCORDION CONTENT - Tabs and panels
+// =============================================================================
+
+.poradniki-content {
+  width: 100%;
+}
+
+.poradniki-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 32px);
+  
+  @include desktop-up {
+    flex-direction: row;
+    align-items: stretch; // Wyrównanie wysokości
+    gap: clamp(40px, 5vw, 48px);
+    min-height: 450px; 
+  }
+  
+  // Tab Headers
+  &__headers {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    
+    @include desktop-up {
+      flex: 0 0 40%;
+      max-width: 40%;
+      justify-content: center; // Wyśrodkowanie w pionie
+      padding: 40px 0; // Dodatkowy padding dla lepszego wyśrodkowania
+    }
+  }
+  
+  &__tab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $light-grey;
+    cursor: pointer;
+    transition: all map-get($transitions, "normal");
+    width: 100%;
+    text-align: left;
+    color: $text-light;
+    font-size: map-get($font-sizes, "h4");
+    font-weight: map-get($font-weights, "regular");
+    font-family: $font-primary;
+    
+    @include desktop-up {
+      padding: 20px 0; // Większy padding dla lepszego wyśrodkowania
+    }
+    
+    &:hover, &:focus {
+      border-bottom-color: $medium-grey;
+      color: $black;
+      
+      .poradniki-accordion__tab-icon {
+        transform: translateX(3px);
+      }
+    }
+    
+    &.active {
+      border-bottom-color: $black;
+      color: $black;
+      
+      .poradniki-accordion__tab-icon {
+        transform: translateX(3px);
+      }
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  &__tab-text {
+    flex: 1;
+  }
+  
+  &__tab-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform map-get($transitions, "normal");
+    transform: translateX(-2px); // Cofnięcie strzałki w stanie nieaktywnym
+  }
+  
+  // Panels Container
+  &__panels {
+    width: 100%;
+    overflow: hidden;
+    height: 550px; // Ustalona wysokość dla wszystkich breakpointów
+    margin-bottom: 40px; // Dodany margin-bottom
+    position: relative; // Dodane dla lepszego kontrolowania zawartości
+    
+    @include desktop-up {
+      flex: 0 0 60%;
+      max-width: 60%;
+      height: 450px;
+      margin-bottom: 0; // Reset marginesu na desktopie
+    }
+    
+    .swiper {
+      height: 100%;
+    }
+    
+    .swiper-wrapper {
+      height: 100%;
+    }
+  }
+  
+  // Individual Panel
+  &__panel {
+    position: relative;
+    border-radius: map-get($border-radius, "lg");
+    overflow: hidden;
+    height: 550px; // Stała wysokość dla mobile
+    background-color: transparent;
+    padding-bottom: 20px; // Dodany padding na dole panelu
+    box-sizing: border-box; // Aby padding był wliczony w wysokość
+    
+    @include desktop-up {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%; // Pełna wysokość na desktopie
+      padding-bottom: 0; // Reset paddingu na desktopie
+    }
+  }
+  
+  &__panel-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  &__panel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  &__panel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      rgba($black, 0.4) 0%,
+      rgba($black, 0.2) 50%,
+      rgba($black, 0.1) 100%
+    );
+    z-index: 2;
+  }
+  
+  &__panel-content {
+    position: relative;
+    z-index: 10;
+    padding: 20px 20px 0 20px; // Usunięty padding na dole
+    height: calc(100% - 20px); // Zmniejszona wysokość o padding dolny
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    @include desktop-up {
+      padding: 0; // Usunięty padding na desktopie
+      height: 100%; // Pełna wysokość na desktopie
+      justify-content: flex-end;
+    }
+  }
+  
+  &__panel-spacer {
+    flex-grow: 1; // Element wypełniający przestrzeń
+  }
+  
+  &__panel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      rgba($black, 0.4) 0%,
+      rgba($black, 0.2) 50%,
+      rgba($black, 0.1) 100%
+    );
+    z-index: 2;
+  }
+  
+  &__panel-cta {
+    align-self: center; // Wyśrodkowanie na mobilce
+    margin-right: 0;
+    z-index: 20;
+    margin-bottom: 20px; // Odstęp od niebieskiego kafelka
+    
+    @include desktop-up {
+      align-self: flex-end; // Powrót do wyrównania do prawej na desktopie
+      margin-right: 40px;
+      margin-bottom: 20px; // Zachowany odstęp na desktopie
+    }
+    
+    .btn {
+      font-size: map-get($font-sizes, "button");
+      
+      &.btn--link--light {
+        border-bottom-color: rgba($white, 0.4);
+        padding: 0 16px; // Dodany padding dla przycisku na telefonach
+        gap: 12px; // Dodany gap dla przycisku
+        display: flex; // Upewnienie się, że gap działa
+        align-items: center; // Wyśrodkowanie zawartości przycisku
+      }
+      
+      .btn__icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  
+  &__panel-text {
+    font-size: map-get($font-sizes, "p");
+    line-height: map-get($line-heights, "relaxed");
+    color: $white;
+    background-color: $primary-color-blue;
+    padding: 24px; // Zwiększony padding dla lepszej czytelności
+    border-radius: map-get($border-radius, "md");
+    align-self: stretch;
+    z-index: 10;
+    margin: 0 0 20px 0; // Dodany margin na dole, aby zapewnić padding
+    
+    @include desktop-up {
+      padding: 30px;
+      margin: 0 40px 40px 40px; // Margines tylko na desktopie
+    }
+    
+    p {
+      color: $white;
+      margin-bottom: 1em;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .poradniki-accordion {
+    &__tab {
+      transition: none;
+      
+      &:hover, &.active {
+        .poradniki-accordion__tab-icon {
+          transform: none;
+        }
+      }
+    }
+    
+    &__tab-icon {
+      transition: none;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .poradniki-accordion {
+    &__tab {
+      border-bottom-width: 2px;
+      
+      &.active {
+        border-bottom-color: $black;
+      }
+    }
+    
+    &__panel-overlay {
+      background: rgba($black, 0.5);
+    }
+    
+    &__panel-text {
+      background-color: $primary-color-blue-dark;
+      font-weight: map-get($font-weights, "medium");
+      border: 2px solid $white;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .poradniki-wrapper {
+    background-color: $white;
+    padding-block: map-get($spacing, "lg");
+  }
+  
+  .poradniki-accordion {
+    flex-direction: column;
+    
+    &__tab {
+      border-bottom: 2px solid $black;
+      page-break-inside: avoid;
+      
+      &.active {
+        font-weight: map-get($font-weights, "semibold");
+      }
+    }
+    
+    &__panel {
+      page-break-inside: avoid;
+      height: auto;
+      min-height: 200px;
+    }
+    
+    &__panel-text {
+      background-color: $light-grey;
+      color: $black;
+      border: 1px solid $black;
+      
+      p {
+        color: $black;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// ABOUT US SECTION - "O nas" sekcja z wyświetlaniem informacji o firmie
+// =============================================================================
+
+.about {
+  background-color: $background-color; // Zmienione z $white na $background-color
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  position: relative;
+  overflow: hidden;
+  
+  // Dekoracyjne piórko w tle
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background-image: url('/wp-content/uploads/2025/07/Layer_1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
+    pointer-events: none;
+    z-index: 1;
+    
+    @include mobile-up {
+      width: 400px;
+      height: 400px;
+    }
+    
+    @include desktop-up {
+      width: 500px;
+      height: 500px;
+    }
+  }
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+  
+  &__container {
+    position: relative;
+    z-index: 2;
+    max-width: $container-max-width;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  // =============================================================================
+  // TOP SECTION - Content and Images Layout
+  // =============================================================================
+  
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 6vw, 64px);
+    margin-bottom: clamp(48px, 8vw, 80px);
+    
+    @include desktop-up {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+  
+  // =============================================================================
+  // CONTENT COLUMN - Left side with heading and text
+  // =============================================================================
+  
+  &__content {
+    width: 100%;
+    
+    @include desktop-up {
+      width: 45%;
+      padding-right: 30px;
+    }
+  }
+  
+  &__heading {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "tight");
+    color: $primary-text-color;
+    margin: 0 0 clamp(24px, 4vw, 32px) 0;
+  }
+  
+  &__text {
+    font-size: map-get($font-sizes, "p");
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "relaxed");
+    color: $primary-text-color;
+    
+    p {
+      margin-bottom: map-get($spacing, "lg");
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // =============================================================================
+  // IMAGES COLUMN - Right side with 3 images layout
+  // =============================================================================
+  
+  &__images {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    @include tablet-up {
+      flex-direction: row;
+      align-items: stretch;
+    }
+    
+    @include desktop-up {
+      width: 55%;
+    }
+  }
+  
+  &__image-column {
+    width: 100%;
+    
+    @include tablet-up {
+      &--left {
+        display: flex;
+        align-items: center;
+        width: calc(50% - 10px);
+        margin-right: 20px;
+      }
+      
+      &--right {
+        width: calc(50% - 10px);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  }
+  
+  &__image-wrapper {
+    position: relative;
+    border-radius: map-get($border-radius, "lg");
+    overflow: hidden;
+    box-shadow: map-get($shadows, "md");
+    width: 100%;
+    height: 250px; // Wszystkie obrazki mają wysokość 250px
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: map-get($shadows, "lg");
+    }
+    
+    @include tablet-up {
+      margin-bottom: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  // =============================================================================
+  // BOTTOM SECTION - Info cards grid
+  // =============================================================================
+  
+  &__bottom {
+    margin-top: clamp(48px, 8vw, 80px);
+  }
+  
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    
+    @include tablet-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include desktop-up {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  &__card {
+    padding: 30px;
+    border-radius: map-get($border-radius, "lg");
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    height: auto;
+    justify-content: flex-end;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 0;
+    
+    @include tablet-up {
+      min-height: 250px;
+      height: 100%;
+    }
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: map-get($shadows, "lg");
+    }
+    
+    // Modifier for blue cards (odd)
+    &--blue {
+      background-color: $primary-color-blue;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        background: linear-gradient(
+          to top,
+          rgba($black, 0.3) 0%,
+          rgba($black, 0) 100%
+        );
+        border-radius: 0 0 map-get($border-radius, "lg") map-get($border-radius, "lg");
+        z-index: 1;
+      }
+      
+      .about__card-title,
+      .about__card-text {
+        color: $white;
+        position: relative;
+        z-index: 2;
+      }
+    }
+    
+    // Modifier for white cards (even)
+    &--white {
+      background-color: $white;
+      border: 1px solid $light-grey;
+      
+      .about__card-title,
+      .about__card-text {
+        color: $primary-text-color;
+      }
+    }
+    
+    &-title {
+      font-size: clamp(20px, 2.5vw, 36px);
+      font-weight: map-get($font-weights, "medium");
+      line-height: map-get($line-heights, "tight");
+      margin: 0 0 map-get($spacing, "md") 0;
+    }
+    
+    &-text {
+      font-size: clamp(16px, 1.5vw, 20px);
+      line-height: map-get($line-heights, "relaxed");
+    }
+  }
+  
+  // =============================================================================
+  // ACCESSIBILITY & PERFORMANCE
+  // =============================================================================
+  
+  // Reduced motion
+  @media (prefers-reduced-motion: reduce) {
+    &__image-wrapper,
+    &__card {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+        box-shadow: inherit;
+      }
+    }
+  }
+  
+  // High contrast mode
+  @media (prefers-contrast: high) {
+    &__card {
+      &--blue {
+        border: 2px solid $primary-color-blue-dark;
+        
+        &::after {
+          display: none;
+        }
+      }
+      
+      &--white {
+        border: 2px solid $black;
+      }
+    }
+    
+    &__image-wrapper {
+      border: 2px solid $black;
+    }
+  }
+  
+  // Print styles
+  @media print {
+    background-color: $white;
+    
+    &::before {
+      display: none; // Ukryj piórko w wydruku
+    }
+    
+    &__image-wrapper {
+      box-shadow: none;
+      border: 1px solid $light-grey;
+      height: 150px; // Zmniejszona wysokość do druku
+      
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+    
+    &__images {
+      display: block;
+      height: auto;
+      
+      .about__image-wrapper {
+        margin-bottom: 20px;
+      }
+    }
+    
+    &__cards {
+      grid-template-columns: 1fr;
+    }
+    
+    &__card {
+      page-break-inside: avoid;
+      border: 1px solid $light-grey !important;
+      min-height: auto;
+      
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+      
+      &--blue {
+        background-color: $white;
+        
+        &::after {
+          display: none;
+        }
+        
+        .about__card-title,
+        .about__card-text {
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+// =============================================================================
+// OPINIE SECTION - Testimonials carousel
+// =============================================================================
+
+.opinie-wrapper {
+  background-color: #333333;
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  color: $white;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+    overflow: hidden; // Zapobiega poziomemu scrollowaniu strony
+  }
+}
+
+.opinie-container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vw, 64px);
+}
+
+// =============================================================================
+// HEADER SECTION - Title
+// =============================================================================
+
+.opinie-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  @include desktop-up {
+    width: 50%;
+  }
+  
+  &__heading {
+    font-family: $font-primary;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "tight");
+    color: $white;
+    margin: 0;
+    
+    @include desktop-up {
+      font-size: clamp(36px, 3vw, 54px);
+    }
+  }
+}
+
+// =============================================================================
+// CAROUSEL CONTENT
+// =============================================================================
+
+.opinie-content {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  
+  @include desktop-up {
+    // Kluczowa zmiana - pozwala na przepełnienie na całej szerokości
+    margin-right: calc((100vw - $container-max-width) / 2 * -1);
+    width: calc(100% + ((100vw - $container-max-width) / 2));
+    padding-right: 0;
+  }
+}
+
+.opinie-carousel {
+  width: 100%;
+  overflow: visible;
+  
+  // Ustawienie szerokości, która "ucieka" za kontener
+  .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  &__slide {
+    height: auto;
+    display: flex;
+  }
+  
+  &__card {
+    background-color: $white;
+    color: $primary-text-color;
+    border-radius: map-get($border-radius, "lg");
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  &__icon {
+    position: static;
+    margin-bottom: 16px;
+    width: 40px;
+    height: 40px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  
+  &__text {
+    font-size: map-get($font-sizes, "p");
+    line-height: map-get($line-heights, "relaxed");
+    color: $primary-text-color;
+    position: relative;
+    padding-left: 0;
+    
+    p {
+      margin-bottom: 16px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  &__footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  &__name {
+    font-weight: map-get($font-weights, "semibold");
+    font-size: 16px;
+    color: $primary-text-color;
+  }
+  
+  &__role {
+    font-size: 16px;
+    color: $text-light;
+  }
+  
+  &__rating {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  
+  &__star {
+    color: $primary-color-blue;
+    font-size: 18px;
+    line-height: 1;
+  }
+}
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+// Responsywne ustawienia szerokości slajdów
+.opinie-carousel {
+  // Mobile - 1 cały kafelek
+  .swiper-slide {
+    width: 100%;
+    padding-right: 0;
+  }
+  
+  @include tablet-up {
+    // Tablet - 2 całe kafelki
+    .swiper-slide {
+      width: calc(50% - 16px);
+      margin-right: 16px;
+    }
+  }
+  
+  @include desktop-up {
+    // Desktop - 3 całe + połowa czwartego
+    .swiper-slide {
+      width: calc(33.333% - 24px);
+      margin-right: 24px;
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .opinie-carousel {
+    .swiper-wrapper {
+      transition: none !important;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .opinie-carousel {
+    &__card {
+      border: 2px solid $black;
+    }
+    
+    &__star {
+      color: $black;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .opinie-wrapper {
+    background-color: $white;
+    color: $black;
+    padding-block: map-get($spacing, "lg");
+  }
+  
+  .opinie-header__heading {
+    color: $black;
+  }
+  
+  .opinie-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    
+    .swiper-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .swiper-slide {
+      width: calc(50% - 8px);
+      page-break-inside: avoid;
+      margin: 0;
+    }
+    
+    &__card {
+      border: 1px solid $black;
+    }
+    
+    &__star {
+      color: $black;
+    }
+  }
+}
+
+// =============================================================================
+// FAQ SECTION - Frequently Asked Questions accordion
+// =============================================================================
+
+.faq-wrapper {
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  background-color: $background-color;
+  background-image: url('/wp-content/uploads/2025/07/Layer_1.png');
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: contain;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+}
+
+.faq-header {
+  margin-bottom: clamp(32px, 6vw, 48px);
+  text-align: left;
+  
+  &__heading {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "tight");
+    color: $primary-text-color;
+    margin: 0;
+    
+    @include desktop-up {
+      font-size: clamp(36px, 3vw, 54px);
+    }
+  }
+}
+
+.faq-content {
+  width: 100%; // Rozciągnięcie na pełną szerokość
+  margin: 0 auto;
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+  &__item {
+    border-bottom: 1px solid $black;
+    transition: all map-get($transitions, "normal");
+  }
+  
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: $primary-text-color;
+    font-size: 20px; // Stały rozmiar czcionki 20px dla nagłówków
+    font-weight: map-get($font-weights, "medium");
+    font-family: $font-primary;
+    transition: all map-get($transitions, "normal");
+    
+    @include desktop-up {
+      padding: 24px 0;
+      font-size: map-get($font-sizes, "h6");
+    }
+    
+    &:hover, &:focus {
+      color: $primary-color-blue;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+    
+    &[aria-expanded="true"] {
+      color: $primary-color-blue;
+      
+      .faq-accordion__icon-plus {
+        opacity: 0;
+        transform: rotate(90deg);
+      }
+      
+      .faq-accordion__icon-minus {
+        opacity: 1;
+        transform: rotate(0);
+      }
+    }
+  }
+  
+  &__question {
+    flex: 1;
+    padding-right: 16px;
+    padding-left: 20px; // Dodanie odsunięcia tekstu w prawo
+  }
+  
+  &__icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    padding-right: 20px;
+    flex-shrink: 0;
+    
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: all map-get($transitions, "normal");
+    }
+  }
+  
+  &__icon-plus {
+    opacity: 1;
+    transform: rotate(0);
+  }
+  
+  &__icon-minus {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+  
+  &__panel {
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    max-height: 0;
+    opacity: 0;
+    
+    &[hidden] {
+      display: block;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    &:not([hidden]) {
+      max-height: 1000px; // Dostatecznie duża wartość, aby zmieścić treść
+      padding-bottom: 24px;
+      opacity: 1;
+    }
+  }
+  
+  &__answer {
+    color: $text-muted;
+    font-size: map-get($font-sizes, "p");
+    line-height: map-get($line-heights, "relaxed");
+    padding-left: 20px;
+    padding-right: 40px; 
+    
+    p {
+      margin-bottom: 1em;
+      color: $text-muted;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    a {
+      color: $primary-color-blue;
+      text-decoration: underline;
+      transition: color map-get($transitions, "fast");
+      
+      &:hover, &:focus {
+        color: $primary-color-blue-hover;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .faq-accordion {
+    &__button {
+      transition: none;
+    }
+    
+    &__icon {
+      img {
+        transition: none;
+      }
+    }
+    
+    &__panel {
+      transition: none;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .faq-accordion {
+    &__item {
+      border-bottom-width: 2px;
+    }
+    
+    &__button[aria-expanded="true"] {
+      font-weight: map-get($font-weights, "bold");
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .faq-wrapper {
+    background-color: $white;
+    padding-block: map-get($spacing, "lg");
+  }
+  
+  .faq-accordion {
+    &__item {
+      border-bottom: 1px solid $black;
+      page-break-inside: avoid;
+      margin-bottom: 16px;
+    }
+    
+    &__button {
+      font-weight: map-get($font-weights, "bold");
+    }
+    
+    &__panel {
+      display: block !important;
+      height: auto !important;
+      opacity: 1 !important;
+      page-break-inside: avoid;
+    }
+    
+    &__icon {
+      display: none;
     }
   }
 }
