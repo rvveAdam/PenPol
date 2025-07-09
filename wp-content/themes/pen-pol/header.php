@@ -25,35 +25,133 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'pen-pol' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$pen_pol_description = get_bloginfo( 'description', 'display' );
-			if ( $pen_pol_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $pen_pol_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-wrapper">
+			<div class="container">
+				<div class="header-content">
+					<!-- Logo -->
+					<div class="site-branding">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home">
+							<img src="<?php echo esc_url('/wp-content/uploads/2025/07/logo-czarne.png'); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="custom-logo">
+						</a>
+					</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'pen-pol' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
+					<!-- Desktop Navigation -->
+					<nav id="site-navigation" class="main-navigation desktop-nav" aria-label="<?php esc_attr_e( 'Main Navigation', 'pen-pol' ); ?>">
+						<?php
+						wp_nav_menu(
+							array(
+								'menu'           => 19,
+								'container'      => false,
+								'menu_id'        => 'primary-menu',
+								'menu_class'     => 'menu-wrapper',
+								'theme_location' => 'menu-1',
+								'fallback_cb'    => false,
+							)
+						);
+						?>
+					</nav><!-- #site-navigation -->
+
+					<!-- Header Icons -->
+					<div class="header-icons">
+						<!-- Search Icon -->
+						<div class="header-icon header-icon--search">
+							<button class="search-toggle" aria-expanded="false" aria-controls="search-form">
+								<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lupka.svg'); ?>" alt="" aria-hidden="true">
+								<span class="screen-reader-text"><?php echo esc_html__( 'Search', 'pen-pol' ); ?></span>
+							</button>
+							<div id="search-form" class="search-form-wrapper" hidden>
+								<?php 
+								// Placeholder for Fibosearch
+								// echo do_shortcode('[fibosearch]'); 
+								?>
+							</div>
+						</div>
+
+						<!-- Wishlist Icon -->
+						<div class="header-icon header-icon--wishlist">
+							<a href="#" class="wishlist-link">
+								<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/serduszko.svg'); ?>" alt="" aria-hidden="true">
+								<span class="screen-reader-text"><?php echo esc_html__( 'Wishlist', 'pen-pol' ); ?></span>
+							</a>
+						</div>
+
+						<!-- Account Icon -->
+						<div class="header-icon header-icon--account">
+							<a href="#" class="account-link">
+								<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/user.svg'); ?>" alt="" aria-hidden="true">
+								<span class="screen-reader-text"><?php echo esc_html__( 'My Account', 'pen-pol' ); ?></span>
+							</a>
+						</div>
+
+						<!-- Separator -->
+						<div class="header-separator" aria-hidden="true"></div>
+
+						<!-- Cart Icon -->
+						<div class="header-icon header-icon--cart">
+							<a href="#" class="cart-link">
+								<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/koszyk.svg'); ?>" alt="" aria-hidden="true">
+								<span class="screen-reader-text"><?php echo esc_html__( 'Cart', 'pen-pol' ); ?></span>
+								<span class="cart-count">0</span>
+							</a>
+						</div>
+
+						<!-- Mobile Menu Toggle -->
+						<button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-controls="mobile-navigation" aria-expanded="false">
+							<span class="hamburger-icon" aria-hidden="true">
+								<span class="hamburger-inner"></span>
+							</span>
+							<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'pen-pol' ); ?></span>
+						</button>
+					</div><!-- .header-icons -->
+				</div><!-- .header-content -->
+			</div><!-- .container -->
+		</div><!-- .header-wrapper -->
+
+		<!-- Mobile Navigation -->
+		<div id="mobile-navigation" class="mobile-navigation" aria-hidden="true">
+			<div class="container">
+				<nav class="mobile-nav" aria-label="<?php esc_attr_e( 'Mobile Navigation', 'pen-pol' ); ?>">
+					<?php
+					wp_nav_menu(
+						array(
+							'menu'           => 19,
+							'container'      => false,
+							'menu_id'        => 'mobile-menu',
+							'menu_class'     => 'mobile-menu-wrapper',
+							'theme_location' => 'menu-1',
+							'fallback_cb'    => false,
+						)
+					);
+					?>
+				</nav>
+
+				<div class="mobile-search">
+					<?php 
+					// Placeholder for Fibosearch
+					// echo do_shortcode('[fibosearch]'); 
+					?>
+				</div>
+
+				<div class="mobile-icons">
+					<!-- Wishlist Icon -->
+					<div class="mobile-icon mobile-icon--wishlist">
+						<a href="#" class="wishlist-link">
+							<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/serduszko.svg'); ?>" alt="" aria-hidden="true">
+							<span class="icon-text"><?php echo esc_html__( 'Wishlist', 'pen-pol' ); ?></span>
+						</a>
+					</div>
+
+					<!-- Account Icon -->
+					<div class="mobile-icon mobile-icon--account">
+						<a href="#" class="account-link">
+							<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/user.svg'); ?>" alt="" aria-hidden="true">
+							<span class="icon-text"><?php echo esc_html__( 'My Account', 'pen-pol' ); ?></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</header><!-- #masthead -->
+
+	<div id="content" class="site-content"><?php // Start site content ?>

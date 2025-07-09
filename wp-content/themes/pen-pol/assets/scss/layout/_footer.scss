@@ -1,0 +1,421 @@
+// =============================================================================
+// FOOTER - Main site footer with widgets, menus and copyright
+// =============================================================================
+
+.site-footer {
+  position: relative;
+  background-color: #333333;
+  color: $white;
+  overflow: hidden;
+  z-index: 1;
+}
+
+// Background element with feather image
+.footer-background {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/wp-content/uploads/2025/07/footer-piorko.png');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: contain;
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.site-footer {
+  position: relative;
+  background-color: #333333;
+  color: $white;
+  overflow: hidden;
+  z-index: 1;
+}
+
+// Background element with feather image
+.footer-background {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/wp-content/uploads/2025/07/footer-piorko.png');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: contain;
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+}
+
+// =============================================================================
+// FOOTER TOP - Widgets area with columns
+// =============================================================================
+
+.footer-top {
+  padding: $section-padding-block $section-padding-inline;
+  
+  @include tablet-up {
+    padding: $section-padding-block $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-top: $section-padding-block $section-padding-inline-desktop;
+  }
+}
+
+.footer-widgets {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: map-get($spacing, "xl");
+  
+  @include tablet-up {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: map-get($spacing, "xl");
+    column-gap: map-get($spacing, "2xl");
+  }
+  
+  @include desktop-up {
+    grid-template-columns: 1.5fr repeat(4, 1fr) auto;
+    gap: map-get($spacing, "2xl");
+    align-items: flex-start;
+  }
+}
+
+// =============================================================================
+// FOOTER WIDGETS - Individual widget columns
+// =============================================================================
+
+.footer-widget {
+  &--logo {
+    @include tablet-up {
+      grid-column: 1 / -1;
+    }
+    
+    @include desktop-up {
+      grid-column: auto;
+      text-align: left;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  
+  &--social {
+    @include desktop-up {
+      text-align: right;
+    }
+  }
+  
+  &__title {
+    font-size: 16px;
+    font-weight: map-get($font-weights, "medium");
+    margin: 0 0 map-get($spacing, "lg") 0;
+    color: $white;
+    letter-spacing: 0.05em;
+    
+    &.sr-only {
+      @extend .sr-only;
+    }
+  }
+}
+
+// Footer logo
+.footer-logo {
+  display: inline-block;
+  
+  img {
+    max-width: 180px;
+    height: auto;
+    
+    @include desktop-up {
+      max-width: 220px;
+    }
+  }
+}
+
+// =============================================================================
+// FOOTER CONTACT - Email and phone with icons
+// =============================================================================
+
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  &__item {
+    margin-bottom: map-get($spacing, "md");
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__link {
+    display: flex;
+    align-items: center;
+    color: rgba($white, 0.7);
+    text-decoration: none;
+    transition: color map-get($transitions, "fast");
+    
+    &:hover,
+    &:focus {
+      color: $white;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  &__icon {
+    width: 16px;
+    height: 16px;
+    margin-right: map-get($spacing, "sm");
+    fill: currentColor;
+  }
+  
+  &__text {
+    font-size: map-get($font-sizes, "small");
+  }
+}
+
+// =============================================================================
+// FOOTER MENUS - Navigation lists
+// =============================================================================
+
+.footer-nav {
+  margin-bottom: map-get($spacing, "lg");
+}
+
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  li {
+    margin-bottom: map-get($spacing, "sm");
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  a {
+    color: rgba($white, 0.7);
+    text-decoration: none;
+    font-size: map-get($font-sizes, "small");
+    transition: color map-get($transitions, "fast");
+    
+    &:hover,
+    &:focus {
+      color: $white;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+}
+
+// =============================================================================
+// FOOTER SOCIAL - Social media icons list
+// =============================================================================
+
+.footer-social {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  // Mobile layout (horizontal)
+  flex-direction: row;
+  gap: map-get($spacing, "md");
+  
+  @include desktop-up {
+    // Desktop layout (vertical)
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-end; // Wyrównanie ikon do prawej
+  }
+  
+  &__item {
+    @include desktop-up {
+      margin-bottom: map-get($spacing, "md");
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: rgba($white, 0.7);
+    text-decoration: none;
+    transition: color map-get($transitions, "fast");
+    
+    &:hover,
+    &:focus {
+      color: $white;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  &__icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+}
+
+// =============================================================================
+// FOOTER BOTTOM - Copyright and credits
+// =============================================================================
+
+.footer-bottom {
+  padding: map-get($spacing, "sm") $section-padding-inline $section-padding-block;
+  
+  @include tablet-up {
+    padding: map-get($spacing, "sm") $section-padding-inline-tablet $section-padding-block;
+  }
+  
+  @include desktop-up {
+    padding: map-get($spacing, "sm") $section-padding-inline-desktop $section-padding-block;
+  }
+}
+
+.footer-copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  @include tablet-up {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+  
+  &__text,
+  &__credits {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba($white, 0.7);
+    margin: 0;
+  }
+  
+  &__text {
+    margin-bottom: map-get($spacing, "sm");
+    
+    @include tablet-up {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__link {
+    color: rgba($white, 0.7);
+    text-decoration: none;
+    transition: color map-get($transitions, "fast");
+    
+    &:hover,
+    &:focus {
+      color: $white;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE OPTIMIZATIONS
+// =============================================================================
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .footer-contact__link,
+  .footer-menu a,
+  .footer-social__link,
+  .footer-copyright__link {
+    transition: none;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .site-footer {
+    border-top: 2px solid $white;
+  }
+  
+  .footer-menu a,
+  .footer-contact__link,
+  .footer-social__link,
+  .footer-copyright__link {
+    text-decoration: underline;
+  }
+}
+
+// Print styles
+@media print {
+  .site-footer {
+    background-color: transparent;
+    color: $black;
+    border-top: 1px solid $light-grey;
+  }
+  
+  .footer-background {
+    display: none;
+  }
+  
+  .footer-top {
+    padding: map-get($spacing, "lg") 0;
+  }
+  
+  .footer-widgets {
+    display: block;
+  }
+  
+  .footer-widget {
+    margin-bottom: map-get($spacing, "lg");
+    
+    &--social {
+      display: none; // Hide social icons in print
+    }
+    
+    &__title {
+      color: $black;
+    }
+  }
+  
+  .footer-contact__link,
+  .footer-menu a {
+    color: $black;
+  }
+  
+  .footer-bottom {
+    padding: map-get($spacing, "md") 0;
+  }
+  
+  .footer-copyright {
+    &__text,
+    &__credits,
+    &__link {
+      color: $black;
+    }
+  }
+}

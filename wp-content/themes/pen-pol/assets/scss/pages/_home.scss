@@ -362,7 +362,8 @@
     text-align: left;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
+    font-weight: map-get($font-weights, "super-light");
     padding-right: 8px;
     position: relative;
     border-bottom: 1px solid rgba($white, 0.4) !important; 
@@ -392,7 +393,7 @@
     }
     
     .btn__text {
-      font-size: 16px;
+      font-size: 20px;
       position: relative;
       z-index: 2;
       
@@ -1373,10 +1374,10 @@
       
       &.btn--link--light {
         border-bottom-color: rgba($white, 0.4);
-        padding: 0 16px; // Dodany padding dla przycisku na telefonach
-        gap: 12px; // Dodany gap dla przycisku
-        display: flex; // Upewnienie się, że gap działa
-        align-items: center; // Wyśrodkowanie zawartości przycisku
+        padding: 0 16px; 
+        gap: 12px;
+        display: flex; 
+        align-items: center;
       }
       
       .btn__icon {
@@ -1686,6 +1687,8 @@
     
     @include tablet-up {
       grid-template-columns: repeat(2, 1fr);
+      column-gap: 25px; 
+      row-gap: 80px; 
     }
     
     @include desktop-up {
@@ -1705,7 +1708,7 @@
     margin-bottom: 0;
     
     @include tablet-up {
-      min-height: 250px;
+      min-height: 150px;
       height: 100%;
     }
     

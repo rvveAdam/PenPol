@@ -1,0 +1,492 @@
+// =============================================================================
+// HEADER - Main site header with logo, navigation and icons
+// =============================================================================
+
+.site-header {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  width: 96%;
+  margin: 0 auto;
+  z-index: map-get($z-index, "sticky");
+  transition: transform 0.3s ease, top 0.3s ease;
+  
+  &.is-sticky {
+    position: fixed;
+    top: 15px;
+    transform: translateY(0);
+    animation: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+  }
+}
+
+// Osobny styl animacji dla sticky headera
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.header-wrapper {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: map-get($border-radius, "md");
+  box-shadow: map-get($shadows, "sm");
+  padding: 0 25px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: map-get($spacing, "sm") 0;
+  height: 70px; 
+  
+  @include desktop-up {
+    height: 60px; 
+  }
+}
+
+// =============================================================================
+// SITE BRANDING - Logo
+// =============================================================================
+
+.site-branding {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: start;
+  
+  @include desktop-up {
+    max-width: 180px; 
+  }
+  
+  .custom-logo-link {
+    display: block;
+  }
+  
+  .custom-logo {
+    width: 100%;
+    height: auto;
+    max-height: 40px; 
+    object-fit: contain;
+  }
+}
+
+// =============================================================================
+// MAIN NAVIGATION - Desktop
+// =============================================================================
+
+.main-navigation {
+  display: none;
+  flex-basis: 70%;
+  text-align: center; 
+  
+  @include desktop-up {
+    display: block;
+  }
+  
+  .menu-wrapper {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: map-get($spacing, "lg"); // Zmniejszono odstęp z xl na lg
+    justify-content: right; // Dodane wyśrodkowanie elementów menu
+  }
+  
+  li {
+    position: relative;
+  }
+  
+  a {
+    color: $primary-text-color;
+    text-decoration: none;
+    font-size: map-get($font-sizes, "p");
+    font-weight: map-get($font-weights, "medium");
+    transition: color map-get($transitions, "fast");
+    display: block;
+    padding: map-get($spacing, "xs") 0;
+    
+    &:hover,
+    &:focus {
+      color: $primary-color-blue;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  .current-menu-item > a,
+  .current-menu-ancestor > a {
+    color: $primary-color-blue;
+  }
+}
+
+// =============================================================================
+// HEADER ICONS - Desktop
+// =============================================================================
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  flex-basis: 30%;
+  justify-content: flex-end;
+  gap: map-get($spacing, "xs");
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; 
+  
+  img {
+    width: 42px;
+    height: 42px;
+    display: block;
+  }
+  
+  // Specyficzne wymiary dla ikony koszyka
+  &--cart {
+    img {
+      width: 27px; // Zmniejszono z 42px na 27px
+      height: 27px; // Zmniejszono z 42px na 27px
+    }
+  }
+  
+  button, a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: map-get($spacing, "xs");
+    cursor: pointer;
+    transition: opacity map-get($transitions, "fast");
+    
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  &--search,
+  &--wishlist,
+  &--account {
+    @include mobile-up {
+      display: none;
+    }
+    
+    @include desktop-up {
+      display: flex;
+    }
+  }
+}
+
+.header-separator {
+  width: 1px;
+  height: 32px; // Zachowano wysokość separatora
+  background-color: rgba($black, 0.3);
+  margin: 0 map-get($spacing, "sm");
+  
+  @include mobile-up {
+    display: none;
+  }
+  
+  @include desktop-up {
+    display: block;
+  }
+}
+
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background-color: $primary-color-blue;
+  color: $white;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: map-get($font-weights, "medium");
+}
+
+// =============================================================================
+// MOBILE MENU TOGGLE - Hamburger button
+// =============================================================================
+
+.mobile-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: map-get($spacing, "xs");
+  cursor: pointer;
+  margin-left: map-get($spacing, "sm");
+  z-index: map-get($z-index, "dropdown"); // Dodano z-index dla lepszej interaktywności
+  
+  @include desktop-up {
+    display: none;
+  }
+}
+
+.hamburger-icon {
+  position: relative;
+  width: 24px;
+  height: 20px;
+  display: inline-block;
+  
+  .hamburger-inner,
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: $primary-text-color;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+  }
+  
+  .hamburger-inner {
+    top: 50%;
+    margin-top: -1px;
+  }
+  
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    content: '';
+    display: block;
+  }
+  
+  .hamburger-inner::before {
+    top: -7px;
+  }
+  
+  .hamburger-inner::after {
+    bottom: -7px;
+  }
+}
+
+// Active state for hamburger
+.mobile-menu-toggle[aria-expanded="true"] {
+  .hamburger-inner {
+    transform: rotate(45deg);
+    
+    &::before {
+      transform: rotate(90deg);
+      top: 0;
+    }
+    
+    &::after {
+      transform: rotate(90deg);
+      bottom: 0;
+    }
+  }
+}
+
+// =============================================================================
+// MOBILE NAVIGATION - Drawer menu
+// =============================================================================
+
+.mobile-navigation {
+  position: fixed;
+  top: 90px; // Zaktualizować jeśli potrzeba
+  right: -100%;
+  width: 100%;
+  height: calc(100vh - 90px);
+  background-color: $white;
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: map-get($z-index, "fixed");
+  box-shadow: map-get($shadows, "lg");
+  display: flex;
+  flex-direction: column;
+  
+  @include tablet-up {
+    width: 400px;
+  }
+  
+  @include desktop-up {
+    display: none;
+  }
+  
+  // Active state
+  &.is-active {
+    right: 0;
+  }
+  
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: map-get($spacing, "xl") $section-padding-inline;
+  }
+}
+
+.mobile-nav {
+  margin-bottom: map-get($spacing, "xl");
+  
+  .mobile-menu-wrapper {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: map-get($spacing, "md");
+  }
+  
+  a {
+    color: $primary-text-color;
+    text-decoration: none;
+    font-size: map-get($font-sizes, "p");
+    font-weight: map-get($font-weights, "medium");
+    display: block;
+    padding: map-get($spacing, "xs") 0;
+    
+    &:hover,
+    &:focus {
+      color: $primary-color-blue;
+    }
+  }
+  
+  .current-menu-item > a {
+    color: $primary-color-blue;
+  }
+}
+
+.mobile-search {
+  margin-bottom: map-get($spacing, "xl");
+  padding: map-get($spacing, "md") 0;
+  border-top: 1px solid $light-grey;
+  border-bottom: 1px solid $light-grey;
+}
+
+.mobile-icons {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacing, "lg");
+  
+  .mobile-icon {
+    a {
+      display: flex;
+      align-items: center;
+      color: $primary-text-color;
+      text-decoration: none;
+      
+      &:hover,
+      &:focus {
+        color: $primary-color-blue;
+      }
+    }
+    
+    img {
+      width: 24px;
+      height: 24px;
+      margin-right: map-get($spacing, "md");
+    }
+  }
+}
+
+// =============================================================================
+// SEARCH FORM - Dropdown search form
+// =============================================================================
+
+.search-form-wrapper {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px;
+  background-color: $white;
+  border-radius: map-get($border-radius, "md");
+  box-shadow: map-get($shadows, "md");
+  padding: map-get($spacing, "md");
+  z-index: map-get($z-index, "dropdown");
+  margin-top: map-get($spacing, "xs");
+}
+
+// =============================================================================
+// ACCESSIBILITY & RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .header-icon button,
+  .header-icon a,
+  .hamburger-icon .hamburger-inner,
+  .hamburger-icon .hamburger-inner::before,
+  .hamburger-icon .hamburger-inner::after,
+  .mobile-navigation,
+  .site-header {
+    transition: none;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .header-wrapper {
+    background: $white;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid $black;
+  }
+  
+  .header-separator {
+    background-color: $black;
+  }
+  
+  .main-navigation a,
+  .mobile-nav a {
+    text-decoration: underline;
+    
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .site-header {
+    position: static;
+    width: 100%;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+    padding: map-get($spacing, "md") 0;
+  }
+  
+  .header-wrapper {
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+  
+  .main-navigation,
+  .header-icons,
+  .mobile-navigation {
+    display: none;
+  }
+  
+  .site-branding {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+}

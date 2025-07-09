@@ -221,6 +221,20 @@ function pen_pol_scripts() {
 		_S_VERSION,
 		true
 	);
+
+	/**
+	 * Header
+	 */
+	function pen_pol_header_scripts() {
+		wp_enqueue_script(
+			'pen-pol-header-scripts',
+			get_template_directory_uri() . '/assets/dist/header.js',
+			array(),
+			_S_VERSION,
+			true
+		);
+	}
+	add_action('wp_enqueue_scripts', 'pen_pol_header_scripts');
 }
 add_action( 'wp_enqueue_scripts', 'pen_pol_scripts' );
 
