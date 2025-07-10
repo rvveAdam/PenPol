@@ -12,8 +12,11 @@ get_header();
     <?php 
     get_template_part('template-parts/o-nas/hero');
     get_template_part('template-parts/o-nas/historia-firmy');
+    get_template_part('template-parts/o-nas/dlaczego-my');
     get_template_part('template-parts/o-nas/zespol');
-    
+    get_template_part('template-parts/global/opinions');
+
+
     // Tutaj będą kolejne sekcje podstrony
     ?>
 </main>

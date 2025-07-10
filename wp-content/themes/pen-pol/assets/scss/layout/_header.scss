@@ -2,6 +2,10 @@
 // HEADER - Main site header with logo, navigation and icons
 // =============================================================================
 
+// =============================================================================
+// HEADER - Main site header with logo, navigation and icons
+// =============================================================================
+
 .site-header {
   position: absolute;
   top: 30px;
@@ -17,7 +21,7 @@
     top: 15px;
     transform: translateY(0);
     animation: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); // Łagodniejszy cień
   }
 }
 
@@ -32,12 +36,16 @@
 }
 
 .header-wrapper {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: map-get($border-radius, "md");
-  box-shadow: map-get($shadows, "sm");
-  padding: 0 25px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03); // Delikatny cień
+  padding: 0 25px; // Dodano wewnętrzne marginesy 25px
+  
+  .is-sticky & {
+    // Zachowanie border-radius (usunięto nadpisanie)
+  }
 }
 
 .header-content {
@@ -45,10 +53,10 @@
   align-items: center;
   justify-content: space-between;
   padding: map-get($spacing, "sm") 0;
-  height: 70px; 
+  height: 70px; // Zmniejszono wysokość z 80px na 70px dla mobile
   
   @include desktop-up {
-    height: 60px; 
+    height: 60px; // Zmniejszono wysokość z 90px na 60px dla desktop
   }
 }
 
@@ -59,10 +67,10 @@
 .site-branding {
   flex-basis: 30%;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start; // Wyrównanie logo do lewej
   
   @include desktop-up {
-    max-width: 180px; 
+    max-width: 180px; // Zachowujemy max-width dla kontroli rzeczywistego rozmiaru
   }
   
   .custom-logo-link {
@@ -72,7 +80,7 @@
   .custom-logo {
     width: 100%;
     height: auto;
-    max-height: 40px; 
+    max-height: 40px; // Zmniejszono z 70px na 40px zgodnie z wymaganiem
     object-fit: contain;
   }
 }
@@ -83,8 +91,8 @@
 
 .main-navigation {
   display: none;
-  flex-basis: 70%;
-  text-align: center; 
+  flex-basis: 60%;
+  text-align: center; // Dodane wyśrodkowanie
   
   @include desktop-up {
     display: block;
@@ -95,8 +103,8 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: map-get($spacing, "lg"); // Zmniejszono odstęp z xl na lg
-    justify-content: right; // Dodane wyśrodkowanie elementów menu
+    gap: map-get($spacing, "lg"); 
+    justify-content: flex-end; 
   }
   
   li {
@@ -138,14 +146,14 @@
   align-items: center;
   flex-basis: 30%;
   justify-content: flex-end;
-  gap: map-get($spacing, "xs");
+  gap: map-get($spacing, "xs"); // Zmniejszono odstęp z lg na md
 }
 
 .header-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; 
+  position: relative; // Dodano, aby prawidłowo pozycjonować cart-count
   
   img {
     width: 42px;
@@ -217,13 +225,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   background-color: $primary-color-blue;
   color: $white;
   border-radius: 50%;
-  font-size: 10px;
-  font-weight: map-get($font-weights, "medium");
+  font-size: 12px;
+  font-weight: map-get($font-weights, "bold");
 }
 
 // =============================================================================

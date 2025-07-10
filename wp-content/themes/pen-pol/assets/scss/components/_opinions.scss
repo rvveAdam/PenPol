@@ -1,0 +1,261 @@
+// =============================================================================
+// OPINIE SECTION - Testimonials carousel
+// =============================================================================
+
+.opinie-wrapper {
+  background-color: #333333;
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  color: $white;
+  margin-bottom: 20px;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+    overflow: hidden; // Zapobiega poziomemu scrollowaniu strony
+  }
+}
+
+.opinie-container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vw, 64px);
+}
+
+// =============================================================================
+// HEADER SECTION - Title
+// =============================================================================
+
+.opinie-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  @include desktop-up {
+    width: 50%;
+  }
+  
+  &__heading {
+    font-family: $font-primary;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "tight");
+    color: $white;
+    margin: 0;
+    
+    @include desktop-up {
+      font-size: clamp(36px, 3vw, 54px);
+    }
+  }
+}
+
+// =============================================================================
+// CAROUSEL CONTENT
+// =============================================================================
+
+.opinie-content {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  
+  @include desktop-up {
+    // Kluczowa zmiana - pozwala na przepełnienie na całej szerokości
+    margin-right: calc((100vw - $container-max-width) / 2 * -1);
+    width: calc(100% + ((100vw - $container-max-width) / 2));
+    padding-right: 0;
+  }
+}
+
+.opinie-carousel {
+  width: 100%;
+  overflow: visible;
+  
+  // Ustawienie szerokości, która "ucieka" za kontener
+  .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  &__slide {
+    height: auto;
+    display: flex;
+  }
+  
+  &__card {
+    background-color: $white;
+    color: $primary-text-color;
+    border-radius: map-get($border-radius, "lg");
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  &__icon {
+    position: static;
+    margin-bottom: 16px;
+    width: 40px;
+    height: 40px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  
+  &__text {
+    font-size: map-get($font-sizes, "p");
+    line-height: map-get($line-heights, "relaxed");
+    color: $primary-text-color;
+    position: relative;
+    padding-left: 0;
+    
+    p {
+      margin-bottom: 16px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  &__footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  &__name {
+    font-weight: map-get($font-weights, "semibold");
+    font-size: 16px;
+    color: $primary-text-color;
+  }
+  
+  &__role {
+    font-size: 16px;
+    color: $text-light;
+  }
+  
+  &__rating {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  
+  &__star {
+    color: $primary-color-blue;
+    font-size: 18px;
+    line-height: 1;
+  }
+}
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+// Responsywne ustawienia szerokości slajdów
+.opinie-carousel {
+  // Mobile - 1 cały kafelek
+  .swiper-slide {
+    width: 100%;
+    padding-right: 0;
+  }
+  
+  @include tablet-up {
+    // Tablet - 2 całe kafelki
+    .swiper-slide {
+      width: calc(50% - 16px);
+      margin-right: 16px;
+    }
+  }
+  
+  @include desktop-up {
+    // Desktop - 3 całe + połowa czwartego
+    .swiper-slide {
+      width: calc(33.333% - 24px);
+      margin-right: 24px;
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .opinie-carousel {
+    .swiper-wrapper {
+      transition: none !important;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .opinie-carousel {
+    &__card {
+      border: 2px solid $black;
+    }
+    
+    &__star {
+      color: $black;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .opinie-wrapper {
+    background-color: $white;
+    color: $black;
+    padding-block: map-get($spacing, "lg");
+  }
+  
+  .opinie-header__heading {
+    color: $black;
+  }
+  
+  .opinie-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    
+    .swiper-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .swiper-slide {
+      width: calc(50% - 8px);
+      page-break-inside: avoid;
+      margin: 0;
+    }
+    
+    &__card {
+      border: 1px solid $black;
+    }
+    
+    &__star {
+      color: $black;
+    }
+  }
+}

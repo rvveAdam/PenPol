@@ -1,0 +1,4024 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-07-08T08:49:37+00:00\n"
+"PO-Revision-Date: 2025-07-08T08:49:37+00:00\n"
+"Language: \n"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: src/Pro/Access/Integrations.php:103
+#: src/Pro/Access/Integrations.php:160
+#: src/Pro/Admin/DashboardWidget.php:243
+#: src/Pro/Admin/SiteHealth.php:37
+msgid "WPForms"
+msgstr "WPForms"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://wpforms.com"
+msgstr "https://wpforms.com"
+
+#. Description of the plugin
+msgid "Beginner friendly WordPress contact form plugin. Use our Drag & Drop form builder to create your WordPress forms."
+msgstr "Przyjazna dla początkujących wtyczka formularzy kontaktowych do WordPressa. Twórz własne formularze WordPress za pomocą naszego kreatora opartego na technice przeciągania elementów."
+
+#: pro/includes/admin/ajax-actions.php:43
+#: pro/includes/admin/entries/class-entries-single.php:259
+#: src/Pro/Admin/Entries/ListTable.php:1427
+msgid "Entry starred."
+msgstr "Oznaczono wpis gwiazdką."
+
+#: pro/includes/admin/ajax-actions.php:53
+#: pro/includes/admin/entries/class-entries-single.php:290
+#: src/Pro/Admin/Entries/ListTable.php:1487
+msgid "Entry unstarred."
+msgstr "Usunięto gwiazdkę z wpisu."
+
+#: pro/includes/admin/ajax-actions.php:113
+#: pro/includes/admin/entries/class-entries-single.php:725
+#: src/Pro/Admin/Entries/Edit.php:512
+#: src/Pro/Admin/Entries/ListTable.php:1223
+msgid "Entry read."
+msgstr "Oznaczono wpis jako przeczytany."
+
+#: pro/includes/admin/ajax-actions.php:123
+#: pro/includes/admin/entries/class-entries-single.php:357
+#: src/Pro/Admin/Entries/ListTable.php:1283
+msgid "Entry unread."
+msgstr "Oznaczono wpis jako nieprzeczytany."
+
+#: pro/includes/admin/ajax-actions.php:160
+msgid "This feature requires an active license. Please contact the site administrator."
+msgstr "Ta funkcja wymaga włączonej licencji. Skontaktuj się z administratorem witryny."
+
+#: pro/includes/admin/ajax-actions.php:165
+#: pro/includes/admin/ajax-actions.php:209
+#: src/Pro/Admin/Education/StringsTrait.php:83
+msgid "Please enter a license key."
+msgstr "Wpisz klucz licencyjny."
+
+#: pro/includes/admin/class-license.php:154
+#: pro/includes/admin/class-license.php:293
+#: pro/includes/admin/class-license.php:377
+msgid "There was an error connecting to the remote key API. Please try again later."
+msgstr "Podczas łączenia z interfejsem API klucza zdalnego wystąpił błąd. Spróbuj ponownie później."
+
+#: pro/includes/admin/class-license.php:176
+msgid "Congratulations! This site is now receiving automatic updates."
+msgstr "Gratulacje! Teraz ta witryna otrzymuje automatyczne aktualizacje."
+
+#: pro/includes/admin/class-license.php:392
+msgid "You have deactivated the key from this site successfully."
+msgstr "Klucz został wyłączony w tej witrynie."
+
+#. translators: %1$s - WPForms.com Account dashboard URL, %2$s - WPForms.com pricing URL.
+#: pro/includes/admin/class-license.php:495
+msgid "Your license key can be found in your <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">WPForms Account Dashboard</a>. Don’t have a license? <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Sign up today!</a>"
+msgstr "Klucz licencyjny można znaleźć w <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">kokpicie konta WPForms</a>. Nie masz licencji? <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Zarejestruj się już dziś!</a>"
+
+#: pro/includes/admin/class-license.php:511
+msgid "<strong>Your license has expired.</strong> An active license is needed to create new forms and edit existing forms. It also provides access to new features & addons, plugin updates (including security improvements), and our world class support!"
+msgstr "<strong>Licencja wygasła.</strong> Aktywna licencja jest wymagana do tworzenia nowych i edytowania istniejących formularzy. Ponadto zapewnia ona dostęp do nowych funkcji i dodatków, aktualizacji wtyczki (w tym ulepszeń zabezpieczeń) oraz naszej światowej klasy pomocy technicznej!"
+
+#: pro/includes/admin/class-license.php:518
+msgid "<strong>Your license key has been disabled.</strong> Please use a different key to continue receiving automatic updates."
+msgstr "<strong>Klucz licencyjny został wyłączony.</strong> Użyj innego klucza, aby nadal otrzymywać automatyczne aktualizacje."
+
+#: pro/includes/admin/class-license.php:525
+msgid "<strong>Your license key is invalid.</strong> The key no longer exists or the user associated with the key has been deleted. Please use a different key to continue receiving automatic updates."
+msgstr "<strong>Ten klucz licencyjny jest nieprawidłowy.</strong> Klucz już nie istnieje lub powiązany z nim użytkownik został usunięty. Użyj innego klucza, aby nadal otrzymywać automatyczne aktualizacje."
+
+#. translators: %1$s - WPForms.com Account licenses URL.
+#: pro/includes/admin/class-license.php:533
+msgid "<strong>Sorry, but this license has no activations left.</strong> You can manage your site activations, upgrade your license, or purchase a new one in <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">your account</a>."
+msgstr ""
+
+#. translators: %1$s - WPForms.com license key support URL.
+#: pro/includes/admin/class-license.php:550
+msgid "<strong>Heads up! Before you can activate this key, we'd like to check in with you.</strong> Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">reach out to support here.</a>"
+msgstr ""
+
+#. translators: %s - Link to the Settings > General screen in the plugin, where users can enter their license key.
+#: pro/includes/admin/class-license.php:594
+msgid "To access all features, addons, and enable automatic updates, please <a href=\"%s\" target=\"_blank\">activate your WPForms license.</a>"
+msgstr "Aby uzyskać dostęp do wszystkich funkcji oraz dodatków i włączyć automatyczne aktualizacje, <a href=\"%s\" target=\"_blank\">włącz licencję WPForms</a>."
+
+#: pro/includes/admin/class-license.php:640
+#: src/Pro/Admin/Builder/LicenseAlert.php:131
+msgid "Heads up! Your WPForms license has expired."
+msgstr "Uwaga! Twoja licencja wtyczki WPForms wygasła."
+
+#: pro/includes/admin/class-license.php:641
+msgid "An active license is needed to create new forms and edit existing forms. It also provides access to new features & addons, plugin updates (including security improvements), and our world class support!"
+msgstr "Aktywna licencja jest wymagana do tworzenia nowych i edytowania istniejących formularzy. Ponadto zapewnia ona dostęp do nowych funkcji i dodatków, aktualizacji wtyczki (w tym ulepszeń zabezpieczeń) oraz naszej światowej klasy pomocy technicznej!"
+
+#: pro/includes/admin/class-license.php:643
+#: pro/includes/admin/class-license.php:667
+#: pro/includes/admin/class-license.php:690
+#: pro/includes/admin/class-license.php:713
+#: src/Pro/Admin/Builder/LicenseAlert.php:133
+#: src/Pro/Admin/Education/StringsTrait.php:91
+msgid "Renew Now"
+msgstr "Odnów"
+
+#: pro/includes/admin/class-license.php:645
+#: pro/includes/admin/class-license.php:669
+#: pro/includes/admin/class-license.php:692
+#: pro/includes/admin/class-license.php:715
+#: pro/templates/education/admin/did-you-know.php:30
+#: src/Pro/Admin/Builder/LicenseAlert.php:134
+#: src/Pro/Admin/DashboardWidget.php:329
+#: src/Pro/Admin/DashboardWidget.php:670
+msgid "Learn More"
+msgstr "Dowiedz się więcej"
+
+#: pro/includes/admin/class-license.php:664
+msgid "Heads up! Your WPForms license has been disabled."
+msgstr "Uwaga! Twoja licencja wtyczki WPForms została wyłączona."
+
+#: pro/includes/admin/class-license.php:665
+msgid "Your license key for WPForms has been disabled. Please use a different key to continue receiving automatic updates"
+msgstr "Klucz licencyjny wtyczki WPForms został wyłączony. Użyj innego klucza, aby nadal otrzymywać automatyczne aktualizacje"
+
+#: pro/includes/admin/class-license.php:687
+msgid "Heads up! Your WPForms license is invalid."
+msgstr "Uwaga! Twoja licencja wtyczki WPForms jest nieważna."
+
+#: pro/includes/admin/class-license.php:688
+msgid "The key no longer exists or the user associated with the key has been deleted. Please use a different key to continue receiving automatic updates."
+msgstr "Klucz już nie istnieje lub powiązany z nim użytkownik został usunięty. Użyj innego klucza, aby nadal otrzymywać automatyczne aktualizacje."
+
+#: pro/includes/admin/class-license.php:710
+msgid "Heads up! Your WPForms license has no activations left."
+msgstr ""
+
+#: pro/includes/admin/class-license.php:711
+msgid "Sorry, but this license has no activations left. You can update the list of your sites, upgrade the license in the Account area or purchase a new license key."
+msgstr ""
+
+#: pro/includes/admin/class-license.php:739
+#: src/Pro/Admin/Education/StringsTrait.php:55
+msgid "Heads up!"
+msgstr "Uwaga!"
+
+#: pro/includes/admin/class-license.php:740
+msgid "Before you can activate this key, we'd like to check in with you. Please reach out to support."
+msgstr ""
+
+#: pro/includes/admin/class-license.php:742
+#: src/Pro/Admin/Education/StringsTrait.php:97
+msgid "Contact Support"
+msgstr "Skontaktuj się z zespołem pomocy technicznej"
+
+#: pro/includes/admin/class-license.php:1036
+msgid "You've Exceeded the Allowed License Verification Attempts"
+msgstr "Przekroczono dozwoloną liczbę prób zweryfikowania licencji"
+
+#: pro/includes/admin/class-license.php:1037
+msgid "Double-check the license key in your account and try again later. If your license key is no longer valid, please renew or install the free version of WPForms."
+msgstr "Sprawdź dokładnie klucz licencyjny na swoim koncie i spróbuj ponownie później. Jeśli klucz licencyjny jest już nieważny, odnów go lub zainstaluj bezpłatną wersję wtyczki WPForms."
+
+#: pro/includes/admin/class-license.php:1079
+msgid "Your license key for WPForms is invalid. The key no longer exists or the user associated with the key has been deleted. Please use a different key to continue receiving automatic updates."
+msgstr "Ten klucz licencyjny wtyczki WPForms jest nieprawidłowy. Klucz już nie istnieje lub powiązany z nim użytkownik został usunięty. Użyj innego klucza, aby nadal otrzymywać automatyczne aktualizacje."
+
+#: pro/includes/admin/class-license.php:1103
+msgid "Your license key for WPForms has expired. Please renew your license key on WPForms.com to continue receiving automatic updates."
+msgstr "Klucz licencyjny wtyczki WPForms wygasł. Odnów klucz licencyjny na stronie WPForms.com, aby nadal otrzymywać automatyczne aktualizacje."
+
+#: pro/includes/admin/class-license.php:1127
+msgid "Your license key for WPForms has been disabled. Please use a different key to continue receiving automatic updates."
+msgstr "Klucz licencyjny wtyczki WPForms został wyłączony. Użyj innego klucza, aby nadal otrzymywać automatyczne aktualizacje."
+
+#: pro/includes/admin/class-license.php:1151
+msgid "Sorry, but this license has no activations left. You can manage your site activations, upgrade your license, or purchase a new one in your account."
+msgstr ""
+
+#. translators: %1$s - WPForms.com license key support URL.
+#: pro/includes/admin/class-license.php:1178
+msgid "Heads up! Before you can activate this key, we'd like to check in with you. Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">reach out to support here.</a>"
+msgstr ""
+
+#: pro/includes/admin/class-license.php:1217
+msgid "Your key has been refreshed successfully."
+msgstr "Klucz został odświeżony."
+
+#: pro/includes/admin/entries/class-entries-export.php:224
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:145
+#: src/Pro/Forms/Fields/DateTime/Field.php:121
+msgid "Date"
+msgstr "Data"
+
+#: pro/includes/admin/entries/class-entries-export.php:225
+msgid "Date GMT"
+msgstr "Data (GMT)"
+
+#: pro/includes/admin/entries/class-entries-export.php:226
+msgid "ID"
+msgstr "Identyfikator"
+
+#: pro/includes/admin/entries/class-entries-export.php:367
+msgid "You do not have permission to export entries."
+msgstr "Nie masz uprawnienia do eksportowania wpisów."
+
+#: pro/includes/admin/entries/class-entries-export.php:368
+msgid "Error"
+msgstr "Błąd"
+
+#: pro/includes/admin/entries/class-entries-single.php:136
+#: src/Pro/Forms/Fields/Richtext/EntryViewContent.php:66
+msgid "Sorry, you are not allowed to view this entry."
+msgstr "Brak uprawnienia do wyświetlenia tego wpisu."
+
+#: pro/includes/admin/entries/class-entries-single.php:269
+msgid "This entry has been starred."
+msgstr "Ten wpis został oznaczony gwiazdką."
+
+#: pro/includes/admin/entries/class-entries-single.php:300
+msgid "This entry has been unstarred."
+msgstr "Usunięto gwiazdkę z tego wpisu."
+
+#: pro/includes/admin/entries/class-entries-single.php:365
+msgid "This entry has been marked unread."
+msgstr "Ten wpis został oznaczony jako nieprzeczytany."
+
+#: pro/includes/admin/entries/class-entries-single.php:394
+msgid "Note deleted."
+msgstr "Usunięto uwagę."
+
+#: pro/includes/admin/entries/class-entries-single.php:435
+msgid "Something went wrong while deleting a note. Please try again."
+msgstr "Podczas usuwania uwagi coś poszło nie tak. Spróbuj ponownie."
+
+#: pro/includes/admin/entries/class-entries-single.php:487
+msgid "Please provide a meaningful content for the note."
+msgstr "Wpisz zrozumiałą treść uwagi."
+
+#: pro/includes/admin/entries/class-entries-single.php:496
+msgid "Note added."
+msgstr "Dodano uwagę."
+
+#: pro/includes/admin/entries/class-entries-single.php:583
+msgid "Notifications were resent!"
+msgstr "Ponownie wysłano powiadomienia!"
+
+#: pro/includes/admin/entries/class-entries-single.php:599
+msgid "It looks like the provided entry ID isn't valid."
+msgstr "Wygląda na to, że podany identyfikator wpisu jest nieprawidłowy."
+
+#: pro/includes/admin/entries/class-entries-single.php:619
+#: src/Pro/Admin/Entries/Edit.php:443
+msgid "It looks like the entry you are trying to access is no longer available."
+msgstr "Wygląda na to, że wpis, do którego próbujesz uzyskać dostęp, już nie jest dostępny."
+
+#: pro/includes/admin/entries/class-entries-single.php:628
+msgid "You can't view this entry because it's in the trash."
+msgstr "Nie możesz zobaczyć tego wpisu, ponieważ jest on w koszu."
+
+#: pro/includes/admin/entries/class-entries-single.php:765
+#: src/Pro/Admin/Entries/Edit.php:400
+msgid "View Entry"
+msgstr "Zobacz wpis"
+
+#: pro/includes/admin/entries/class-entries-single.php:810
+#: pro/templates/admin/empty-states/no-entries.php:24
+#: pro/templates/admin/empty-states/no-entry.php:24
+msgid "Back to All Entries"
+msgstr "Powrót do wszystkich wpisów"
+
+#. translators: %1$d - current number of the entry, %2$d - total number of entries.
+#: pro/includes/admin/entries/class-entries-single.php:818
+msgid "Entry %1$d of %2$d"
+msgstr "Wpis %1$d z %2$d"
+
+#: pro/includes/admin/entries/class-entries-single.php:827
+msgid "Previous form entry"
+msgstr "Poprzedni wpis formularza"
+
+#: pro/includes/admin/entries/class-entries-single.php:835
+msgid "Current form entry"
+msgstr "Obecny wpis formularza"
+
+#: pro/includes/admin/entries/class-entries-single.php:841
+msgid "Next form entry"
+msgstr "Następny wpis formularza"
+
+#: pro/includes/admin/entries/class-entries-single.php:915
+msgid "Field Descriptions"
+msgstr "Opisy pól"
+
+#: pro/includes/admin/entries/class-entries-single.php:919
+#: pro/templates/admin/entry-print/legend-start.php:20
+msgid "Empty Fields"
+msgstr "Puste pola"
+
+#: pro/includes/admin/entries/class-entries-single.php:923
+#: pro/templates/admin/entry-print/legend-start.php:21
+msgid "Unselected Choices"
+msgstr "Niewybrane opcje"
+
+#: pro/includes/admin/entries/class-entries-single.php:927
+msgid "HTML/Content Fields"
+msgstr "Pola HTML/treści"
+
+#: pro/includes/admin/entries/class-entries-single.php:931
+#: pro/templates/admin/entry-print/legend-start.php:23
+msgid "Section Dividers"
+msgstr "Separatory sekcji"
+
+#: pro/includes/admin/entries/class-entries-single.php:935
+#: pro/templates/admin/entry-print/legend-start.php:24
+msgid "Page Breaks"
+msgstr "Podziały stron"
+
+#: pro/includes/admin/entries/class-entries-single.php:941
+msgid "Maintain Layouts"
+msgstr "Zachowaj układy"
+
+#: pro/includes/admin/entries/class-entries-single.php:945
+#: pro/templates/admin/entry-print/legend-start.php:28
+msgid "Compact View"
+msgstr "Widok kompaktowy"
+
+#. translators: %d - form ID.
+#: pro/includes/admin/entries/class-entries-single.php:995
+#: src/Pro/Admin/Entries/Page.php:1273
+msgid "Form (#%d)"
+msgstr "Formularz (nr %d)"
+
+#: pro/includes/admin/entries/class-entries-single.php:1027
+#: pro/templates/admin/entry-print/no-fields.php:14
+#: src/Pro/Admin/Entries/Edit.php:714
+msgid "This entry does not have any fields"
+msgstr "Ten wpis nie zawiera pól"
+
+#: pro/includes/admin/entries/class-entries-single.php:1248
+#: pro/includes/admin/entries/class-entries-single.php:1298
+#: pro/templates/admin/entry-print/field.php:41
+#: src/Pro/Admin/Entries/Edit.php:406
+#: src/Pro/Admin/Entries/Edit.php:1026
+#: src/Pro/Admin/Entries/PrintPreview.php:462
+#: src/Pro/Forms/Fields/EntryPreview/Field.php:971
+msgid "Empty"
+msgstr "Pusty"
+
+#: pro/includes/admin/entries/class-entries-single.php:1407
+#: pro/templates/admin/entry-print/legend-start.php:32
+#: pro/templates/admin/entry-print/notes.php:19
+msgid "Notes"
+msgstr "Uwagi"
+
+#: pro/includes/admin/entries/class-entries-single.php:1417
+#: pro/includes/admin/entries/class-entries-single.php:1433
+msgid "Add Note"
+msgstr "Dodaj uwagę"
+
+#: pro/includes/admin/entries/class-entries-single.php:1434
+#: src/Pro/Admin/Entries/Export/Admin.php:133
+#: src/Pro/AntiSpam/KeywordFilter.php:122
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:162
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: pro/includes/admin/entries/class-entries-single.php:1443
+msgid "No notes."
+msgstr "Brak uwag."
+
+#. translators: %1$s - user name, %2$s - date.
+#: pro/includes/admin/entries/class-entries-single.php:1484
+#: pro/includes/admin/entries/class-entries-single.php:1561
+#: pro/templates/admin/entry-print/notes.php:32
+msgid "Added by %1$s on %2$s"
+msgstr "Dodane przez: %1$s w dniu %2$s"
+
+#: pro/includes/admin/entries/class-entries-single.php:1492
+msgctxt "Entry: note"
+msgid "Delete"
+msgstr "Usuń"
+
+#: pro/includes/admin/entries/class-entries-single.php:1530
+msgid "Log"
+msgstr "Dziennik"
+
+#: pro/includes/admin/entries/class-entries-single.php:1538
+msgid "No logs."
+msgstr "Brak dzienników."
+
+#: pro/includes/admin/entries/class-entries-single.php:1658
+msgid "Debug Information"
+msgstr "Informacje o debugowaniu"
+
+#. translators: %1$s - formatted date, %2$s - formatted time.
+#: pro/includes/admin/entries/class-entries-single.php:1685
+#: src/Pro/Admin/Entries/Edit.php:1303
+msgid "%1$s at %2$s"
+msgstr "%1$s o %2$s"
+
+#: pro/includes/admin/entries/class-entries-single.php:1697
+msgid "Entry Details"
+msgstr "Szczegóły wpisu"
+
+#. translators: %s - entry ID.
+#: pro/includes/admin/entries/class-entries-single.php:1710
+msgid "Entry ID: %s"
+msgstr "Identyfikator wpisu: %s"
+
+#. translators: %1$s - post type name, %2$s - post type ID.
+#: pro/includes/admin/entries/class-entries-single.php:1728
+msgid "%1$s ID: %2$s"
+msgstr "%1$s, identyfikator: %2$s"
+
+#: pro/includes/admin/entries/class-entries-single.php:1739
+msgid "Submitted:"
+msgstr "Przesłano:"
+
+#: pro/includes/admin/entries/class-entries-single.php:1748
+msgid "Modified:"
+msgstr "Zmodyfikowano:"
+
+#: pro/includes/admin/entries/class-entries-single.php:1759
+msgid "User:"
+msgstr "Użytkownik:"
+
+#: pro/includes/admin/entries/class-entries-single.php:1776
+msgid "User IP:"
+msgstr "Adres IP użytkownika:"
+
+#: pro/includes/admin/entries/class-entries-single.php:1795
+msgid "Type:"
+msgstr "Typ:"
+
+#: pro/includes/admin/entries/class-entries-single.php:1796
+#: src/Pro/Admin/Entries/Export/Ajax.php:939
+#: src/Pro/Admin/Entries/ListTable.php:514
+msgid "Completed"
+msgstr "Ukończone"
+
+#: pro/includes/admin/entries/class-entries-single.php:1849
+msgid "Trash Entry"
+msgstr "Przenieś wpis do kosza"
+
+#: pro/includes/admin/entries/class-entries-single.php:1886
+#: src/Pro/Admin/Entries/Export/Ajax.php:1070
+#: src/Pro/Admin/Entries/ListTable.php:443
+#: src/Pro/Admin/Entries/ListTable.php:2126
+#: src/Pro/Admin/Entries/ListTable.php:2135
+msgid "N/A"
+msgstr "Nd."
+
+#: pro/includes/admin/entries/class-entries-single.php:1981
+#: src/Pro/Admin/Entries/ListTable.php:979
+msgid "Unstar"
+msgstr "Usuń gwiazdkę"
+
+#: pro/includes/admin/entries/class-entries-single.php:1981
+#: src/Pro/Admin/Entries/ListTable.php:978
+msgid "Star"
+msgstr "Gwiazdka"
+
+#: pro/includes/admin/entries/class-entries-single.php:2001
+#: pro/templates/admin/entry-print/legend-start.php:96
+#: src/Pro/Admin/Entries/ListTable.php:980
+msgid "Print"
+msgstr "Drukuj"
+
+#: pro/includes/admin/entries/class-entries-single.php:2006
+msgid "Export (CSV)"
+msgstr "Eksportuj (CSV)"
+
+#: pro/includes/admin/entries/class-entries-single.php:2011
+msgid "Export (XLSX)"
+msgstr "Eksportuj (XLSX)"
+
+#: pro/includes/admin/entries/class-entries-single.php:2029
+#: src/Pro/Admin/Entries/ListTable.php:977
+msgid "Mark as Unread"
+msgstr "Oznacz jako nieprzeczytane"
+
+#: pro/includes/admin/entries/class-entries-single.php:2061
+msgid "Delete Entry"
+msgstr "Usuń wpis"
+
+#: pro/includes/admin/entries/class-entries-single.php:2072
+#: src/Pro/Admin/Entries/ListTable.php:2232
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:457
+msgid "Actions"
+msgstr "Działania"
+
+#. translators: %s - a list of addons that disable the link.
+#: pro/includes/admin/entries/class-entries-single.php:2088
+msgid "Unavailable because %s is enabled."
+msgid_plural "Unavailable because %s are enabled."
+msgstr[0] "Niedostępne, ponieważ włączono %s."
+msgstr[1] "Niedostępne, ponieważ włączono %s."
+msgstr[2] "Niedostępne, ponieważ włączono %s."
+msgstr[3] "Niedostępne, ponieważ włączono %s."
+
+#: pro/includes/admin/entries/class-entries-single.php:2094
+#: src/Pro/Forms/Fields/Repeater/Builder.php:107
+msgid "and"
+msgstr "i"
+
+#: pro/includes/admin/entries/class-entries-single.php:2163
+msgid "Resend Notifications"
+msgstr "Ponowne wysyłanie powiadomień"
+
+#. translators: %s - payment add-on name.
+#: pro/includes/admin/entries/class-entries-single.php:2186
+msgid "the \"%s completed payments\" setting"
+msgstr "ustawienie „Ukończone płatności %s”"
+
+#: pro/includes/admin/entries/class-entries-single.php:2251
+msgid "Related Entries"
+msgstr "Powiązane wpisy"
+
+#: pro/includes/admin/entries/class-entries-single.php:2257
+msgid "The user who created this entry also submitted the entries below."
+msgstr "Użytkownik, który utworzył ten wpis, przesłał również poniższe wpisy."
+
+#: pro/includes/admin/entries/class-entries-single.php:2273
+msgid "(Abandoned)"
+msgstr "(Porzucone)"
+
+#: pro/includes/admin/entries/class-entries-single.php:2442
+msgid "Section Divider"
+msgstr "Separator sekcji"
+
+#: pro/includes/admin/entries/class-entries-single.php:2446
+msgid "Page Break"
+msgstr "Podział strony"
+
+#: pro/includes/admin/entries/class-entries-single.php:2450
+msgid "Content Field"
+msgstr "Pole treści"
+
+#. translators: %d - field ID.
+#: pro/includes/admin/entries/class-entries-single.php:2472
+msgid "Field ID #%s"
+msgstr "Identyfikator pola %s"
+
+#. translators: %s - choice number.
+#: pro/includes/admin/entries/class-entries-single.php:2566
+#: pro/includes/admin/entries/class-entries-single.php:2628
+#: src/Pro/Admin/Entries/Export/Ajax.php:686
+#: src/Pro/Admin/Entries/PrintPreview.php:510
+msgid "Choice %s"
+msgstr "Wybór %s"
+
+#. translators: %s - item number.
+#: pro/includes/admin/entries/class-entries-single.php:2572
+msgid "Item %s"
+msgstr "Element %s"
+
+#: pro/includes/class-conditional-logic-core.php:233
+msgid "this field if"
+msgstr "to pole, jeśli"
+
+#: pro/includes/class-conditional-logic-core.php:237
+msgid "Show"
+msgstr "Pokaż"
+
+#: pro/includes/class-conditional-logic-core.php:238
+msgid "Hide"
+msgstr "Ukryj"
+
+#: pro/includes/class-conditional-logic-core.php:251
+#: pro/includes/class-conditional-logic-core.php:339
+#: src/Pro/Admin/Builder/Builder.php:112
+msgid "Enable Conditional Logic"
+msgstr "Włącz logikę warunkową"
+
+#: pro/includes/class-conditional-logic-core.php:255
+#: pro/includes/class-conditional-logic-core.php:344
+#: src/Pro/Admin/Builder/Builder.php:90
+msgid "How to use Conditional Logic"
+msgstr "Jak korzystać z logiki warunkowej"
+
+#: pro/includes/class-conditional-logic-core.php:290
+msgid "this connection if"
+msgstr "to połączenie, jeśli"
+
+#: pro/includes/class-conditional-logic-core.php:295
+msgid "Process"
+msgstr "Przetwórz"
+
+#: pro/includes/class-conditional-logic-core.php:296
+msgid "Don't process"
+msgstr "Nie przetwarzaj"
+
+#: pro/includes/class-conditional-logic-core.php:430
+msgid "--- Select Field ---"
+msgstr "--- Wybierz pole ---"
+
+#. translators: %d - field ID.
+#: pro/includes/class-conditional-logic-core.php:452
+#: src/Pro/Admin/Builder/Notifications/Advanced/Settings.php:251
+#: src/Pro/Admin/Entries/Export/Admin.php:265
+#: src/Pro/Admin/Entries/Export/Admin.php:391
+#: src/Pro/Admin/Entries/Export/Admin.php:418
+#: src/Pro/Admin/Entries/Export/Ajax.php:334
+#: src/Pro/Admin/Entries/Export/Ajax.php:1312
+#: src/Pro/Admin/Entries/Table/DataObjects/FieldColumn.php:37
+msgid "Field #%d"
+msgstr "Pole nr %d"
+
+#: pro/includes/class-conditional-logic-core.php:482
+#: src/Pro/Admin/Entries/Export/Admin.php:449
+#: src/Pro/Admin/Entries/ListTable.php:1928
+#: src/Pro/Admin/Entries/Page.php:709
+msgid "is"
+msgstr "jest"
+
+#: pro/includes/class-conditional-logic-core.php:483
+#: src/Pro/Admin/Entries/Export/Admin.php:450
+#: src/Pro/Admin/Entries/ListTable.php:1931
+#: src/Pro/Admin/Entries/Page.php:710
+msgid "is not"
+msgstr "nie jest"
+
+#: pro/includes/class-conditional-logic-core.php:484
+msgid "empty"
+msgstr "puste"
+
+#: pro/includes/class-conditional-logic-core.php:485
+msgid "not empty"
+msgstr "nie puste"
+
+#: pro/includes/class-conditional-logic-core.php:495
+#: src/Pro/Admin/Entries/Export/Admin.php:447
+#: src/Pro/Admin/Entries/ListTable.php:1922
+#: src/Pro/Admin/Entries/Page.php:707
+msgid "contains"
+msgstr "zawiera"
+
+#: pro/includes/class-conditional-logic-core.php:496
+#: src/Pro/Admin/Entries/Export/Admin.php:448
+#: src/Pro/Admin/Entries/ListTable.php:1925
+#: src/Pro/Admin/Entries/Page.php:708
+msgid "does not contain"
+msgstr "nie zawiera"
+
+#: pro/includes/class-conditional-logic-core.php:497
+msgid "starts with"
+msgstr "zaczyna się"
+
+#: pro/includes/class-conditional-logic-core.php:498
+msgid "ends with"
+msgstr "ma zakończenie"
+
+#: pro/includes/class-conditional-logic-core.php:499
+msgid "greater than"
+msgstr "więcej niż "
+
+#: pro/includes/class-conditional-logic-core.php:500
+msgid "less than"
+msgstr "mniej niż"
+
+#: pro/includes/class-conditional-logic-core.php:545
+msgid "--- Select Choice ---"
+msgstr "--- Wskaż opcję do wyboru ---"
+
+#. translators: %d - choice number.
+#. translators: %d - choice ID.
+#: pro/includes/class-conditional-logic-core.php:553
+#: pro/includes/class-conditional-logic-fields.php:920
+#: src/Pro/Admin/Entries/Export/Ajax.php:1524
+msgid "Choice %d"
+msgstr "Wybór %d"
+
+#: pro/includes/class-conditional-logic-core.php:576
+msgid "Create new rule"
+msgstr "Utwórz nową regułę"
+
+#: pro/includes/class-conditional-logic-core.php:576
+msgctxt "Conditional Logic: new rule logic."
+msgid "And"
+msgstr "I"
+
+#: pro/includes/class-conditional-logic-core.php:577
+msgid "Delete rule"
+msgstr "Usuń regułę"
+
+#: pro/includes/class-conditional-logic-core.php:586
+msgctxt "Conditional Logic: new rule logic."
+msgid "or"
+msgstr "lub"
+
+#: pro/includes/class-conditional-logic-core.php:592
+msgid "Add New Group"
+msgstr "Dodaj nową grupę"
+
+#: pro/includes/class-conditional-logic-fields.php:197
+msgid "Smart Logic"
+msgstr "Logika inteligentna"
+
+#: pro/includes/class-conditional-logic-fields.php:531
+msgid "An Entry Notification was not sent due to conditional logic."
+msgstr "Powiadomienie o wpisie nie zostało wysłane z powodu logiki warunkowej."
+
+#: pro/includes/class-conditional-logic-fields.php:588
+msgid "Entry Confirmation stopped by conditional logic."
+msgstr "Potwierdzenie wpisu zatrzymane przez logikę warunkową."
+
+#. translators: %s - payment provider.
+#: pro/includes/payments/class-payment.php:173
+msgid "<p>One of %s's recurring payment plans doesn't have conditional logic, which means that One-Time Payments will never work and were disabled.</p>"
+msgstr "<p>Jeden z planów płatności cyklicznych w serwisie %s nie obejmuje logiki warunkowej, co oznacza, że płatności jednorazowe nie będą działać, w związku z czym zostały wyłączone.</p>"
+
+#. translators: %s - payment provider.
+#: pro/includes/payments/class-payment.php:183
+msgid "<p>You should check your settings in <strong>Payments » %s</strong>.</p>"
+msgstr "<p>Należy sprawdzić ustawienia w sekcji <strong>Płatności » %s</strong>.</p>"
+
+#: pro/includes/payments/class-payment.php:198
+msgid "Enter a plan name"
+msgstr "Wpisz nazwę planu"
+
+#: pro/includes/payments/class-payment.php:199
+msgid "Eg: Monthly Subscription"
+msgstr "Na przykład Subskrypcja miesięczna"
+
+#: pro/includes/payments/class-payment.php:200
+msgid "Plan Name #{id}"
+msgstr "Nazwa planu #{id}"
+
+#: pro/includes/payments/class-payment.php:201
+msgid "Are you sure you want to delete this recurring plan?"
+msgstr "Czy na pewno chcesz usunąć ten plan cykliczny?"
+
+#: pro/includes/payments/class-payment.php:202
+msgid "You must provide a plan name."
+msgstr "Trzeba podać nazwę planu."
+
+#: pro/includes/payments/class-payment.php:306
+msgid "One-Time Payments"
+msgstr "Płatności jednorazowe"
+
+#: pro/includes/payments/class-payment.php:314
+msgid "Enable one-time payments"
+msgstr "Włącz płatności jednorazowe"
+
+#: pro/includes/payments/class-payment.php:318
+msgid "Allow your customers to one-time pay via the form."
+msgstr "Zezwól klientom na dokonywanie płatności jednorazowych za pośrednictwem formularza."
+
+#: pro/includes/payments/class-payment.php:340
+msgid "Recurring Payments"
+msgstr "Płatności cykliczne"
+
+#: pro/includes/payments/class-payment.php:343
+msgid "Add New Plan"
+msgstr "Dodaj nowy plan"
+
+#: pro/includes/payments/class-payment.php:351
+msgid "Enable recurring subscription payments"
+msgstr "Włącz cykliczne płatności subskrypcyjne"
+
+#: pro/includes/payments/class-payment.php:355
+msgid "Allow your customer to pay recurringly via the form."
+msgstr "Zezwól klientom na dokonywanie płatności cyklicznych za pośrednictwem formularza."
+
+#. translators: %s - addon title.
+#: pro/templates/admin/addons-item.php:30
+msgid "%s logo"
+msgstr "Logo %s"
+
+#: pro/templates/admin/addons-item.php:52
+msgid "Learn more"
+msgstr "Dowiedz się więcej"
+
+#: pro/templates/admin/addons-item.php:71
+msgid "This addon is not compatible."
+msgstr "Ten dodatek jest niezgodny."
+
+#: pro/templates/admin/addons-item.php:86
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: pro/templates/admin/empty-states/no-entries.php:17
+#: pro/templates/admin/empty-states/no-entry.php:17
+msgid "Hi there!"
+msgstr "Witaj!"
+
+#: pro/templates/admin/entries/single-entry/payment-details.php:27
+msgid "Payment Details"
+msgstr "Dane płatności"
+
+#. translators: %s - payment status.
+#: pro/templates/admin/entries/single-entry/payment-details.php:36
+msgid "Status: <strong>%s</strong>"
+msgstr "Status: <strong>%s</strong>"
+
+#. translators: %s - payment type.
+#: pro/templates/admin/entries/single-entry/payment-details.php:51
+msgid "Type: <strong>%s</strong>"
+msgstr "Typ: <strong>%s</strong>"
+
+#. translators: %s - payment total.
+#: pro/templates/admin/entries/single-entry/payment-details.php:71
+msgid "Total: <strong>%s</strong>"
+msgstr "Suma: <strong>%s</strong>"
+
+#. translators: %s - payment gateway.
+#: pro/templates/admin/entries/single-entry/payment-details.php:84
+msgid "Gateway: <strong>%s</strong>"
+msgstr "Bramka: <strong>%s</strong>"
+
+#: pro/templates/admin/entries/single-entry/payment-details.php:95
+msgctxt "Gateway mode"
+msgid "Test"
+msgstr "Test"
+
+#: pro/templates/admin/entries/single-entry/payment-details.php:110
+msgid "View Payment"
+msgstr "Zobacz płatność"
+
+#: pro/templates/admin/entries/single-entry/settings.php:28
+#: pro/templates/admin/entry-print/legend-start.php:102
+msgid "Field Settings"
+msgstr "Ustawienia pola"
+
+#: pro/templates/admin/entries/single-entry/settings.php:44
+#: pro/templates/admin/entry-print/legend-start.php:116
+msgid "Display Settings"
+msgstr "Ustawienia wyświetlania"
+
+#: pro/templates/admin/entry-print/head.php:52
+#: src/Pro/Admin/Builder/LicenseAlert.php:165
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:165
+msgid "Close"
+msgstr "Zamknij"
+
+#: pro/templates/admin/entry-print/legend-start.php:19
+msgid "Field Description"
+msgstr "Opis pola"
+
+#: pro/templates/admin/entry-print/legend-start.php:22
+msgid "HTML/Content fields"
+msgstr "Pola HTML/treści"
+
+#: pro/templates/admin/entry-print/legend-start.php:27
+msgid "Maintain Layout"
+msgstr "Zachowaj układ"
+
+#. translators: %d - entry ID.
+#: pro/templates/admin/entry-print/legend-start.php:83
+msgid "Entry #%d"
+msgstr "Wpis #%d"
+
+#: pro/templates/admin/entry-print/legend-start.php:98
+msgid "Cog"
+msgstr "Koło zębate"
+
+#: pro/templates/admin/lite-connect/dashboard-widget-notice-in-progress.php:20
+#: src/Pro/Integrations/LiteConnect/Admin.php:184
+msgid "Entry Restore in Progress"
+msgstr "Przywracanie wpisów w toku"
+
+#: pro/templates/admin/lite-connect/dashboard-widget-notice-in-progress.php:23
+#: src/Pro/Integrations/LiteConnect/Admin.php:185
+msgid "Your entries are currently being imported. This should only take a few minutes. An admin notice will be displayed when the process is complete."
+msgstr "Obecnie trwa importowanie wpisów. Powinno to zająć tylko kilka minut. Po ukończeniu procesu zostanie wyświetlone powiadomienie dla administratora."
+
+#: pro/templates/admin/lite-connect/dashboard-widget-notice-restore.php:25
+#: src/Pro/Integrations/LiteConnect/Admin.php:213
+msgid "Restore Your Form Entries"
+msgstr "Przywróć wpisy formularza"
+
+#: pro/templates/admin/lite-connect/dashboard-widget-notice-restore.php:29
+msgid "Restore them now and get instant access to reports."
+msgstr "Przywróć je teraz i zyskaj natychmiastowy dostęp do raportów."
+
+#: pro/templates/admin/lite-connect/dashboard-widget-notice-restore.php:33
+#: src/Pro/Integrations/LiteConnect/Admin.php:215
+msgid "Restore Entries Now"
+msgstr "Przywróć wpisy"
+
+#: pro/templates/builder/antispam/reformat-warning.php:14
+msgid "It appears your keyword filter list is comma-separated. Would you like to reformat it?"
+msgstr "Wygląda na to, że lista filtru słów kluczowych jest rozdzielona przecinkami. Czy chcesz zmienić jej format?"
+
+#: pro/templates/builder/antispam/reformat-warning.php:19
+msgid "Yes, Reformat"
+msgstr "Tak, zmień format"
+
+#: pro/templates/builder/context-menu.php:37
+msgid "Duplicate Template"
+msgstr "Zduplikuj szablon"
+
+#: pro/templates/builder/context-menu.php:54
+msgid "Duplicate Form"
+msgstr "Zduplikuj formularz"
+
+#: pro/templates/builder/context-menu.php:68
+msgid "Save as Template"
+msgstr "Zapisz jako szablon"
+
+#: pro/templates/builder/context-menu.php:87
+#: src/Pro/Admin/Settings/Access.php:186
+#: src/Pro/Integrations/LiteConnect/Admin.php:280
+msgid "View Entries"
+msgstr "Zobacz wpisy"
+
+#: pro/templates/builder/context-menu.php:100
+#: src/Pro/Admin/Entries/Page.php:1309
+msgid "View Payments"
+msgstr "Zobacz płatności"
+
+#: pro/templates/builder/context-menu.php:114
+msgid "Keyboard Shortcuts"
+msgstr "Skróty klawiaturowe"
+
+#: pro/templates/builder/context-menu.php:128
+msgid "What's New"
+msgstr "Co nowego"
+
+#: pro/templates/education/admin/did-you-know.php:25
+msgid "Did You Know?"
+msgstr "Czy wiesz, że..."
+
+#: pro/templates/education/admin/did-you-know.php:33
+msgid "Upgrade to Pro"
+msgstr "Kup Pro"
+
+#: pro/templates/education/admin/did-you-know.php:35
+#: pro/wpforms-pro.php:1066
+msgid "Dismiss this message."
+msgstr "Odrzuć ten komunikat."
+
+#: pro/templates/education/admin/entries/geolocation.php:29
+#: pro/templates/education/admin/entries/geolocation.php:43
+#: src/Pro/Admin/Entries/Export/Ajax.php:1015
+msgid "Location"
+msgstr "Lokalizacja"
+
+#: pro/templates/education/admin/entries/geolocation.php:47
+#: src/Pro/Admin/Entries/Export/Ajax.php:1024
+msgid "Zipcode"
+msgstr "Kod pocztowy"
+
+#: pro/templates/education/admin/entries/geolocation.php:51
+#: src/Pro/Admin/Entries/Export/Ajax.php:1033
+#: src/Pro/Admin/Entries/Export/Ajax.php:1420
+msgid "Country"
+msgstr "Kraj"
+
+#: pro/templates/education/admin/entries/geolocation.php:55
+#: src/Pro/Admin/Entries/Export/Ajax.php:996
+msgid "Lat/Long"
+msgstr "Szerokość/długość geograficzna"
+
+#: pro/templates/education/admin/entries/geolocation.php:63
+msgid "Geolocation"
+msgstr "Geolokalizacja"
+
+#: pro/templates/education/admin/entries/geolocation.php:69
+msgid "Geolocation allows you to quickly see where your visitors are located!"
+msgstr "Dzięki geolokalizacji możesz szybko sprawdzić, gdzie są zlokalizowani goście twojej witryny!"
+
+#: pro/templates/education/admin/entries/geolocation.php:71
+msgid "You can install the Geolocation addon with just a few clicks!"
+msgstr "Instalacja dodatku geolokalizacyjnego to kwestia kilku kliknięć!"
+
+#: pro/templates/education/admin/entries/geolocation.php:80
+#: pro/templates/education/admin/entries/user-journey.php:258
+#: pro/wpforms-pro.php:551
+#: pro/wpforms-pro.php:713
+#: pro/wpforms-pro.php:2020
+msgid "Activate"
+msgstr "Włącz"
+
+#: pro/templates/education/admin/entries/geolocation.php:81
+#: pro/templates/education/admin/entries/user-journey.php:259
+msgid "Install & Activate"
+msgstr "Zainstaluj i włącz"
+
+#: pro/templates/education/admin/entries/geolocation.php:85
+msgid "Please upgrade to the PRO plan to unlock Geolocation and more awesome features."
+msgstr "Przejdź na plan PRO, aby zyskać dostęp do geolokalizacji i innych fantastycznych funkcji."
+
+#: pro/templates/education/admin/entries/geolocation.php:88
+#: pro/templates/education/admin/entries/user-journey.php:266
+msgid "Upgrade to WPForms Pro"
+msgstr "Kup WPForms Pro"
+
+#: pro/templates/education/admin/entries/user-journey.php:29
+#: pro/templates/education/admin/entries/user-journey.php:239
+msgid "User Journey"
+msgstr "Ścieżka użytkownika"
+
+#: pro/templates/education/admin/entries/user-journey.php:61
+msgid "Search Results"
+msgstr "Wyniki wyszukiwania"
+
+#: pro/templates/education/admin/entries/user-journey.php:84
+msgid "Homepage"
+msgstr "Strona główna"
+
+#: pro/templates/education/admin/entries/user-journey.php:107
+msgid "Frequently Asked Questions"
+msgstr "Często zadawane pytania"
+
+#: pro/templates/education/admin/entries/user-journey.php:130
+msgid "About Us"
+msgstr "O nas"
+
+#: pro/templates/education/admin/entries/user-journey.php:153
+msgid "Meet The Team"
+msgstr "Poznaj zespół"
+
+#: pro/templates/education/admin/entries/user-journey.php:176
+msgid "Testimonials"
+msgstr "Referencje"
+
+#: pro/templates/education/admin/entries/user-journey.php:199
+msgid "Contact Us"
+msgstr "Skontaktuj się z nami"
+
+#: pro/templates/education/admin/entries/user-journey.php:223
+msgid "Contact form submitted"
+msgstr "Przesłano formularz kontaktowy"
+
+#: pro/templates/education/admin/entries/user-journey.php:227
+msgid "User took 7 steps over 14 mins"
+msgstr "Użytkownik wykonał 7 kroków w 14 minut"
+
+#: pro/templates/education/admin/entries/user-journey.php:245
+msgid "Easily trace each visitor’s path through your site, right up to the moment they hit ‘Submit’!"
+msgstr "Łatwo śledź ścieżkę pokonywaną przez każdego gościa twojej witryny – aż do momentu kliknięcia przycisku „Prześlij”!"
+
+#: pro/templates/education/admin/entries/user-journey.php:248
+msgid "You can install the User Journey addon with just a few clicks!"
+msgstr "Instalacja dodatku User Journey to kwestia kilku kliknięć!"
+
+#: pro/templates/education/admin/entries/user-journey.php:263
+msgid "Please upgrade to the PRO plan to unlock User Journey and more awesome features."
+msgstr "Przejdź na plan PRO, aby zyskać dostęp do dodatku User Journey i innych fantastycznych funkcji."
+
+#. translators: %s - provider name.
+#: pro/templates/education/admin/settings/integrations-item.php:43
+msgid "Integrate %s with WPForms"
+msgstr "Zintegruj %s z WPForms"
+
+#: pro/templates/education/builder/providers-item.php:45
+msgid "Recommended"
+msgstr "Zalecane"
+
+#. translators: %1$s - site URL; %2$s - site title.
+#: pro/templates/emails/elegant-footer.php:26
+#: pro/templates/emails/modern-footer.php:26
+#: pro/templates/emails/tech-footer.php:26
+msgid "Sent from <a href=\"%1$s\">%2$s</a>"
+msgstr "Wysłane z: <a href=\"%1$s\">%2$s</a>"
+
+#: pro/templates/fields/file-upload-backend.php:22
+#: pro/templates/fields/file-upload-frontend.php:40
+msgid "Click or drag a file to this area to upload."
+msgid_plural "Click or drag files to this area to upload."
+msgstr[0] "Kliknij lub przeciągnij do tego obszaru plik przeznaczony do przesłania."
+msgstr[1] "Kliknij lub przeciągnij do tego obszaru pliki przeznaczone do przesłania."
+msgstr[2] "Kliknij lub przeciągnij do tego obszaru pliki przeznaczone do przesłania."
+msgstr[3] "Kliknij lub przeciągnij do tego obszaru pliki przeznaczone do przesłania."
+
+#: pro/templates/fields/richtext-single-iframe.php:22
+msgid "View Entry &gt; Rich Text field"
+msgstr "Zobacz Wpis &gt; pole Tekst sformatowany"
+
+#: pro/templates/frontend/file/file-not-found.php:18
+#: pro/templates/frontend/file/file-not-found.php:25
+msgid "File Not Found"
+msgstr "Nie znaleziono pliku"
+
+#: pro/templates/frontend/file/file-not-found.php:24
+#: pro/templates/frontend/file/file-password-required.php:38
+#: pro/templates/frontend/file/file-protected.php:24
+#: pro/templates/frontend/file/file-protected.php:25
+msgid "File Protected"
+msgstr "Plik chroniony"
+
+#: pro/templates/frontend/file/file-not-found.php:26
+msgid "Sorry, the file you’re looking for could not be found."
+msgstr "Niestety, nie udało się znaleźć szukanego pliku."
+
+#: pro/templates/frontend/file/file-password-required.php:20
+#: pro/templates/frontend/file/file-password-required.php:39
+msgid "Password Required"
+msgstr "Wymagane hasło"
+
+#: pro/templates/frontend/file/file-password-required.php:40
+msgid "This file is protected. Enter the password to access."
+msgstr "Ten plik jest chroniony. Wpisz hasło, aby uzyskać do niego dostęp."
+
+#: pro/templates/frontend/file/file-password-required.php:43
+msgid "Enter Password"
+msgstr "Wpisz hasło"
+
+#: pro/templates/frontend/file/file-password-required.php:44
+msgid "Submit"
+msgstr "Prześlij"
+
+#: pro/templates/frontend/file/file-protected.php:18
+msgid "Access Denied"
+msgstr "Odmowa dostępu"
+
+#: pro/templates/frontend/file/file-protected.php:26
+msgid "Sorry, you don’t have access to this file."
+msgstr "Niestety, nie masz dostępu do tego pliku."
+
+#: pro/wpforms-pro.php:462
+msgid "Go to WPForms.com Support page"
+msgstr "Przejdź na stronę pomocy technicznej WPForms.com"
+
+#: pro/wpforms-pro.php:463
+msgid "Support"
+msgstr "Pomoc techniczna"
+
+#: pro/wpforms-pro.php:479
+msgid "Read the documentation"
+msgstr "Zapoznaj się z dokumentacją"
+
+#: pro/wpforms-pro.php:480
+msgid "Docs"
+msgstr "Dokumenty"
+
+#: pro/wpforms-pro.php:498
+msgid "Inactive &mdash; You've got a paid version of WPForms"
+msgstr "Nie włączono &mdash; masz płatną wersję WPForms"
+
+#: pro/wpforms-pro.php:573
+#: pro/wpforms-pro.php:714
+msgid "You cannot activate WPForms Lite because you have a paid version of WPForms activated."
+msgstr "Nie możesz włączyć WPForms Lite, ponieważ masz włączoną płatną wersję WPForms."
+
+#: pro/wpforms-pro.php:637
+msgid "Verify Key"
+msgstr "Zweryfikuj klucz"
+
+#: pro/wpforms-pro.php:643
+msgid "Renew License"
+msgstr "Odnów licencję"
+
+#: pro/wpforms-pro.php:649
+msgid "Remove Key"
+msgstr "Usuń klucz"
+
+#. translators: $s - license type.
+#: pro/wpforms-pro.php:659
+msgid "Your license key level is %s."
+msgstr "Poziom twojego klucza licencyjnego to %s."
+
+#. translators: %s - refresh link.
+#: pro/wpforms-pro.php:666
+msgid "If your license has been upgraded or is incorrect, then please %1$sforce a refresh%2$s."
+msgstr "Jeśli twoja licencja została ulepszona lub jest niepoprawna, %1$swymuś odświeżenie%2$s."
+
+#: pro/wpforms-pro.php:755
+msgid "Website URL"
+msgstr "Adres URL witryny"
+
+#: pro/wpforms-pro.php:757
+#: pro/wpforms-pro.php:1751
+#: src/Pro/Forms/Fields/Url/Field.php:76
+msgid "Please enter a valid URL."
+msgstr "Wpisz prawidłowy adres URL."
+
+#: pro/wpforms-pro.php:761
+msgid "Phone"
+msgstr "Telefon"
+
+#: pro/wpforms-pro.php:763
+#: src/Pro/Forms/Fields/Phone/Field.php:220
+#: src/Pro/Forms/Fields/Phone/Field.php:325
+msgid "Please enter a valid phone number."
+msgstr "Wpisz prawidłowy numer telefonu."
+
+#: pro/wpforms-pro.php:767
+msgid "File Extension"
+msgstr "Rozszerzenie pliku"
+
+#: pro/wpforms-pro.php:769
+#: pro/wpforms-pro.php:1754
+#: src/Pro/Forms/Fields/FileUpload/Field.php:253
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1928
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1956
+msgid "File type is not allowed."
+msgstr "Niedozwolony typ pliku."
+
+#: pro/wpforms-pro.php:773
+msgid "File Size"
+msgstr "Rozmiar pliku"
+
+#: pro/wpforms-pro.php:775
+#: pro/wpforms-pro.php:1755
+msgid "File exceeds max size allowed. File was not uploaded."
+msgstr "Plik przekracza maksymalny dozwolony rozmiar. Plik nie został przesłany."
+
+#: pro/wpforms-pro.php:779
+msgid "File Uploads"
+msgstr "Przesyłanie plików"
+
+#. translators: %s - max number of files allowed.
+#: pro/wpforms-pro.php:782
+#: src/Pro/Forms/Fields/FileUpload/Field.php:249
+#: src/Pro/Forms/Fields/FileUpload/Field.php:986
+msgid "File uploads exceed the maximum number allowed (%s)."
+msgstr "Liczba przesyłanych plików przekracza dozwolone maksimum (%s)."
+
+#: pro/wpforms-pro.php:788
+msgid "Time (12 hour)"
+msgstr "Godzina (format 12-godzinny)"
+
+#: pro/wpforms-pro.php:790
+#: pro/wpforms-pro.php:1746
+msgid "Please enter time in 12-hour AM/PM format (eg 8:45 AM)."
+msgstr "Wpisz godzinę w formacie 12-godzinnym AM/PM (np. 8:45 AM)."
+
+#: pro/wpforms-pro.php:794
+msgid "Time (24 hour)"
+msgstr "Godzina (format 24-godzinny)"
+
+#: pro/wpforms-pro.php:796
+#: pro/wpforms-pro.php:1747
+msgid "Please enter time in 24-hour format (eg 22:45)."
+msgstr "Wpisz godzinę w formacie 24-godzinnym (np. 22:45)."
+
+#: pro/wpforms-pro.php:800
+msgid "Limit Hours"
+msgstr "Ogranicz godziny"
+
+#: pro/wpforms-pro.php:802
+#: pro/wpforms-pro.php:1748
+#: src/Pro/Forms/Fields/DateTime/Field.php:744
+msgid "Please enter time between {minTime} and {maxTime}."
+msgstr "Wpisz godzinę z zakresu od {minTime} do {maxTime}."
+
+#: pro/wpforms-pro.php:806
+msgid "File Upload Total Size"
+msgstr "Łączny rozmiar przesyłanych plików"
+
+#. translators: %1$s - total size of the selected files in megabytes, %2$s - allowed file upload limit in megabytes.
+#: pro/wpforms-pro.php:809
+#: pro/wpforms-pro.php:1739
+msgid "The total size of the selected files %1$s MB exceeds the allowed limit %2$s MB."
+msgstr "Łączny rozmiar wybranych plików (%1$s MB) przekracza dozwolony limit wynoszący %2$s MB."
+
+#: pro/wpforms-pro.php:816
+msgid "Password Strength"
+msgstr "Siła hasła"
+
+#: pro/wpforms-pro.php:818
+#: src/Pro/Forms/Fields/Password/Field.php:450
+msgid "A stronger password is required. Consider using upper and lower case letters, numbers, and symbols."
+msgstr "Wymagane jest silniejsze hasło. Rozważ użycie wielkich i małych liter, cyfr oraz symboli."
+
+#: pro/wpforms-pro.php:827
+msgid "Disable User Cookies"
+msgstr "Wyłącz pliki cookie użytkownika"
+
+#: pro/wpforms-pro.php:828
+msgid "Disable user tracking cookies. This will disable the Related Entries feature and the Form Abandonment addon."
+msgstr "Wyłącz pliki cookie służące do śledzenia użytkownika. Spowoduje to wyłączenie funkcji Powiązane wpisy i dodatku Porzucenie formularza."
+
+#: pro/wpforms-pro.php:835
+msgid "Disable User Details"
+msgstr "Wyłącz dane użytkownika"
+
+#: pro/wpforms-pro.php:836
+msgid "Disable storage IP addresses and User Agent on all forms. If unchecked, then this can be managed on a form-by-form basis inside the form builder under Settings → General"
+msgstr "Wyłącz przechowywanie adresów IP i agenta użytkownika we wszystkich formularzach. Jeśli opcja nie jest zaznaczona, ustawienie to można określić w kreatorze formularzy dla każdego formularza z osobna, korzystając z menu Ustawienia → Ogólne."
+
+#: pro/wpforms-pro.php:926
+msgid "Disable storing entry information in WordPress"
+msgstr "Wyłącz przechowywanie informacji o wpisach w WordPressie"
+
+#: pro/wpforms-pro.php:938
+msgid "Disable storing user details (IP address and user agent)"
+msgstr "Wyłącz przechowywanie danych użytkownika (adresu IP i agenta użytkownika)"
+
+#: pro/wpforms-pro.php:963
+#: src/Pro/Admin/AdminBarMenu.php:96
+#: src/Pro/Admin/DashboardWidget.php:223
+#: src/Pro/Admin/Entries/Overview/Page.php:187
+#: src/Pro/Admin/Entries/Overview/Page.php:244
+#: src/Pro/Admin/Entries/Page.php:958
+#: src/Pro/Admin/Entries/Page.php:1094
+#: src/Pro/Admin/Settings/Access.php:376
+msgid "Entries"
+msgstr "Wpisy"
+
+#. translators: %s - form name.
+#: pro/wpforms-pro.php:1040
+msgid "New %s Entry"
+msgstr "Nowy wpis: %s"
+
+#: pro/wpforms-pro.php:1057
+msgid "Notifications"
+msgstr "Powiadomienia"
+
+#: pro/wpforms-pro.php:1059
+msgid "Add New Notification"
+msgstr "Dodaj nowe powiadomienie"
+
+#. translators: %s - link to the WPForms.com doc article.
+#: pro/wpforms-pro.php:1070
+msgid "Notifications are emails sent when a form is submitted. By default, these emails include entry details. For setup and customization options, including a video overview, please <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">see our tutorial</a>."
+msgstr "Powiadomienia to e-maile wysyłane po przesłaniu formularza. Domyślnie e-maile te zawierają szczegóły wpisów. Aby zapoznać się z opcjami konfiguracji i dostosowywania, w tym obejrzeć film poglądowy, <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">skorzystaj z poradnika</a>."
+
+#. translators: 1$s, %2$s - links to the WPForms.com doc articles.
+#: pro/wpforms-pro.php:1085
+msgid "After saving these settings, be sure to <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">test a form submission</a>. This lets you see how emails will look, and to ensure that they <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">are delivered successfully</a>."
+msgstr "Po zapisaniu tych ustawień koniecznie <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">przetestuj przesłanie formularza</a>. Dzięki temu zobaczysz, jak wyglądają e-maile, i sprawdzisz, czy <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">są prawidłowo dostarczane</a>."
+
+#: pro/wpforms-pro.php:1107
+msgid "Enable Notifications"
+msgstr "Włącz powiadomienia"
+
+#: pro/wpforms-pro.php:1115
+msgid "Default Notification"
+msgstr "Powiadomienie domyślne"
+
+#: pro/wpforms-pro.php:1177
+msgid "Clone"
+msgstr "Klonuj"
+
+#: pro/wpforms-pro.php:1178
+#: pro/wpforms-pro.php:1554
+#: src/Pro/Admin/Entries/ListTable.php:801
+#: src/Pro/Admin/Entries/ListTable.php:1027
+msgid "Delete"
+msgstr "Usuń"
+
+#: pro/wpforms-pro.php:1179
+#: pro/wpforms-pro.php:1555
+msgid "Open / Close"
+msgstr "Otwórz/zamknij"
+
+#: pro/wpforms-pro.php:1191
+#: pro/wpforms-pro.php:1566
+#: src/Pro/Admin/Entries/Edit.php:561
+#: src/Pro/Admin/Entries/ListTable.php:839
+msgid "Edit"
+msgstr "Edytuj"
+
+#: pro/wpforms-pro.php:1202
+msgid "Send To Email Address"
+msgstr "Adres e-mail odbiorcy"
+
+#: pro/wpforms-pro.php:1205
+msgid "Enter the email address to receive form entry notifications. For multiple notifications, separate email addresses with a comma."
+msgstr "Wpisz adres e-mail, na który mają docierać powiadomienia o wpisach formularzy. Aby wysyłać wiele powiadomień, rozdziel adresy e-mail przecinkami."
+
+#: pro/wpforms-pro.php:1224
+msgid "CC"
+msgstr "DW"
+
+#: pro/wpforms-pro.php:1226
+msgid "Enter the email address to add it to the carbon copy of the form entry notifications. For multiple notifications, separate email addresses with a comma."
+msgstr "Wpisz adres e-mail, aby dodać go jako adres kopii do wiadomości (DW) powiadomień o wpisach formularzy. Aby wysyłać wiele powiadomień, rozdziel adresy e-mail przecinkami."
+
+#: pro/wpforms-pro.php:1244
+msgid "Email Subject Line"
+msgstr "Wiersz tematu e-maila"
+
+#. translators: %s - form name.
+#: pro/wpforms-pro.php:1247
+msgid "New Entry: %s"
+msgstr "Nowy wpis: %s"
+
+#: pro/wpforms-pro.php:1264
+msgid "From Name"
+msgstr "Imię i nazwisko nadawcy"
+
+#: pro/wpforms-pro.php:1298
+msgid "From Email"
+msgstr "Adres e-mail nadawcy"
+
+#: pro/wpforms-pro.php:1332
+msgid "Reply-To"
+msgstr "Odpowiedź do"
+
+#. translators: %s - <email@example.com>.
+#: pro/wpforms-pro.php:1336
+msgid "Enter the email address or email address with recipient's name in \"First Last %s\" format."
+msgstr "Wpisz adres e-mail albo adres e-mail z imieniem i nazwiskiem odbiorcy w formacie „Imię nazwisko %s”."
+
+#: pro/wpforms-pro.php:1357
+msgid "Email Message"
+msgstr "Wiadomość e-mail"
+
+#. translators: %s - all fields smart tag.
+#: pro/wpforms-pro.php:1370
+msgid "To display all form fields, use the %s Smart Tag."
+msgstr "Aby były widoczne wszystkie pola formularza, użyj tagu inteligentnego %s."
+
+#: pro/wpforms-pro.php:1382
+msgid "Send"
+msgstr "Wyślij"
+
+#: pro/wpforms-pro.php:1383
+msgid "Don't send"
+msgstr "Nie wysyłaj"
+
+#: pro/wpforms-pro.php:1385
+msgid "this notification if"
+msgstr "jeśli"
+
+#: pro/wpforms-pro.php:1386
+msgid "Email notifications"
+msgstr "Powiadomienia e-mail"
+
+#: pro/wpforms-pro.php:1493
+#: pro/wpforms-pro.php:1601
+msgid "Thanks for contacting us! We will be in touch with you shortly."
+msgstr "Dziękujemy za kontakt! Wkrótce się odezwiemy."
+
+#: pro/wpforms-pro.php:1506
+msgid "Confirmations"
+msgstr "Potwierdzenia"
+
+#: pro/wpforms-pro.php:1507
+msgid "Add New Confirmation"
+msgstr "Dodaj nowe potwierdzenie"
+
+#: pro/wpforms-pro.php:1512
+msgid "Default Confirmation"
+msgstr "Potwierdzenie domyślne"
+
+#: pro/wpforms-pro.php:1578
+msgid "Confirmation Type"
+msgstr "Rodzaj potwierdzenia"
+
+#: pro/wpforms-pro.php:1582
+msgid "Message"
+msgstr "Wiadomość"
+
+#: pro/wpforms-pro.php:1583
+msgid "Show Page"
+msgstr "Pokaż stronę"
+
+#: pro/wpforms-pro.php:1584
+msgid "Go to URL (Redirect)"
+msgstr "Przejdź do adresu URL (przekierowanie)"
+
+#: pro/wpforms-pro.php:1599
+#: src/Pro/Admin/Builder/Builder.php:96
+msgid "Confirmation Message"
+msgstr "Komunikat z potwierdzeniem"
+
+#: pro/wpforms-pro.php:1622
+msgid "Automatically scroll to the confirmation message"
+msgstr "Automatycznie przewiń do komunikatu z potwierdzeniem"
+
+#: pro/wpforms-pro.php:1636
+msgid "Confirmation Page"
+msgstr "Strona potwierdzenia"
+
+#: pro/wpforms-pro.php:1656
+msgid "Confirmation Redirect URL"
+msgstr "Adres URL przekierowania przy potwierdzeniu"
+
+#: pro/wpforms-pro.php:1670
+msgid "Open confirmation in new tab"
+msgstr "Otwórz potwierdzenie w nowej karcie"
+
+#: pro/wpforms-pro.php:1687
+msgid "Use"
+msgstr "Użyj"
+
+#: pro/wpforms-pro.php:1688
+msgid "Don't use"
+msgstr "Nie używaj"
+
+#: pro/wpforms-pro.php:1690
+msgid "this confirmation if"
+msgstr "tego potwierdzenia, jeśli"
+
+#: pro/wpforms-pro.php:1691
+msgid "Form confirmations"
+msgstr "Potwierdzenia formularza"
+
+#. translators: %s - WPForms.com announcement page URL.
+#: pro/wpforms-pro.php:1777
+msgid "Conditional logic functionality is now included in the core WPForms plugin! The WPForms Conditional Logic addon can be removed without affecting your forms. For more details <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">read our announcement</a>."
+msgstr "Obecnie funkcja logiki warunkowej wchodzi w skład zasadniczej wtyczki WPForms! Dodatek logiki warunkowej WPForms można usunąć bez negatywnego wpływu na formularze. Aby uzyskać więcej informacji, <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">zapoznaj się z naszym ogłoszeniem</a>."
+
+#. translators: %s - WPForms.com Account dashboard URL.
+#: pro/wpforms-pro.php:1818
+msgid "Your WPForms license key has expired. In order to continue receiving support and plugin updates you must renew your license key. Please log in to <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">your WPForms.com account</a> to renew your license."
+msgstr "Twój klucz licencyjny wtyczki WPForms wygasł. Aby nadal otrzymywać pomoc techniczną i aktualizacje wtyczki, musisz odnowić klucz licencyjny. Zaloguj się na <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">konto WPForms.com</a>, aby odnowić licencję."
+
+#: pro/wpforms-pro.php:1938
+msgid "Addon auto-updates controlled by WPForms"
+msgstr "Automatyczne aktualizacje dodatku kontrolowane przez WPForms"
+
+#: pro/wpforms-pro.php:2019
+msgid "Active"
+msgstr "Włączono"
+
+#: pro/wpforms-pro.php:2021
+msgid "Inactive"
+msgstr "Wyłączono"
+
+#: pro/wpforms-pro.php:2022
+msgid "Deactivate"
+msgstr "Wyłącz"
+
+#: src/Pro/Access/Capabilities.php:70
+#: src/Pro/Admin/Settings/Access.php:96
+msgid "Create Forms"
+msgstr "Tworzenie formularzy"
+
+#: src/Pro/Access/Capabilities.php:71
+msgid "View Own Forms"
+msgstr "Wyświetlanie własnych formularzy"
+
+#: src/Pro/Access/Capabilities.php:72
+msgid "View Others' Forms"
+msgstr "Wyświetlanie formularzy innych osób"
+
+#: src/Pro/Access/Capabilities.php:73
+msgid "Edit Own Forms"
+msgstr "Edytowanie własnych formularzy"
+
+#: src/Pro/Access/Capabilities.php:74
+msgid "Edit Others' Forms"
+msgstr "Edytowanie formularzy innych osób"
+
+#: src/Pro/Access/Capabilities.php:75
+msgid "Delete Own Forms"
+msgstr "Usuwanie własnych formularzy"
+
+#: src/Pro/Access/Capabilities.php:76
+msgid "Delete Others' Forms"
+msgstr "Usuwanie formularzy innych osób"
+
+#: src/Pro/Access/Capabilities.php:78
+msgid "View Own Forms Entries"
+msgstr "Wyświetlanie wpisów własnych formularzy"
+
+#: src/Pro/Access/Capabilities.php:79
+msgid "View Others' Forms Entries"
+msgstr "Wyświetlanie wpisów formularzy innych osób"
+
+#: src/Pro/Access/Capabilities.php:80
+msgid "Edit Own Forms Entries"
+msgstr "Edytowanie wpisów własnych formularzy"
+
+#: src/Pro/Access/Capabilities.php:81
+msgid "Edit Others' Forms Entries"
+msgstr "Edytowanie wpisów formularzy innych osób"
+
+#: src/Pro/Access/Capabilities.php:82
+msgid "Delete Own Forms Entries"
+msgstr "Usuwanie wpisów własnych formularzy"
+
+#: src/Pro/Access/Capabilities.php:83
+msgid "Delete Others' Forms Entries"
+msgstr "Usuwanie wpisów formularzy innych osób"
+
+#: src/Pro/Access/File.php:285
+msgid "Sorry, the password you entered is incorrect."
+msgstr "Niestety, wpisane hasło jest niepoprawne."
+
+#: src/Pro/Admin/Addons/GoogleSheets.php:100
+msgid "Important Update for Google Sheets Addon Users"
+msgstr "Ważna aktualizacja dla użytkowników dodatku Google Sheets"
+
+#. translators: %1$s - Google Sheets Re-Authentication doc link.
+#: src/Pro/Admin/Addons/GoogleSheets.php:103
+msgid "The Google Sheets addon for WPForms will be updated soon. All users who are sending entries to Google Sheets will need to <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">update the addon and re-authenticate their Google connection</a> as soon as version 2.0 becomes available to avoid interruptions in service."
+msgstr "Dodatek Google Sheets dla WPForms wkrótce zostanie zaktualizowany. Wszyscy użytkownicy, którzy wysyłają wpisy do Arkuszy Google, z chwilą udostępnienia wersji 2.0 będą musieli <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">zaktualizować dodatek i ponownie uwierzytelnić połączenie z Google</a>, aby uniknąć przerw w dostępie do usługi."
+
+#: src/Pro/Admin/Addons/GoogleSheets.php:123
+msgid "Urgent Action Required for Google Sheets Addon Users"
+msgstr "Wymagane pilne działanie u użytkowników dodatku Google Sheets"
+
+#. translators: %1$s - Google Sheets Re-Authentication doc link.
+#: src/Pro/Admin/Addons/GoogleSheets.php:126
+msgid "WPForms Google Sheets addon version 2.0 is now available. All users who are sending entries to Google Sheets need to <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">update the addon and re-authenticate their Google connection</a> as soon as possible to avoid interruptions in service."
+msgstr "Jest już dostępny dodatek Google Sheets dla WPForms w wersji 2.0. Wszyscy użytkownicy, którzy wysyłają wpisy do Arkuszy Google, powinni jak najszybciej <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">zaktualizować dodatek i ponownie uwierzytelnić połączenie z Google</a>, aby uniknąć przerw w dostępie do usługi."
+
+#: src/Pro/Admin/Builder/AntiSpam.php:47
+msgid "Your keyword filter list has been reformatted. Please save these changes."
+msgstr "Format listy filtru słów kluczowych został zmieniony. Zapisz te zmiany."
+
+#: src/Pro/Admin/Builder/Builder.php:52
+msgid " - clone"
+msgstr " - klon"
+
+#. translators: %1$s - payment provider completed payments. Example: "PayPal Standard completed payments".
+#: src/Pro/Admin/Builder/Builder.php:55
+msgid "<p>You have just enabled this notification for <strong>%1$s</strong>. Please note that this email notification will only send for <strong>%1$s</strong>.</p><p>If you'd like to set up additional notifications for this form, please see our <a href=\"https://wpforms.com/docs/setup-form-notification-wpforms/\" rel=\"nofollow noopener\" target=\"_blank\">tutorial</a>.</p>"
+msgstr "<p>Właśnie włączono to powiadomienie dla obiektu „<strong>%1$s</strong>”. Zwracamy uwagę, że to powiadomienie e-mail będzie wysyłane tylko w odniesieniu do obiektu „<strong>%1$s</strong>”.</p><p>Jeśli chcesz skonfigurować dodatkowe powiadomienia dotyczące tego formularza, zapoznaj się z naszym <a href=\"https://wpforms.com/docs/setup-form-notification-wpforms/\" rel=\"nofollow noopener\" target=\"_blank\">poradnikiem</a>.</p>"
+
+#. translators: %1$s - payment provider completed payments. Example: "PayPal Standard completed payments", %2$s - disabled Payment provider completed payments.
+#: src/Pro/Admin/Builder/Builder.php:68
+msgid "<p>You have just <strong>disabled</strong> the notification for <strong>%2$s</strong> and <strong>enabled</strong> the notification for <strong>%1$s</strong>. Please note that this email notification will only send for <strong>%1$s</strong>.</p><p>If you'd like to set up additional notifications for this form, please see our <a href=\"https://wpforms.com/docs/setup-form-notification-wpforms/\" rel=\"nofollow noopener\" target=\"_blank\">tutorial</a>.</p>"
+msgstr "<p>Właśnie <strong>wyłączono</strong> powiadomienie dotyczące obiektu „<strong>%2$s</strong>” i <strong>włączono</strong> powiadomienie dotyczące obiektu <strong>%1$s</strong>. Zwracamy uwagę, że to powiadomienie e-mail będzie wysyłane tylko w odniesieniu do obiektu „<strong>%1$s</strong>”.</p><p>Jeśli chcesz skonfigurować dodatkowe powiadomienia dotyczące tego formularza, zapoznaj się z naszym <a href=\"https://wpforms.com/docs/setup-form-notification-wpforms/\" rel=\"nofollow noopener\" target=\"_blank\">poradnikiem</a>.</p>"
+
+#: src/Pro/Admin/Builder/LicenseAlert.php:132
+msgid "An active license is needed to access new features & addons, plugin updates (including security improvements), and our world class support!"
+msgstr "Dostęp do nowych funkcji i dodatków, aktualizacji wtyczki (w tym ulepszeń zabezpieczeń) oraz naszej światowej klasy pomocy technicznej wymaga aktywnej licencji!"
+
+#: src/Pro/Admin/Builder/LicenseAlert.php:135
+#: src/Pro/Admin/DashboardWidget.php:673
+msgid "Dismiss"
+msgstr "Odrzuć"
+
+#: src/Pro/Admin/Builder/LicenseAlert.php:161
+msgid "Heads up! A WPForms license key is required."
+msgstr "Uwaga! Wymagany jest klucz licencyjny wtyczki WPForms."
+
+#: src/Pro/Admin/Builder/LicenseAlert.php:162
+msgid "To create more forms, please verify your WPForms license."
+msgstr "Aby tworzyć kolejne formularze, zweryfikuj licencję wtyczki WPForms."
+
+#: src/Pro/Admin/Builder/LicenseAlert.php:163
+#: src/Pro/Admin/Education/StringsTrait.php:57
+#: src/Pro/Admin/Education/StringsTrait.php:81
+msgid "Enter License Key"
+msgstr "Wpisz klucz licencyjny"
+
+#: src/Pro/Admin/Builder/LicenseAlert.php:164
+msgid "Get WPForms Pro"
+msgstr "Uzyskaj WPForms Pro"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/EntryCsvAttachment.php:149
+msgid "All Fields"
+msgstr "Wszystkie pola"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/EntryCsvAttachment.php:206
+msgid "Enable Entry CSV Attachment"
+msgstr "Włącz załącznik CSV z wpisami"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/EntryCsvAttachment.php:222
+msgid "File Name"
+msgstr "Nazwa pliku"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/EntryCsvAttachment.php:261
+msgid "Entry Information"
+msgstr "Informacje o wpisach"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/EntryCsvAttachment.php:263
+msgid "At least one item must be selected for inclusion in the CSV file."
+msgstr "Należy wybrać co najmniej jeden element do uwzględnienia w pliku CSV."
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/FileUploadAttachment.php:56
+msgid "You do not have any file upload fields"
+msgstr "Brak pól przesyłania plików"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/FileUploadAttachment.php:57
+msgid "Restrictions Enabled"
+msgstr "Włączono ograniczenia"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/FileUploadAttachment.php:81
+msgid "Enable File Upload Attachments"
+msgstr "Włącz załączniki z przesłanymi plikami"
+
+#. translators: %s - link to the WPForms.com doc article.
+#: src/Pro/Admin/Builder/Notifications/Advanced/FileUploadAttachment.php:114
+msgid "<strong>Heads up!</strong> Some email providers have limits on attachment file size. If your visitors upload large files, your notifications may not be delivered. <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Learn More</a>"
+msgstr "<strong>Uwaga!</strong> Niektórzy dostawcy poczty e-mail ograniczają rozmiar plików załącznika. Jeśli twoi goście prześlą duże pliki, możesz nie otrzymać powiadomień. <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Dowiedz się więcej</a>"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/FileUploadAttachment.php:134
+msgid "You allow attaching up to <strong><span class=\"notifications-file-upload-attachment-size\">0</span> MB</strong>"
+msgstr "Zezwalasz na załączniki o rozmiarze do <strong><span class=\"notifications-file-upload-attachment-size\">0</span> MB</strong>"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/FileUploadAttachment.php:148
+msgid "File Upload Fields"
+msgstr "Pola przesyłania plików"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/FileUploadAttachment.php:151
+msgid "Select the file upload field(s) containing the files you’d like to receive as attachments."
+msgstr "Wybierz pola przesyłania zawierające pliki, które chcesz otrzymywać w postaci załączników."
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/Settings.php:48
+msgid "Field #"
+msgstr "Pole #"
+
+#: src/Pro/Admin/Builder/Notifications/Advanced/Settings.php:104
+msgid "Advanced"
+msgstr "Zaawansowane"
+
+#: src/Pro/Admin/DashboardWidget.php:219
+#: src/Pro/Admin/DashboardWidget.php:633
+msgid "Show More"
+msgstr "Pokaż więcej"
+
+#: src/Pro/Admin/DashboardWidget.php:220
+msgid "Show Less"
+msgstr "Pokaż mniej"
+
+#: src/Pro/Admin/DashboardWidget.php:222
+#: src/Pro/Admin/DashboardWidget.php:349
+#: src/Pro/Admin/DashboardWidget.php:397
+#: src/Pro/Admin/Entries/Overview/Page.php:347
+msgid "Total Entries"
+msgstr "Wpisy ogółem"
+
+#: src/Pro/Admin/DashboardWidget.php:224
+msgid "Form Entries"
+msgstr "Wpisy formularza"
+
+#: src/Pro/Admin/DashboardWidget.php:318
+msgid "Sullie the WPForms mascot"
+msgstr "Sullie, maskotka WPForms"
+
+#: src/Pro/Admin/DashboardWidget.php:319
+msgid "Create Your First Form to Start Collecting Leads"
+msgstr "Utwórz pierwszy formularz, aby zacząć gromadzić dane potencjalnych klientów"
+
+#: src/Pro/Admin/DashboardWidget.php:320
+msgid "You can use WPForms to build contact forms, surveys, payment forms, and more with just a few clicks."
+msgstr "Korzystając z wtyczki WPForms, możesz przy użyciu kilku kliknięć tworzyć formularze kontaktowe, ankiety, formularze płatności i nie tylko."
+
+#: src/Pro/Admin/DashboardWidget.php:324
+msgid "Create Your Form"
+msgstr "Utwórz formularz"
+
+#: src/Pro/Admin/DashboardWidget.php:369
+#: src/Pro/Admin/Entries/Overview/Page.php:299
+#: src/Pro/Admin/Entries/Overview/Table.php:329
+msgid "Reset chart to display all forms"
+msgstr "Zresetuj wykres, aby wyświetlić wszystkie formularze"
+
+#: src/Pro/Admin/DashboardWidget.php:444
+msgid "No entries for selected period."
+msgstr "Brak wpisów w wybranym okresie."
+
+#: src/Pro/Admin/DashboardWidget.php:586
+#: src/Pro/Admin/Entries/Overview/Table.php:333
+msgid "Display only this form data in the graph"
+msgstr "Wyświetl na wykresie tylko dane tego formularza"
+
+#: src/Pro/Admin/DashboardWidget.php:590
+msgid "Reset graph to display all forms"
+msgstr "Zresetuj wykres, aby wyświetlić wszystkie formularze"
+
+#: src/Pro/Admin/DashboardWidget.php:632
+msgid "Show all forms"
+msgstr "Pokaż wszystkie formularze"
+
+#: src/Pro/Admin/DashboardWidget.php:662
+msgid "Recommended Plugin:"
+msgstr "Zalecana wtyczka:"
+
+#: src/Pro/Admin/DashboardWidget.php:667
+msgid "Install"
+msgstr "Zainstaluj"
+
+#. translators: %s - WPForms version.
+#: src/Pro/Admin/DashboardWidget.php:690
+msgid "Welcome to <strong>WPForms %s</strong>"
+msgstr "Witamy we wtyczce <strong>WPForms %s</strong>"
+
+#: src/Pro/Admin/DashboardWidget.php:729
+#: src/Pro/Admin/Entries/Overview/Page.php:349
+msgid "No entries for selected period"
+msgstr "Brak wpisów w wybranym okresie"
+
+#: src/Pro/Admin/DashboardWidget.php:730
+#: src/Pro/Admin/Entries/Overview/Page.php:350
+msgid "Please select a different period or check back later."
+msgstr "Wybierz inny okres lub wróć tu później."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:94
+msgid "You can capture email addresses from partial form entries to get more leads. Abandoned cart emails have an average open rate of 45%!"
+msgstr "Możesz przechwytywać adresy e-mail z częściowo wypełnionych formularzy, aby pozyskać więcej potencjalnych klientów. E-maile dotyczące porzuconego koszyka otwiera średnio 45% odbiorców!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:99
+msgid "You can easily integrate your forms with 7,000+ useful apps by using WPForms + Zapier."
+msgstr "Możesz łatwo integrować formularze z ponad 7000 przydatnych aplikacji, korzystając z wtyczki WPForms i platformy Zapier."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:104
+msgid "You can integrate your forms to automatically send entries to your most used apps. Perfect for users of Salesforce, Slack, Trello, and 7,000+ others."
+msgstr "Możesz integrować formularze z najczęściej używanymi aplikacjami, aby wpisy były automatycznie do nich wysyłane. Jest to idealne rozwiązanie dla użytkowników takich aplikacji jak Salesforce, Slack, Trello i ponad 7000 innych."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:109
+msgid "You can make distraction-free and custom landing pages in WPForms! Perfect for getting more leads."
+msgstr "Wtyczka WPForms pozwala tworzyć własne strony docelowe, które nie rozpraszają uwagi użytkowników. To idealne rozwiązanie, jeśli chcesz pozyskiwać więcej potencjalnych klientów."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:114
+msgid "You can build and customize your own professional-looking landing page. A great alternative to Google Forms!"
+msgstr "Możesz stworzyć i dostosować własną stronę docelową o profesjonalnym wyglądzie. To znakomita alternatywa dla Formularzy Google!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:119
+msgid "You don’t have to build your forms from scratch. The Form Templates Pack addon gives you access to 150+ additional templates."
+msgstr "Nie musisz tworzyć formularzy od podstaw! Dodatek z pakietem szablonów formularzy daje dostęp do ponad 150 dodatkowych szablonów."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:124
+msgid "You can password-protect your forms. Perfect for collecting reviews or success stories from customers!"
+msgstr "Możesz zabezpieczać formularze hasłem. To idealne rozwiązanie do pozyskiwania recenzji lub historii sukcesu od klientów!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:129
+msgid "You can automatically close a form at a specific date and time. Great for applications!"
+msgstr "Możesz automatycznie zamknąć formularz w określonym terminie. To idealne rozwiązanie do zgłoszeń!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:134
+msgid "You can generate more fresh content for your website for free by accepting guest blog posts."
+msgstr "Możesz bezpłatnie wygenerować więcej świeżych treści do swojej witryny, przyjmując gościnne wpisy na blogu."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:139
+msgid "You can easily add a field to your forms that let users draw their signature then saves it as an image with their entry."
+msgstr "Do formularza możesz łatwo dodać pole, w którym użytkownik może narysować swój podpis. Podpis ten jest następnie zapisywany w postaci obrazka razem z wpisem."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:144
+msgid "You can set up your forms to let your site visitors pick which payment method they want to use."
+msgstr "Możesz skonfigurować formularze w taki sposób, aby osoby odwiedzające twoją witrynę mogły wybrać preferowaną metodę płatności."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:149
+msgid "You can increase your revenue by accepting recurring payments on your forms."
+msgstr "Możesz zwiększyć przychody dzięki przyjmowaniu płatności cyklicznych za pośrednictwem formularzy."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:154
+msgid "For added insight into your customers, you can collect your user's city, state, and country behind-the-scenes with Geolocation!"
+msgstr "Aby lepiej poznać swoich klientów, możesz zakulisowo zbierać informacje o ich miejscowości, regionie i kraju, korzystając z funkcji geolokalizacji."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:159
+msgid "You can let people automatically register as users on your WordPress site. Perfect for things like accepting guest blog posts!"
+msgstr "Możesz wprowadzić funkcję, dzięki której goście będą mogli automatycznie rejestrować się jako użytkownicy w twojej witrynie w WordPressie. To idealne rozwiązanie np. do przyjmowania gościnnych wpisów na blogu!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:164
+msgid "You can limit one form submission per person to avoid duplicate entries. Perfect for applications and giveaway!"
+msgstr "Możesz wprowadzić limit jednego przesłanego formularza na osobę, aby uniknąć zduplikowanych wpisów. To idealne rozwiązanie do zgłoszeń i konkursów z nagrodami!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:169
+msgid "You can use NPS Surveys to learn about your visitors. A tactic used by some of the biggest brands around!"
+msgstr "Możesz lepiej poznawać swoich gości przy użyciu ankiet NPS. Tę taktykę stosują największe marki!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:174
+msgid "If you're planning an event, you can create an RSVP form to stay organized and get higher response rates!"
+msgstr "Jeśli planujesz wydarzenie, możesz utworzyć formularz odpowiedzi na zaproszenie, aby zwiększyć porządek i współczynnik odpowiedzi!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:179
+msgid "With the Offline Forms addon, you can save data entered into your forms even if the user loses their internet connection."
+msgstr "Dzięki dodatkowi do obsługi formularzy offline dane wpisane w formularzu mogą być zapisywane nawet wtedy, gdy użytkownik utraci połączenie internetowe."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:184
+msgid "You can accept PayPal on your website — a great way to increase your revenue."
+msgstr "Możesz w witrynie przyjmować płatności PayPal – to idealny sposób na zwiększenie przychodów."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:189
+msgid "You can make money selling digital downloads on your site by using Stripe or PayPal."
+msgstr "Możesz w witrynie zarabiać na sprzedaży pobieranych treści cyfrowych, korzystając z serwisu Stripe lub PayPal."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:194
+msgid "You can create a simple order form on your site to sell services or products online."
+msgstr "Możesz utworzyć w witrynie prosty formularz zamówienia, aby sprzedawać usługi lub produkty przez internet."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:199
+msgid "You can create surveys or polls and see interactive visual reports of your user's answers."
+msgstr "Możesz tworzyć ankiety lub sondy i przeglądać interaktywne wizualne raporty z udzielonymi odpowiedziami."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:204
+msgid "You can add a customer feedback form to your site. Try automatically emailing it out after a sale!"
+msgstr "Możesz dodać do witryny formularz uwag klientów. Spróbuj automatycznie wysyłać go e-mailem po każdej sprzedaży!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:209
+msgid "You can add a Likert rating scale to your WordPress forms. Great for measuring your customer’s experience with your business!"
+msgstr "Możesz dodawać do formularzy w WordPressie skalę ocen Likerta. To znakomite rozwiązanie do pomiaru wrażeń klientów dotyczących kontaktu z twoją firmą!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:214
+msgid "You can easily add a poll to your site! Helpful for making business decisions based on your audience's needs."
+msgstr "Możesz łatwo dodać do witryny sondę! To rozwiązanie pomaga w podejmowaniu decyzji biznesowych na podstawie potrzeb odbiorców."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:219
+msgid "You can create a customer cancellation survey to find out what you can do to improve."
+msgstr "Możesz utworzyć ankietę dotyczącą anulowania, aby poznać obszary wymagające poprawy."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:224
+msgid "WPForms is a great alternative to SurveyMonkey! You can create your first survey or poll today."
+msgstr "WPForms to znakomita alternatywa dla SurveyMonkey! Już dziś możesz utworzyć swoją pierwszą ankietę lub sondę."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:229
+msgid "You can make your forms interactive and easier to complete. A great way to get more leads!"
+msgstr "Możesz nadawać swoim formularzom interaktywny charakter i ułatwiać ich wypełnianie. To znakomity sposób na pozyskanie większej liczby potencjalnych klientów!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:234
+msgid "You can easily display survey results graphically. Great for presentations!"
+msgstr "Możesz łatwo wyświetlać wyniki ankiet w postaci graficznej. Znakomicie się to sprawdza w prezentacjach!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:239
+msgid "You can make your forms feel like a one-on-one conversation and boost conversion rates."
+msgstr "Możesz sprawić, aby wypełnianie twoich formularzy bardziej przypominało rozmowę w cztery oczy, oraz podnieść współczynniki konwersji."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:244
+msgid "You can put a pre-built job application form on your website. Perfect if you’re looking for new employees!"
+msgstr "Możesz umieścić w witrynie gotowy formularz podania o pracę. To idealne rozwiązanie, jeśli szukasz nowych pracowników!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:249
+msgid "You can automatically send form entries to your Google Calendar. Perfect for appointments!"
+msgstr "Możesz włączyć automatyczne wysyłanie wpisów formularzy do Kalendarza Google. To znakomite rozwiązanie do zarządzania spotkaniami!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:254
+msgid "You can automatically send uploaded files from your form entries to Dropbox for safekeeping and organization!"
+msgstr "Pliki przesłane za pośrednictwem formularzy możesz automatycznie wysyłać do serwisu Dropbox, aby je zabezpieczyć i trzymać w nich porządek."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:259
+msgid "When a user submits an uploaded file to your form, it can upload automatically to your Google Drive for better organization!"
+msgstr "Kiedy ktoś prześle plik za pośrednictwem formularza, możesz go automatycznie przekazać na Dysk Google, aby dbać o porządek."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:264
+msgid "You can get notified via text when someone completes your form! Great for closing deals faster."
+msgstr "Możesz otrzymywać SMS-y z powiadomieniami o wypełnieniu formularza! To rozwiązanie pomaga w szybszym zawieraniu transakcji."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:269
+msgid "Save time on invoicing! You can automatically add customers to Quickbooks after they complete a form."
+msgstr "Zaoszczędź czas na fakturowaniu! Gdy klient wypełni formularz, możesz go automatycznie dodać do Quickbooks."
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:274
+msgid "You can let users upload videos to your YouTube channel. Perfect for collecting testimonials!"
+msgstr "Możesz zezwolić użytkownikom na przesyłanie filmów na twój kanał na YouTube. To idealne rozwiązanie do pozyskiwania referencji!"
+
+#: src/Pro/Admin/Education/Admin/DidYouKnow.php:279
+msgid "You can automatically save submitted form info in a free Google Sheets spreadsheet. Great for keeping track of your entries!"
+msgstr "Możesz automatycznie zapisać przesłany formularz w bezpłatnym Arkuszu Google. To znakomite rozwiązanie do monitorowania wpisów!"
+
+#: src/Pro/Admin/Education/Admin/Settings/Integrations.php:37
+msgid "Almost done! Would you like to refresh the page?"
+msgstr "Prawie gotowe! Czy chcesz odświeżyć stronę?"
+
+#: src/Pro/Admin/Education/Admin/Settings/Integrations.php:38
+msgid "Refresh page"
+msgstr "Odśwież stronę"
+
+#. translators: %s - field name.
+#: src/Pro/Admin/Education/Builder/Fields.php:171
+msgid "%s field"
+msgstr "Pole %s"
+
+#. translators: %s - addon name.
+#: src/Pro/Admin/Education/Builder/Fields.php:181
+msgid "%s addon"
+msgstr "Dodatek %s"
+
+#. translators: %s - WPForms.com announcement page URL.
+#: src/Pro/Admin/Education/Builder/Fields.php:282
+msgid "They will not be present in the published form. <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Upgrade now</a> to unlock these features."
+msgstr ""
+
+#: src/Pro/Admin/Education/Builder/Fields.php:297
+msgid "They will still be visible in the form preview, but will not be present in the published form."
+msgstr "Będą one nadal widoczne w podglądzie formularza, ale nie będą obecne w opublikowanym formularzu."
+
+#: src/Pro/Admin/Education/Builder/Fields.php:302
+msgid "Your Form Contains Fields From Inactive Addons"
+msgstr "Formularz zawiera pola z nieaktywnych dodatków"
+
+#: src/Pro/Admin/Education/Builder/Fields.php:309
+msgid "Your Form Contains Fields From Incompatible Addons"
+msgstr "Formularz zawiera pola z niezgodnych dodatków"
+
+#. translators: %1$s - addon download URL, %2$s - link to manual installation guide, %3$s - link to contact support.
+#: src/Pro/Admin/Education/StringsTrait.php:25
+msgid "Could not install the addon. Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">download it from wpforms.com</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">install it manually</a>, or <a href=\"%3$s\" target=\"_blank\" rel=\"noopener noreferrer\">contact support</a> for assistance."
+msgstr "Nie można było zainstalować dodatku. <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Pobierz go ze strony wpforms.com</a> i <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">zainstaluj ręcznie</a> lub <a href=\"%3$s\" target=\"_blank\" rel=\"noopener noreferrer\">skontaktuj się z pomocą techniczną</a> w celu uzyskania wsparcia."
+
+#: src/Pro/Admin/Education/StringsTrait.php:40
+msgid "Incompatible Addon"
+msgstr "Niezgodny dodatek"
+
+#: src/Pro/Admin/Education/StringsTrait.php:41
+msgid "Check for Update"
+msgstr "Sprawdź aktualizację"
+
+#: src/Pro/Admin/Education/StringsTrait.php:56
+msgid "To access the %name%, please enter and activate your WPForms license key in the plugin settings."
+msgstr "Aby uzyskać dostęp do dodatku %name%, wpisz i włącz klucz licencyjny WPForms w ustawieniach wtyczki."
+
+#: src/Pro/Admin/Education/StringsTrait.php:63
+msgid "To access the %name%, please enter your WPForms license key."
+msgstr "Aby uzyskać dostęp do dodatku %name%, wpisz klucz licencyjny WPForms."
+
+#. translators: %s - WPForms.com account licenses page URL.
+#: src/Pro/Admin/Education/StringsTrait.php:67
+msgid "Your key can be found inside the <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">WPForms.com Account Dashboard</a>."
+msgstr "Klucz można znaleźć w <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">kokpicie konta WPForms.com</a>."
+
+#: src/Pro/Admin/Education/StringsTrait.php:78
+msgid "Your license was activated"
+msgstr "Licencja została włączona"
+
+#: src/Pro/Admin/Education/StringsTrait.php:79
+msgid "All templates and fields will be available once the form builder is reloaded."
+msgstr "Wszystkie szablony i pola będą dostępne po ponownym wczytaniu kreatora formularzy."
+
+#: src/Pro/Admin/Education/StringsTrait.php:80
+msgid "Would you like to save and reload now?"
+msgstr "Czy chcesz teraz zapisać i wczytać ponownie?"
+
+#: src/Pro/Admin/Education/StringsTrait.php:82
+msgid "Activate License"
+msgstr "Włącz licencję"
+
+#: src/Pro/Admin/Education/StringsTrait.php:84
+msgid "Yes, Save and Reload"
+msgstr "Tak, zapisz i wczytaj ponownie"
+
+#: src/Pro/Admin/Education/StringsTrait.php:90
+msgid "Your WPForms license is expired. To access the %name%, please renew your license."
+msgstr "Twoja licencja wtyczki WPForms wygasła. Aby uzyskać dostęp do dodatku %name%, odnów licencję."
+
+#: src/Pro/Admin/Education/StringsTrait.php:96
+msgid "Your WPForms license is not active. To access the %name%, please contact support for more details."
+msgstr "Twoja licencja wtyczki WPForms nie jest aktywna. Aby uzyskać dostęp do dodatku %name%, skontaktuj się z zespołem pomocy technicznej w celu uzyskania dodatkowych informacji."
+
+#: src/Pro/Admin/Entries/Ajax/Columns.php:83
+msgid "Cannot save columns order."
+msgstr "Nie można zapisać kolejności kolumn."
+
+#: src/Pro/Admin/Entries/Ajax/Columns.php:100
+msgid "Most likely, your session expired. Please reload the page."
+msgstr "Prawdopodobnie sesja wygasła. Wczytaj stronę ponownie."
+
+#: src/Pro/Admin/Entries/Ajax/Columns.php:104
+msgid "Form ID is missing."
+msgstr "Brak identyfikatora formularza."
+
+#: src/Pro/Admin/Entries/Ajax/Columns.php:111
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1737
+msgid "You are not allowed to perform this action."
+msgstr "Brak uprawnienia do wykonania tego działania."
+
+#: src/Pro/Admin/Entries/Edit.php:397
+#: src/Pro/Admin/Entries/Edit.php:1088
+msgid "Update"
+msgstr "Zaktualizuj"
+
+#: src/Pro/Admin/Entries/Edit.php:398
+msgid "Success"
+msgstr "Sukces"
+
+#: src/Pro/Admin/Entries/Edit.php:399
+msgid "Continue Editing"
+msgstr "Kontynuuj edycję"
+
+#: src/Pro/Admin/Entries/Edit.php:401
+msgid "The entry was successfully saved."
+msgstr "Wpis został zapisany."
+
+#. translators: %s - file name.
+#: src/Pro/Admin/Entries/Edit.php:403
+msgid "Are you sure you want to permanently delete the file \"%s\"?"
+msgstr "Czy na pewno chcesz trwale usunąć plik „%s”?"
+
+#: src/Pro/Admin/Entries/Edit.php:452
+msgid "You can't edit this entry because it's in the trash."
+msgstr "Nie można edytować tego wpisu, ponieważ jest on w koszu."
+
+#: src/Pro/Admin/Entries/Edit.php:605
+#: src/Pro/Admin/Entries/Edit.php:663
+msgid "Edit Entry"
+msgstr "Edytuj wpis"
+
+#: src/Pro/Admin/Entries/Edit.php:610
+msgid "Back to Entry"
+msgstr "Powrót do wpisu"
+
+#: src/Pro/Admin/Entries/Edit.php:703
+msgid "Show Empty Fields"
+msgstr "Pokaż puste pola"
+
+#: src/Pro/Admin/Entries/Edit.php:703
+msgid "Hide Empty Fields"
+msgstr "Ukryj puste pola"
+
+#. translators: %d - field ID.
+#: src/Pro/Admin/Entries/Edit.php:971
+#: src/Pro/Forms/Fields/EntryPreview/Field.php:878
+msgid "Field ID #%d"
+msgstr "Pole o identyfikatorze #%d"
+
+#. translators: %s - form edit URL.
+#: src/Pro/Admin/Entries/Edit.php:1053
+msgid "You don't have any fields in this form. <a href=\"%s\">Add some!</a>"
+msgstr "Ten formularz nie zawiera pól. <a href=\"%s\">Dodaj je!</a>"
+
+#: src/Pro/Admin/Entries/Edit.php:1063
+msgid "You don't have any fields in this form."
+msgstr "Ten formularz nie zawiera pól."
+
+#: src/Pro/Admin/Entries/Edit.php:1105
+#: src/Pro/Admin/Entries/Edit.php:1146
+msgid "Invalid form."
+msgstr "Nieprawidłowy formularz."
+
+#: src/Pro/Admin/Entries/Edit.php:1109
+msgid "Invalid Entry."
+msgstr "Nieprawidłowy wpis."
+
+#: src/Pro/Admin/Entries/Edit.php:1113
+#: src/Pro/Admin/Entries/Page.php:448
+#: src/Pro/Admin/Entries/Page.php:528
+msgid "You do not have permission to perform this action."
+msgstr "Nie masz uprawnienia do wykonania tego działania."
+
+#: src/Pro/Admin/Entries/Edit.php:1155
+msgid "Invalid entry."
+msgstr "Nieprawidłowy wpis."
+
+#: src/Pro/Admin/Entries/Edit.php:1194
+msgid "Entry has not been saved, please see the fields errors."
+msgstr "Wpis nie został zapisany. Sprawdź błędy dotyczące pól."
+
+#: src/Pro/Admin/Entries/Edit.php:1295
+msgid "Entry edited."
+msgstr "Zmodyfikowano wpis."
+
+#. translators: %s - name of the file that has been deleted.
+#: src/Pro/Admin/Entries/Edit.php:1710
+msgid "The uploaded file \"%s\" has been deleted."
+msgstr "Przesłany plik „%s” został usunięty."
+
+#: src/Pro/Admin/Entries/Export/Admin.php:64
+msgid "Export Entries"
+msgstr "Eksportuj wpisy"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:66
+msgid "Select a form to export entries, then select the fields you would like to include. You can also define search and date filters to further personalize the list of entries you want to retrieve. WPForms will generate a downloadable CSV/XLSX file of your entries."
+msgstr "Wybierz formularz do wyeksportowania wpisów, a następnie pola, które chcesz uwzględnić. Możesz też zdefiniować filtry wyszukiwania i daty, aby bardziej szczegółowo dostosować listę pobieranych wpisów. WPForms wygeneruje możliwy do pobrania plik CSV/XLSX z wpisami."
+
+#: src/Pro/Admin/Entries/Export/Admin.php:78
+#: src/Pro/Admin/Entries/Page.php:1155
+msgid "Form Fields"
+msgstr "Pola formularza"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:86
+msgid "Payment Fields"
+msgstr "Pola płatności"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:94
+msgid "Additional Information"
+msgstr "Informacje dodatkowe"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:101
+msgid "Custom Date Range"
+msgstr "Własny zakres dat"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:108
+#: src/Pro/Admin/Entries/ListTable.php:954
+msgid "Select a date range"
+msgstr "Wybierz zakres dat"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:113
+msgid "Clear Start Date"
+msgstr "Wyczyść datę początkową"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:123
+#: src/Pro/Admin/Entries/Page.php:1064
+msgid "Search"
+msgstr "Wyszukaj"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:130
+msgid "Download Export File"
+msgstr "Pobierz plik eksportu"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:165
+msgid "Select a Form"
+msgstr "Wybierz formularz"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:182
+msgid "You need to have at least one form before you can use entries export."
+msgstr "Aby skorzystać z funkcji eksportu wpisów, trzeba mieć co najmniej jeden formularz."
+
+#: src/Pro/Admin/Entries/Export/Admin.php:207
+msgid "Status"
+msgstr "Status"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:331
+msgid "Export Options"
+msgstr "Opcje eksportu"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:381
+#: src/Pro/Admin/Entries/ListTable.php:1889
+msgid "Form fields"
+msgstr "Pola formularza"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:382
+#: src/Pro/Admin/Entries/ListTable.php:1890
+msgid "Any form field"
+msgstr "Dowolne pole"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:404
+msgid "Payment fields"
+msgstr "Pola płatności"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:410
+msgid "No payment fields found"
+msgstr "Nie znaleziono pól płatności"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:432
+#: src/Pro/Admin/Entries/ListTable.php:1905
+msgid "Advanced Options"
+msgstr "Opcje zaawansowane"
+
+#: src/Pro/Admin/Entries/Export/Admin.php:549
+#: src/Pro/Admin/Entries/Export/Export.php:214
+msgid "Select All"
+msgstr "Wybierz wszystko"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:383
+#: src/Pro/Admin/Entries/Export/Ajax.php:570
+#: src/Pro/Admin/Entries/Export/Ajax.php:1385
+#: src/Pro/Admin/Entries/Export/Ajax.php:1477
+msgid " (modified)"
+msgstr " (zmodyfikowano)"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:603
+msgid "Checked"
+msgstr "Zaznaczone"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:862
+msgid "Yes"
+msgstr "Tak"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:862
+msgid "No"
+msgstr "Nie"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1008
+msgid "Map"
+msgstr "Mapa"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1026
+msgid "Postal"
+msgstr "Kod pocztowy"
+
+#. translators: %d - deleted field ID.
+#: src/Pro/Admin/Entries/Export/Ajax.php:1136
+msgid "Deleted field #%d"
+msgstr "Usunięto pole #%d"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1227
+msgid "Total"
+msgstr "Suma"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1228
+msgid "Currency"
+msgstr "Waluta"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1229
+msgid "Gateway"
+msgstr "Bramka"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1230
+#: src/Pro/Admin/Entries/Export/Export.php:156
+msgid "Type"
+msgstr "Typ"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1231
+msgid "Mode"
+msgstr "Tryb"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1232
+msgid "Transaction"
+msgstr "Transakcja"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1233
+msgid "Customer"
+msgstr "Klient"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1234
+msgid "Subscription"
+msgstr "Subskrypcja"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1235
+msgid "Subscription Status"
+msgstr "Status subskrypcji"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1270
+msgid "Payment Note"
+msgstr "Uwaga do płatności"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1271
+msgid "Subscription Period"
+msgstr "Okres subskrypcji"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1387
+msgid "File"
+msgstr "Plik"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1403
+#: src/Pro/Admin/Entries/Export/Ajax.php:1407
+msgid "First"
+msgstr "Imię"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1404
+#: src/Pro/Admin/Entries/Export/Ajax.php:1409
+msgid "Last"
+msgstr "Nazwisko"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1408
+msgid "Middle"
+msgstr "Drugie imię"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1415
+msgid "Address Line 1"
+msgstr "Adres, wiersz 1"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1416
+msgid "Address Line 2"
+msgstr "Adres, wiersz 2"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1417
+msgid "City"
+msgstr "Miejscowość"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1418
+msgid "State"
+msgstr "Stan"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1419
+msgid "Zip/Postal Code"
+msgstr "Kod pocztowy"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1426
+msgid "Value"
+msgstr "Wartość"
+
+#: src/Pro/Admin/Entries/Export/Ajax.php:1427
+msgid "Quantity"
+msgstr "Ilość"
+
+#: src/Pro/Admin/Entries/Export/Export.php:153
+#: src/Pro/Admin/Entries/Helpers.php:22
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:137
+#: src/Pro/SmartTags/SmartTags.php:26
+msgid "Entry ID"
+msgstr "Identyfikator wpisu"
+
+#: src/Pro/Admin/Entries/Export/Export.php:154
+#: src/Pro/SmartTags/SmartTags.php:27
+msgid "Entry Date"
+msgstr "Data wpisu"
+
+#: src/Pro/Admin/Entries/Export/Export.php:155
+#: src/Pro/Admin/Entries/Helpers.php:23
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:141
+msgid "Entry Notes"
+msgstr "Uwagi do wpisu"
+
+#: src/Pro/Admin/Entries/Export/Export.php:157
+msgid "Viewed"
+msgstr "Wyświetlono"
+
+#: src/Pro/Admin/Entries/Export/Export.php:158
+#: src/Pro/Admin/Entries/ListTable.php:260
+msgid "Starred"
+msgstr "Z gwiazdką"
+
+#: src/Pro/Admin/Entries/Export/Export.php:159
+#: src/Pro/Admin/Entries/Helpers.php:25
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:154
+msgid "User Agent"
+msgstr "Agent użytkownika"
+
+#: src/Pro/Admin/Entries/Export/Export.php:160
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:151
+msgid "User IP"
+msgstr "Adres IP użytkownika"
+
+#: src/Pro/Admin/Entries/Export/Export.php:161
+msgid "Unique Generated User ID"
+msgstr "Unikatowy wygenerowany identyfikator użytkownika"
+
+#: src/Pro/Admin/Entries/Export/Export.php:162
+msgid "Payment Status"
+msgstr "Status płatności"
+
+#: src/Pro/Admin/Entries/Export/Export.php:163
+msgid "Payment Gateway Information"
+msgstr "Informacje o bramce płatności"
+
+#: src/Pro/Admin/Entries/Export/Export.php:164
+msgid "Include data of previously deleted fields"
+msgstr "Uwzględnij dane wcześniej usuniętych pól"
+
+#: src/Pro/Admin/Entries/Export/Export.php:168
+msgid "Geolocation Details"
+msgstr "Dane geolokalizacyjne"
+
+#: src/Pro/Admin/Entries/Export/Export.php:185
+msgid "Export in Microsoft Excel (.xlsx)"
+msgstr "Eksport w formacie Microsoft Excel (.xlsx)"
+
+#: src/Pro/Admin/Entries/Export/Export.php:188
+msgid "Separate dynamic choices into individual columns"
+msgstr "Rozdziel dynamiczne opcje do wyboru na indywidualne kolumny"
+
+#: src/Pro/Admin/Entries/Export/Export.php:198
+msgid "There were problems while preparing your export file. Please recheck export settings and try again."
+msgstr "Podczas przygotowywania pliku eksportu wystąpiły problemy. Sprawdź ponownie ustawienia eksportu i ponów próbę."
+
+#: src/Pro/Admin/Entries/Export/Export.php:199
+msgid "You don't have enough capabilities to complete this request."
+msgstr "Nie masz wystarczających uprawnień do wykonania tego żądania."
+
+#: src/Pro/Admin/Entries/Export/Export.php:200
+msgid "Incorrect form ID has been specified."
+msgstr "Określono niepoprawny identyfikator formularza."
+
+#: src/Pro/Admin/Entries/Export/Export.php:201
+msgid "Incorrect entry ID has been specified."
+msgstr "Określono niepoprawny identyfikator wpisu."
+
+#: src/Pro/Admin/Entries/Export/Export.php:202
+msgid "Specified form seems to be broken."
+msgstr "Określony formularz wydaje się uszkodzony."
+
+#: src/Pro/Admin/Entries/Export/Export.php:203
+msgid "Unknown request."
+msgstr "Nieznane żądanie."
+
+#: src/Pro/Admin/Entries/Export/Export.php:204
+msgid "Export file cannot be retrieved from a file system."
+msgstr "Nie można pobrać pliku eksportu z systemu plików."
+
+#: src/Pro/Admin/Entries/Export/Export.php:205
+msgid "Export file is empty."
+msgstr "Plik eksportu jest pusty."
+
+#: src/Pro/Admin/Entries/Export/Export.php:206
+msgid "The form does not have any fields for export."
+msgstr "Formularz nie zawiera pól do wyeksportowania."
+
+#: src/Pro/Admin/Entries/Export/Export.php:207
+msgid "File system is not configured."
+msgstr "System plików nie jest skonfigurowany."
+
+#: src/Pro/Admin/Entries/Export/Export.php:215
+msgid "Generating a list of entries according to your filters."
+msgstr "Generowanie listy wpisów odpowiadających filtrom."
+
+#: src/Pro/Admin/Entries/Export/Export.php:216
+msgid "This can take a while. Please wait."
+msgstr "To może trochę potrwać. Zaczekaj."
+
+#: src/Pro/Admin/Entries/Export/Export.php:217
+msgid "No entries found after applying your filters."
+msgstr "Po zastosowaniu filtrów nie znaleziono wpisów."
+
+#: src/Pro/Admin/Entries/Export/Export.php:218
+msgid "The file was generated successfully."
+msgstr "Plik został wygenerowany."
+
+#: src/Pro/Admin/Entries/Export/Export.php:219
+msgid "If the download does not start automatically"
+msgstr "Jeśli pobieranie nie rozpocznie się automatycznie"
+
+#: src/Pro/Admin/Entries/Export/Export.php:220
+msgid "click here"
+msgstr "kliknij tutaj"
+
+#. translators: %d - dynamic columns count.
+#: src/Pro/Admin/Entries/Export/Traits/Export.php:25
+msgid "This form has %d dynamic columns. Exporting dynamic columns will increase the size of the exported table."
+msgstr "Ten formularz zawiera następującą liczbę kolumn dynamicznych: %d. Eksport kolumn dynamicznych spowoduje zwiększenie rozmiaru wyeksportowanej tabeli."
+
+#: src/Pro/Admin/Entries/Export/Traits/Export.php:172
+msgid "Published"
+msgstr "Opublikowano"
+
+#: src/Pro/Admin/Entries/Helpers.php:24
+msgid "IP Address"
+msgstr "Adres IP"
+
+#: src/Pro/Admin/Entries/ListTable.php:234
+msgid "All"
+msgstr "Wszystko"
+
+#: src/Pro/Admin/Entries/ListTable.php:240
+msgid "Unread"
+msgstr "Nieprzeczytane"
+
+#: src/Pro/Admin/Entries/ListTable.php:252
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:165
+msgid "Payment"
+msgid_plural "Payments"
+msgstr[0] "Płatność"
+msgstr[1] "Płatności"
+msgstr[2] "Płatności"
+msgstr[3] "Płatności"
+
+#: src/Pro/Admin/Entries/ListTable.php:306
+#: src/Pro/Admin/Entries/ListTable.php:861
+msgid "Trash"
+msgstr "Przenieś do kosza"
+
+#: src/Pro/Admin/Entries/ListTable.php:471
+msgid "Recurring"
+msgstr "Cyklicznie"
+
+#: src/Pro/Admin/Entries/ListTable.php:544
+msgid "The payment in the Trash."
+msgstr "Płatność w koszu."
+
+#. translators: date and time separator.
+#: src/Pro/Admin/Entries/ListTable.php:650
+msgid "at"
+msgstr "o"
+
+#: src/Pro/Admin/Entries/ListTable.php:737
+msgid "Unstar entry"
+msgstr "Usuń gwiazdkę z wpisu"
+
+#: src/Pro/Admin/Entries/ListTable.php:737
+msgid "Star entry"
+msgstr "Oznacz wpis gwiazdką"
+
+#: src/Pro/Admin/Entries/ListTable.php:742
+msgid "Mark entry unread"
+msgstr "Oznacz wpis jako nieprzeczytany"
+
+#: src/Pro/Admin/Entries/ListTable.php:742
+msgid "Mark entry read"
+msgstr "Oznacz wpis jako przeczytany"
+
+#: src/Pro/Admin/Entries/ListTable.php:781
+msgid "Restore Form Entry"
+msgstr "Przywróć wpis formularza"
+
+#: src/Pro/Admin/Entries/ListTable.php:782
+#: src/Pro/Admin/Entries/ListTable.php:1022
+msgid "Restore"
+msgstr "Przywróć"
+
+#: src/Pro/Admin/Entries/ListTable.php:800
+msgid "Delete Form Entry"
+msgstr "Usuń wpis formularza"
+
+#: src/Pro/Admin/Entries/ListTable.php:818
+msgid "View Form Entry"
+msgstr "Zobacz wpis formularza"
+
+#: src/Pro/Admin/Entries/ListTable.php:819
+#: src/Pro/Admin/Entries/Overview/Page.php:69
+msgid "View"
+msgstr "Zobacz"
+
+#: src/Pro/Admin/Entries/ListTable.php:838
+msgid "Edit Form Entry"
+msgstr "Edytuj wpis formularza"
+
+#: src/Pro/Admin/Entries/ListTable.php:860
+msgid "Trash Form Entry"
+msgstr "Przenieś wpis formularza do kosza"
+
+#: src/Pro/Admin/Entries/ListTable.php:925
+#: src/Pro/Admin/Entries/Page.php:1344
+msgid "Empty Trash"
+msgstr "Opróżnij kosz"
+
+#: src/Pro/Admin/Entries/ListTable.php:958
+msgid "Filter"
+msgstr "Filtruj"
+
+#: src/Pro/Admin/Entries/ListTable.php:976
+msgid "Mark as Read"
+msgstr "Oznacz jako przeczytane"
+
+#: src/Pro/Admin/Entries/ListTable.php:1013
+msgid "----------"
+msgstr "----------"
+
+#: src/Pro/Admin/Entries/ListTable.php:1016
+#: src/Pro/AntiSpam/SpamEntry.php:367
+#: src/Pro/AntiSpam/SpamEntry.php:665
+msgid "Mark as Not Spam"
+msgstr "Oznacz jako nie spam"
+
+#: src/Pro/Admin/Entries/ListTable.php:1018
+#: src/Pro/AntiSpam/SpamEntry.php:563
+#: src/Pro/AntiSpam/SpamEntry.php:688
+msgid "Mark as Spam"
+msgstr "Oznacz jako spam"
+
+#: src/Pro/Admin/Entries/ListTable.php:1024
+msgid "Move to Trash"
+msgstr "Przenieś do kosza"
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1733
+msgid "%d entry was successfully marked as read."
+msgid_plural "%d entries were successfully marked as read."
+msgstr[0] "%d wpis został oznaczony jako przeczytany."
+msgstr[1] "%d wpisy zostały oznaczone jako przeczytane."
+msgstr[2] "%d wpisów zostało oznaczonych jako przeczytanych."
+msgstr[3] "%d wpisu zostało oznaczone jako przeczytane."
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1735
+msgid "%d entry was successfully marked as unread."
+msgid_plural "%d entries were successfully marked as unread."
+msgstr[0] "%d wpis został oznaczony jako nieprzeczytany."
+msgstr[1] "%d wpisy zostały oznaczone jako nieprzeczytane."
+msgstr[2] "%d wpisów zostało oznaczonych jako nieprzeczytanych."
+msgstr[3] "%d wpisu zostało oznaczone jako nieprzeczytane."
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1737
+msgid "%d entry was successfully marked as spam."
+msgid_plural "%d entries were successfully marked as spam."
+msgstr[0] "%d wpis został oznaczony jako spam."
+msgstr[1] "%d wpisy zostały oznaczone jako spam."
+msgstr[2] "%d wpisów zostało oznaczonych jako spam."
+msgstr[3] "%d wpisu zostało oznaczone jako spam."
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1739
+msgid "%d entry was successfully marked as not spam."
+msgid_plural "%d entries were successfully marked as not spam."
+msgstr[0] "%d wpis został oznaczony jako niebędący spamem."
+msgstr[1] "%d wpisy zostały oznaczone jako niebędące spamem."
+msgstr[2] "%d wpisów zostało oznaczonych jako niebędących spamem."
+msgstr[3] "%d wpisu zostało oznaczone jako niebędące spamem."
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1741
+msgid "%d entry was successfully starred."
+msgid_plural "%d entries were successfully starred."
+msgstr[0] "%d wpis został oznaczony gwiazdką."
+msgstr[1] "%d wpisy zostały oznaczone gwiazdką."
+msgstr[2] "%d wpisów zostało oznaczonych gwiazdką."
+msgstr[3] "%d wpisu zostało oznaczone gwiazdką."
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1743
+msgid "%d entry was successfully unstarred."
+msgid_plural "%d entries were successfully unstarred."
+msgstr[0] "Z %d wpisu usunięto gwiazdkę."
+msgstr[1] "Z %d wpisów usunięto gwiazdkę."
+msgstr[2] "Z %d wpisów usunięto gwiazdkę."
+msgstr[3] "Z %d wpisu usunięto gwiazdkę."
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1745
+msgid "%d entry was successfully deleted."
+msgid_plural "%d entries were successfully deleted."
+msgstr[0] "%d wpis został usunięty."
+msgstr[1] "%d wpisy zostały usunięte."
+msgstr[2] "%d wpisów zostało usuniętych."
+msgstr[3] "%d wpisu zostało usunięte."
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1747
+msgid "%d entry was successfully trashed."
+msgid_plural "%d entries were successfully trashed."
+msgstr[0] "%d wpis został przeniesiony do kosza."
+msgstr[1] "%d wpisy zostały przeniesione do kosza."
+msgstr[2] "%d wpisów zostało przeniesionych do kosza."
+msgstr[3] "%d wpisu zostało przeniesione do kosza."
+
+#. translators: %d - number of processed entries.
+#: src/Pro/Admin/Entries/ListTable.php:1749
+msgid "%d entry was successfully restored."
+msgid_plural "%d entries were successfully restored."
+msgstr[0] "%d wpis został przywrócony."
+msgstr[1] "%d wpisy zostały przywrócone."
+msgstr[2] "%d wpisów zostało przywróconych."
+msgstr[3] "%d wpisu zostało przywrócone."
+
+#: src/Pro/Admin/Entries/ListTable.php:1753
+msgid "All entries for the currently selected form were successfully deleted."
+msgstr "Wszystkie wpisy związane z obecnie wybranym formularzem zostały usunięte."
+
+#: src/Pro/Admin/Entries/ListTable.php:1757
+msgid "All entries for the currently selected form were successfully trashed."
+msgstr "Wszystkie wpisy związane z obecnie wybranym formularzem zostały przeniesione do kosza."
+
+#: src/Pro/Admin/Entries/ListTable.php:1786
+msgid "No entries found."
+msgstr "Nie znaleziono wpisów."
+
+#: src/Pro/Admin/Entries/ListTable.php:1819
+msgid "Field"
+msgstr "Pole"
+
+#: src/Pro/Admin/Entries/Overview/Page.php:52
+msgid "Pagination"
+msgstr "Stronicowanie"
+
+#: src/Pro/Admin/Entries/Overview/Page.php:55
+#: src/Pro/Admin/Entries/Overview/Page.php:223
+msgid "Number of forms per page:"
+msgstr "Liczba formularzy na stronie:"
+
+#: src/Pro/Admin/Entries/Overview/Page.php:72
+msgid "Show form templates"
+msgstr "Pokaż szablony formularzy"
+
+#: src/Pro/Admin/Entries/Overview/Page.php:298
+msgid "All Forms"
+msgstr "Wszystkie formularze"
+
+#: src/Pro/Admin/Entries/Overview/Table.php:160
+msgid "No forms found."
+msgstr "Nie znaleziono formularzy."
+
+#: src/Pro/Admin/Entries/Overview/Table.php:173
+msgid "Form Name"
+msgstr "Nazwa formularza"
+
+#: src/Pro/Admin/Entries/Overview/Table.php:174
+msgid "Created"
+msgstr "Utworzono"
+
+#: src/Pro/Admin/Entries/Overview/Table.php:175
+msgid "Last Entry"
+msgstr "Ostatni wpis"
+
+#: src/Pro/Admin/Entries/Overview/Table.php:176
+msgid "All Time"
+msgstr "Wszystko"
+
+#: src/Pro/Admin/Entries/Overview/Table.php:179
+msgid "Graph"
+msgstr "Wykres"
+
+#: src/Pro/Admin/Entries/Page.php:137
+msgid "You do not have permission to view this form's entries."
+msgstr "Nie masz uprawnienia do oglądania wpisów tego formularza."
+
+#: src/Pro/Admin/Entries/Page.php:143
+msgid "It looks like the form you are trying to access is no longer available."
+msgstr "Wygląda na to, że formularz, do którego próbujesz uzyskać dostęp, już nie jest dostępny."
+
+#: src/Pro/Admin/Entries/Page.php:263
+#: src/Pro/Admin/Entries/PageOptions.php:64
+msgid "Number of entries per page:"
+msgstr "Liczba wpisów na stronie:"
+
+#: src/Pro/Admin/Entries/Page.php:385
+msgid "All entries marked as read."
+msgstr "Wszystkie wpisy oznaczone jako przeczytane."
+
+#: src/Pro/Admin/Entries/Page.php:436
+#: src/Pro/Admin/Entries/Page.php:516
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1732
+msgid "Your session expired. Please reload the builder."
+msgstr "Sesja wygasła. Wczytaj kreator ponownie."
+
+#: src/Pro/Admin/Entries/Page.php:443
+#: src/Pro/Admin/Entries/Page.php:457
+#: src/Pro/Admin/Entries/Page.php:472
+#: src/Pro/Admin/Entries/Page.php:523
+#: src/Pro/Admin/Entries/Page.php:539
+msgid "Something went wrong while performing this action."
+msgstr "Podczas wykonywania tego działania coś poszło nie tak."
+
+#: src/Pro/Admin/Entries/Page.php:731
+msgid "any form field"
+msgstr "dowolne pole formularza"
+
+#. translators: %1$s - field name, %2$s - operation, %3$s term.
+#: src/Pro/Admin/Entries/Page.php:735
+msgid "where %1$s %2$s \"%3$s\""
+msgstr "gdzie %1$s %2$s „%3$s”"
+
+#. translators: %s: date.
+#: src/Pro/Admin/Entries/Page.php:791
+msgid "on %s"
+msgstr "w dniu %s"
+
+#. translators: %1$s - date, %2$s - date.
+#: src/Pro/Admin/Entries/Page.php:798
+msgid "between %1$s and %2$s"
+msgstr "między %1$s i %2$s"
+
+#. translators: %s - WPForms Builder page.
+#: src/Pro/Admin/Entries/Page.php:871
+msgid "Whoops, you haven't created a form yet. Want to <a href=\"%s\">give it a go</a>?"
+msgstr "Niestety nie masz jeszcze utworzonego formularza. Chcesz <a href=\"%s\">spróbować</a>?"
+
+#: src/Pro/Admin/Entries/Page.php:993
+#: src/Pro/Admin/Entries/Page.php:1510
+msgid "Storing entry information has been disabled for this form."
+msgstr "Dla tego formularza przechowywanie informacji o wpisach zostało wyłączone."
+
+#: src/Pro/Admin/Entries/Page.php:994
+msgid "It looks like you don't have any form entries just yet - check back soon!"
+msgstr "Wygląda na to, że jeszcze nie masz wpisów formularza – zajrzyj tu wkrótce!"
+
+#. translators: %s - number of entries found.
+#: src/Pro/Admin/Entries/Page.php:1028
+msgid "Found <strong>%s entry</strong>"
+msgid_plural "Found <strong>%s entries</strong>"
+msgstr[0] "Znaleziono <strong>%s wpis</strong>"
+msgstr[1] "Znaleziono <strong>%s wpisy</strong>"
+msgstr[2] "Znaleziono <strong>%s wpisów</strong>"
+msgstr[3] "Znaleziono <strong>%s wpisu</strong>"
+
+#: src/Pro/Admin/Entries/Page.php:1156
+msgid "Entry Meta"
+msgstr "Metadane wpisu"
+
+#: src/Pro/Admin/Entries/Page.php:1282
+#: src/Pro/Admin/Entries/Page.php:1390
+msgid "Template"
+msgstr "Szablon"
+
+#: src/Pro/Admin/Entries/Page.php:1288
+msgid "Select Form"
+msgstr "Wybierz formularz"
+
+#: src/Pro/Admin/Entries/Page.php:1302
+msgid "All Entries"
+msgstr "Wszystkie wpisy"
+
+#: src/Pro/Admin/Entries/Page.php:1316
+msgid "Edit This Template"
+msgstr "Edytuj ten szablon"
+
+#: src/Pro/Admin/Entries/Page.php:1316
+msgid "Edit This Form"
+msgstr "Edytuj ten formularz"
+
+#: src/Pro/Admin/Entries/Page.php:1323
+msgid "Preview Template"
+msgstr "Podgląd szablonu"
+
+#: src/Pro/Admin/Entries/Page.php:1323
+msgid "Preview Form"
+msgstr "Podgląd formularza"
+
+#: src/Pro/Admin/Entries/Page.php:1330
+msgid "Export Filtered"
+msgstr "Eksportuj przefiltrowane"
+
+#: src/Pro/Admin/Entries/Page.php:1330
+msgid "Export All"
+msgstr "Eksportuj wszystkie"
+
+#: src/Pro/Admin/Entries/Page.php:1336
+msgid "Mark All Read"
+msgstr "Oznacz wszystkie jako przeczytane"
+
+#: src/Pro/Admin/Entries/Page.php:1344
+msgid "Trash All"
+msgstr "Przenieś wszystko do kosza"
+
+#: src/Pro/Admin/Entries/Page.php:1371
+msgid "Open form selector"
+msgstr "Otwórz selektor formularza"
+
+#. translators: %d - number of form entries.
+#: src/Pro/Admin/Entries/Page.php:1458
+msgid "See %d new entry"
+msgid_plural "See %d new entries"
+msgstr[0] "Zobacz %d nowy wpis"
+msgstr[1] "Zobacz %d nowe wpisy"
+msgstr[2] "Zobacz %d nowych wpisów"
+msgstr[3] "Zobacz %d nowego wpisu"
+
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:148
+msgid "Entry Type"
+msgstr "Rodzaj wpisu"
+
+#: src/Pro/Admin/Entries/Table/Facades/Columns.php:157
+msgid "Unique User ID"
+msgstr "Unikatowy identyfikator użytkownika"
+
+#: src/Pro/Admin/Pages/Addons.php:164
+msgid "WPForms Addons"
+msgstr "Dodatki WPForms"
+
+#: src/Pro/Admin/Pages/Addons.php:167
+msgid "Refresh Addons"
+msgstr "Odśwież dodatki"
+
+#: src/Pro/Admin/Pages/Addons.php:172
+msgid "Search Addons"
+msgstr "Wyszukaj dodatki"
+
+#: src/Pro/Admin/Pages/Addons.php:192
+msgid "Activated Addons"
+msgstr "Włączone dodatki"
+
+#: src/Pro/Admin/Pages/Addons.php:204
+msgid "All Addons"
+msgstr "Wszystkie dodatki"
+
+#: src/Pro/Admin/Pages/Addons.php:214
+msgid "Sorry, we didn't find any addons that match your criteria."
+msgstr "Niestety, nie znaleziono dodatków spełniających podane kryteria."
+
+#: src/Pro/Admin/Pages/Addons.php:231
+msgid "There was an issue retrieving Addons for this site. Please click on the button above to refresh."
+msgstr "Podczas pobierania dodatków do tej witryny wystąpił problem. Kliknij powyższy przycisk, aby je odświeżyć."
+
+#: src/Pro/Admin/Pages/Addons.php:237
+msgid "In order to get access to Addons, you need to resolve your license key errors."
+msgstr "Aby uzyskać dostęp do dodatków, musisz usunąć błędy związane z kluczem licencyjnym."
+
+#: src/Pro/Admin/Pages/Addons.php:243
+msgid "Addons have successfully been refreshed."
+msgstr "Dodatki zostały odświeżone."
+
+#: src/Pro/Admin/Pages/Addons.php:383
+msgid "Upgrade Now"
+msgstr "Ulepsz"
+
+#: src/Pro/Admin/Pages/Addons.php:393
+#: src/Pro/Admin/Pages/Addons.php:395
+msgid "Activated"
+msgstr "Włączone"
+
+#: src/Pro/Admin/Pages/Addons.php:393
+#: src/Pro/Admin/Pages/Addons.php:397
+msgid "Deactivated"
+msgstr "Wyłączone"
+
+#: src/Pro/Admin/Pages/Addons.php:412
+msgid "Install Addon"
+msgstr "Zainstaluj dodatek"
+
+#. translators: %1$s - WPForms Pro URL; %2$s - WPForms Pro purchase link.
+#: src/Pro/Admin/PluginList.php:607
+msgid "<a href=\"%1$s\">Activate WPForms Pro</a> to receive features, updates, and support. Don't have a license? <a target=\"_blank\" href=\"%2$s\" rel=\"noopener noreferrer\">Purchase one now</a>."
+msgstr "<a href=\"%1$s\">Włącz wtyczkę WPForms Pro</a>, aby otrzymywać funkcje, aktualizacje i pomoc techniczną. Nie masz licencji? <a target=\"_blank\" href=\"%2$s\" rel=\"noopener noreferrer\">Kup ją już teraz</a>."
+
+#. translators: %1$s - WPForms Pro URL; %2$s - WPForms Pro purchase link.
+#: src/Pro/Admin/PluginList.php:619
+msgid "<a href=\"%1$s\">Activate</a> your license to access this update, new features, and support. Don't have a license? <a target=\"_blank\" href=\"%2$s\" rel=\"noopener noreferrer\">Purchase one now</a>."
+msgstr "<a href=\"%1$s\">Włącz</a> licencję, aby zyskać dostęp do tej aktualizacji, nowych funkcji i pomocy technicznej. Nie masz licencji? <a target=\"_blank\" href=\"%2$s\" rel=\"noopener noreferrer\">Kup ją już teraz</a>."
+
+#: src/Pro/Admin/PluginList.php:643
+msgid "Your WPForms Pro license is expired."
+msgstr "Licencja WPForms Pro wygasła."
+
+#: src/Pro/Admin/PluginList.php:644
+msgid "Your WPForms Pro license is disabled."
+msgstr "Licencja WPForms Pro jest wyłączona."
+
+#: src/Pro/Admin/PluginList.php:645
+msgid "Your WPForms Pro license is invalid."
+msgstr "Licencja WPForms Pro jest nieprawidłowa."
+
+#: src/Pro/Admin/PluginList.php:646
+msgid "Your WPForms Pro license has no activations left."
+msgstr ""
+
+#: src/Pro/Admin/PluginList.php:647
+msgid "Your WPForms Pro license needs support."
+msgstr ""
+
+#. translators: %s - WPForms Pro key support link.
+#: src/Pro/Admin/PluginList.php:654
+msgid "Before you can activate this key, we'd like to check in with you. Please <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">reach out to support here.</a>"
+msgstr ""
+
+#. translators: %s - WPForms Pro renew link.
+#: src/Pro/Admin/PluginList.php:665
+msgid "<a target=\"_blank\" href=\"%1$s\" rel=\"noopener noreferrer\">Renew now</a> to receive new features, updates, and support."
+msgstr "<a target=\"_blank\" href=\"%1$s\" rel=\"noopener noreferrer\">Odnów licencję</a>, aby otrzymywać nowe funkcje, aktualizacje i pomoc techniczną."
+
+#. translators: %1$s - WPForms Pro Changelog link; %2$s - WPForms Pro latest version.
+#: src/Pro/Admin/PluginList.php:696
+msgid "There is a new version of WPForms available. <a class=\"thickbox open-plugin-details-modal\" href=\"%1$s\" rel=\"noopener noreferrer\">View version %2$s details</a>"
+msgstr ""
+
+#. translators: %1$s - WPForms Pro upgrade URL; %2$s - Update now link aria-label attribute.
+#: src/Pro/Admin/PluginList.php:711
+msgid "or <a href=\"%1$s\" class=\"update-link\" aria-label=\"%2$s\">update now</a>."
+msgstr "lub <a href=\"%1$s\" class=\"update-link\" aria-label=\"%2$s\">zaktualizuj teraz</a>."
+
+#: src/Pro/Admin/PluginList.php:716
+msgid "Update Now"
+msgstr "Zaktualizuj teraz"
+
+#. translators: 1: Plugin name, 2: Version number.
+#: src/Pro/Admin/PluginList.php:784
+msgid "View %1$s version %2$s details"
+msgstr "Zobacz szczegóły %1$s w wersji %2$s"
+
+#. translators: 1: Plugin name, 2: Details URL, 3: Link attributes, 4: Version number, 5: Components.
+#: src/Pro/Admin/PluginList.php:825
+msgid "Sorry, the %1$s addon can't be updated to <a href=\"%2$s\" %3$s>version %4$s</a> because it requires %5$s."
+msgstr "Niestety, nie można zaktualizować dodatku %1$s do <a href=\"%2$s\" %3$s>wersji %4$s</a>, ponieważ wymaga ona %5$s."
+
+#. translators: 1: Details URL, 2: Additional link attributes, 3: Version number.
+#: src/Pro/Admin/PluginList.php:846
+msgid "If no update is available, try <a href=\"%1$s\">checking for new plugin updates</a>."
+msgstr "Jeśli nie jest dostępna żadna aktualizacja, spróbuj <a href=\"%1$s\">sprawdzić, czy są nowe aktualizacje wtyczki</a>."
+
+#. translators: 1:URL to Update PHP page.
+#: src/Pro/Admin/PluginList.php:862
+msgid "Learn more about <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">updating PHP</a>."
+msgstr "Dowiedz się więcej o <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">aktualizacji PHP</a>."
+
+#. translators: %s: Plugin name.
+#: src/Pro/Admin/PluginList.php:907
+msgid "Update %s now"
+msgstr "Zaktualizuj %s teraz"
+
+#. translators: 1: Plugin name, 2: Details URL, 3: Additional link attributes, 4: Version number, 5: Update URL, 6: Additional link attributes.
+#: src/Pro/Admin/PluginList.php:915
+msgid "There is a new version of %1$s available. <a href=\"%2$s\" %3$s>View version %4$s details</a>%5$s."
+msgstr "Dostępna jest nowa wersja %1$s. <a href=\"%2$s\" %3$s>Zobacz szczegóły wersji %4$s</a>%5$s."
+
+#: src/Pro/Admin/PluginListDisabler.php:72
+msgid "WPForms license is not valid."
+msgstr ""
+
+#. translators: %1$s - capability being granted, %2$s - capability(s) required for a capability being granted, %3$s - role a capability is granted to.
+#: src/Pro/Admin/Settings/Access.php:77
+msgid "In order to give %1$s access, %2$s access is also required."
+msgstr "Aby przyznać uprawnienia typu %1$s, wymagane są także uprawnienia typu %2$s."
+
+#. translators: %1$s - capability being granted, %2$s - capability(s) required for a capability being granted, %3$s - role a capability is granted to.
+#: src/Pro/Admin/Settings/Access.php:77
+msgid "Would you like to also grant %2$s access to %3$s?"
+msgstr "Czy chcesz przyznać roli %3$s również uprawnienia typu %2$s?"
+
+#. translators: %1$s - capability being granted, %2$s - capability(s) required for a capability being granted, %3$s - role a capability is granted to.
+#: src/Pro/Admin/Settings/Access.php:79
+msgid "In order to remove %1$s access, %2$s access is also required to be removed."
+msgstr "Aby odebrać uprawnienia typu %1$s, należy także odebrać uprawnienia typu %2$s."
+
+#. translators: %1$s - capability being granted, %2$s - capability(s) required for a capability being granted, %3$s - role a capability is granted to.
+#: src/Pro/Admin/Settings/Access.php:79
+msgid "Would you like to also remove %2$s access from %3$s?"
+msgstr "Czy chcesz odebrać roli %3$s również uprawnienia typu %2$s?"
+
+#: src/Pro/Admin/Settings/Access.php:101
+msgid "Can create new forms."
+msgstr "Może tworzyć nowe formularze."
+
+#: src/Pro/Admin/Settings/Access.php:110
+msgid "View Forms"
+msgstr "Wyświetlanie formularzy"
+
+#: src/Pro/Admin/Settings/Access.php:114
+msgid "Can view forms created by <strong>themselves</strong>."
+msgstr "Może przeglądać formularze utworzone przez <strong>siebie</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:122
+msgid "Can view forms created by <strong>others</strong>."
+msgstr "Może przeglądać formularze utworzone przez <strong>innych</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:131
+msgid "Edit Forms"
+msgstr "Edytowanie formularzy"
+
+#: src/Pro/Admin/Settings/Access.php:135
+msgid "Can edit forms created by <strong>themselves</strong>."
+msgstr "Może edytować formularze utworzone przez <strong>siebie</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:143
+msgid "Can edit forms created by <strong>others</strong>."
+msgstr "Może edytować formularze utworzone przez <strong>innych</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:152
+msgid "Delete Forms"
+msgstr "Usuwanie formularzy"
+
+#: src/Pro/Admin/Settings/Access.php:156
+msgid "Can delete forms created by <strong>themselves</strong>."
+msgstr "Może usuwać formularze utworzone przez <strong>siebie</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:164
+msgid "Can delete forms created by <strong>others</strong>."
+msgstr "Może usuwać formularze utworzone przez <strong>innych</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:190
+msgid "Can view entries of forms created by <strong>themselves</strong>."
+msgstr "Może przeglądać wpisy formularzy utworzonych przez <strong>siebie</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:198
+msgid "Can view entries of forms created by <strong>others</strong>."
+msgstr "Może przeglądać wpisy formularzy utworzonych przez <strong>innych</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:207
+msgid "Edit Entries"
+msgstr "Edytowanie wpisów"
+
+#: src/Pro/Admin/Settings/Access.php:211
+msgid "Can edit entries of forms created by <strong>themselves</strong>."
+msgstr "Może edytować wpisy formularzy utworzonych przez <strong>siebie</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:219
+msgid "Can edit entries of forms created by <strong>others</strong>."
+msgstr "Może edytować wpisy formularzy utworzonych przez <strong>innych</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:228
+msgid "Delete Entries"
+msgstr "Usuwanie wpisów"
+
+#: src/Pro/Admin/Settings/Access.php:232
+msgid "Can delete entries of forms created by <strong>themselves</strong>."
+msgstr "Może usuwać wpisy formularzy utworzonych przez <strong>siebie</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:240
+msgid "Can delete entries of forms created by <strong>others</strong>."
+msgstr "Może usuwać wpisy formularzy utworzonych przez <strong>innych</strong>."
+
+#: src/Pro/Admin/Settings/Access.php:264
+#: src/Pro/Admin/Settings/Access.php:287
+msgid "Access"
+msgstr "Dostęp"
+
+#: src/Pro/Admin/Settings/Access.php:266
+msgid "Save Settings"
+msgstr "Zapisz ustawienia"
+
+#. translators: %s - WPForms.com access control link.
+#: src/Pro/Admin/Settings/Access.php:290
+msgid "By default, all permissions are provided only to administrator users. Please see our <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Access Controls documentation</a> for full details."
+msgstr "Domyślnie wszystkie uprawnienia są dostępne wyłącznie dla administratorów. Aby uzyskać szczegółowe informacje, zapoznaj się z <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dokumentacją kontroli dostępu</a>."
+
+#: src/Pro/Admin/Settings/Access.php:348
+msgid "Forms"
+msgstr "Formularze"
+
+#: src/Pro/Admin/Settings/Access.php:348
+msgid "Select the user roles that are allowed to manage forms."
+msgstr "Wybierz role użytkownika, które dają możliwość zarządzania formularzami."
+
+#: src/Pro/Admin/Settings/Access.php:376
+msgid "Select the user roles that are allowed to manage entries."
+msgstr "Wybierz role użytkownika, które dają możliwość zarządzania wpisami."
+
+#: src/Pro/Admin/SiteHealth.php:54
+msgid "not detected"
+msgstr "nie wykryto"
+
+#. translators: %s - license status.
+#: src/Pro/Admin/SiteHealth.php:66
+msgid "Your WPForms license is %s"
+msgstr "Status twojej licencji wtyczki WPForms: %s"
+
+#: src/Pro/Admin/SiteHealth.php:71
+msgid "Security"
+msgstr "Ochrona"
+
+#: src/Pro/Admin/SiteHealth.php:76
+msgid "You have access to updates, addons, new features, and more."
+msgstr "Masz dostęp do aktualizacji, dodatków, nowych funkcji i nie tylko."
+
+#: src/Pro/Admin/SiteHealth.php:98
+msgid "A valid license is required for following benefits. Please read carefully."
+msgstr "Poniższe korzyści wymagają ważnej licencji. Uważnie zapoznaj się z tymi informacjami."
+
+#: src/Pro/Admin/SiteHealth.php:99
+msgid "Plugin and Addon Updates"
+msgstr "Aktualizacje wtyczki i dodatków"
+
+#: src/Pro/Admin/SiteHealth.php:100
+msgid "New Features"
+msgstr "Nowe funkcje"
+
+#: src/Pro/Admin/SiteHealth.php:101
+msgid "New Addons and Integrations"
+msgstr "Nowe dodatki i integracje"
+
+#: src/Pro/Admin/SiteHealth.php:102
+msgid "WordPress Compatibility Updates"
+msgstr "Aktualizacje zgodności WordPressa"
+
+#: src/Pro/Admin/SiteHealth.php:103
+msgid "Marketing and Payment Integration Compatibility Updates"
+msgstr "Aktualizacje zgodności integracji z serwisami marketingowymi i płatniczymi"
+
+#: src/Pro/Admin/SiteHealth.php:104
+msgid "Security Improvements"
+msgstr "Ulepszenia zabezpieczeń"
+
+#: src/Pro/Admin/SiteHealth.php:105
+msgid "World Class Support"
+msgstr "Światowej klasy pomoc techniczna"
+
+#: src/Pro/Admin/SiteHealth.php:106
+msgid "Plugin and Addon Access"
+msgstr "Dostęp do wtyczki i dodatków"
+
+#: src/Pro/Admin/SiteHealth.php:111
+msgid "Login to your WPForms account to update"
+msgstr "Aby wykonać aktualizację, zaloguj się na konto WPForms"
+
+#: src/Pro/Admin/SiteHealth.php:133
+msgid "Total entries"
+msgstr "Wpisy ogółem"
+
+#: src/Pro/Admin/SiteHealth.php:150
+msgid "License status"
+msgstr "Status licencji"
+
+#: src/Pro/Admin/SiteHealth.php:155
+msgid "License key type"
+msgstr "Typ klucza licencyjnego"
+
+#: src/Pro/Admin/SiteHealth.php:160
+msgid "License key location"
+msgstr "Lokalizacja klucza licencyjnego"
+
+#: src/Pro/AntiSpam/CountryFilter.php:87
+msgid "Enable country filter"
+msgstr "Włącz filtr krajów"
+
+#: src/Pro/AntiSpam/CountryFilter.php:91
+msgid "Allow or deny entries from the countries you select."
+msgstr "Zezwól na wpisy z wybranych krajów lub je zablokuj."
+
+#: src/Pro/AntiSpam/CountryFilter.php:98
+msgid "Country Filter"
+msgstr "Filtr krajów"
+
+#: src/Pro/AntiSpam/CountryFilter.php:111
+msgid "Allow"
+msgstr "Zezwól"
+
+#: src/Pro/AntiSpam/CountryFilter.php:112
+msgid "Deny"
+msgstr "Zablokuj"
+
+#: src/Pro/AntiSpam/CountryFilter.php:118
+msgid "entries from"
+msgstr "wpisy z"
+
+#: src/Pro/AntiSpam/CountryFilter.php:144
+msgid "Country Filter Message"
+msgstr "Komunikat filtru krajów"
+
+#: src/Pro/AntiSpam/CountryFilter.php:149
+msgid "Displayed if a visitor from a restricted country tries to submit your form."
+msgstr "Wyświetlany, jeśli gość z kraju objętego ograniczeniami próbuje przesłać formularz."
+
+#: src/Pro/AntiSpam/CountryFilter.php:160
+msgid "Restrict form entries based on customizable filters or conditions."
+msgstr "Ogranicz wpisy formularzy na podstawie konfigurowalnych filtrów lub warunków."
+
+#: src/Pro/AntiSpam/CountryFilter.php:161
+msgid "Filtering"
+msgstr "Filtrowanie"
+
+#: src/Pro/AntiSpam/CountryFilter.php:536
+msgid "Sorry, this form does not accept submissions from your country."
+msgstr "Niestety, w tym formularzu nie są przyjmowane dane z twojego kraju."
+
+#: src/Pro/AntiSpam/KeywordFilter.php:87
+msgid "Enable keyword filter"
+msgstr "Włącz filtr słów kluczowych"
+
+#: src/Pro/AntiSpam/KeywordFilter.php:91
+msgid "Block entries that contain one or more keywords you define."
+msgstr "Zablokuj wpisy zawierające jedno lub więcej zdefiniowanych słów kluczowych."
+
+#. translators: %s - number of phrases.
+#: src/Pro/AntiSpam/KeywordFilter.php:100
+msgid "Your keyword filter contains %s phrase(s)."
+msgstr "Filtr słów kluczowych zawiera następującą liczbę fraz: %s."
+
+#: src/Pro/AntiSpam/KeywordFilter.php:104
+msgid "Collapse keyword list."
+msgstr "Zwiń listę słów kluczowych."
+
+#: src/Pro/AntiSpam/KeywordFilter.php:105
+msgid "Edit keyword list."
+msgstr "Edytuj listę słów kluczowych."
+
+#: src/Pro/AntiSpam/KeywordFilter.php:111
+msgid "Keyword Filter List"
+msgstr "Lista filtru słów kluczowych"
+
+#: src/Pro/AntiSpam/KeywordFilter.php:111
+msgid "Keywords that will be blocked if they are found in a form entry."
+msgstr "Słowa kluczowe, które zostaną zablokowane, jeśli wystąpią we wpisie formularza."
+
+#: src/Pro/AntiSpam/KeywordFilter.php:114
+msgid "Each word or phrase should be on its own line."
+msgstr "Każde słowo lub wyrażenie powinno się znajdować w osobnym wierszu."
+
+#: src/Pro/AntiSpam/KeywordFilter.php:119
+msgid "Save Changes"
+msgstr "Zapisz zmiany"
+
+#: src/Pro/AntiSpam/KeywordFilter.php:133
+msgid "Keyword Filter Message"
+msgstr "Komunikat filtru słów kluczowych"
+
+#: src/Pro/AntiSpam/KeywordFilter.php:137
+msgid "Displayed if a visitor tries to submit an entry that contains a blocked keyword."
+msgstr "Wyświetlany, jeśli gość spróbuje przesłać wpis zawierający zablokowane słowo kluczowe."
+
+#: src/Pro/AntiSpam/KeywordFilter.php:423
+msgid "Sorry, your message can't be submitted because it contains prohibited words."
+msgstr "Niestety, nie można przesłać tej wiadomości, ponieważ zawiera ona zabronione słowa kluczowe."
+
+#: src/Pro/AntiSpam/SpamEntry.php:280
+#: src/Pro/AntiSpam/SpamEntry.php:689
+msgid "Spam"
+msgstr "Spam"
+
+#: src/Pro/AntiSpam/SpamEntry.php:317
+msgid "Entry successfully unmarked as spam."
+msgstr "Anulowano oznaczenie wpisu jako spamu."
+
+#. translators: %s - antispam method.
+#: src/Pro/AntiSpam/SpamEntry.php:364
+msgid "This entry was marked as spam by %s."
+msgstr "Ten wpis został oznaczony jako spam przez narzędzie %s."
+
+#. translators: %d - number of days.
+#: src/Pro/AntiSpam/SpamEntry.php:397
+msgid "%d days"
+msgstr "%d dni"
+
+#. translators: %s - number of days wrapped in the link to the settings page.
+#: src/Pro/AntiSpam/SpamEntry.php:407
+msgid "Spam entries older than %s are automatically deleted."
+msgstr "Wpisy będące spamem starsze niż %s są usuwane automatycznie."
+
+#: src/Pro/AntiSpam/SpamEntry.php:598
+msgid "Marked as not spam."
+msgstr "Oznaczono jako nie spam."
+
+#: src/Pro/AntiSpam/SpamEntry.php:666
+msgid "Not Spam"
+msgstr "Nie spam"
+
+#: src/Pro/AntiSpam/SpamEntry.php:746
+msgid "Empty Spam"
+msgstr "Opróżnij spam"
+
+#. translators: %1$s - WPForms.com license help URL.
+#: src/Pro/Emails/LicenseBanner.php:154
+msgid "Have questions? <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Learn why you should always use the latest version of WPForms</a>."
+msgstr "Masz pytania? <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Dowiedz się, dlaczego warto zawsze korzystać z najnowszej wersji wtyczki WPForms</a>."
+
+#: src/Pro/Emails/LicenseBanner.php:172
+msgid "Heads Up! Your License is Invalid"
+msgstr "Uwaga! Twoja licencja jest nieważna"
+
+#: src/Pro/Emails/LicenseBanner.php:174
+msgid "Your key either no longer exists or the user associated with the key has been deleted. Please use a different key to continue receiving automatic updates."
+msgstr "Albo twój klucz już nie istnieje, albo powiązany z nim użytkownik został usunięty. Użyj innego klucza, aby nadal otrzymywać automatyczne aktualizacje."
+
+#: src/Pro/Emails/LicenseBanner.php:180
+msgid "Purchase a New License"
+msgstr "Kup nową licencję"
+
+#: src/Pro/Emails/LicenseBanner.php:189
+msgid "Heads Up! Your License Has Expired"
+msgstr "Uwaga! Twoja licencja wygasła"
+
+#: src/Pro/Emails/LicenseBanner.php:191
+msgid "Without an active license, you lose access to plugin updates and new features. Renew your license today so you don’t miss out!"
+msgstr "Bez aktywnej licencji nie masz dostępu do aktualizacji i nowych funkcji wtyczki. Już dziś odnów licencję, aby ich nie przegapić!"
+
+#: src/Pro/Emails/LicenseBanner.php:197
+msgid "Renew Your License Now"
+msgstr "Odnów licencję"
+
+#: src/Pro/Emails/LicenseBanner.php:206
+msgid "Heads Up! Your License Will Expire Soon"
+msgstr "Uwaga! Twoja licencja wkrótce wygaśnie"
+
+#: src/Pro/Emails/LicenseBanner.php:208
+msgid "Without an active license, you will lose access to plugin updates and new features. Enable automatic renewal today so you don’t miss out!"
+msgstr "Bez aktywnej licencji utracisz dostęp do aktualizacji i nowych funkcji wtyczki. Już dziś włącz automatyczne odnawianie, aby ich nie przegapić!"
+
+#: src/Pro/Emails/LicenseBanner.php:214
+msgid "Turn on Automatic Renewal"
+msgstr "Włącz automatyczne odnawianie"
+
+#: src/Pro/Forms/Fields/CreditCard/Field.php:109
+msgid "Card Number"
+msgstr "Numer karty"
+
+#: src/Pro/Forms/Fields/CreditCard/Field.php:132
+msgid "Security Code"
+msgstr "Kod bezpieczeństwa"
+
+#: src/Pro/Forms/Fields/CreditCard/Field.php:153
+msgid "Name on Card"
+msgstr "Imię i nazwisko na karcie"
+
+#: src/Pro/Forms/Fields/CreditCard/Field.php:167
+msgid "Expiration"
+msgstr "Data ważności"
+
+#: src/Pro/Forms/Fields/CreditCard/Field.php:307
+#: src/Pro/Forms/Fields/CreditCard/Frontend.php:62
+msgid "This page is insecure. Credit Card field should be used for testing purposes only."
+msgstr "Ta strona jest niezabezpieczona. Pola karty kredytowej należy używać wyłącznie do testów."
+
+#: src/Pro/Forms/Fields/CreditCard/Frontend.php:189
+msgid "Expiration month"
+msgstr "Miesiąc daty ważności"
+
+#: src/Pro/Forms/Fields/CreditCard/Frontend.php:218
+msgid "Expiration year"
+msgstr "Rok daty ważności"
+
+#: src/Pro/Forms/Fields/CustomCaptcha/Builder.php:80
+msgid "Custom Captcha field should contain at least one not empty question."
+msgstr "Pole własnego testu Captcha powinno zawierać co najmniej jedno niepuste pytanie."
+
+#: src/Pro/Forms/Fields/CustomCaptcha/Field.php:325
+#: src/Pro/Forms/Fields/CustomCaptcha/Field.php:378
+msgid "Incorrect answer"
+msgstr "Odpowiedź nieprawidłowa"
+
+#: src/Pro/Forms/Fields/CustomCaptcha/Field.php:358
+msgid "Incorrect operation"
+msgstr "Niepoprawna operacja"
+
+#. translators: %1$s - URL to the documentation.
+#: src/Pro/Forms/Fields/CustomCaptcha/Field.php:424
+msgid "WPForms 1.8.7 core includes Custom Captcha. The Custom Captcha addon will only work on WPForms 1.8.6 and earlier versions. <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Learn More</a>"
+msgstr "Rdzeń wtyczki WPForms 1.8.7 zawiera komponent Custom Captcha. Dodatek Custom Captcha będzie działał tylko we wtyczce WPForms w wersji 1.8.6 lub wcześniejszej. <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Dowiedz się więcej</a>"
+
+#: src/Pro/Forms/Fields/CustomCaptcha/Frontend.php:83
+msgid "Incorrect answer."
+msgstr "Odpowiedź nieprawidłowa."
+
+#: src/Pro/Forms/Fields/DateTime/Field.php:174
+msgid "Time"
+msgstr "Godzina"
+
+#: src/Pro/Forms/Fields/DateTime/Field.php:468
+msgid "Clear Date"
+msgstr "Wyczyść datę"
+
+#: src/Pro/Forms/Fields/DateTime/Field.php:552
+msgid "MM"
+msgstr "MM"
+
+#: src/Pro/Forms/Fields/DateTime/Field.php:553
+msgid "DD"
+msgstr "DD"
+
+#: src/Pro/Forms/Fields/DateTime/Field.php:554
+msgid "YYYY"
+msgstr "RRRR"
+
+#: src/Pro/Forms/Fields/DateTime/Frontend.php:70
+msgid "Day"
+msgstr "Dzień"
+
+#: src/Pro/Forms/Fields/DateTime/Frontend.php:71
+msgid "Month"
+msgstr "Miesiąc"
+
+#: src/Pro/Forms/Fields/DateTime/Frontend.php:72
+msgid "Year"
+msgstr "Rok"
+
+#: src/Pro/Forms/Fields/EntryPreview/Field.php:954
+msgid "Preview not available"
+msgstr "Podgląd niedostępny"
+
+#: src/Pro/Forms/Fields/EntryPreview/Field.php:1097
+msgid "Updating preview…"
+msgstr "Aktualizowanie podglądu…"
+
+#: src/Pro/Forms/Fields/EntryPreview/Field.php:1125
+msgid "Page breaks are required for entry previews to work. If you'd like to remove page breaks, you'll have to first remove the entry preview field."
+msgstr "Podziały stron są wymagane do działania podglądów wpisów. Jeśli chcesz usunąć podziały stron, najpierw musisz usunąć pole podglądu wpisu."
+
+#: src/Pro/Forms/Fields/EntryPreview/Field.php:1127
+msgid "You can't hide the previous button because it is required for the entry preview field on this page."
+msgstr "Nie możesz ukryć przycisku poprzedniej strony, ponieważ wymaga go pole podglądu wpisu na tej stronie."
+
+#: src/Pro/Forms/Fields/EntryPreview/Field.php:1147
+msgid "Show entry preview after confirmation message"
+msgstr "Pokaż podgląd wpisu po potwierdzeniu"
+
+#: src/Pro/Forms/Fields/EntryPreview/Field.php:1161
+msgid "Preview Style"
+msgstr "Styl podglądu"
+
+#. translators: %s - link to the Media Library.
+#: src/Pro/Forms/Fields/FileUpload/EntriesEdit.php:108
+msgid "Please use the default <a href=\"%s\">WordPress Media</a> interface to remove this file."
+msgstr "Aby usunąć ten plik, użyj domyślnego interfejsu <a href=\"%s\">multimediów WordPressa</a>."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:244
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1556
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1611
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1639
+msgid "Something went wrong, please try again."
+msgstr "Coś poszło nie tak. Spróbuj ponownie."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:245
+msgid "This file was not uploaded."
+msgstr "Ten plik nie został przesłany."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:254
+msgid "File exceeds the max size allowed."
+msgstr "Plik przekracza maksymalny dozwolony rozmiar."
+
+#. translators: %s - max allowed file size by a server.
+#: src/Pro/Forms/Fields/FileUpload/Field.php:256
+msgid "File exceeds the upload limit allowed (%s)."
+msgstr "Plik przekracza dozwolony limit przesyłania (%s)."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:260
+msgid "File upload is in progress. Please submit the form once uploading is completed."
+msgstr "Trwa przesyłanie pliku. Prześlij formularz po zakończeniu tej operacji."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:972
+msgid "File(s) not uploaded. Remove and re-attach file(s)."
+msgstr "Pliki nie zostały przesłane. Usuń je i załącz ponownie."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1524
+msgid "Something went wrong while removing the file."
+msgstr "Podczas usuwania pliku coś poszło nie tak."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1741
+msgid "Incorrect usage of this operation."
+msgstr "Niepoprawne użycie tej operacji."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1806
+msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
+msgstr "Przesłany plik przekracza dyrektywę upload_max_filesize w pliku php.ini."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1807
+msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form."
+msgstr "Przesłany plik przekracza dyrektywę MAX_FILE_SIZE określoną w formularzu HTML."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1808
+msgid "The uploaded file was only partially uploaded."
+msgstr "Plik został przesłany tylko częściowo."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1809
+msgid "No file was uploaded."
+msgstr "Nie przesłano pliku."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1811
+msgid "Missing a temporary folder."
+msgstr "Brak folderu tymczasowego."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1812
+msgid "Failed to write file to disk."
+msgstr "Nie udało się zapisać pliku na dysku."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1813
+msgid "File upload stopped by extension."
+msgstr "Przesyłanie pliku zostało zatrzymane z powodu rozszerzenia."
+
+#. translators: %s - error text.
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1818
+msgid "File upload error. %s"
+msgstr "Błąd przesyłania pliku. %s"
+
+#. translators: $s - allowed file size in MB.
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1899
+msgid "File exceeds max size allowed (%s)."
+msgstr "Plik przekracza maksymalny dozwolony rozmiar (%s)."
+
+#: src/Pro/Forms/Fields/FileUpload/Field.php:1923
+msgid "File must have an extension."
+msgstr "Plik musi mieć rozszerzenie."
+
+#: src/Pro/Forms/Fields/Layout/Builder.php:57
+msgid "Enter text for the Layout field label. It will help identify your layout block inside the form builder, but will not be displayed in the form."
+msgstr "Wpisz treść etykiety pola układu. Ułatwi ona identyfikację bloku układu w kreatorze formularzy, ale nie będzie wyświetlana w formularzu."
+
+#: src/Pro/Forms/Fields/Layout/Builder.php:68
+#: src/Pro/Forms/Fields/Repeater/Builder.php:219
+msgid "Display"
+msgstr "Wyświetlanie"
+
+#: src/Pro/Forms/Fields/Layout/Builder.php:80
+msgid "Rows - fields are ordered from left to right"
+msgstr "Wiersze – pola są uporządkowane od lewej do prawej"
+
+#: src/Pro/Forms/Fields/Layout/Builder.php:81
+msgid "Columns - fields are ordered from top to bottom"
+msgstr "Kolumny – pola są uporządkowane od góry do dołu"
+
+#: src/Pro/Forms/Fields/Layout/Field.php:84
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:101
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:334
+msgid "Layout"
+msgstr "Układ"
+
+#: src/Pro/Forms/Fields/Layout/Field.php:85
+msgid "column, row"
+msgstr "kolumna, wiersz"
+
+#. translators: %1$s - current step in multipage form, %2$d - total number of pages.
+#: src/Pro/Forms/Fields/Pagebreak/Field.php:187
+msgid "Step %1$s of %2$d"
+msgstr "Krok %1$s z %2$d"
+
+#: src/Pro/Forms/Fields/Pagebreak/Field.php:262
+msgid "Previous"
+msgstr "Wstecz"
+
+#. translators: %1$s - current step in multi-page form, %2$s - total number of pages.
+#: src/Pro/Forms/Fields/Pagebreak/Frontend.php:184
+msgid "Step %1$s of %2$s"
+msgstr "Krok %1$s z %2$s"
+
+#: src/Pro/Forms/Fields/Password/Field.php:87
+msgid "Password"
+msgstr "Hasło"
+
+#: src/Pro/Forms/Fields/Password/Field.php:111
+msgid "Confirm Password"
+msgstr "Potwierdź hasło"
+
+#: src/Pro/Forms/Fields/Password/Field.php:298
+msgid "Field values do not match."
+msgstr "Wartości pól są niezgodne."
+
+#: src/Pro/Forms/Fields/Phone/Field.php:54
+msgid "Phone number"
+msgstr "Numer telefonu"
+
+#. translators: %1$s - rating value, %2$s - rating scale.
+#: src/Pro/Forms/Fields/Rating/Field.php:201
+msgid "Rate %1$d out of %2$d"
+msgstr "Ocena %1$d z %2$d"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:68
+msgid "Field size cannot be changed when used in a repeater."
+msgstr "Nie można zmienić rozmiaru pola w przypadku jego użycia w ramach powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:69
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:337
+msgid "When a field is placed inside a column, the field size always equals the column width."
+msgstr "Po umieszczeniu pola w kolumnie jego rozmiar jest zawsze równy szerokości kolumny."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:72
+msgid "Not Allowed"
+msgstr "Niedozwolone"
+
+#. translators: %s - Field name.
+#: src/Pro/Forms/Fields/Repeater/Builder.php:74
+msgid "The %s field can’t be placed inside a Repeater field."
+msgstr "Nie można umieścić pola %s w polu powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:75
+msgid "Only one field is allowed in each column when the Display option is set to Rows."
+msgstr "Gdy opcja Wyświetlanie ma wartość Wiersze, dozwolone jest tylko jedno pole w każdej kolumnie."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:76
+msgid "You can’t change Display to Rows because only one field per column is allowed."
+msgstr "Nie można zmienić opcji Wyświetlanie na Wiersze, ponieważ dozwolone jest tylko jedno pole na kolumnę."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:77
+msgid "Conditional Logic cannot be enabled when the field is inside a Repeater."
+msgstr "Nie można włączyć logiki warunkowej, gdy pole znajduje się w polu powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:78
+msgid "Conditional Logic has been disabled because this field has been placed inside a Repeater."
+msgstr "Logika warunkowa została wyłączona, ponieważ to pole zostało umieszczone w polu powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:79
+msgid "Calculation cannot be enabled when the field is inside a Repeater."
+msgstr "Nie można włączyć obliczenia, gdy pole znajduje się w polu powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:80
+msgid "Calculation has been disabled because this field has been placed inside a Repeater."
+msgstr "Obliczenie zostało wyłączone, ponieważ to pole zostało umieszczone w polu powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:81
+msgid "When a field is placed inside a Repeater field, Calculation is disabled."
+msgstr "Gdy pole zostanie umieszczone w polu powtórzenia, obliczenie jest wyłączane."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:82
+msgid "Are you sure you want to delete the Repeater field? Deleting this field will also delete the fields inside it."
+msgstr "Czy na pewno chcesz usunąć pole powtórzenia? Usunięcie tego pola spowoduje także usunięcie pól, które się w nim znajdują."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:83
+msgid "Conversational Forms cannot be enabled because your form contains a Repeater field."
+msgstr "Nie można włączyć formularzy konwersacyjnych, ponieważ formularz zawiera pole powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:84
+msgid "The Repeater field cannot be used when Conversational Forms is enabled."
+msgstr "Nie można użyć pola powtórzenia, gdy są włączone formularze konwersacyjne."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:96
+msgid "Lead Forms cannot be enabled because your form contains a Repeater field."
+msgstr "Nie można włączyć formularzy potencjalnych klientów, ponieważ formularz zawiera pole powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:103
+msgid "The Repeater field cannot be used when Lead Forms is enabled."
+msgstr "Nie można użyć pola powtórzenia, gdy są włączone formularze potencjalnych klientów."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:106
+msgid "Are you sure you want to move this field?"
+msgstr "Czy na pewno chcesz przenieść to pole?"
+
+#. translators: %s - Addon name.
+#: src/Pro/Forms/Fields/Repeater/Builder.php:109
+msgid "It's currently mapped to %s, which will be reset if you add this field to a repeater."
+msgstr "Obecnie jest ono zamapowane na dodatek %s, który zostanie zresetowany, jeśli dodasz to pole do powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:140
+msgid "Enter text for the repeater field label. Repeater labels are more like headings and can be hidden in the Advanced Settings."
+msgstr "Wpisz treść etykiety pola powtórzenia. Etykiety pól powtórzenia przypominają nagłówki. Można je ukryć w ustawieniach zaawansowanych."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:220
+msgid "Choose whether you want your fields to be repeated as single rows or as a block of fields."
+msgstr "Wskaż, czy pola mają być powtarzane jako pojedyncze wiersze czy jako blok pól."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:260
+msgid "Button Type"
+msgstr "Rodzaj przycisku"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:261
+msgid "Select the type of buttons to use for the repeater field."
+msgstr "Wybierz rodzaj przycisków używanych w polu powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:273
+msgid "Buttons with icons"
+msgstr "Przyciski z ikonkami"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:274
+msgid "Buttons"
+msgstr "Przyciski"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:275
+msgid "Icons with text"
+msgstr "Ikonki z tekstem"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:276
+msgid "Icons"
+msgstr "Ikonki"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:277
+msgid "Plain text"
+msgstr "Zwykły tekst"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:316
+msgid "Button Labels"
+msgstr "Etykiety przycisków"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:317
+msgid "Enter text for the repeater field buttons."
+msgstr "Wpisz tekst przycisków pola powtórzenia."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:333
+#: src/Pro/Forms/Fields/Repeater/Builder.php:348
+msgid "Add Label"
+msgstr "Dodaj etykietę"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:377
+msgid "Limit"
+msgstr "Limit"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:378
+msgid "Set the minimum and maximum number of times the field can be repeated."
+msgstr "Ustaw minimalną i maksymalną liczbę powtórzeń pola."
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:395
+msgid "Minimum"
+msgstr "Minimum"
+
+#: src/Pro/Forms/Fields/Repeater/Builder.php:411
+msgid "Maximum"
+msgstr "Maksimum"
+
+#: src/Pro/Forms/Fields/Repeater/Field.php:145
+msgid "Repeater"
+msgstr "Powtórzenie"
+
+#: src/Pro/Forms/Fields/Repeater/Field.php:146
+msgid "repeater, row, column"
+msgstr "powtórzenie, wiersz, kolumna"
+
+#: src/Pro/Forms/Fields/Repeater/Field.php:162
+msgid "Add"
+msgstr "Dodaj"
+
+#: src/Pro/Forms/Fields/Repeater/Field.php:163
+msgid "Remove"
+msgstr "Usuń"
+
+#: src/Pro/Forms/Fields/Richtext/Field.php:663
+msgid "Uploaded to this form"
+msgstr "Przesłano do tego formularza"
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:101
+msgid "Select a Layout."
+msgstr "Wybierz układ."
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:109
+msgid "Select a predefined layout."
+msgstr "Wybierz zdefiniowany układ."
+
+#. translators: %1$s - WPForms.com URL to a related doc.
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:316
+msgid "We’ve added a new field to help you build advanced form layouts more easily. Give the Layout Field a try! Layout CSS classes are still supported. <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Learn More</a>"
+msgstr "Dodaliśmy nowe pole, aby ułatwić tworzenie zaawansowanych układów formularzy. Wypróbuj pole układu! Klasy CSS układu wciąż są obsługiwane. <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Dowiedz się więcej</a>"
+
+#. translators: %s - field name.
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:333
+msgid "The %s field can’t be placed inside a Layout field."
+msgstr "Nie można umieścić pola %s w polu układu."
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:335
+msgid "Got it!"
+msgstr "Rozumiem!"
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:336
+msgid "Field size cannot be changed when used in a layout."
+msgstr "Nie można zmienić rozmiaru pola w przypadku jego użycia w układzie."
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:338
+msgid "Don’t Show Again"
+msgstr "Nie pokazuj ponownie"
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:339
+msgid "Layouts Have Moved!"
+msgstr "Układy zostały przeniesione!"
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:341
+msgid "Conversational Forms cannot be enabled because your form contains a Layout field."
+msgstr "Nie można włączyć formularzy konwersacyjnych, ponieważ formularz zawiera pole układu."
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:342
+msgid "The Layout field cannot be used when Conversational Forms is enabled."
+msgstr "Nie można użyć pola układu, gdy są włączone formularze konwersacyjne."
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:343
+msgid "Are you sure you want to delete the Layout field? Deleting this field will also delete the fields inside it."
+msgstr "Czy na pewno chcesz usunąć pole układu? Usunięcie tego pola spowoduje także usunięcie pól, które się w nim znajdują."
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:344
+msgid "Cannot be enabled because the Layout field contains Conditional Logic."
+msgstr "Nie można włączyć, ponieważ pole Układ zawiera logikę warunkową."
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:345
+msgid "Conditional Logic has been disabled because the Layout field contains Conditional Logic."
+msgstr "Logika warunkowa została wyłączona, ponieważ pole Układ zawiera logikę warunkową."
+
+#: src/Pro/Forms/Fields/Traits/Layout/Builder.php:367
+msgid "Add Fields"
+msgstr "Dodaj pola"
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:158
+msgid "The theme you’ve selected has a background image."
+msgstr "Wybrany motyw zawiera obrazek tła."
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:159
+msgid "In order to use Stock Photos, an image library must be downloaded and installed."
+msgstr "Aby korzystać ze zdjęć stockowych, należy pobrać i zainstalować bibliotekę obrazków."
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:160
+msgid "It's quick and easy, and you'll only have to do this once."
+msgstr "Jest to czynność szybka i łatwa, którą trzeba wykonać tylko raz."
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:161
+msgid "Continue"
+msgstr "Kontynuuj"
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:163
+msgid "Installing"
+msgstr "Instalowanie"
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:164
+msgid "Uh oh!"
+msgstr "O-o!"
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:166
+msgid "Something went wrong while performing an AJAX request."
+msgstr "Podczas wykonywania żądania AJAX coś poszło nie tak."
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:167
+msgid "Choose a Stock Photo"
+msgstr "Wybierz zdjęcie stockowe"
+
+#: src/Pro/Integrations/Gutenberg/FormSelector.php:168
+msgid "Browse for the perfect image for your form background."
+msgstr "Wyszukaj idealny obrazek na tło formularza."
+
+#: src/Pro/Integrations/Gutenberg/StockPhotos.php:175
+msgid "Can't download file."
+msgstr "Nie można pobrać pliku."
+
+#: src/Pro/Integrations/Gutenberg/StockPhotos.php:191
+msgid "Can't unzip file."
+msgstr "Nie można rozpakować pliku."
+
+#: src/Pro/Integrations/Gutenberg/StockPhotos.php:201
+msgid "Can't move unzipped files."
+msgstr "Nie można przenieść rozpakowanych plików."
+
+#: src/Pro/Integrations/Gutenberg/StockPhotos.php:229
+msgid "Can't create the stock photos storage directory."
+msgstr "Nie można utworzyć katalogu przechowywania zdjęć stockowych."
+
+#: src/Pro/Integrations/LiteConnect/Admin.php:278
+msgid "Entry Restore Complete"
+msgstr "Przywracanie wpisów ukończone"
+
+#. translators: %d - number of imported entries.
+#: src/Pro/Integrations/LiteConnect/Admin.php:325
+msgid "%d entry has been successfully imported."
+msgid_plural "%d entries have been successfully imported."
+msgstr[0] "%d wpis został zaimportowany."
+msgstr[1] "%d wpisy zostały zaimportowane."
+msgstr[2] "%d wpisów zostało zaimportowanych."
+msgstr[3] "%d wpisu zostało zaimportowane."
+
+#. translators: %d - number of imported entries.
+#: src/Pro/Integrations/LiteConnect/Admin.php:339
+msgid "%d entry was not imported."
+msgid_plural "%d entries were not imported."
+msgstr[0] "%d wpis nie został zaimportowany."
+msgstr[1] "%d wpisy nie zostały zaimportowane."
+msgstr[2] "%d wpisów nie zostało zaimportowanych."
+msgstr[3] "%d wpisu nie zostało zaimportowane."
+
+#: src/Pro/Integrations/LiteConnect/Admin.php:351
+msgid "No entries were imported."
+msgstr "Nie zaimportowano żadnych wpisów."
+
+#. translators: %s - WPForms Logs admin page URL.
+#: src/Pro/Integrations/LiteConnect/Admin.php:357
+msgid "<a href=\"%s\">View log</a> for details."
+msgstr "<a href=\"%s\">Zobacz dziennik</a>, aby uzyskać szczegółowe informacje."
+
+#: src/Pro/Integrations/LiteConnect/Admin.php:383
+msgid "Unfortunately, there were some issues during the entries importing process. Don't worry - data is not lost. Please try again later."
+msgstr "Niestety, podczas importowania wpisów wystąpiły problemy. Spokojnie – nie doszło do utraty danych. Spróbuj ponownie później."
+
+#. translators: %d - backed up entries count.
+#: src/Pro/Integrations/LiteConnect/Admin.php:550
+msgid "%d form entry has been backed up"
+msgid_plural "%d form entries have been backed up"
+msgstr[0] "Utworzono kopię zapasową %d wpisu formularza"
+msgstr[1] "Utworzono kopię zapasową %d wpisów formularza"
+msgstr[2] "Utworzono kopię zapasową %d wpisu formularza"
+msgstr[3] "Utworzono kopię zapasową %d wpisu formularza"
+
+#. translators: %s - time when Lite Connect was enabled.
+#: src/Pro/Integrations/LiteConnect/Admin.php:563
+msgid "since you enabled Lite Connect on %s"
+msgstr "od włączenia funkcji Lite Connect w dniu %s"
+
+#: src/Pro/Integrations/LiteConnect/Integration.php:159
+msgid "The form no longer exists"
+msgstr "Formularz już nie istnieje"
+
+#: src/Pro/Integrations/LiteConnect/Integration.php:160
+msgid "Unknown"
+msgstr "Nieznane"
+
+#: src/Pro/Integrations/LiteConnect/Integration.php:487
+msgid "Your form entries have been restored successfully!"
+msgstr "Wpisy formularzy zostały przywrócone!"
+
+#. translators: %1$s - WPForms Entries Overview admin page URL.
+#: src/Pro/Integrations/LiteConnect/Integration.php:494
+msgid "You can view your form entries inside the WordPress Dashboard from the <a href=\"%s\" rel=\"noreferrer noopener\" target=\"_blank\">Entries Overview report</a>."
+msgstr "Teraz możesz obejrzeć wpisy formularzy w kokpicie WordPressa z poziomu <a href=\"%s\" rel=\"noreferrer noopener\" target=\"_blank\">raportu z przeglądem wpisów</a>."
+
+#. translators: %s - resume page URL.
+#: src/Pro/Migrations/Upgrade143.php:252
+msgid "WPForms database upgrade is incomplete, click <a href=\"%s\">here</a> to resume."
+msgstr "Uaktualnianie bazy danych WPForms nie zostało ukończone. Kliknij <a href=\"%s\">tutaj</a>, aby je wznowić."
+
+#. translators: %s - entries upgrade page URL.
+#: src/Pro/Migrations/Upgrade143.php:255
+msgid "WPForms needs to upgrade the database, click <a href=\"%s\">here</a> to start the upgrade."
+msgstr "WPForms musi uaktualnić bazę danych. Kliknij <a href=\"%s\">tutaj</a>, aby rozpocząć uaktualnianie."
+
+#: src/Pro/Migrations/Upgrade143.php:287
+msgid "WPForms needs to upgrade the database, click the button below to begin."
+msgstr "WPForms musi uaktualnić bazę danych. Kliknij poniższy przycisk, aby rozpocząć."
+
+#: src/Pro/Migrations/Upgrade143.php:288
+msgid "Run Upgrade"
+msgstr "Uruchom uaktualnianie"
+
+#: src/Pro/Migrations/Upgrade143.php:291
+msgid "WPForms database upgrade is incomplete, click the button below to resume."
+msgstr "Uaktualnianie bazy danych WPForms nie zostało ukończone. Kliknij poniższy przycisk, aby je wznowić."
+
+#: src/Pro/Migrations/Upgrade143.php:292
+msgid "Resume Upgrade"
+msgstr "Wznów uaktualnianie"
+
+#: src/Pro/Migrations/Upgrade143.php:297
+msgid "Upgrade"
+msgstr "Uaktualnienie"
+
+#: src/Pro/Migrations/Upgrade143.php:299
+msgid "Please do not leave this page or close the browser while the upgrade is in progress."
+msgstr "Nie opuszczaj tej strony ani nie zamykaj przeglądarki podczas uaktualniania."
+
+#. translators: %1$s - total number of entries upgraded, %2$s - total number of entries on site.
+#: src/Pro/Migrations/Upgrade143.php:307
+msgid "Updated %1$s of %2$s entries."
+msgstr "Zaktualizowano %1$s z %2$s wpisów."
+
+#: src/Pro/Migrations/Upgrade143.php:319
+msgid "No updates are currently needed."
+msgstr "Obecnie nie są potrzebne żadne aktualizacje."
+
+#: src/Pro/SmartTags/SmartTags.php:28
+msgid "Entry Details URL"
+msgstr "Adres URL szczegółów wpisu"

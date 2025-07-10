@@ -1,0 +1,432 @@
+// =============================================================================
+// CONTACT SECTION - Sekcja kontaktowa z formularzem
+// =============================================================================
+
+.contact {
+  background-color: $background-color;
+  padding-block: $section-padding-block;
+  padding-top: calc($section-padding-block * 1.5); // Większy padding od góry
+  padding-inline: $section-padding-inline;
+  position: relative;
+  overflow: hidden;
+  
+  // Tło z dekoracyjnym elementem
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 80%;
+    background-image: url('/wp-content/uploads/2025/07/Layer_1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.3;
+    
+    @include tablet-up {
+      opacity: 0.5;
+    }
+    
+    @include desktop-up {
+      opacity: 0.8;
+    }
+  }
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+  
+  // =============================================================================
+  // GŁÓWNY KONTENER I LAYOUT
+  // =============================================================================
+  
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 6vw, 64px);
+    
+    @include tablet-up {
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center; // Zmienione z flex-start na center
+    }
+  }
+  
+  // =============================================================================
+  // KOLUMNA INFORMACYJNA (LEWA)
+  // =============================================================================
+  
+  &__info {
+    width: 100%;
+    
+    @include tablet-up {
+      width: 55%;
+      padding-right: 30px;
+      align-content: center;
+    }
+  }
+  
+  &__heading {
+    font-family: $font-secondary;
+    font-size: 54px;
+    font-weight: map-get($font-weights, "medium");
+    font-style: italic;
+    line-height: map-get($line-heights, "tight");
+    color: $primary-text-color;
+    margin: 0 0 clamp(24px, 4vw, 32px) 0;
+  }
+  
+  &__text {
+    font-family: $font-primary;
+    font-size: map-get($font-sizes, "p");
+    font-weight: map-get($font-weights, "medium");
+    line-height: map-get($line-heights, "relaxed");
+    color: $secondary-text-color;
+    margin-bottom: clamp(32px, 6vw, 48px);
+  }
+  
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  &__detail {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    
+    img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: invert(11%) brightness(88%) contrast(91%); // Usunięto sepia i hue-rotate
+    }
+  }
+  
+  &__link {
+    font-family: $font-primary;
+    font-size: 18px;
+    font-weight: map-get($font-weights, "medium");
+    color: $primary-text-color;
+    text-decoration: none;
+    transition: color map-get($transitions, "fast");
+    
+    &:hover,
+    &:focus {
+      color: $primary-color-blue;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  // =============================================================================
+  // KOLUMNA FORMULARZA (PRAWA)
+  // =============================================================================
+  
+  &__form {
+    width: 100%;
+    background-color: $white;
+    border-radius: map-get($border-radius, "md");
+    padding: clamp(24px, 5vw, 40px);
+    box-shadow: map-get($shadows, "md");
+    
+    @include tablet-up {
+      width: 40%;
+    }
+  }
+  
+  &__form-heading {
+    font-family: $font-secondary;
+    font-size: map-get($font-sizes, "h4");
+    font-weight: map-get($font-weights, "medium");
+    font-style: italic;
+    margin: 0 0 12px 0;
+    color: $primary-text-color;
+    text-align: center;
+  }
+  
+  &__form-text {
+    font-family: $font-primary;
+    font-size: map-get($font-sizes, "p");
+    font-weight: map-get($font-weights, "regular");
+    color: $text-muted;
+    margin: 0 0 24px 0;
+    text-align: center;
+  }
+  
+  &__form-wrapper {
+    // Stylowanie formularza WPForms
+    .wpforms-container {
+      margin: 0;
+      
+      .wpforms-form {
+        // Ukryte etykiety
+        .wpforms-label-hide {
+          display: none !important;
+        }
+        
+        // Fieldset dla checkboxów
+        fieldset {
+          border: none;
+          padding: 0;
+          margin: 0;
+        }
+        
+        // Pola formularza - bez manipulacji układem
+        .wpforms-field-container {
+          width: 100% !important;
+        }
+        
+        // Ukryte pole honeypot
+        [style*="position: absolute"] {
+          display: none !important;
+        }
+        
+        // Stylowanie pól formularza
+        .wpforms-field {
+          padding: 0 !important;
+          margin-bottom: 16px !important;
+          
+          // Label
+          .wpforms-field-label {
+            font-family: $font-primary !important;
+            font-weight: map-get($font-weights, "medium") !important;
+            margin-bottom: 8px !important;
+            font-size: map-get($font-sizes, "p") !important;
+            display: none; // Ukrywamy etykiety
+          }
+          
+          // Wymagane pola - gwiazdka
+          .wpforms-required-label {
+            color: $error-color !important;
+            margin-left: 4px !important;
+          }
+          
+          // Input - 100% szerokości
+          input[type="text"],
+          input[type="email"],
+          textarea {
+            width: 100% !important;
+            padding: 12px 0 !important;
+            border: none !important;
+            border-bottom: 1px solid #585858 !important;
+            border-radius: 0 !important;
+            font-family: $font-primary !important;
+            font-size: map-get($font-sizes, "p") !important;
+            font-weight: map-get($font-weights, "regular") !important;
+            line-height: map-get($line-heights, "normal") !important;
+            transition: border-color map-get($transitions, "fast") !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            
+            &:focus {
+              border-color: $primary-color-blue !important;
+              outline: none !important;
+            }
+            
+            &::placeholder {
+              color: $text-light !important;
+              font-family: $font-primary !important;
+              font-size: map-get($font-sizes, "p") !important;
+              font-weight: map-get($font-weights, "regular") !important;
+              opacity: 1 !important;
+            }
+          }
+          
+          // Textarea - pole wiadomości
+          textarea {
+            min-height: 60px !important;
+            resize: vertical !important;
+          }
+        }
+        
+        // Pole checkbox akceptacji
+        .wpforms-field-checkbox {
+          ul {
+            margin: 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            
+            li {
+              display: flex !important;
+              align-items: flex-start !important;
+              gap: 6px !important; // Zmniejszony gap z 16px na 6px
+              margin-bottom: 8px !important;
+              
+              label {
+                font-family: $font-primary !important;
+                font-size: map-get($font-sizes, "small") !important;
+                line-height: map-get($line-heights, "relaxed") !important;
+                color: $text-muted !important;
+                cursor: pointer !important;
+                
+                a {
+                  color: inherit !important; // Ten sam kolor co tekst
+                  text-decoration: underline !important; // Zawsze podkreślone
+                  text-decoration-thickness: 1px !important;
+                  
+                  &:hover {
+                    color: $primary-color-blue !important;
+                  }
+                }
+              }
+            }
+          }
+          
+          // Komunikat błędu
+          .wpforms-error {
+            color: $error-color !important;
+            font-size: map-get($font-sizes, "xs") !important;
+            margin-top: 4px !important;
+          }
+        }
+        
+.wpforms-submit-container {
+  margin-top: 24px !important;
+  padding: 0 !important;
+  
+  button[type="submit"] {
+    background-color: $primary-color-blue !important;
+    color: $white !important;
+    border: none !important;
+    border-radius: map-get($border-radius, "md") !important;
+    font-family: $font-primary !important;
+    font-size: map-get($font-sizes, "button") !important;
+    font-weight: map-get($font-weights, "regular") !important;
+    cursor: pointer !important;
+    transition: ease 0.3s all !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    position: relative !important;
+    
+    &::after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      background-image: url('/wp-content/themes/pen-pol/assets/images/contact-arrow.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-left: 8px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover {
+      background-color: $primary-color-blue-hover !important;
+      
+      &::after {
+        transform: translateX(5px);
+      }
+    }
+    
+    &:focus {
+      background-color: $primary-color-blue-hover !important;
+    }
+    
+    &:focus-visible {
+      outline: none !important;
+      outline-offset: $focus-offset !important;
+    }
+  }
+}
+      }
+    }
+  }
+  
+  &__error {
+    color: $error-color;
+    background-color: $error-color-bg;
+    padding: 16px;
+    border-radius: map-get($border-radius, "md");
+    font-size: map-get($font-sizes, "small");
+  }
+  
+  // =============================================================================
+  // DOSTĘPNOŚĆ I WYDAJNOŚĆ
+  // =============================================================================
+  
+  // Reduced motion
+  @media (prefers-reduced-motion: reduce) {
+    &__link,
+    .wpforms-form input,
+    .wpforms-form textarea,
+    .wpforms-form button {
+      transition: none !important;
+    }
+    
+    .wpforms-form button[type="submit"] {
+      &:hover::after,
+      &:focus::after {
+        transform: none !important;
+      }
+    }
+  }
+  
+  // High contrast mode
+  @media (prefers-contrast: high) {
+    &__form {
+      border: 2px solid $black;
+      box-shadow: none;
+    }
+    
+    .wpforms-form {
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        border-bottom: 2px solid $black !important;
+        
+        &:focus {
+          outline: 2px solid $black !important;
+          box-shadow: none !important;
+        }
+      }
+      
+      button[type="submit"] {
+        border: 2px solid $black !important;
+      }
+    }
+  }
+  
+  // Print styles
+  @media print {
+    &::before {
+      display: none;
+    }
+    
+    &__content {
+      flex-direction: column;
+    }
+    
+    &__form {
+      box-shadow: none;
+      border: 1px solid $light-grey;
+    }
+  }
+}

@@ -13,8 +13,8 @@ get_header();
     <?php get_template_part('template-parts/home/categories'); ?>
     <?php get_template_part('template-parts/home/poradniki'); ?>
     <?php get_template_part('template-parts/home/o-nas'); ?>
-    <?php get_template_part('template-parts/home/faq'); ?>
-    <?php get_template_part('template-parts/home/opinions'); ?>
+    <?php get_template_part('template-parts/global/faq'); ?>
+    <?php get_template_part('template-parts/global/opinions'); ?>
 
     
 </main><!-- #main -->

@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-07-08T20:49:32+00:00\n"
+"PO-Revision-Date: 2025-07-08T20:49:32+00:00\n"
+"Language: \n"
+
+#. Plugin Name of the plugin
+msgid "WPForms Calculations"
+msgstr "WPForms Calculations"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://wpforms.com"
+msgstr "https://wpforms.com"
+
+#. Description of the plugin
+msgid "Adds calculations feature to WPForms."
+msgstr "Dodaje do wtyczki WPForms funkcję obliczeń."
+
+#. Author of the plugin
+msgid "WPForms"
+msgstr "WPForms"
+
+#: src/Admin/Ajax.php:79
+msgid "Your session expired. Please reload the builder."
+msgstr "Sesja wygasła. Wczytaj kreator ponownie."
+
+#: src/Admin/Ajax.php:84
+msgid "You are not allowed to perform this action."
+msgstr "Brak uprawnienia do wykonania tego działania."
+
+#: src/Admin/Ajax.php:89
+#: src/Admin/Ajax.php:97
+msgid "Something went wrong while performing this action."
+msgstr "Podczas wykonywania tego działania coś poszło nie tak."
+
+#: src/Admin/Builder.php:140
+#: src/Admin/Builder.php:280
+msgid "Expand Editor"
+msgstr "Rozwiń edytor"
+
+#: src/Admin/Builder.php:141
+msgid "Collapse Editor"
+msgstr "Zwiń edytor"
+
+#: src/Admin/Builder.php:142
+msgid "Form Fields"
+msgstr "Pola formularza"
+
+#: src/Admin/Builder.php:143
+msgid "The code is correct. Click to re-validate."
+msgstr "Kod jest poprawny. Kliknij, aby zweryfikować ponownie."
+
+#: src/Admin/Builder.php:144
+msgid "The code has errors. Click to re-validate."
+msgstr "Kod zawiera błędy. Kliknij, aby zweryfikować ponownie."
+
+#: src/Admin/Builder.php:145
+msgid "The validation attempt failed, there was a problem communicating with the server"
+msgstr "Próba weryfikacji nie powiodła się, wystąpił problem dotyczący komunikacji z serwerem"
+
+#: src/Admin/Builder.php:146
+msgid "Uh oh!"
+msgstr "O-o!"
+
+#: src/Admin/Builder.php:147
+msgid "Due to the errors listed below, we could not validate your formula. Please revise and try again."
+msgstr "Z powodu niżej wymienionych błędów nie udało się zweryfikować formuły. Popraw błędy i spróbuj ponownie."
+
+#: src/Admin/Builder.php:148
+msgid "Formula validation AJAX call error; Server response text:"
+msgstr "Błąd wywołania AJAX podczas weryfikowania formuły; tekst odpowiedzi serwera:"
+
+#. translators: $%1$s - Variable name.
+#: src/Admin/Builder.php:150
+msgid "Variable %1$s is not allowed. Only $Fx field variables are allowed."
+msgstr "Zmienna %1$s jest niedozwolona. Dozwolone są tylko zmienne pól $Fx."
+
+#. translators: %1$s - Field ID.
+#: src/Admin/Builder.php:152
+msgid "Variable $F%1$s is not allowed. Field with ID %1$s does not exist."
+msgstr "Zmienna $F%1$s jest niedozwolona. Pole o identyfikatorze %1$s nie istnieje."
+
+#. translators: %1$s - Total field ID, %2$s - Single Item field ID.
+#: src/Admin/Builder.php:154
+msgid "Field Total (ID %1$s) could not be used in the Single Item field (ID %2$s)."
+msgstr "Nie można użyć sumy pola (identyfikator %1$s) w polu jednej pozycji (identyfikator %2$s)."
+
+#. translators: %1$s - Field ID, %2$s - field type.
+#: src/Admin/Builder.php:156
+msgid "Variable $F%1$s is not allowed. Field with ID %1$s has type \"%2$s\" which is not allowed."
+msgstr "Zmienna $F%1$s jest niedozwolona. Pole o identyfikatorze %1$s ma rodzaj „%2$s”, co jest niedozwolone."
+
+#. translators: %1$s - Field ID, %2$s - subfield.
+#: src/Admin/Builder.php:158
+msgid "Variable $F%1$s_%2$s is not allowed. Field with ID %1$s do not have \"%2$s\" subfield."
+msgstr "Zmienna $F%1$s_%2$s jest niedozwolona. Pole o identyfikatorze %1$s nie ma pola podrzędnego „%2$s”."
+
+#: src/Admin/Builder.php:159
+msgid "Field"
+msgstr "Pole"
+
+#: src/Admin/Builder.php:160
+msgid "Fields"
+msgstr "Pola"
+
+#: src/Admin/Builder.php:161
+msgid "It's used in calculation in the following field:"
+msgstr "Ten element jest używany w obliczeniach w następującym polu:"
+
+#: src/Admin/Builder.php:162
+msgid "It's used in calculations in the following fields:"
+msgstr "Ten element jest używany w obliczeniach w następujących polach:"
+
+#: src/Admin/Builder.php:202
+msgid "Enable Calculation"
+msgstr "Włącz obliczenia"
+
+#: src/Admin/Builder.php:203
+msgid "Check this option to enable calculations for this field."
+msgstr "Zaznacz tę opcję, aby włączyć obliczenia w tym polu."
+
+#: src/Admin/Builder.php:215
+msgid "Cheatsheet"
+msgstr "Ściągawka"
+
+#: src/Admin/Builder.php:223
+msgid "Formula"
+msgstr "Formuła"
+
+#: src/Admin/Builder.php:224
+msgid "Using your form fields as variables, enter your formula below and ensure there are no extra spaces. Validate your formula when finished."
+msgstr "Używając pól formularza jako zmiennych, wprowadź poniżej formułę i dopilnuj, aby nie było dodatkowych spacji. Na zakończenie zweryfikuj poprawność formuły."
+
+#: src/Admin/Builder.php:255
+msgid "Insert Field"
+msgstr "Wstaw pole"
+
+#: src/Admin/Builder.php:276
+msgid "Validate Formula"
+msgstr "Zweryfikuj formułę"
+
+#: src/Frontend.php:145
+msgid "WPForms Calculations Debug:"
+msgstr "Debugowanie dodatku WPForms Calculations:"
+
+#: src/Frontend.php:146
+msgid "WPForms Calculations Error:"
+msgstr "Błąd dodatku WPForms Calculations:"
+
+#. translators: %s - Field ID.
+#: src/Frontend.php:149
+msgid "Field #%s:"
+msgstr "Pole nr %s:"
+
+#. translators: %s - Field ID.
+#: src/Frontend.php:152
+msgid "Circular reference detected in field #%s."
+msgstr "W polu nr %s wykryto odwołanie cykliczne."
+
+#: src/Frontend.php:153
+msgid "This field is read-only because the value is the result of a calculation."
+msgstr "To pole jest tylko do odczytu, ponieważ jego wartość jest wynikiem obliczeń."
+
+#: src/Process/Fields.php:94
+msgid "Amount can't be negative"
+msgstr "Kwota nie może być ujemna"
+
+#: src/Transpiler/Transpiler.php:346
+msgid "null byte"
+msgstr "bajt null"
+
+#: src/Transpiler/Transpiler.php:347
+msgid "character"
+msgstr "znak"
+
+#. translators: %1$s - unexpected token; %2$s - error location `line:column`.
+#: src/Transpiler/Transpiler.php:356
+msgid "Unexpected %1$s on line %2$s"
+msgstr "Nieoczekiwany element %1$s w wierszu %2$s"
+
+#: src/Transpiler/Transpiler.php:388
+#: src/Transpiler/Validator.php:569
+msgid "unknown"
+msgstr "nieznane"
+
+#: src/Transpiler/Validator.php:143
+msgid "Node is not valid"
+msgstr "Węzeł jest nieprawidłowy"
+
+#. translators: %1$s - Node type; %2$s - error location `line:column`.
+#: src/Transpiler/Validator.php:154
+msgid "Node type `%1$s` is not allowed on line %2$s"
+msgstr "Rodzaj węzła „%1$s” jest niedozwolony w wierszu %2$s"
+
+#. translators: %1$s - Error location `line:column`.
+#: src/Transpiler/Validator.php:200
+msgid "Only explicit function names are allowed on line %1$s"
+msgstr "W wierszu %1$s dozwolone są tylko jawne nazwy funkcji"
+
+#. translators: %1$s - Function name; %2$s - error location `line:column`.
+#: src/Transpiler/Validator.php:215
+msgid "Function `%1$s` is not allowed on line %2$s"
+msgstr "Funkcja „%1$s” jest niedozwolona w wierszu %2$s"
+
+#. translators: %1$s - Function name; %2$s - error location `line:column`.
+#: src/Transpiler/Validator.php:246
+msgid "Function `%1$s` should have %2$s argument(s) on line %3$s"
+msgstr "Funkcja „%1$s” powinna mieć %2$s argument(y) w wierszu %3$s"
+
+#. translators: %1$s - Function name; %2$s - error location `line:column`.
+#: src/Transpiler/Validator.php:264
+msgid "Function `%1$s` should have at least %2$s argument(s) on line %3$s"
+msgstr "Funkcja „%1$s” powinna mieć co najmniej %2$s argument(y) w wierszu %3$s"
+
+#. translators: %1$s - Function name; %2$s - error location `line:column`.
+#: src/Transpiler/Validator.php:285
+msgid "Function `%1$s` should have from %2$s to %3$s argument(s) on line %4$s"
+msgstr "Funkcja „%1$s” powinna mieć od %2$s do %3$s argumentów w wierszu %4$s"
+
+#. translators: %1$s - Variable name; %2$s - variable error; %3$s - error location `line:column`.
+#: src/Transpiler/Validator.php:320
+msgid "Variable $%1$s is not allowed. Only explicit variable names are allowed on line %2$s"
+msgstr "Zmienna $%1$s jest niedozwolona. W wierszu %2$s dozwolone są tylko jawne nazwy zmiennych"
+
+#. translators: %1$s - Variable name; %2$s - variable error; %3$s - error location `line:column`.
+#: src/Transpiler/Validator.php:340
+msgid "Variable $%1$s is not allowed. %2$s on line %3$s"
+msgstr "Zmienna $%1$s jest niedozwolona. %2$s w wierszu %3$s"
+
+#: src/Transpiler/Validator.php:362
+msgid "Variable name is not valid"
+msgstr "Nazwa zmiennej jest nieprawidłowa"
+
+#. translators: %1$s - Field ID.
+#: src/Transpiler/Validator.php:374
+msgid "Field with ID %1$s does not exist"
+msgstr "Pole o identyfikatorze %1$s nie istnieje"
+
+#. translators: %1$s - Field ID; %2$s - field type.
+#: src/Transpiler/Validator.php:387
+msgid "Field with ID %1$s has type `%2$s` which is not allowed"
+msgstr "Pole o identyfikatorze %1$s ma rodzaj „%2$s”, co jest niedozwolone"
+
+#. translators: %1$s - Field ID; %2$s - subfield slug.
+#: src/Transpiler/Validator.php:428
+msgid "Field with ID %1$s does not have subfield `%2$s`"
+msgstr "Pole o identyfikatorze %1$s nie ma pola podrzędnego „%2$s”"

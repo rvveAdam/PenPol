@@ -1,0 +1,249 @@
+// =============================================================================
+// FAQ SECTION - Frequently Asked Questions accordion
+// =============================================================================
+
+.faq-wrapper {
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  background-color: $background-color;
+  background-image: url('/wp-content/uploads/2025/07/Layer_1.png');
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: contain;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+}
+
+.faq-header {
+  margin-bottom: clamp(32px, 6vw, 48px);
+  text-align: left;
+  
+  &__heading {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "tight");
+    color: $primary-text-color;
+    margin: 0;
+    
+    @include desktop-up {
+      font-size: clamp(36px, 3vw, 54px);
+    }
+  }
+}
+
+.faq-content {
+  width: 100%; // Rozciągnięcie na pełną szerokość
+  margin: 0 auto;
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+  &__item {
+    border-bottom: 1px solid $black;
+    transition: all map-get($transitions, "normal");
+  }
+  
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: $primary-text-color;
+    font-size: 20px; // Stały rozmiar czcionki 20px dla nagłówków
+    font-weight: map-get($font-weights, "medium");
+    font-family: $font-primary;
+    transition: all map-get($transitions, "normal");
+    
+    @include desktop-up {
+      padding: 24px 0;
+      font-size: map-get($font-sizes, "h6");
+    }
+    
+    &:hover, &:focus {
+      color: $primary-color-blue;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+    
+    &[aria-expanded="true"] {
+      color: $primary-color-blue;
+      
+      .faq-accordion__icon-plus {
+        opacity: 0;
+        transform: rotate(90deg);
+      }
+      
+      .faq-accordion__icon-minus {
+        opacity: 1;
+        transform: rotate(0);
+      }
+    }
+  }
+  
+  &__question {
+    flex: 1;
+    padding-right: 16px;
+    padding-left: 20px; // Dodanie odsunięcia tekstu w prawo
+  }
+  
+  &__icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    padding-right: 20px;
+    flex-shrink: 0;
+    
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: all map-get($transitions, "normal");
+    }
+  }
+  
+  &__icon-plus {
+    opacity: 1;
+    transform: rotate(0);
+  }
+  
+  &__icon-minus {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+  
+  &__panel {
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    max-height: 0;
+    opacity: 0;
+    
+    &[hidden] {
+      display: block;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    &:not([hidden]) {
+      max-height: 1000px; // Dostatecznie duża wartość, aby zmieścić treść
+      padding-bottom: 24px;
+      opacity: 1;
+    }
+  }
+  
+  &__answer {
+    color: $text-muted;
+    font-size: map-get($font-sizes, "p");
+    line-height: map-get($line-heights, "relaxed");
+    padding-left: 20px;
+    padding-right: 40px; 
+    
+    p {
+      margin-bottom: 1em;
+      color: $text-muted;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    a {
+      color: $primary-color-blue;
+      text-decoration: underline;
+      transition: color map-get($transitions, "fast");
+      
+      &:hover, &:focus {
+        color: $primary-color-blue-hover;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .faq-accordion {
+    &__button {
+      transition: none;
+    }
+    
+    &__icon {
+      img {
+        transition: none;
+      }
+    }
+    
+    &__panel {
+      transition: none;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .faq-accordion {
+    &__item {
+      border-bottom-width: 2px;
+    }
+    
+    &__button[aria-expanded="true"] {
+      font-weight: map-get($font-weights, "bold");
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .faq-wrapper {
+    background-color: $white;
+    padding-block: map-get($spacing, "lg");
+  }
+  
+  .faq-accordion {
+    &__item {
+      border-bottom: 1px solid $black;
+      page-break-inside: avoid;
+      margin-bottom: 16px;
+    }
+    
+    &__button {
+      font-weight: map-get($font-weights, "bold");
+    }
+    
+    &__panel {
+      display: block !important;
+      height: auto !important;
+      opacity: 1 !important;
+      page-break-inside: avoid;
+    }
+    
+    &__icon {
+      display: none;
+    }
+  }
+}

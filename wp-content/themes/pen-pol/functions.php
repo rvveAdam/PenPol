@@ -212,31 +212,39 @@ function pen_pol_scripts() {
 		_S_VERSION,
 		true
 	);
+}
+add_action( 'wp_enqueue_scripts', 'pen_pol_scripts' );
 
-	// Carousel Opinie JS
-	wp_enqueue_script(
-		'home-carousel-js',
-		get_template_directory_uri() . '/assets/dist/home-carousel.js',
-		array('swiper-js'),
-		_S_VERSION,
-		true
-	);
-
-	/**
-	 * Header
-	 */
-	function pen_pol_header_scripts() {
+/**
+ * Carousel Opinie JS
+ */
+function pen_pol_opinions_scripts() {
+	// Sprawdź czy jesteśmy na stronie głównej LUB na stronie O nas
+	if (is_front_page() || is_page('o-nas')) {
 		wp_enqueue_script(
-			'pen-pol-header-scripts',
-			get_template_directory_uri() . '/assets/dist/header.js',
-			array(),
+			'home-carousel',
+			get_template_directory_uri() . '/assets/dist/home-carousel.js',
+			array('swiper-js'),
 			_S_VERSION,
 			true
 		);
 	}
-	add_action('wp_enqueue_scripts', 'pen_pol_header_scripts');
 }
-add_action( 'wp_enqueue_scripts', 'pen_pol_scripts' );
+add_action('wp_enqueue_scripts', 'pen_pol_opinions_scripts');
+
+/**
+ * Header
+ */
+function pen_pol_header_scripts() {
+	wp_enqueue_script(
+		'pen-pol-header-scripts',
+		get_template_directory_uri() . '/assets/dist/header.js',
+		array(),
+		_S_VERSION,
+		true
+	);
+}
+add_action('wp_enqueue_scripts', 'pen_pol_header_scripts');
 
 /**
  * Implement the Custom Header feature.
