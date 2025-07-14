@@ -213,62 +213,97 @@ function pen_pol_scripts() {
 		true
 	);
 }
-add_action( 'wp_enqueue_scripts', 'pen_pol_scripts' );
+	add_action( 'wp_enqueue_scripts', 'pen_pol_scripts' );
 
-/**
- * Carousel Opinie JS
- */
-function pen_pol_opinions_scripts() {
-	// Sprawdź czy jesteśmy na stronie głównej LUB na stronie O nas
-	if (is_front_page() || is_page('o-nas')) {
+	/**
+	 * Carousel Opinie JS
+	 */
+	function pen_pol_opinions_scripts() {
+		// Sprawdź czy jesteśmy na stronie głównej LUB na stronie O nas
+		if (is_front_page() || is_page('o-nas') || is_single()) {
+			wp_enqueue_script(
+				'home-carousel',
+				get_template_directory_uri() . '/assets/dist/home-carousel.js',
+				array('swiper-js'),
+				_S_VERSION,
+				true
+			);
+		}
+	}
+	add_action('wp_enqueue_scripts', 'pen_pol_opinions_scripts');
+
+	/**
+	 * Header
+	 */
+	function pen_pol_header_scripts() {
 		wp_enqueue_script(
-			'home-carousel',
-			get_template_directory_uri() . '/assets/dist/home-carousel.js',
-			array('swiper-js'),
+			'pen-pol-header-scripts',
+			get_template_directory_uri() . '/assets/dist/header.js',
+			array(),
 			_S_VERSION,
 			true
 		);
 	}
+	add_action('wp_enqueue_scripts', 'pen_pol_header_scripts');
+
+	/**
+	 * Implement the Custom Header feature.
+	 */
+	require get_template_directory() . '/inc/custom-header.php';
+
+	/**
+	 * Custom template tags for this theme.
+	 */
+	require get_template_directory() . '/inc/template-tags.php';
+
+	/**
+	 * Functions which enhance the theme by hooking into WordPress.
+	 */
+	require get_template_directory() . '/inc/template-functions.php';
+
+	/**
+	 * Customizer additions.
+	 */
+	require get_template_directory() . '/inc/customizer.php';
+
+	/**
+	 * Load Jetpack compatibility file.
+	 */
+	if ( defined( 'JETPACK__VERSION' ) ) {
+		require get_template_directory() . '/inc/jetpack.php';
+	}
+
+	// Woocommerce
+add_theme_support('woocommerce');
+// Remove WooCommerce Styles
+function remove_woocommerce_styles($enqueue_styles) {
+    unset( $enqueue_styles['woocommerce-general'] );    // Remove the gloss
+    unset( $enqueue_styles['woocommerce-layout'] );     // Remove the layout
+    unset( $enqueue_styles['woocommerce-smallscreen'] );    // Remove the smallscreen optimisation
+    return $enqueue_styles;
 }
-add_action('wp_enqueue_scripts', 'pen_pol_opinions_scripts');
-
-/**
- * Header
- */
-function pen_pol_header_scripts() {
-	wp_enqueue_script(
-		'pen-pol-header-scripts',
-		get_template_directory_uri() . '/assets/dist/header.js',
-		array(),
-		_S_VERSION,
-		true
-	);
+add_filter( 'woocommerce_enqueue_styles',  'remove_woocommerce_styles');
+// Woocommerce style
+function wp_enqueue_woocommerce_style(){
+    wp_register_style( 'pen-pol', get_template_directory_uri() . '/assets/scss/woocommerce/woocommerce.css' );
+    if ( class_exists( 'woocommerce' ) ) {
+        wp_enqueue_style( 'pen-pol' );
+    }
 }
-add_action('wp_enqueue_scripts', 'pen_pol_header_scripts');
+add_action( 'wp_enqueue_scripts', 'wp_enqueue_woocommerce_style' );
 
 /**
- * Implement the Custom Header feature.
+ * Ograniczenie liczby wpisów na stronach archiwum do 5
+ *
+ * @param WP_Query $query Obiekt zapytania.
  */
-require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+function pen_pol_archive_posts_per_page($query) {
+    // Tylko na front-endzie i tylko dla głównego zapytania
+    if (!is_admin() && $query->is_main_query()) {
+        // Dla archiwów, kategorii, tagów i strony głównej bloga
+        if ($query->is_archive() || $query->is_home()) {
+            $query->set('posts_per_page', 5);
+        }
+    }
 }
+add_action('pre_get_posts', 'pen_pol_archive_posts_per_page');

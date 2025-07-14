@@ -290,6 +290,13 @@
   padding: map-get($spacing, "xs") 0;
   box-shadow: none;
   
+  @media (max-width: 767px) { // Dla urządzeń mobilnych
+    width: 100%;
+    justify-content: space-between;
+    padding: 4px 15px;
+    box-sizing: border-box;
+  }
+  
   &:hover:not(:disabled):not(.btn--disabled):not(.btn--loading) {
     border-bottom-color: $black;
     transform: none;
@@ -316,26 +323,71 @@
   
   // Light variant for dark backgrounds
   &--light {
-  color: $white;
-  
-  &:hover:not(:disabled):not(.btn--disabled):not(.btn--loading) {
-    color: rgba($white, 0.9);
-    border-bottom-color: $white;
+    color: $white;
+    
+    &:hover:not(:disabled):not(.btn--disabled):not(.btn--loading) {
+      color: rgba($white, 0.9);
+      border-bottom-color: $white;
+      
+      .btn__icon {
+        transform: translateX(8px); // Mocniejsze przesunięcie dla lepszej widoczności
+      }
+    }
+    
+    &:focus-visible {
+      outline-color: $white;
+      border-bottom-color: $white;
+    }
     
     .btn__icon {
-      transform: translateX(8px); // Mocniejsze przesunięcie dla lepszej widoczności
+      filter: brightness(0) invert(1); // Białe SVG
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .blog-section {
+    background-color: transparent;
+    
+    &__swiper {
+      .swiper-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      .swiper-slide {
+        width: 100%;
+      }
+      
+      .swiper-pagination {
+        display: none;
+      }
     }
   }
   
-  &:focus-visible {
-    outline-color: $white;
-    border-bottom-color: $white;
+  .post-card {
+    box-shadow: none;
+    border: 1px solid $light-grey;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    
+    &__image {
+      transition: none;
+      
+      .post-card:hover & {
+        transform: none;
+      }
+    }
+    
+    &__form {
+      display: none;
+    }
   }
-  
-  .btn__icon {
-    filter: brightness(0) invert(1); // Białe SVG
-  }
-}
 }
 
 // =============================================================================

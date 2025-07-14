@@ -1,0 +1,300 @@
+// =============================================================================
+// FAVORITES PAGE - Stylowanie strony ulubionych produktów
+// =============================================================================
+
+.favorites-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  width: 100%;
+  gap: 10em;
+  padding: map-get($spacing, "2xl") $section-padding-inline map-get($spacing, "5xl") $section-padding-inline;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+}
+
+.favorites-page-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+// =============================================================================
+// PAGE HEADER
+// =============================================================================
+
+.page-header {
+  text-align: center;
+}
+
+.page-title {
+  font-size: map-get($font-sizes, "h2");
+  margin-bottom: map-get($spacing, "sm");
+  color: $primary-text-color;
+  font-family: $font-primary;
+  font-weight: map-get($font-weights, "semibold");
+}
+
+.page-description {
+  font-size: map-get($font-sizes, "p");
+  color: $text-muted;
+  margin: 0;
+  font-weight: map-get($font-weights, "regular");
+}
+
+// =============================================================================
+// FAVORITES CONTROLS
+// =============================================================================
+
+.favorites-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: map-get($spacing, "xl");
+  padding: map-get($spacing, "lg");
+  border-radius: map-get($border-radius, "md");
+  
+  .favorites-count-info {
+    font-size: map-get($font-sizes, "p");
+    color: $primary-text-color;
+    font-weight: map-get($font-weights, "regular");
+    
+    .count {
+      font-weight: map-get($font-weights, "bold");
+      color: $primary-color-blue;
+    }
+  }
+}
+
+// =============================================================================
+// FAVORITES GRID
+// =============================================================================
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: map-get($spacing, "xl");
+  margin-top: map-get($spacing, "xl");
+}
+
+// =============================================================================
+// NO FAVORITES STATE
+// =============================================================================
+
+.no-favorites {
+  text-align: center;
+  padding: map-get($spacing, "6xl") map-get($spacing, "lg");
+  border-radius: map-get($border-radius, "lg");
+  margin-top: map-get($spacing, "2xl");
+  
+  &-icon {
+    margin-bottom: map-get($spacing, "lg");
+    
+    img {
+      width: 80px;
+      height: 80px;
+      opacity: 0.5;
+    }
+  }
+  
+  h2 {
+    font-size: map-get($font-sizes, "h3");
+    margin-bottom: map-get($spacing, "md");
+    color: $primary-text-color;
+    font-family: $font-primary;
+    font-weight: map-get($font-weights, "semibold");
+  }
+  
+  p {
+    font-size: map-get($font-sizes, "p");
+    color: $text-muted;
+    margin-bottom: map-get($spacing, "xl");
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: map-get($font-weights, "regular");
+    line-height: map-get($line-heights, "relaxed");
+  }
+  
+  .button {
+    display: inline-block;
+  }
+}
+
+// =============================================================================
+// FAVORITES COUNT
+// =============================================================================
+
+.favorites-count {
+  &:empty,
+  &[style*="display: none"] {
+    display: none !important;
+  }
+}
+
+// =============================================================================
+// MENU LINK & WIDGET
+// =============================================================================
+
+.favorites-menu-link {
+  position: relative;
+}
+
+.menu-item-favorites {
+  position: relative;
+}
+
+.favorites-widget {
+  text-align: center;
+  
+  &-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: map-get($spacing, "sm");
+    padding: map-get($spacing, "sm");
+    text-decoration: none;
+    color: inherit;
+    transition: map-get($transitions, "normal");
+    
+    &:hover {
+      color: $primary-color-blue;
+    }
+  }
+  
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// =============================================================================
+// NOTIFICATIONS
+// =============================================================================
+
+.favorite-notification {
+  position: fixed;
+  top: map-get($spacing, "lg");
+  right: map-get($spacing, "lg");
+  z-index: map-get($z-index, "toast");
+  max-width: 300px;
+}
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+.favorite-product {
+  transition: opacity map-get($transitions, "normal"), transform map-get($transitions, "normal");
+  
+  &.removing {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+// =============================================================================
+// RESPONSIVE DESIGN
+// =============================================================================
+
+@include tablet-up {
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: map-get($spacing, "lg");
+  }
+  
+  .favorites-controls {
+    flex-direction: column;
+    gap: map-get($spacing, "md");
+    text-align: center;
+  }
+  
+  .page-title {
+    font-size: map-get($font-sizes, "h3");
+  }
+  
+  .no-favorites {
+    padding: map-get($spacing, "2xl") map-get($spacing, "md");
+  }
+  
+  .favorite-notification {
+    left: map-get($spacing, "lg");
+    right: map-get($spacing, "lg");
+    max-width: none;
+  }
+}
+
+@include mobile-up {
+  .favorites-page {
+    padding: map-get($spacing, "lg") 0;
+  }
+  
+  .page-title {
+    font-size: map-get($font-sizes, "h4");
+  }
+  
+  .favorites-grid {
+    grid-template-columns: 1fr;
+    gap: map-get($spacing, "md");
+  }
+  
+  .clear-all-favorites {
+    padding: map-get($spacing, "sm") map-get($spacing, "lg");
+    font-size: map-get($font-sizes, "p");
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .favorite-product {
+    transition: none;
+    
+    &.removing {
+      transform: none;
+    }
+  }
+  
+  .favorites-widget-link {
+    transition: none;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .favorites-controls {
+    border: 2px solid $primary-text-color;
+  }
+  
+  .no-favorites {
+    border: 2px solid $primary-text-color;
+  }
+}
+
+// Print styles
+@media print {
+  .favorite-notification {
+    display: none;
+  }
+  
+  .favorites-controls {
+    border: 1px solid $light-grey;
+  }
+  
+  .favorites-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: map-get($spacing, "md");
+  }
+}

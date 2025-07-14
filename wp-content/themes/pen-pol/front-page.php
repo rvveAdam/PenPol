@@ -15,8 +15,9 @@ get_header();
     <?php get_template_part('template-parts/home/o-nas'); ?>
     <?php get_template_part('template-parts/global/faq'); ?>
     <?php get_template_part('template-parts/global/opinions'); ?>
+    <?php get_template_part('template-parts/home/blog'); ?>
+    <div class="swiper-pagination"></div>
 
-    
 </main><!-- #main -->
 
 <?php

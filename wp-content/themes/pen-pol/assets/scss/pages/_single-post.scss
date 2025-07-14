@@ -1,0 +1,730 @@
+// =============================================================================
+// SINGLE POST PAGE - Styles for single blog post template
+// =============================================================================
+
+.single-post {
+  width: 100%;
+  position: relative;
+  
+  // =============================================================================
+  // HERO SECTION - Adapted from homepage hero, simplified for single post
+  // =============================================================================
+  
+  &__hero-wrapper {
+    width: 100%;
+    position: relative;
+  }
+  
+  &__hero-container {
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px; // Dodany padding 20px dla efektu białego tła
+    box-sizing: border-box;
+  }
+  
+  &__hero {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    min-height: 400px;
+    max-height: 600px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: map-get($shadows, "lg");
+    
+    @include mobile-up {
+      min-height: 500px;
+    }
+    
+    @include desktop-up {
+      min-height: 600px;
+    }
+  }
+  
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    
+    // Desktop image - hidden on mobile
+    &--desktop {
+      display: none;
+      
+      @include tablet-up {
+        display: block;
+      }
+    }
+    
+    // Mobile image - visible only on mobile
+    &--mobile {
+      display: block;
+      
+      @include tablet-up {
+        display: none;
+      }
+    }
+  }
+  
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      rgba($black, 0.9) 0%,     // Mocniejszy czarny na dole
+      rgba($black, 0.8) 20%,    // Mocniejszy gradient
+      rgba($black, 0.6) 40%,    // Rozciągnięty gradient
+      rgba($black, 0.3) 60%,    // Rozciągnięty gradient
+      rgba($black, 0.2) 80%,    // Lekki gradient na górze
+      rgba($black, 0.0) 100%    // Przezroczysty na samej górze
+    );
+    z-index: 2;
+  }
+  
+  &__content-wrapper {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding-inline: $section-padding-inline;
+    padding-bottom: map-get($spacing, "lg");
+    box-sizing: border-box;
+    
+    @include tablet-up {
+      padding-inline: $section-padding-inline-tablet;
+      bottom: 7%;
+      padding-bottom: map-get($spacing, "xl");
+    }
+    
+    @include desktop-up {
+      padding-inline: $section-padding-inline-desktop;
+      bottom: 10%;
+    }
+  }
+  
+  &__breadcrumbs {
+    display: flex;
+    align-items: center;
+    margin-bottom: map-get($spacing, "md");
+    
+    a, span {
+      font-family: $font-primary;
+      font-size: 13px;
+      font-weight: map-get($font-weights, "regular");
+      color: $white;
+      text-decoration: none;
+      transition: color map-get($transitions, "fast");
+      
+      &:hover {
+        color: rgba($white, 0.8);
+      }
+    }
+    
+    .separator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 map-get($spacing, "xs");
+      
+      img {
+        width: 10px;
+        height: 10px;
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+  
+  &__header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: map-get($spacing, "md");
+    border-bottom: 1px solid rgba($white, 0.4);
+    
+    @include desktop-up {
+      width: 100%; // Rozciągnięty border na całą szerokość
+    }
+  }
+  
+  &__title {
+    font-family: $font-primary;
+    font-size: clamp(32px, 8vw, 64px);
+    font-weight: map-get($font-weights, "light"); // Zmieniony font-weight z medium na light
+    line-height: map-get($line-heights, "tight");
+    color: $white;
+    margin: 0;
+    
+    @include desktop-up {
+      width: 65%;
+    }
+  }
+  
+  &__excerpt-wrapper {
+    margin-top: map-get($spacing, "md"); // Dodane margines po przeniesieniu pod border
+  }
+  
+  &__excerpt {
+    font-family: $font-primary;
+    font-size: 20px;
+    font-weight: map-get($font-weights, "super-light");
+    line-height: map-get($line-heights, "relaxed");
+    color: $white;
+    margin: 0;
+    
+    @include desktop-up {
+      width: 75%;
+    }
+  }
+  
+  // =============================================================================
+  // MAIN CONTENT SECTION - Two column layout
+  // =============================================================================
+  
+  &__main {
+    padding-block: $section-padding-block;
+    padding-inline: $section-padding-inline;
+    background-color: $white;
+    
+    @include tablet-up {
+      padding-inline: $section-padding-inline-tablet;
+    }
+    
+    @include desktop-up {
+      padding-inline: $section-padding-inline-desktop;
+    }
+  }
+  
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($spacing, "2xl");
+    max-width: $container-max-width;
+    margin: 0 auto;
+    width: 100%;
+    
+    @include tablet-up {
+      flex-direction: row;
+      
+      .single-post__content {
+        width: 65%; // 65/35 na tabletach
+      }
+      
+      .single-post__sidebar {
+        width: 35%; // 65/35 na tabletach
+      }
+    }
+    
+    @include desktop-up {
+      .single-post__content {
+        width: 70%; // 70/30 na desktopie
+      }
+      
+      .single-post__sidebar {
+        width: 30%; // 70/30 na desktopie
+      }
+    }
+  }
+  
+  // =============================================================================
+  // CONTENT COLUMN - 70% width on desktop, 65% on tablet
+  // =============================================================================
+  
+  &__content {
+    width: 100%;
+    
+    // Typography for post content
+    h1, h2, h3, h4, h5, h6 {
+      font-family: $font-primary;
+      font-weight: map-get($font-weights, "regular"); // Zmniejszony font-weight o jeden stopień
+      color: $primary-text-color;
+      margin-top: map-get($spacing, "2xl");
+      margin-bottom: map-get($spacing, "md");
+      
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    
+    h1 {
+      font-size: map-get($font-sizes, "h2");
+    }
+    
+    h2 {
+      font-size: map-get($font-sizes, "h3");
+    }
+    
+    h3 {
+      font-size: map-get($font-sizes, "h4");
+    }
+    
+    h4 {
+      font-size: 22px;
+    }
+    
+    h5 {
+      font-size: map-get($font-sizes, "h6");
+    }
+    
+    h6 {
+      font-size: map-get($font-sizes, "p");
+    }
+    
+    p {
+      font-family: $font-primary;
+      font-size: 16px;
+      font-weight: map-get($font-weights, "regular");
+      line-height: map-get($line-heights, "relaxed");
+      color: $primary-text-color;
+      margin-bottom: map-get($spacing, "lg");
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    // Lists
+    ul, ol {
+      margin-bottom: map-get($spacing, "lg");
+      padding-left: map-get($spacing, "xl");
+      
+      li {
+        font-family: $font-primary;
+        font-size: 16px;
+        font-weight: map-get($font-weights, "regular");
+        line-height: map-get($line-heights, "relaxed");
+        color: $primary-text-color;
+        margin-bottom: map-get($spacing, "sm");
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    
+    // Blockquotes
+    blockquote {
+      border-left: 4px solid $primary-color-blue;
+      padding-left: map-get($spacing, "lg");
+      margin: map-get($spacing, "xl") 0;
+      font-style: italic;
+      
+      p {
+        font-size: 18px;
+        color: $secondary-text-color;
+      }
+      
+      cite {
+        display: block;
+        font-style: normal;
+        font-weight: map-get($font-weights, "medium");
+        margin-top: map-get($spacing, "md");
+        font-size: 16px;
+      }
+    }
+    
+    // Tables
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: map-get($spacing, "xl");
+      
+      th, td {
+        border: 1px solid $light-grey;
+        padding: map-get($spacing, "md");
+        text-align: left;
+        font-size: 16px;
+      }
+      
+      th {
+        font-weight: map-get($font-weights, "semibold");
+        background-color: $background-color;
+      }
+      
+      tr:nth-child(even) {
+        background-color: $background-color;
+      }
+    }
+    
+    // Images
+    figure {
+      margin: map-get($spacing, "xl") 0;
+      
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: map-get($border-radius, "md");
+        display: block;
+      }
+      
+      figcaption {
+        margin-top: map-get($spacing, "sm");
+        font-size: 14px;
+        color: $text-muted;
+        text-align: center;
+      }
+    }
+    
+    .wp-block-image {
+      margin: map-get($spacing, "xl") 0;
+      
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: map-get($border-radius, "md");
+        display: block;
+      }
+      
+      figcaption {
+        margin-top: map-get($spacing, "sm");
+        font-size: 14px;
+        color: $text-muted;
+        text-align: center;
+      }
+    }
+    
+    // Code blocks
+    pre {
+      background-color: $background-color;
+      padding: map-get($spacing, "lg");
+      border-radius: map-get($border-radius, "md");
+      overflow-x: auto;
+      margin: map-get($spacing, "xl") 0;
+      
+      code {
+        font-family: monospace;
+        font-size: 14px;
+        line-height: 1.4;
+        color: $primary-text-color;
+      }
+    }
+    
+    code {
+      font-family: monospace;
+      font-size: 14px;
+      background-color: $background-color;
+      padding: 2px 4px;
+      border-radius: map-get($border-radius, "sm");
+    }
+  }
+  
+// =============================================================================
+// POST NAVIGATION - Buttons at the bottom of content
+// =============================================================================
+
+&__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: map-get($spacing, "3xl");
+  padding-top: map-get($spacing, "xl");
+  border-top: 1px solid $light-grey;
+  
+  &-btn {
+    display: flex;
+    align-items: center;
+    font-family: $font-primary;
+    font-size: 16px; // Zwiększone z 14px
+    font-weight: map-get($font-weights, "medium");
+    color: $primary-text-color;
+    text-decoration: none;
+    transition: color map-get($transitions, "fast");
+    padding: 10px 16px; // Dodane padding dla większego obszaru kliknięcia
+    border-radius: map-get($border-radius, "sm");
+    
+    &:hover {
+      color: $primary-color-blue;
+      
+      img {
+        filter: invert(22%) sepia(84%) saturate(2356%) hue-rotate(236deg) brightness(84%) contrast(91%);
+      }
+    }
+    
+    img {
+      width: 14px; // Zwiększone z 10px
+      height: 14px; // Zwiększone z 10px
+      transition: filter map-get($transitions, "normal"), 
+      transform map-get($transitions, "normal"); // Dodanie transform do transition
+    }
+    
+    &--prev {
+      img {
+        margin-right: map-get($spacing, "sm"); // Zwiększony odstęp między ikoną a tekstem
+      }
+      
+      &:hover img {
+        transform: translateX(-4px); // Przesunięcie strzałki w lewo na hover
+      }
+    }
+    
+    &--next {
+      img {
+        margin-left: map-get($spacing, "sm"); // Zwiększony odstęp między tekstem a ikoną
+      }
+      
+      &:hover img {
+        transform: translateX(4px); // Przesunięcie strzałki w prawo na hover
+      }
+    }
+  }
+}
+
+// Dodanie obsługi dla prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  &__navigation-btn {
+    img {
+      transition: filter map-get($transitions, "normal"); // Usunięcie transform z transition
+    }
+    
+    &--prev, &--next {
+      &:hover img {
+        transform: none; // Wyłączenie animacji przesunięcia
+      }
+    }
+  }
+}
+
+
+  // =============================================================================
+  // SIDEBAR COLUMN - 30% width on desktop, 35% on tablet with sticky behavior
+  // =============================================================================
+  
+  &__sidebar {
+    width: 100%;
+    
+    &-inner {
+      @include desktop-up {
+        position: sticky;
+        top: 140px; // 70px + header height
+        padding-bottom: map-get($spacing, "2xl");
+      }
+    }
+  }
+  
+  // Newsletter card in sidebar
+  &__newsletter {
+    background-color: $white;
+    border-radius: map-get($border-radius, "lg");
+    box-shadow: map-get($shadows, "md");
+    padding: map-get($spacing, "xl");
+    margin-bottom: map-get($spacing, "2xl");
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // Dodane efekty hover
+    
+    &:hover {
+      transform: translateY(-3px); // Efekt hover jak w kafelkach blogowych
+      box-shadow: map-get($shadows, "lg");
+    }
+    
+    &-title {
+      font-family: $font-primary;
+      font-size: 32px;
+      font-weight: map-get($font-weights, "medium");
+      line-height: map-get($line-heights, "tight");
+      color: $primary-text-color;
+      margin: 0 0 map-get($spacing, "md") 0;
+      
+      @include desktop-up {
+        width: 85%;
+      }
+    }
+    
+    &-text {
+      font-family: $font-primary;
+      font-size: 16px;
+      font-weight: map-get($font-weights, "regular");
+      line-height: map-get($line-heights, "relaxed");
+      color: $text-muted;
+      margin-bottom: map-get($spacing, "lg");
+    }
+  }
+  
+  // Products section in sidebar
+  &__products {
+    margin-top: map-get($spacing, "2xl");
+    
+    &-title {
+      font-family: $font-secondary;
+      font-size: 32px;
+      font-weight: map-get($font-weights, "medium");
+      line-height: map-get($line-heights, "tight");
+      color: $primary-text-color;
+      margin: 0 0 map-get($spacing, "lg") 0;
+      font-style: italic; // Dodany font-style: italic
+    }
+    
+    &-placeholder {
+      min-height: 100px;
+      border: 1px dashed $light-grey;
+      border-radius: map-get($border-radius, "md");
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      
+      &::after {
+        content: 'Miejsce na produkty';
+        color: $text-light;
+        font-size: 14px;
+      }
+    }
+  }
+  
+  // =============================================================================
+  // RELATED POSTS SECTION - Adapted from blog section
+  // =============================================================================
+  
+  &__related {
+    padding-block: $section-padding-block;
+    padding-inline: $section-padding-inline;
+    background-color: $background-color;
+    
+    @include tablet-up {
+      padding-inline: $section-padding-inline-tablet;
+    }
+    
+    @include desktop-up {
+      padding-inline: $section-padding-inline-desktop;
+    }
+  }
+  
+  &__related-container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  &__related-header {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($spacing, "lg");
+    margin-bottom: clamp(32px, 6vw, 48px);
+    
+    @include tablet-up {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  &__related-title {
+    font-size: map-get($font-sizes, "h2");
+    line-height: map-get($line-heights, "tight");
+    color: $primary-text-color;
+    margin: 0;
+    
+    &-accent {
+      font-family: $font-secondary;
+      font-style: italic;
+      font-weight: map-get($font-weights, "regular"); // Zmniejszony font-weight
+    }
+    
+    &-main {
+      font-family: $font-primary;
+      font-weight: map-get($font-weights, "regular"); // Zmniejszony font-weight
+    }
+  }
+  
+  &__related-cta {
+    @include tablet-up {
+      width: auto;
+    }
+  }
+  
+  // =============================================================================
+  // ACCESSIBILITY & PERFORMANCE
+  // =============================================================================
+  
+  // Reduced motion preferences
+  @media (prefers-reduced-motion: reduce) {
+    &__navigation-btn {
+      transition: none;
+      
+      img {
+        transition: none;
+      }
+    }
+    
+    &__newsletter {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+  }
+  
+  // High contrast mode support
+  @media (prefers-contrast: high) {
+    &__overlay {
+      background: linear-gradient(
+        to top,
+        rgba($black, 0.9) 0%,
+        rgba($black, 0.7) 50%,
+        rgba($black, 0.4) 100%
+      );
+    }
+    
+    &__breadcrumbs {
+      a, span {
+        color: $white;
+        text-decoration: underline;
+      }
+    }
+    
+    &__navigation {
+      border-top: 2px solid $black;
+      
+      &-btn {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  // Print styles
+  @media print {
+    &__hero {
+      height: auto;
+      min-height: auto;
+      max-height: 300px;
+    }
+    
+    &__overlay {
+      background: rgba($black, 0.3);
+    }
+    
+    &__title,
+    &__excerpt {
+      color: $black !important;
+    }
+    
+    &__container {
+      flex-direction: column;
+    }
+    
+    &__sidebar {
+      display: none;
+    }
+    
+    &__content {
+      width: 100%;
+    }
+    
+    &__related {
+      display: none;
+    }
+  }
+}

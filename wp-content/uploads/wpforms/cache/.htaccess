@@ -1,7 +1,8 @@
 
 # BEGIN WPForms
-# Dyrektywy zawarte między „BEGIN WPForms” oraz „END WPForms” są generowane dynamicznie i powinny być modyfikowane tylko za pomocą
-# filtrów WordPressa. Zmiany dokonane bezpośrednio tutaj będą nadpisywane.
+# The directives (lines) between "BEGIN WPForms" and "END WPForms" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
 # Disable access for any file in the cache dir.
 # Apache 2.2
 <IfModule !authz_core_module>

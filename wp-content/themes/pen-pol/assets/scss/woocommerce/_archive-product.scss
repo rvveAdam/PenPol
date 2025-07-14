@@ -1,0 +1,464 @@
+// =============================================================================
+// SHOP ARCHIVE - Product category and shop main page styles
+// =============================================================================
+
+.shop-archive {
+  background-color: $background-color; // Tło całej podstrony z variables
+  
+  // Breadcrumbs styling (now outside banner)
+  &__breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    padding: 10px 0; // Dodatkowy padding dla lepszej widoczności
+    position: relative; // Zapewnienie, że będą widoczne
+    z-index: 5; // Wyższy z-index, aby nie były przesłonięte
+    background-color: $background-color; // Explicit background color
+    border-bottom: 1px solid rgba($black, 0.05); // Light border for better visibility
+    
+    a, span:not(.separator) {
+      font-family: $font-primary;
+      font-size: 15px;
+      font-weight: map-get($font-weights, "semibold");
+      color: $text-muted;
+      text-decoration: none;
+    }
+    
+    a {
+      transition: color 0.2s ease;
+      
+      &:hover, &:focus {
+        color: $primary-color-blue;
+      }
+    }
+    
+    span[aria-current="page"] {
+      color: $primary-text-color;
+    }
+    
+    .separator {
+      display: inline-flex;
+      align-items: center;
+      margin: 0 8px;
+      
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+  
+  // Banner section with background image
+  &__banner {
+    padding-inline: $section-padding-inline;
+    padding-top: 40px; // Zmniejszony padding top, bo breadcrumbs są teraz poza bannerem
+    padding-bottom: 40px;
+    
+    @include tablet-up {
+      padding-inline: $section-padding-inline-tablet;
+      padding-bottom: 60px;
+    }
+    
+    @include desktop-up {
+      padding-inline: $section-padding-inline-desktop;
+    }
+    
+    &-inner {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: map-get($border-radius, "lg");
+      padding: 40px;
+      min-height: 250px; 
+      display: flex;
+      align-items: center;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($black, 0.4);
+        border-radius: map-get($border-radius, "lg");
+        z-index: 1;
+      }
+      
+      .shop-archive__header {
+        position: relative;
+        z-index: 2; // Nad nakładką
+        width: 100%;
+      }
+      
+      @include tablet-up {
+        padding: 60px;
+      }
+      
+      // Wyższa wersja bannera, gdy są kafelki
+      &--with-tiles {
+        min-height: 300px;
+        
+        @include tablet-up {
+          min-height: 350px;
+        }
+        
+        @include desktop-up {
+          min-height: 300px;
+        }
+      }
+    }
+  }
+  
+  // Header with title and info tiles
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center; // Wyśrodkowanie na całej szerokości
+    text-align: center; // Wyśrodkowanie tekstów
+    
+    @include tablet-up {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; // Wyśrodkowanie w pionie
+      text-align: left; // Przywrócenie tekstu do lewej na tabletach
+    }
+  }
+  
+  // Title container
+  &__title-container {
+    flex: 1;
+    max-width: 100%;
+    
+    @include tablet-up {
+      max-width: 45%;
+    }
+  }
+  
+  &__parent-category {
+    font-family: $font-primary;
+    font-size: 24px;
+    font-weight: map-get($font-weights, "medium");
+    color: $white; // Zmieniono na biały kolor
+    margin-bottom: 10px;
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      
+      &:hover, &:focus {
+        color: rgba($white, 0.8); // Jaśniejszy hover dla białego tekstu
+      }
+    }
+  }
+  
+  &__title {
+    font-family: $font-primary;
+    font-size: clamp(32px, 5vw, 40px);
+    font-weight: map-get($font-weights, "bold");
+    color: $white; // Zmieniono na biały kolor
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  // Info tiles
+  &__info-tiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 100%;
+    
+    @include mobile-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include tablet-up {
+      max-width: 50%; // Zmienione z 60% na 50% zgodnie z wymogiem
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  &__info-tile {
+    background-color: $white;
+    border-radius: map-get($border-radius, "md");
+    padding: 20px;
+    box-shadow: map-get($shadows, "sm");
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover, &:focus-within {
+      transform: translateY(-3px);
+      box-shadow: map-get($shadows, "md");
+    }
+  }
+  
+  &__info-tile-title {
+    font-family: $font-secondary;
+    font-size: 16px;
+    font-weight: map-get($font-weights, "medium");
+    font-style: italic;
+    color: rgba(51, 51, 51, 0.63);
+    margin: 0 0 10px 0;
+  }
+  
+  &__info-tile-content {
+    font-family: $font-primary;
+    font-size: 20px;
+    font-weight: map-get($font-weights, "medium");
+    color: $primary-text-color;
+  }
+  
+  // Filters section
+  &__filters {
+    padding: 20px 0;
+    background-color: $background-color;
+    padding-inline: $section-padding-inline;
+    border-bottom: 1px solid $light-grey;
+    
+    @include tablet-up {
+      padding-inline: $section-padding-inline-tablet;
+    }
+    
+    @include desktop-up {
+      padding-inline: $section-padding-inline-desktop;
+    }
+    
+    .woocommerce-ordering {
+      margin-bottom: 0;
+    }
+    
+    .woocommerce-result-count {
+      margin-bottom: 0;
+      padding: 8px 0;
+    }
+  }
+  
+  // Products section
+  &__products {
+    padding: 40px 0;
+    padding-inline: $section-padding-inline;
+    
+    @include tablet-up {
+      padding-inline: $section-padding-inline-tablet;
+    }
+    
+    @include desktop-up {
+      padding-inline: $section-padding-inline-desktop;
+    }
+  }
+  
+  // Product grid
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px; // Zwiększony gap z 20px na 30px
+    
+    @include mobile-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include tablet-up {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @include desktop-up {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    // Dodane style dla stanu ładowania
+    &.loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  }
+  
+  // Pagination
+  &__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    
+    &-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 15px;
+      
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        img {
+          width: 24px;
+          height: 24px;
+          transition: transform 0.2s ease;
+        }
+        
+        &:hover:not(.disabled):not([aria-disabled="true"]) img {
+          transform: translateX(-3px);
+        }
+        
+        &:focus-visible {
+          outline: $focus-width $focus-style $focus-color;
+          outline-offset: $focus-offset;
+        }
+        
+        &.disabled, &[aria-disabled="true"] {
+          opacity: 0.5;
+          cursor: default;
+          pointer-events: none;
+        }
+      }
+      
+      &--next {
+        a:hover:not(.disabled):not([aria-disabled="true"]) img {
+          transform: translateX(3px);
+        }
+      }
+    }
+    
+    &-numbers {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      
+      .page-numbers {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px; // Zmniejszona szerokość
+        height: 32px; // Zmniejszona wysokość
+        padding: 2px; // Zmienione z 0 8px na 2px
+        font-family: $font-primary;
+        font-size: 16px;
+        font-weight: map-get($font-weights, "medium");
+        text-decoration: none;
+        color: $primary-text-color;
+        border-radius: map-get($border-radius, "md"); // Zmienione na zaokrąglony prostokąt
+        transition: all 0.2s ease;
+        
+        &.current {
+          background-color: $primary-color-blue;
+          color: $white;
+        }
+        
+        &:not(.current):not(.dots):hover,
+        &:not(.current):not(.dots):focus {
+          background-color: $background-color-hover;
+        }
+        
+        &:focus-visible {
+          outline: $focus-width $focus-style $focus-color;
+          outline-offset: $focus-offset;
+        }
+        
+        &.dots {
+          min-width: auto;
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+  
+  // Category description
+  &__description {
+    padding: 40px 0;
+    border-top: 1px solid $light-grey;
+    padding-inline: $section-padding-inline;
+    
+    @include tablet-up {
+      padding-inline: $section-padding-inline-tablet;
+    }
+    
+    @include desktop-up {
+      padding-inline: $section-padding-inline-desktop;
+    }
+    
+    &-content {
+      max-width: 800px;
+      margin: 0 auto;
+      
+      h2, h3, h4 {
+        margin-top: 1.5em;
+        margin-bottom: 0.8em;
+      }
+      
+      p {
+        margin-bottom: 1em;
+        line-height: map-get($line-heights, "relaxed");
+      }
+      
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: map-get($border-radius, "md");
+        margin: 20px 0;
+      }
+    }
+  }
+  
+  // Accessibility & performance optimizations
+  @media (prefers-reduced-motion: reduce) {
+    &__info-tile {
+      transition: none;
+      
+      &:hover, &:focus-within {
+        transform: none;
+        box-shadow: map-get($shadows, "sm");
+      }
+    }
+    
+    &__pagination-arrow {
+      a:hover:not(.disabled):not([aria-disabled="true"]) img {
+        transform: none;
+      }
+      
+      &--next {
+        a:hover:not(.disabled):not([aria-disabled="true"]) img {
+          transform: none;
+        }
+      }
+    }
+  }
+  
+  // High contrast mode
+  @media (prefers-contrast: high) {
+    &__info-tile {
+      border: 2px solid $primary-text-color;
+      box-shadow: none;
+    }
+    
+    &__pagination-numbers {
+      .page-numbers.current {
+        border: 2px solid $primary-text-color;
+      }
+    }
+  }
+  
+  // Print styles
+  @media print {
+    &__banner::before {
+      background: rgba($white, 0.95);
+    }
+    
+    &__info-tile {
+      box-shadow: none;
+      border: 1px solid $light-grey;
+      page-break-inside: avoid;
+      
+      &:hover, &:focus-within {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+    
+    &__pagination {
+      display: none;
+    }
+  }
+}

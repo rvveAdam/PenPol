@@ -1,0 +1,275 @@
+// =============================================================================
+// PRODUCT CARD - Specyficzne selektory dla kafelka produktowego
+// =============================================================================
+
+.product-card {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: map-get($shadows, "lg");
+  }
+  
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: $white;
+    border-radius: map-get($border-radius, "md");
+    overflow: hidden;
+    position: relative;
+    box-shadow: map-get($shadows, "sm");
+  }
+  
+  // Badge styles
+  &__tag {
+    position: absolute;
+    top: map-get($spacing, "md");
+    left: map-get($spacing, "md");
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: map-get($font-weights, "regular");
+    border-radius: 4px;
+    color: $white;
+    z-index: 2;
+    
+    &--new {
+      background-color: $primary-color-blue;
+    }
+    
+    &--best-price {
+      background-color: #009A33;
+    }
+    
+    &--promotion {
+      background-color: #AF0100;
+    }
+  }
+  
+  // Favorites icon
+  .fav-icon {
+    position: absolute;
+    top: map-get($spacing, "md");
+    right: map-get($spacing, "md");
+    z-index: 2;
+    
+    a {
+      display: block;
+      
+      img {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.2s ease;
+      }
+      
+      &:hover img {
+        transform: scale(1.1);
+      }
+    }
+  }
+  
+  // Product image
+  &__image-link {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+  }
+  
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+  
+  // Product content
+  &__content {
+    padding: map-get($spacing, "md");
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  // Kategoria - specyficzny selektor
+  &__content &__category {
+    font-family: $font-secondary;
+    font-size: 14px;
+    color: rgba(51, 51, 51, 0.63);
+    font-style: italic;
+    font-weight: map-get($font-weights, "medium") !important; 
+    margin-bottom: map-get($spacing, "xs");
+  }
+  
+  // Tytuł produktu - specyficzny selektor
+  &__content &__title {
+    font-family: $font-primary;
+    font-size: 20px;
+    font-weight: map-get($font-weights, "medium");
+    color: #383022;
+    margin: 0 0 map-get($spacing, "sm") 0;
+    line-height: 1.3;
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+      
+      &:hover {
+        color: $primary-color-blue;
+      }
+    }
+  }
+  
+  // Kontener ceny i koszyka
+  &__price-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: map-get($spacing, "md");
+    width: 100%;
+  }
+  
+  // BARDZO specyficzne selektory dla cen
+  &__price {
+    display: flex;
+    flex-direction: column;
+    
+    // Wyświetlamy cenę promocyjną na górze
+    ins {
+      order: 1;
+      text-decoration: none !important;
+      
+      .woocommerce-Price-amount {
+        font-size: 20px !important;
+        font-weight: 600 !important; // Używam wartości zamiast map-get dla pewności
+        color: #383022 !important;
+        font-family: $font-primary !important;
+      }
+    }
+    
+    // Wyświetlamy starą cenę na dole
+    del {
+      order: 2;
+      
+      .woocommerce-Price-amount {
+        font-size: 14px !important;
+        color: rgba(53, 53, 53, 0.63) !important;
+        font-weight: 500 !important;
+        font-family: $font-primary !important;
+      }
+    }
+    
+    // Dla zwykłej ceny (nie promocyjnej)
+    > .woocommerce-Price-amount {
+      font-size: 20px !important;
+      font-weight: 600 !important;
+      color: #383022 !important;
+      font-family: $font-primary !important;
+    }
+    
+    // Ukrywamy tekst dla czytników ekranowych z wizualnego widoku
+    .screen-reader-text {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  }
+  
+  // Ikona koszyka
+  &__cart {
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: $background-color;
+      transition: background-color 0.2s ease;
+      
+      img {
+        width: 18px;
+        height: 18px;
+      }
+      
+      &:hover {
+        background-color: $background-color-hover;
+      }
+    }
+  }
+  
+  // Atrybuty produktu
+  &__meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  &__attribute {
+    font-size: 14px;
+    font-weight: map-get($font-weights, "semibold");
+    color: $black;
+    text-decoration: none;
+    background-color: $background-color;
+    padding: 4px 10px;
+    border-radius: map-get($border-radius, "sm");
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    &-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+    
+    &:hover, &:focus {
+      background-color: $background-color-hover;
+      color: $primary-color-blue;
+    }
+  }
+  
+  // Accessibility & performance
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+    
+    &__image {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+    
+    .fav-icon a img {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}
