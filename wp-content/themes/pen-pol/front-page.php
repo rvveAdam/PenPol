@@ -1,5 +1,6 @@
 <?php
 /**
+ * 
  * Template for displaying the front page
  *
  * @package Pen-pol

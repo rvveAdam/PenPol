@@ -756,6 +756,7 @@ table.variations select {
   display: inline-block;
   text-decoration: none;
   box-shadow: none;
+  font-size: 24px;
 }
 .woocommerce-tabs #reviews p.stars a::before {
   display: block;

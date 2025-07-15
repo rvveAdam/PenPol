@@ -5,7 +5,7 @@
 .product-card {
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
+  height: auto;
   
   &:hover {
     transform: translateY(-3px);
@@ -23,28 +23,108 @@
     box-shadow: map-get($shadows, "sm");
   }
   
-  // Badge styles
-  &__tag {
+  // =============================================================================
+  // BADGE SYSTEM - Separate styling for card and inline badges
+  // =============================================================================
+
+  // CARD BADGES - Dla kart produktów i galerii (pozycja absolutna)
+  .product-card__tag {
     position: absolute;
     top: map-get($spacing, "md");
     left: map-get($spacing, "md");
     padding: 4px 10px;
     font-size: 12px;
-    font-weight: map-get($font-weights, "regular");
-    border-radius: 4px;
+    font-weight: map-get($font-weights, "medium");
+    border-radius: map-get($border-radius, "sm");
     color: $white;
     z-index: 2;
+    text-transform: uppercase;
+    pointer-events: none; // Aby nie blokowało kliknięć na produkty
     
     &--new {
       background-color: $primary-color-blue;
     }
     
     &--best-price {
-      background-color: #009A33;
+      background-color: $accent-green;
     }
     
     &--promotion {
-      background-color: #AF0100;
+      background-color: #AF0100; // Kolor dla promocji 50%
+    }
+  }
+
+  // Pozycjonowanie w galerii na stronie produktu 
+  .woocommerce-product-gallery {
+    position: relative;
+    
+    .product-card__tag {
+      top: 15px;
+      left: 15px;
+      z-index: 99; // Wyższy z-index, aby badge był widoczny nad galerią
+    }
+  }
+
+  // INLINE BADGES - W sekcji informacji o produkcie
+  .product-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border-radius: map-get($border-radius, "sm");
+      font-size: 12px;
+      font-weight: map-get($font-weights, "medium");
+      text-transform: uppercase;
+      
+      &-tag {
+        background-color: $light-grey;
+        color: $primary-text-color;
+      }
+      
+      &-sale {
+        // Domyślny styl dla badge-sale
+        background-color: #AF0100;
+        color: $white;
+        
+        // Kolory dla konkretnych typów badgeów
+        &.badge-new {
+          background-color: $primary-color-blue;
+        }
+        
+        &.badge-best-price {
+          background-color: $accent-green;
+        }
+      }
+    }
+  }
+
+  // Obsługa dostępności
+  @media (prefers-contrast: high) {
+    .product-card__tag,
+    .badge {
+      border: 2px solid $black;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card__tag,
+    .badge {
+      transition: none;
+    }
+  }
+
+  @media print {
+    .product-card__tag,
+    .badge {
+      background-color: transparent !important;
+      color: $black !important;
+      border: 1px solid $black;
     }
   }
   

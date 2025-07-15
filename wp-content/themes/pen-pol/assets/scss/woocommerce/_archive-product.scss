@@ -248,118 +248,44 @@
     @include desktop-up {
       padding-inline: $section-padding-inline-desktop;
     }
-  }
-  
-  // Product grid
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 30px; // Zwiększony gap z 20px na 30px
     
-    @include mobile-up {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    @include tablet-up {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    
-    @include desktop-up {
-      grid-template-columns: repeat(4, 1fr);
-    }
-    
-    // Dodane style dla stanu ładowania
-    &.loading {
-      opacity: 0.6;
-      pointer-events: none;
-    }
-  }
-  
-  // Pagination
-  &__pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-    
-    &-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 15px;
+    // Style dla wrappera siatki produktów
+    .product-grid-wrapper {
+      margin-bottom: 40px;
       
-      a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      // GŁÓWNA POPRAWKA: Style dla ul.products (generowanego przez WooCommerce)
+      .products {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
         
-        img {
-          width: 24px;
-          height: 24px;
-          transition: transform 0.2s ease;
+        @include mobile-up {
+          grid-template-columns: repeat(2, 1fr);
         }
         
-        &:hover:not(.disabled):not([aria-disabled="true"]) img {
-          transform: translateX(-3px);
+        @include tablet-up {
+          grid-template-columns: repeat(3, 1fr);
         }
         
-        &:focus-visible {
-          outline: $focus-width $focus-style $focus-color;
-          outline-offset: $focus-offset;
+        @include desktop-up {
+          grid-template-columns: repeat(4, 1fr);
         }
         
-        &.disabled, &[aria-disabled="true"] {
-          opacity: 0.5;
-          cursor: default;
+        // Usuwamy domyślne style WooCommerce dla itemów listy
+        > li {
+          margin: 0 !important;
+          padding: 0 !important;
+          width: 100% !important; // Przebijamy style WooCommerce
+          float: none !important;  // Przebijamy style WooCommerce
+        }
+        
+        // Dodane style dla stanu ładowania
+        &.loading {
+          opacity: 0.6;
           pointer-events: none;
-        }
-      }
-      
-      &--next {
-        a:hover:not(.disabled):not([aria-disabled="true"]) img {
-          transform: translateX(3px);
-        }
-      }
-    }
-    
-    &-numbers {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      
-      .page-numbers {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 32px; // Zmniejszona szerokość
-        height: 32px; // Zmniejszona wysokość
-        padding: 2px; // Zmienione z 0 8px na 2px
-        font-family: $font-primary;
-        font-size: 16px;
-        font-weight: map-get($font-weights, "medium");
-        text-decoration: none;
-        color: $primary-text-color;
-        border-radius: map-get($border-radius, "md"); // Zmienione na zaokrąglony prostokąt
-        transition: all 0.2s ease;
-        
-        &.current {
-          background-color: $primary-color-blue;
-          color: $white;
-        }
-        
-        &:not(.current):not(.dots):hover,
-        &:not(.current):not(.dots):focus {
-          background-color: $background-color-hover;
-        }
-        
-        &:focus-visible {
-          outline: $focus-width $focus-style $focus-color;
-          outline-offset: $focus-offset;
-        }
-        
-        &.dots {
-          min-width: auto;
-          padding: 0 5px;
         }
       }
     }
@@ -412,18 +338,6 @@
         box-shadow: map-get($shadows, "sm");
       }
     }
-    
-    &__pagination-arrow {
-      a:hover:not(.disabled):not([aria-disabled="true"]) img {
-        transform: none;
-      }
-      
-      &--next {
-        a:hover:not(.disabled):not([aria-disabled="true"]) img {
-          transform: none;
-        }
-      }
-    }
   }
   
   // High contrast mode
@@ -431,12 +345,6 @@
     &__info-tile {
       border: 2px solid $primary-text-color;
       box-shadow: none;
-    }
-    
-    &__pagination-numbers {
-      .page-numbers.current {
-        border: 2px solid $primary-text-color;
-      }
     }
   }
   
@@ -456,9 +364,323 @@
         box-shadow: none;
       }
     }
+  }
+}
+
+// =============================================================================
+// WOOCOMMERCE PAGINATION - Standardowa paginacja WooCommerce
+// =============================================================================
+
+.woocommerce-pagination {
+  margin-top: 40px;
+  text-align: center;
+  
+  .page-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
     
-    &__pagination {
-      display: none;
+    li {
+      display: inline-flex;
+      margin: 0 5px;
+      
+      .page-numbers {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        height: 32px;
+        padding: 2px;
+        font-family: $font-primary;
+        font-size: 16px;
+        font-weight: map-get($font-weights, "medium");
+        text-decoration: none;
+        color: $primary-text-color;
+        border-radius: map-get($border-radius, "md");
+        transition: all 0.2s ease;
+        
+        &.current {
+          background-color: $primary-color-blue;
+          color: $white;
+        }
+        
+        &:not(.current):not(.dots):hover,
+        &:not(.current):not(.dots):focus {
+          background-color: $background-color-hover;
+        }
+        
+        &:focus-visible {
+          outline: $focus-width $focus-style $focus-color;
+          outline-offset: $focus-offset;
+        }
+        
+        // Strzałki next/prev
+        &.next,
+        &.prev {
+          position: relative;
+          font-size: 0; // Ukrycie domyślnych strzałek WooCommerce
+          color: transparent; // Ukrycie domyślnych strzałek WooCommerce
+          background-color: transparent; // Przezroczyste tło
+          
+          &::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.2s ease;
+            filter: brightness(0); // Zmiana białych strzałek na czarne
+          }
+          
+          &:hover::before {
+            background-color: transparent;
+          }
+          
+          span {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+          }
+        }
+        
+        // Strzałka w prawo (next)
+        &.next {
+          &::before {
+            background-image: url('/wp-content/themes/pen-pol/assets/images/arrow-right.svg');
+          }
+          
+          &:hover::before {
+            transform: translateX(3px);
+          }
+        }
+        
+        // Strzałka w lewo (prev)
+        &.prev {
+          &::before {
+            background-image: url('/wp-content/themes/pen-pol/assets/images/arrow-left.svg');
+          }
+          
+          &:hover::before {
+            transform: translateX(-3px);
+          }
+        }
+      }
     }
+  }
+  
+  // Dostępność
+  @media (prefers-reduced-motion: reduce) {
+    .page-numbers li .page-numbers {
+      transition: none;
+      
+      &.next:hover::before,
+      &.prev:hover::before {
+        transform: none;
+      }
+    }
+  }
+  
+  // High contrast mode
+  @media (prefers-contrast: high) {
+    .page-numbers li .page-numbers.current {
+      border: 2px solid $primary-text-color;
+    }
+    
+    // W trybie wysokiego kontrastu upewnij się, że strzałki są dobrze widoczne
+    .page-numbers li .page-numbers.next::before,
+    .page-numbers li .page-numbers.prev::before {
+      filter: none;
+      border: 1px solid $black;
+    }
+  }
+  
+  // Print styles
+  @media print {
+    display: none;
+  }
+}
+
+
+// =============================================================================
+// TEST PODUSZKI - Sekcja z testem wyboru poduszki
+// =============================================================================
+
+.shop-archive__test-poduszki {
+  padding-block: 60px;
+  padding-inline: $section-padding-inline;
+  background-color: $background-color;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+}
+
+.test-poduszki {
+  background-color: $primary-color-blue;
+  border-radius: map-get($border-radius, "lg");
+  padding: 30px;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  overflow: hidden;
+  
+  @include tablet-up {
+    padding: 40px;
+    gap: 40px;
+  }
+  
+  @include desktop-up {
+    padding: 50px;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  // Content container (left side)
+  &__content {
+    width: 100%;
+    
+    @include desktop-up {
+      width: 55%;
+    }
+  }
+  
+  // Heading styles
+  &__heading {
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.2;
+    margin: 0 0 20px 0;
+    color: $white;
+    
+    @include tablet-up {
+      margin-bottom: 25px;
+    }
+  }
+  
+  &__heading-part {
+    font-family: $font-primary; // Outfit
+    font-weight: map-get($font-weights, "medium");
+    
+    &--serif {
+      font-family: $font-secondary; // Lora
+      font-style: italic;
+    }
+  }
+  
+  // Text styles
+  &__text {
+    font-family: $font-primary; 
+    font-size: 16px;
+    font-weight: map-get($font-weights, "regular");
+    margin: 0 0 30px 0;
+    line-height: 1.5;
+    color: $white;
+    
+    @include tablet-up {
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+    
+    strong {
+      font-weight: map-get($font-weights, "bold");
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
+  
+  // Button styles
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    background-color: $white;
+    color: $primary-text-color;
+    text-decoration: none;
+    font-family: $font-primary; // Outfit
+    font-size: 18px;
+    font-weight: map-get($font-weights, "md");
+    padding: 12px 20px;
+    border-radius: map-get($border-radius, "md");
+    transition: background-color 0.2s ease;
+    
+    @include tablet-up {
+      font-size: 20px;
+      padding: 14px 20px;
+    }
+    
+    &:hover, &:focus {
+      background-color: $white-hover;
+      
+      .test-poduszki__button-icon img {
+        transform: translateX(3px);
+      }
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  &__button-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    
+    img {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s ease;
+    }
+  }
+  
+  // Image container (right side)
+  &__image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    @include desktop-up {
+      width: 45%;
+    }
+  }
+  
+  &__image {
+    max-width: 100%;
+    height: auto;
+    border-radius: map-get($border-radius, "md");
+    display: block;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  
+  // Accessibility
+  @media (prefers-reduced-motion: reduce) {
+    &__button:hover .test-poduszki__button-icon img {
+      transform: none;
+    }
+  }
+  
+  // Print styles
+  @media print {
+    display: none;
   }
 }

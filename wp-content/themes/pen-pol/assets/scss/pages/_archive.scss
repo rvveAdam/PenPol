@@ -1,24 +1,25 @@
 // =============================================================================
-// PORADNIKI PAGE - Stylowanie strony Poradniki z listą wpisów
+// BLOG PAGE - Stylowanie strony Blog z listą wpisów
 // =============================================================================
 
-.poradniki-page {
+.blog-page {
   background-color: $white;
   width: 100%;
 }
 
 // =============================================================================
-// PORADNIKI HERO SECTION - Sekcja nagłówkowa z obrazem i tytułem
+// BLOG HERO SECTION - Sekcja nagłówkowa z obrazem i tytułem
 // =============================================================================
 
-.poradniki-hero {
+.blog-hero {
   position: relative;
   width: 100%;
   height: 50vh;
   min-height: 300px;
   max-height: 500px;
   overflow: hidden;
-  margin-bottom: clamp(32px, 5vw, 60px);
+  padding: 20px;
+  box-sizing: border-box;
   
   @include tablet-up {
     min-height: 350px;
@@ -51,6 +52,7 @@
   }
   
   &__overlay {
+    border-radius: 16px;
     position: absolute;
     top: 0;
     left: 0;
@@ -175,10 +177,10 @@
 }
 
 // =============================================================================
-// PORADNIKI CONTENT SECTION - Main content area with sidebar and posts grid
+// BLOG CONTENT SECTION - Main content area with sidebar and posts grid
 // =============================================================================
 
-.poradniki-content {
+.blog-content {
   padding-block: $section-padding-block;
   padding-inline: $section-padding-inline;
   background-color: $background-color;
@@ -205,10 +207,10 @@
 }
 
 // =============================================================================
-// PORADNIKI SIDEBAR - Left sidebar with category filters
+// BLOG SIDEBAR - Left sidebar with category filters
 // =============================================================================
 
-.poradniki-sidebar {
+.blog-sidebar {
   width: 100%;
   
   @include desktop-up {
@@ -256,10 +258,10 @@
 }
 
 // =============================================================================
-// PORADNIKI MAIN - Right content area with posts grid
+// BLOG MAIN - Right content area with posts grid
 // =============================================================================
 
-.poradniki-main {
+.blog-main {
   width: 100%;
   
   @include desktop-up {
@@ -268,10 +270,10 @@
 }
 
 // =============================================================================
-// PORADNIKI HEADER - Result count and sorting
+// BLOG HEADER - Result count and sorting
 // =============================================================================
 
-.poradniki-header {
+.blog-header {
   display: flex;
   flex-direction: column;
   gap: map-get($spacing, "md");
@@ -326,10 +328,10 @@
 }
 
 // =============================================================================
-// PORADNIKI GRID - Posts grid with newsletter card
+// BLOG GRID - Posts grid with newsletter card
 // =============================================================================
 
-.poradniki-grid {
+.blog-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 25px;
@@ -564,10 +566,10 @@
 }
 
 // =============================================================================
-// PORADNIKI PAGINATION - Posts navigation
+// BLOG PAGINATION - Posts navigation
 // =============================================================================
 
-.poradniki-pagination {
+.blog-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -649,10 +651,10 @@
 }
 
 // =============================================================================
-// PORADNIKI EMPTY - No posts found message
+// BLOG EMPTY - No posts found message
 // =============================================================================
 
-.poradniki-empty {
+.blog-empty {
   grid-column: 1 / -1;
   background-color: $white;
   border-radius: map-get($border-radius, "lg");
@@ -689,14 +691,14 @@
     }
   }
   
-  .poradniki-pagination .page-numbers {
+  .blog-pagination .page-numbers {
     transition: none;
   }
 }
 
 // High contrast mode support
 @media (prefers-contrast: high) {
-  .poradniki-hero__overlay {
+  .blog-hero__overlay {
     background: linear-gradient(
       to top,
       rgba($black, 0.9) 0%,
@@ -717,7 +719,7 @@
     }
   }
   
-  .poradniki-pagination .page-numbers {
+  .blog-pagination .page-numbers {
     border: 1px solid $black;
     
     &.current {
@@ -728,7 +730,7 @@
 
 // Print styles
 @media print {
-  .poradniki-hero {
+  .blog-hero {
     height: 200px;
     min-height: auto;
     
@@ -737,19 +739,19 @@
     }
   }
   
-  .poradniki-content__wrapper {
+  .blog-content__wrapper {
     flex-direction: column;
   }
   
-  .poradniki-sidebar {
+  .blog-sidebar {
     display: none;
   }
   
-  .poradniki-main {
+  .blog-main {
     width: 100%;
   }
   
-  .poradniki-grid {
+  .blog-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   
@@ -775,7 +777,7 @@
     }
   }
   
-  .poradniki-pagination {
+  .blog-pagination {
     display: none;
   }
 }

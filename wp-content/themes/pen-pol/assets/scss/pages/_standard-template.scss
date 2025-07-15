@@ -1,0 +1,78 @@
+// =============================================================================
+// STANDARD TEMPLATE - Base layout for standard content pages
+// =============================================================================
+
+.standard-template {
+  background-color: $background-color-alt;
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  position: relative;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+
+  // Container - only handles max-width, margin, and width (no padding)
+  &__container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  // Header section
+  &__header {
+    margin-bottom: map-get($spacing, "2xl");
+  }
+
+  // Title styling using typography system
+  &__title {
+    font-family: $font-primary;
+    font-size: map-get($font-sizes, "h1");
+    font-weight: map-get($font-weights, "bold");
+    color: $primary-text-color;
+    line-height: map-get($line-heights, "tight");
+    margin-top: map-get($spacing, "lg");
+    margin-bottom: 0;
+  }
+  
+  // Content area
+  &__content {
+    color: $primary-text-color;
+    
+    p {
+      margin-bottom: map-get($spacing, "lg");
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Link styling
+  a {
+    text-decoration: none !important;
+    color: $primary-color-blue;
+    transition: map-get($transitions, "fast");
+    font-size: map-get($font-sizes, "h6");
+    
+    &:hover {
+      color: $primary-color-blue-hover;
+    }
+    
+    &:focus-visible {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  // Accessibility improvements
+  @media (prefers-reduced-motion: reduce) {
+    a {
+      transition: none;
+    }
+  }
+}

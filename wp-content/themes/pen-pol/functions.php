@@ -266,6 +266,8 @@ function pen_pol_scripts() {
 	 */
 	require get_template_directory() . '/inc/customizer.php';
 
+
+
 	/**
 	 * Load Jetpack compatibility file.
 	 */
@@ -273,7 +275,7 @@ function pen_pol_scripts() {
 		require get_template_directory() . '/inc/jetpack.php';
 	}
 
-	// Woocommerce
+// Woocommerce
 add_theme_support('woocommerce');
 // Remove WooCommerce Styles
 function remove_woocommerce_styles($enqueue_styles) {
@@ -307,3 +309,397 @@ function pen_pol_archive_posts_per_page($query) {
     }
 }
 add_action('pre_get_posts', 'pen_pol_archive_posts_per_page');
+
+/**
+ * Dodaj obsługę ulubionych produktów
+ */
+function pen_pol_favorites_scripts() {
+    // Sprawdź czy WooCommerce jest aktywny
+    if (!class_exists('WooCommerce')) {
+        return;
+    }
+    
+    // Zarejestruj i załaduj skrypt ulubionych
+    wp_enqueue_script(
+        'pen-pol-favorites',
+        get_template_directory_uri() . '/assets/dist/favourites.js', 
+        array('jquery'),
+        _S_VERSION,
+        true
+    );
+    
+    // Lokalizacja skryptu dla tłumaczeń i ustawień
+    wp_localize_script(
+        'pen-pol-favorites',
+        'pen_pol_favorites',
+        array(
+            'confirm_clear' => __('Czy na pewno chcesz usunąć wszystkie ulubione produkty?', 'pen-pol'),
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('pen_pol_favorites_nonce'),
+        )
+    );
+}
+add_action('wp_enqueue_scripts', 'pen_pol_favorites_scripts');
+
+/**
+ * Dodaj atrybuty data-product-id do kart produktów w WooCommerce
+ */
+function pen_pol_add_product_id_to_cards($html, $data, $product) {
+    // Dodaj atrybut data-product-id do każdej karty produktu
+    $html = preg_replace(
+        '/class="content-product"/',
+        'data-product-id="' . esc_attr($product->get_id()) . '" class="content-product',
+        $html
+    );
+    
+    return $html;
+}
+add_filter('woocommerce_template_loop_product_link_open', 'pen_pol_add_product_id_to_cards', 10, 3);
+
+/**
+ * Enqueue Single Product JS
+ */
+function pen_pol_single_product_scripts() {
+    if (is_product()) {
+        wp_enqueue_script(
+            'pen-pol-single-product',
+            get_template_directory_uri() . '/assets/dist/single-product.js',
+            array('jquery', 'swiper-js'),
+            _S_VERSION,
+            true
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'pen_pol_single_product_scripts');
+
+/**
+ * AJAX dodawanie do koszyka
+ */
+function pen_pol_ajax_add_to_cart() {
+    ob_start();
+    
+    $product_id = apply_filters('woocommerce_add_to_cart_product_id', absint($_POST['product_id']));
+    $quantity = empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
+    $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
+    $product_status = get_post_status($product_id);
+    
+    if ($passed_validation && WC()->cart->add_to_cart($product_id, $quantity) && 'publish' === $product_status) {
+        do_action('woocommerce_ajax_added_to_cart', $product_id);
+        
+        if ('yes' === get_option('woocommerce_cart_redirect_after_add')) {
+            wc_add_to_cart_message(array($product_id => $quantity), true);
+        }
+        
+        WC_AJAX::get_refreshed_fragments();
+    } else {
+        $data = array(
+            'error' => true,
+            'product_url' => apply_filters('woocommerce_cart_redirect_after_error', get_permalink($product_id), $product_id)
+        );
+        
+        wp_send_json($data);
+    }
+    
+    wp_die();
+}
+add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'pen_pol_ajax_add_to_cart');
+add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'pen_pol_ajax_add_to_cart');
+
+/**
+ * Usuń domyślne breadcrumbsy i nagłówek "Related products"
+ */
+function pen_pol_remove_woocommerce_elements() {
+    // Usuń breadcrumbsy z hooka woocommerce_before_main_content
+    remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
+    
+    // Usuń related products
+    remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
+}
+add_action('init', 'pen_pol_remove_woocommerce_elements');
+
+
+
+/**
+ * Product badge system for Pen-pol theme with shortcodes
+ * 
+ * Provides two shortcodes:
+ * - [product_badge_card] - For product cards with absolute positioning
+ * - [product_badge_inline] - For single product page with inline display
+ *
+ * @package Pen-pol
+ */
+
+/**
+ * Get product badge data based on product properties with proper priority
+ *
+ * Priority:
+ * 1. "Promocja 50%" (dla promocji 50% i więcej) - najwyższy priorytet (3)
+ * 2. "Najlepsza Cena" (dla promocji poniżej 50%) - średni priorytet (2)
+ * 3. "Nowość" (dla produktów dodanych w ciągu ostatnich 7 dni) - najniższy priorytet (1)
+ *
+ * @param WC_Product $product Product object
+ * @return array|false Badge data array or false if no badge
+ */
+function pen_pol_get_product_badge($product) {
+    if (!$product || !is_a($product, 'WC_Product')) {
+        return false;
+    }
+    
+    // Inicjalizacja zmiennej z priorytetem
+    // Wyższy numer = wyższy priorytet
+    $badge_priority = 0;
+    $badge_type = '';
+    $badge_text = '';
+    
+    // Sprawdzenie promocji
+    if ($product->is_on_sale()) {
+        $regular_price = (float)$product->get_regular_price();
+        $sale_price = (float)$product->get_sale_price();
+        
+        if ($regular_price > 0) {
+            $percentage = round(100 - ($sale_price / $regular_price * 100));
+            
+            // Promocja 50% (i więcej) - NAJWYŻSZY priorytet (3)
+            if ($percentage >= 50) {
+                if (3 > $badge_priority) {
+                    $badge_priority = 3;
+                    $badge_type = 'promotion';
+                    $badge_text = __('Promocja 50%', 'pen-pol');
+                }
+            } 
+            // Najlepsza Cena (promocje poniżej 50%) - ŚREDNI priorytet (2)
+            elseif ($percentage > 0) {
+                if (2 > $badge_priority) {
+                    $badge_priority = 2;
+                    $badge_type = 'best-price';
+                    $badge_text = __('Najlepsza Cena', 'pen-pol');
+                }
+            }
+        }
+    }
+    
+    // Sprawdzenie czy produkt jest nowy - NAJNIŻSZY priorytet (1)
+    $post_date = get_the_date('Y-m-d', $product->get_id());
+    $date_diff = (time() - strtotime($post_date)) / DAY_IN_SECONDS;
+    
+    if ($date_diff <= 7) {
+        if (1 > $badge_priority) {
+            $badge_priority = 1;
+            $badge_type = 'new';
+            $badge_text = __('Nowość', 'pen-pol');
+        }
+    }
+    
+    if (empty($badge_type) || empty($badge_text)) {
+        return false;
+    }
+    
+    return [
+        'type' => $badge_type,
+        'text' => $badge_text
+    ];
+}
+
+/**
+ * Shortcode dla wyświetlania badgea na kartach produktów (pozycja absolutna)
+ *
+ * @param array $atts Atrybuty shortcode'a
+ * @return string HTML output
+ */
+function pen_pol_product_badge_card_shortcode($atts) {
+    global $product;
+    
+    // Parsowanie atrybutów
+    $atts = shortcode_atts(array(
+        'product_id' => 0,
+    ), $atts, 'product_badge_card');
+    
+    // Ustalenie produktu
+    $current_product = $product;
+    if (!empty($atts['product_id'])) {
+        $current_product = wc_get_product($atts['product_id']);
+    }
+    
+    if (!$current_product) {
+        return '';
+    }
+    
+    // Pobierz dane badgea
+    $badge = pen_pol_get_product_badge($current_product);
+    if (!$badge) {
+        return '';
+    }
+    
+    // Zwróć HTML
+    return '<div class="product-card__tag product-card__tag--' . esc_attr($badge['type']) . '">' . 
+           esc_html($badge['text']) . 
+           '</div>';
+}
+add_shortcode('product_badge_card', 'pen_pol_product_badge_card_shortcode');
+
+/**
+ * Shortcode dla wyświetlania badgea na stronie produktu (inline)
+ *
+ * @param array $atts Atrybuty shortcode'a
+ * @return string HTML output
+ */
+function pen_pol_product_badge_inline_shortcode($atts) {
+    global $product;
+    
+    // Parsowanie atrybutów
+    $atts = shortcode_atts(array(
+        'product_id' => 0,
+    ), $atts, 'product_badge_inline');
+    
+    // Ustalenie produktu
+    $current_product = $product;
+    if (!empty($atts['product_id'])) {
+        $current_product = wc_get_product($atts['product_id']);
+    }
+    
+    if (!$current_product) {
+        return '';
+    }
+    
+    // Pobierz dane badgea
+    $badge = pen_pol_get_product_badge($current_product);
+    if (!$badge) {
+        return '';
+    }
+    
+    // Zwróć HTML z klasą badge-TYPE dla odpowiedniego koloru
+    return '<span class="badge badge-sale badge-' . esc_attr($badge['type']) . '">' . 
+           esc_html($badge['text']) . 
+           '</span>';
+}
+add_shortcode('product_badge_inline', 'pen_pol_product_badge_inline_shortcode');
+
+/**
+ * Dodaj badge do galerii na stronie pojedynczego produktu
+ */
+function pen_pol_add_badge_to_product_gallery() {
+    echo do_shortcode('[product_badge_card]');
+}
+add_action('woocommerce_before_single_product_summary', 'pen_pol_add_badge_to_product_gallery', 15);
+
+/**
+ * Enqueue styles for WooCommerce My Account page
+ */
+function pen_pol_my_account_styles() {
+    // Sprawdź czy WooCommerce jest aktywny
+    if (class_exists('WooCommerce')) {
+        // Sprawdź czy jesteśmy na stronie mojego konta
+        if (is_account_page()) {
+            // Załaduj Dashicons (ikonki WordPress)
+            wp_enqueue_style('dashicons');
+            
+            // Załaduj style dla mojego konta
+            wp_enqueue_style(
+                'pen-pol-my-account',
+                get_template_directory_uri() . '/assets/dist/my-account.css',
+                array(), // Brak zależności
+                _S_VERSION
+            );
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'pen_pol_my_account_styles', 20);
+
+//checkout js
+add_action('wp_enqueue_scripts', function() {
+	if (is_checkout()) {
+		wp_enqueue_script(
+			'custom-checkout-notices',
+			get_stylesheet_directory_uri() . '/assets/dist/checkout-notices.js',
+			['jquery', 'wc-checkout'],
+			'1.0',
+			true
+		);
+	}
+});
+
+function pen_pol_thankyou_page_styles() {
+    // Check if WooCommerce is active and we're on the thank you page
+    if (class_exists('WooCommerce') && is_order_received_page()) {
+        wp_enqueue_style(
+            'pen-pol-thankyou-page',
+            get_template_directory_uri() . '/assets/dist/thankyoupage.css',
+            array(),
+            _S_VERSION
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'pen_pol_thankyou_page_styles');
+
+//usun metody platnosci z order review
+remove_action('woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20);
+
+//odswiezenie AJAX metod wysylki w checkoucie
+add_filter('woocommerce_update_order_review_fragments', 'filter_update_order_review_fragments');
+function filter_update_order_review_fragments($fragments)
+{
+	ob_start();
+	if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>
+		<div class="checkout__shipping-refresh">
+			<?php do_action('woocommerce_review_order_before_shipping'); ?>
+			<?php wc_cart_totals_shipping_html(); ?>
+			<?php do_action('woocommerce_review_order_after_shipping'); ?>
+		</div>
+	<?php endif;
+
+	$fragments['.checkout__shipping-refresh'] = ob_get_clean();
+
+	return $fragments;
+}
+
+
+//test logo checkout metoda wysylki
+add_filter('woocommerce_cart_shipping_method_full_label', function ($label, $method) {
+	if (strpos($method->id, 'flat_rate:3') !== false) {
+		$label .= ' <img src="wp-content/uploads/2025/07/logo-czarne.png" alt="Logo" style="height: 20px; margin-left: 8px;" />';
+	}
+	return $label;
+}, 10, 2);
+
+
+/**
+ * WooCommerce AJAX cart functionality
+ * Tylko aktualizacja licznika produktów
+ *
+ * @package Pen-pol
+ */
+
+if ( ! function_exists( 'pen_pol_woocommerce_cart_link_fragment' ) ) {
+	function pen_pol_woocommerce_cart_link_fragment( $fragments ) {
+		ob_start();
+		pen_pol_woocommerce_cart_link();
+		$fragments['a.cart-link'] = ob_get_clean();
+		return $fragments;
+	}
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'pen_pol_woocommerce_cart_link_fragment' );
+
+if ( ! function_exists( 'pen_pol_woocommerce_cart_link' ) ) {
+	function pen_pol_woocommerce_cart_link() {
+		?>
+		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="cart-link" aria-label="<?php esc_attr_e( 'Zobacz koszyk', 'pen-pol' ); ?>">
+			<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/koszyk.svg'); ?>" alt="" aria-hidden="true">
+			<span class="screen-reader-text"><?php echo esc_html__( 'Koszyk', 'pen-pol' ); ?></span>
+			<span class="cart-count"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></span>
+		</a>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'pen_pol_woocommerce_header_cart' ) ) {
+	function pen_pol_woocommerce_header_cart() {
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return;
+		}
+		?>
+		<div class="header-icon header-icon--cart">
+			<?php pen_pol_woocommerce_cart_link(); ?>
+		</div>
+		<?php
+	}
+}

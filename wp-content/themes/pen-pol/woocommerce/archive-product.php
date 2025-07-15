@@ -14,15 +14,6 @@
 
 defined('ABSPATH') || exit;
 
-// Ograniczenie liczby produktów do 8 na stronę (filtr)
-add_filter('loop_shop_per_page', function() { return 8; }, 1); // Zmiana priorytetu na 1 (najwyższy)
-
-// Dodatkowe wymuszenie limitu przez pre_get_posts (najsilniejsze)
-add_action('pre_get_posts', function($query) {
-    if (!is_admin() && $query->is_main_query() && (is_shop() || is_product_category())) {
-        $query->set('posts_per_page', 8);
-    }
-}, 1);
 
 // Usunięcie domyślnego nagłówka WooCommerce i sidebara
 remove_action('woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10);
@@ -186,7 +177,10 @@ if ($current_category) {
     remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
     do_action('woocommerce_before_main_content');
     
+    // Wymuszone ustawienie 8 produktów na stronę
     wc_set_loop_prop('per_page', 8);
+    // Dodanie klasy do kontenera produktów - dokładnie 4 kolumny
+    wc_set_loop_prop('columns', 4);
 
     if (woocommerce_product_loop()) {
         // Filters section with custom container
@@ -206,92 +200,42 @@ if ($current_category) {
             </div>
         </div>
 
-        <!-- Products section with custom grid -->
+        <!-- Products section - używamy standardowego wyświetlania WooCommerce -->
         <div class="shop-archive__products">
             <div class="container">
-                <div class="product-grid">
-                    <?php
-                    if (wc_get_loop_prop('total')) {
-                        while (have_posts()) {
-                            the_post();
-                            /**
-                             * Hook: woocommerce_shop_loop.
-                             */
-                            do_action('woocommerce_shop_loop');
-
-                            // Use our custom product card instead of the default WooCommerce template
-                            get_template_part('woocommerce/product-card');
-                        }
-                    }
-                    ?>
-                </div>
-
                 <?php
+                /**
+                 * Standardowe wyświetlanie produktów WooCommerce z gridem 4x2
+                 */
+                echo '<div class="product-grid-wrapper">'; // Dodatkowy wrapper dla lepszej kontroli
+                woocommerce_product_loop_start();
+
+                if (wc_get_loop_prop('total')) {
+                    while (have_posts()) {
+                        the_post();
+                        
+                        /**
+                         * Hook: woocommerce_shop_loop.
+                         */
+                        do_action('woocommerce_shop_loop');
+                        
+                        /**
+                         * Użyj standardowego szablonu produktu WooCommerce
+                         */
+                        wc_get_template_part('content', 'product');
+                    }
+                }
+
+                woocommerce_product_loop_end();
+                echo '</div>'; // Zamknięcie dodatkowego wrappera
+
                 /**
                  * Hook: woocommerce_after_shop_loop.
                  *
                  * @hooked woocommerce_pagination - 10
                  */
-                // Remove default WooCommerce pagination as we'll add our custom one
-                remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
                 do_action('woocommerce_after_shop_loop');
-
-                // Add custom pagination
-                $total_pages = wc_get_loop_prop('total_pages');
-                $current_page = max(1, wc_get_loop_prop('current_page'));
-
-                if ($total_pages > 1) : ?>
-                    <nav class="shop-archive__pagination" aria-label="<?php esc_attr_e('Pagination', 'pen-pol'); ?>">
-                        <!-- Previous page arrow -->
-                        <div class="shop-archive__pagination-arrow shop-archive__pagination-arrow--prev">
-                            <?php if ($current_page > 1) : 
-                                // Poprawna struktura linku dla WooCommerce
-                                $prev_page_url = add_query_arg('paged', max(1, $current_page - 1), remove_query_arg('add-to-cart'));
-                            ?>
-                                <a href="<?php echo esc_url($prev_page_url); ?>" aria-label="<?php esc_attr_e('Previous page', 'pen-pol'); ?>">
-                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/arrow-left.svg'); ?>" alt="">
-                                </a>
-                            <?php else : ?>
-                                <a href="#" class="disabled" aria-disabled="true" tabindex="-1">
-                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/arrow-left.svg'); ?>" alt="">
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                        
-                        <!-- Numeric pagination -->
-                        <div class="shop-archive__pagination-numbers">
-                            <?php
-                            // Poprawne linkowanie paginacji dla WooCommerce
-                            echo paginate_links(array(
-                                'prev_next' => false,
-                                'end_size' => 3,
-                                'mid_size' => 0,
-                                'type' => 'plain',
-                                'current' => $current_page,
-                                'total' => $total_pages,
-                                'base' => add_query_arg('paged', '%#%', remove_query_arg('add-to-cart')),
-                                'format' => '',
-                            ));
-                            ?>
-                        </div>
-                        
-                        <!-- Next page arrow -->
-                        <div class="shop-archive__pagination-arrow shop-archive__pagination-arrow--next">
-                            <?php if ($current_page < $total_pages) : 
-                                // Poprawna struktura linku dla WooCommerce
-                                $next_page_url = add_query_arg('paged', min($total_pages, $current_page + 1), remove_query_arg('add-to-cart'));
-                            ?>
-                                <a href="<?php echo esc_url($next_page_url); ?>" aria-label="<?php esc_attr_e('Next page', 'pen-pol'); ?>">
-                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/arrow-right.svg'); ?>" alt="">
-                                </a>
-                            <?php else : ?>
-                                <a href="#" class="disabled" aria-disabled="true" tabindex="-1">
-                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/arrow-right.svg'); ?>" alt="">
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    </nav>
-                <?php endif; ?>
+                ?>
             </div>
         </div>
         <?php
@@ -332,5 +276,40 @@ if ($current_category) {
     ?>
 </section>
 
+<!-- Test poduszki - dodaj przed zamknięciem </section> na końcu pliku archive-product.php -->
+<section class="shop-archive__test-poduszki">
+    <div class="container">
+        <div class="test-poduszki">
+            <div class="test-poduszki__content">
+                <h2 class="test-poduszki__heading">
+                    <span class="test-poduszki__heading-part test-poduszki__heading-part--serif">Nie wiesz, </span>
+                    <span class="test-poduszki__heading-part">jaką poduszkę wybrać?</span>
+                </h2>
+                <p class="test-poduszki__text">
+                    <strong>Zrób krótki test i znajdź idealną poduszkę dopasowaną do Twoich potrzeb!</strong>
+                    Odpowiedz na kilka pytań, a my dobierzemy najlepsze wypełnienie, twardość i rozmiar – tak, byś spał(a) wygodnie każdej nocy.
+                </p>
+                <a href="<?php echo esc_url(home_url('/test-poduszki/')); ?>" class="test-poduszki__button">
+                    Zaczynam Test! 
+                    <span class="test-poduszki__button-icon">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/arrow_top-right--black2.svg'); ?>" alt="" aria-hidden="true" width="14" height="14">
+                    </span>
+                </a>
+            </div>
+            <div class="test-poduszki__image-wrapper">
+                <img 
+                    src="<?php echo esc_url('/wp-content/uploads/2025/07/archiwum-zdjecie.png'); ?>" 
+                    alt="<?php esc_attr_e('Kobieta obejmująca poduszkę', 'pen-pol'); ?>"
+                    class="test-poduszki__image"
+                    width="500"
+                    height="300"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+</section>
+
 <?php
 get_footer('shop');
+?>

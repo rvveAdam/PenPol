@@ -22,42 +22,42 @@ $post_count_text = sprintf(
 );
 
 // Generate unique section ID for accessibility
-$poradniki_id = 'poradniki-section-' . wp_unique_id();
+$blog_id = 'blog-section-' . wp_unique_id();
 ?>
 
-<main id="primary" class="poradniki-page">
+<main id="primary" class="blog-page">
     
-    <!-- Poradniki Hero Section -->
-    <section class="poradniki-hero" aria-labelledby="poradniki-hero-title">
-        <div class="poradniki-hero__container">
-            <div class="poradniki-hero__content">
+    <!-- Blog Hero Section -->
+    <section class="blog-hero" aria-labelledby="blog-hero-title">
+        <div class="blog-hero__container">
+            <div class="blog-hero__content">
                 <div class="container">
-                    <div class="poradniki-hero__wrapper">
-                        <header class="poradniki-hero__header">
-                            <div class="poradniki-hero__text-content">
-                                <h1 id="poradniki-hero-title" class="poradniki-hero__title">
+                    <div class="blog-hero__wrapper">
+                        <header class="blog-hero__header">
+                            <div class="blog-hero__text-content">
+                                <h1 id="blog-hero-title" class="blog-hero__title">
                                     <?php if (is_home()): ?>
-                                        <span class="poradniki-hero__title-main">Jak spać lepiej?</span>
-                                        <span class="poradniki-hero__title-accent">Poradnik Pen-Pol</span>
+                                        <span class="blog-hero__title-main">Jak spać lepiej?</span>
+                                        <span class="blog-hero__title-accent">Poradnik Pen-Pol</span>
                                     <?php elseif (is_category()): ?>
                                         <?php 
                                         $category = get_queried_object();
-                                        echo '<span class="poradniki-hero__title-main">' . esc_html($category->name) . '</span>';
-                                        echo '<span class="poradniki-hero__title-accent">Poradnik Pen-Pol</span>';
+                                        echo '<span class="blog-hero__title-main">' . esc_html($category->name) . '</span>';
+                                        echo '<span class="blog-hero__title-accent">Poradnik Pen-Pol</span>';
                                         ?>
                                     <?php elseif (is_tag()): ?>
                                         <?php 
                                         $tag = get_queried_object();
-                                        echo '<span class="poradniki-hero__title-main">' . esc_html($tag->name) . '</span>';
-                                        echo '<span class="poradniki-hero__title-accent">Poradnik Pen-Pol</span>';
+                                        echo '<span class="blog-hero__title-main">' . esc_html($tag->name) . '</span>';
+                                        echo '<span class="blog-hero__title-accent">Poradnik Pen-Pol</span>';
                                         ?>
                                     <?php else: ?>
-                                        <span class="poradniki-hero__title-main"><?php the_archive_title(); ?></span>
-                                        <span class="poradniki-hero__title-accent">Poradnik Pen-Pol</span>
+                                        <span class="blog-hero__title-main"><?php the_archive_title(); ?></span>
+                                        <span class="blog-hero__title-accent">Poradnik Pen-Pol</span>
                                     <?php endif; ?>
                                 </h1>
 
-                                <div class="poradniki-hero__description">
+                                <div class="blog-hero__description">
                                     <?php if (is_home() && function_exists('get_field')): ?>
                                         <?php 
                                         // Pobieranie opisu bloga z ACF
@@ -87,7 +87,7 @@ $poradniki_id = 'poradniki-section-' . wp_unique_id();
                 </div>
             </div>
             
-            <div class="poradniki-hero__background">
+            <div class="blog-hero__background">
                 <?php 
                 $featured_image = '';
                 
@@ -113,47 +113,47 @@ $poradniki_id = 'poradniki-section-' . wp_unique_id();
                 ?>
                 <img src="<?php echo esc_url($featured_image); ?>" 
                      alt="<?php echo is_home() ? esc_attr(get_bloginfo('name')) : esc_attr(get_the_archive_title()); ?>" 
-                     class="poradniki-hero__image"
+                     class="blog-hero__image"
                      loading="eager"
                      decoding="async"
                      fetchpriority="high">
-                <div class="poradniki-hero__overlay" aria-hidden="true"></div>
+                <div class="blog-hero__overlay" aria-hidden="true"></div>
             </div>
         </div>
     </section>
     
-    <!-- Poradniki Content Section -->
-    <section class="poradniki-content" id="<?php echo esc_attr($poradniki_id); ?>" aria-label="<?php esc_attr_e('Zawartość poradników', 'pen-pol'); ?>">
+    <!-- Blog Content Section -->
+    <section class="blog-content" id="<?php echo esc_attr($blog_id); ?>" aria-label="<?php esc_attr_e('Zawartość poradników', 'pen-pol'); ?>">
         <div class="container">
-            <div class="poradniki-content__wrapper">
+            <div class="blog-content__wrapper">
                 
                 <!-- Sidebar with Filters -->
-                <aside class="poradniki-sidebar">
-                    <div class="poradniki-sidebar__inner">
-                        <h2 class="poradniki-sidebar__title">
+                <aside class="blog-sidebar">
+                    <div class="blog-sidebar__inner">
+                        <h2 class="blog-sidebar__title">
                             <?php esc_html_e('Wybierz kategorię:', 'pen-pol'); ?>
                         </h2>
                         
-                        <div class="poradniki-sidebar__facets">
+                        <div class="blog-sidebar__facets">
                             <?php echo do_shortcode('[facetwp facet="checkbox_wpisy"]'); ?>
                         </div>
                     </div>
                 </aside>
                 
                 <!-- Main Content Area -->
-                <div class="poradniki-main">
+                <div class="blog-main">
                     
                     <!-- Header with Result Count -->
-                    <header class="poradniki-header">
-                        <div class="poradniki-header__results">
-                            <span class="poradniki-header__count">
+                    <header class="blog-header">
+                        <div class="blog-header__results">
+                            <span class="blog-header__count">
                                 <?php echo esc_html($post_count_text); ?>
                             </span>
                         </div>
                     </header>
                     
                     <!-- Posts Grid -->
-                    <div class="poradniki-grid facetwp-template">
+                    <div class="blog-grid facetwp-template">
                         <?php
                         $post_index = 0;
                         
@@ -257,8 +257,8 @@ $poradniki_id = 'poradniki-section-' . wp_unique_id();
                             endwhile;
                         else :
                         ?>
-                            <div class="poradniki-empty">
-                                <p class="poradniki-empty__message">
+                            <div class="blog-empty">
+                                <p class="blog-empty__message">
                                     <?php esc_html_e('Brak wpisów spełniających kryteria.', 'pen-pol'); ?>
                                 </p>
                             </div>
@@ -268,7 +268,7 @@ $poradniki_id = 'poradniki-section-' . wp_unique_id();
                     </div>
                     
                     <!-- Pagination -->
-                    <div class="poradniki-pagination">
+                    <div class="blog-pagination">
                         <?php
                         // Standardowa paginacja WordPress
                         the_posts_pagination(array(

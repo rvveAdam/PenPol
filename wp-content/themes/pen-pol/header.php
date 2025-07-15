@@ -54,47 +54,50 @@
 
 					<!-- Header Icons -->
 					<div class="header-icons">
-						<!-- Search Icon -->
+						<!-- Search Icon - tylko desktop -->
 						<div class="header-icon header-icon--search">
 							<button class="search-toggle" aria-expanded="false" aria-controls="search-form">
 								<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lupka.svg'); ?>" alt="" aria-hidden="true">
 								<span class="screen-reader-text"><?php echo esc_html__( 'Search', 'pen-pol' ); ?></span>
 							</button>
 							<div id="search-form" class="search-form-wrapper" hidden>
-								<?php 
-								// Placeholder for Fibosearch
-								// echo do_shortcode('[fibosearch]'); 
-								?>
+								<?php echo do_shortcode('[fibosearch]'); ?>
 							</div>
 						</div>
 
-						<!-- Wishlist Icon -->
+						<!-- Wishlist Icon - tylko desktop -->
 						<div class="header-icon header-icon--wishlist">
-							<a href="#" class="wishlist-link">
+							<a href="/ulubione" class="wishlist-link">
 								<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/serduszko.svg'); ?>" alt="" aria-hidden="true">
 								<span class="screen-reader-text"><?php echo esc_html__( 'Wishlist', 'pen-pol' ); ?></span>
 							</a>
 						</div>
 
-						<!-- Account Icon -->
+						<!-- Account Icon - tylko desktop -->
 						<div class="header-icon header-icon--account">
-							<a href="#" class="account-link">
+							<a href="/moje-konto" class="account-link">
 								<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/user.svg'); ?>" alt="" aria-hidden="true">
 								<span class="screen-reader-text"><?php echo esc_html__( 'My Account', 'pen-pol' ); ?></span>
 							</a>
 						</div>
 
-						<!-- Separator -->
+						<!-- Separator - tylko desktop -->
 						<div class="header-separator" aria-hidden="true"></div>
 
-						<!-- Cart Icon -->
-						<div class="header-icon header-icon--cart">
-							<a href="#" class="cart-link">
-								<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/koszyk.svg'); ?>" alt="" aria-hidden="true">
-								<span class="screen-reader-text"><?php echo esc_html__( 'Cart', 'pen-pol' ); ?></span>
-								<span class="cart-count">0</span>
-							</a>
-						</div>
+						<!-- Cart Icon - widoczny też na mobile -->
+						<?php 
+						if ( function_exists( 'pen_pol_woocommerce_header_cart' ) ) {
+							pen_pol_woocommerce_header_cart();
+						} else { 
+						?>
+							<div class="header-icon header-icon--cart">
+								<a href="/koszyk" class="cart-link">
+									<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/koszyk.svg'); ?>" alt="" aria-hidden="true">
+									<span class="screen-reader-text"><?php echo esc_html__( 'Cart', 'pen-pol' ); ?></span>
+									<span class="cart-count">0</span>
+								</a>
+							</div>
+						<?php } ?>
 
 						<!-- Mobile Menu Toggle -->
 						<button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-controls="mobile-navigation" aria-expanded="false">
@@ -108,45 +111,48 @@
 			</div><!-- .container -->
 		</div><!-- .header-wrapper -->
 
-		<!-- Mobile Navigation -->
+		<!-- Mobile Navigation - zmodyfikowane wysuwane menu -->
 		<div id="mobile-navigation" class="mobile-navigation" aria-hidden="true">
 			<div class="container">
-				<nav class="mobile-nav" aria-label="<?php esc_attr_e( 'Mobile Navigation', 'pen-pol' ); ?>">
-					<?php
-					wp_nav_menu(
-						array(
-							'menu'           => 19,
-							'container'      => false,
-							'menu_id'        => 'mobile-menu',
-							'menu_class'     => 'mobile-menu-wrapper',
-							'theme_location' => 'menu-1',
-							'fallback_cb'    => false,
-						)
-					);
-					?>
-				</nav>
+				
+				<div class="mobile-menu-content">
+					<!-- Nawigacja mobilna -->
+					<nav class="mobile-nav" aria-label="<?php esc_attr_e( 'Mobile Navigation', 'pen-pol' ); ?>">
+						<?php
+						wp_nav_menu(
+							array(
+								'menu'           => 19,
+								'container'      => false,
+								'menu_id'        => 'mobile-menu',
+								'menu_class'     => 'mobile-menu-wrapper',
+								'theme_location' => 'menu-1',
+								'fallback_cb'    => false,
+							)
+						);
+						?>
+					</nav>
 
-				<div class="mobile-search">
-					<?php 
-					// Placeholder for Fibosearch
-					// echo do_shortcode('[fibosearch]'); 
-					?>
+					<!-- Pole wyszukiwania w menu mobilnym -->
+					<div class="mobile-search">
+						<?php echo do_shortcode('[fibosearch]'); ?>
+					</div>
 				</div>
-
+				
+				<!-- Ikony wyśrodkowane pod wyszukiwarką -->
 				<div class="mobile-icons">
-					<!-- Wishlist Icon -->
+					<!-- Ikona Ulubionych -->
 					<div class="mobile-icon mobile-icon--wishlist">
-						<a href="#" class="wishlist-link">
+						<a href="/ulubione" class="wishlist-link">
 							<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/serduszko.svg'); ?>" alt="" aria-hidden="true">
-							<span class="icon-text"><?php echo esc_html__( 'Wishlist', 'pen-pol' ); ?></span>
+							<span class="screen-reader-text"><?php echo esc_html__( 'Ulubione', 'pen-pol' ); ?></span>
 						</a>
 					</div>
 
-					<!-- Account Icon -->
+					<!-- Ikona Konta -->
 					<div class="mobile-icon mobile-icon--account">
-						<a href="#" class="account-link">
+						<a href="/moje-konto" class="account-link">
 							<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/user.svg'); ?>" alt="" aria-hidden="true">
-							<span class="icon-text"><?php echo esc_html__( 'My Account', 'pen-pol' ); ?></span>
+							<span class="screen-reader-text"><?php echo esc_html__( 'Konto', 'pen-pol' ); ?></span>
 						</a>
 					</div>
 				</div>

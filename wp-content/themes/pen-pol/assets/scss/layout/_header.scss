@@ -2,19 +2,15 @@
 // HEADER - Main site header with logo, navigation and icons
 // =============================================================================
 
-// =============================================================================
-// HEADER - Main site header with logo, navigation and icons
-// =============================================================================
-
 .site-header {
   position: absolute;
-  top: 30px;
+  top: 30px; // Zachowane 30px zgodnie z wymogiem
   left: 0;
   right: 0;
-  width: 96%;
+  width: 96%; // Zmniejszone o 2% zgodnie z wymaganiem
   margin: 0 auto;
   z-index: map-get($z-index, "sticky");
-  transition: transform 0.3s ease, top 0.3s ease;
+  transition: transform 0.3s ease;
   
   &.is-sticky {
     position: fixed;
@@ -42,10 +38,6 @@
   border-radius: map-get($border-radius, "md");
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03); // Delikatny cień
   padding: 0 25px; // Dodano wewnętrzne marginesy 25px
-  
-  .is-sticky & {
-    // Zachowanie border-radius (usunięto nadpisanie)
-  }
 }
 
 .header-content {
@@ -80,8 +72,12 @@
   .custom-logo {
     width: 100%;
     height: auto;
-    max-height: 40px; // Zmniejszono z 70px na 40px zgodnie z wymaganiem
+    max-height: 50px; // Zwiększone z 40px do 50px dla lepszej widoczności na mobile
     object-fit: contain;
+    
+    @include desktop-up {
+      max-height: 40px; // Na desktopie pozostawiamy oryginalny rozmiar
+    }
   }
 }
 
@@ -167,6 +163,29 @@
       width: 27px; // Zmniejszono z 42px na 27px
       height: 27px; // Zmniejszono z 42px na 27px
     }
+    
+    // Dropdown mini-koszyka
+    .cart-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 320px;
+      background-color: $white;
+      box-shadow: map-get($shadows, "lg");
+      border-radius: map-get($border-radius, "md");
+      padding: map-get($spacing, "md");
+      z-index: map-get($z-index, "dropdown");
+      display: none;
+      margin-top: map-get($spacing, "xs");
+      
+      .widget {
+        margin: 0;
+      }
+    }
+    
+    &:hover .cart-dropdown {
+      display: block;
+    }
   }
   
   button, a {
@@ -190,15 +209,14 @@
     }
   }
   
+  // Wyświetlanie ikon w headerze
   &--search,
   &--wishlist,
   &--account {
-    @include mobile-up {
-      display: none;
-    }
+    display: none; // Domyślnie ukryte na mobilnych urządzeniach
     
     @include desktop-up {
-      display: flex;
+      display: flex; // Pokazujemy tylko na desktopie
     }
   }
 }
@@ -313,42 +331,94 @@
 // =============================================================================
 
 .mobile-navigation {
-  position: fixed;
-  top: 90px; // Zaktualizować jeśli potrzeba
-  right: -100%;
-  width: 100%;
-  height: calc(100vh - 90px);
-  background-color: $white;
+  position: absolute;
+  top: 100%; // Menu bezpośrednio pod headerem
+  left: 0;
+  right: 0;
+  width: 100%; // Dokładnie ta sama szerokość co header
+  height: auto; // Dopasowanie do zawartości
+  margin: 0 auto; // Wyśrodkowanie menu
+  background: rgba(255, 255, 255, 0.8); // Dokładnie ten sam glassmorphism co w header-wrapper
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   overflow-y: auto;
-  transition: right 0.3s ease;
-  z-index: map-get($z-index, "fixed");
-  box-shadow: map-get($shadows, "lg");
+  z-index: map-get($z-index, "modal");
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03); // Ten sam cień co w header-wrapper
   display: flex;
   flex-direction: column;
-  
-  @include tablet-up {
-    width: 400px;
-  }
+  box-sizing: border-box;
+  transform: translateY(-20px); // Lekkie przesunięcie dla animacji
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease; // Elegancka animacja
+  opacity: 0;
+  pointer-events: none;
+  border-radius: map-get($border-radius, "md");
   
   @include desktop-up {
     display: none;
   }
   
-  // Active state
+  // Active state - menu wysunięte
   &.is-active {
-    right: 0;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  // Animacja zamykania
+  &.is-closing {
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.7, 0, 0.84, 0), opacity 0.3s ease;
   }
   
   .container {
-    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: map-get($spacing, "xl") $section-padding-inline;
+    padding: 15px $section-padding-inline 15px; // 15px padding na górze i dole
+    box-sizing: border-box;
   }
 }
 
+.mobile-menu-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: map-get($z-index, "modal") + 1;
+  
+  img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &:hover, &:focus {
+    opacity: 0.7;
+  }
+  
+  &:focus-visible {
+    outline: $focus-width $focus-style $focus-color;
+    outline-offset: $focus-offset;
+  }
+}
+
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacing, "md");
+  margin-bottom: map-get($spacing, "xs"); // Zmniejszony odstęp o połowę
+}
+
 .mobile-nav {
-  margin-bottom: map-get($spacing, "xl");
+  flex: 0 1 auto; // Zmienione z flex: 1 na flex: 0 1 auto
   
   .mobile-menu-wrapper {
     list-style: none;
@@ -356,7 +426,60 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: map-get($spacing, "md");
+    gap: map-get($spacing, "xs");
+  }
+  
+  // Style dla list menu mobilnego
+  li {
+    border-bottom: 1px solid $light-grey;
+    padding: map-get($spacing, "xs") 0; // Zmniejszony padding
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  // Style dla elementów z submenu
+  .menu-item-has-children {
+    position: relative;
+    
+    > a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      &::after {
+        content: '';
+        width: 8px; // Zmniejszony rozmiar strzałki
+        height: 8px;
+        border-right: 2px solid $primary-text-color;
+        border-bottom: 2px solid $primary-text-color;
+        transform: rotate(45deg);
+        transition: transform 0.3s ease;
+        margin-left: map-get($spacing, "md");
+      }
+    }
+    
+    &.active > a::after {
+      transform: rotate(-135deg);
+    }
+  }
+  
+  // Submenu w menu mobilnym
+  .sub-menu {
+    list-style: none;
+    margin: 0;
+    padding: map-get($spacing, "xs") 0 0 map-get($spacing, "md");
+    display: none;
+    
+    &.active {
+      display: block;
+    }
+    
+    li {
+      border-bottom: none;
+      padding: map-get($spacing, "xs") 0;
+    }
   }
   
   a {
@@ -379,21 +502,38 @@
 }
 
 .mobile-search {
-  margin-bottom: map-get($spacing, "xl");
-  padding: map-get($spacing, "md") 0;
-  border-top: 1px solid $light-grey;
-  border-bottom: 1px solid $light-grey;
+  padding: map-get($spacing, "xs") 0;
+  
+  // Pole wyszukiwania
+  .search-field {
+    width: 100%;
+    padding: map-get($spacing, "xs") map-get($spacing, "md");
+    border: 1px solid $light-grey;
+    border-radius: map-get($border-radius, "full");
+    font-size: map-get($font-sizes, "p");
+    background-color: $white;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color-blue;
+      box-shadow: 0 0 0 2px rgba($primary-color-blue, 0.2);
+    }
+  }
 }
 
 .mobile-icons {
   display: flex;
-  flex-direction: column;
-  gap: map-get($spacing, "lg");
+  flex-direction: row;
+  justify-content: center; // Wyśrodkowanie ikon
+  gap: map-get($spacing, "xl"); // Zwiększony odstęp między ikonami
+  padding: map-get($spacing, "sm") 0;
+  margin-top: map-get($spacing, "md"); // Dodany margines
   
   .mobile-icon {
     a {
       display: flex;
       align-items: center;
+      justify-content: center;
       color: $primary-text-color;
       text-decoration: none;
       
@@ -404,10 +544,17 @@
     }
     
     img {
-      width: 24px;
-      height: 24px;
-      margin-right: map-get($spacing, "md");
+      width: 36px; // Trochę większe ikony
+      height: 36px;
     }
+  }
+}
+
+// Osobne style dla body, gdy menu jest otwarte
+body {
+  &.menu-open {
+    overflow: hidden;
+    height: 100vh;
   }
 }
 
@@ -419,13 +566,114 @@
   position: absolute;
   top: 100%;
   right: 0;
-  width: 300px;
   background-color: $white;
   border-radius: map-get($border-radius, "md");
   box-shadow: map-get($shadows, "md");
-  padding: map-get($spacing, "md");
   z-index: map-get($z-index, "dropdown");
   margin-top: map-get($spacing, "xs");
+}
+
+// =============================================================================
+// WOOCOMMERCE MINI-CART - Style dla mini-koszyka
+// =============================================================================
+
+.widget_shopping_cart {
+  .woocommerce-mini-cart {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    
+    &__empty-message {
+      text-align: center;
+      padding: map-get($spacing, "md") 0;
+      margin: 0;
+    }
+    
+    &-item {
+      display: flex;
+      align-items: center;
+      padding: map-get($spacing, "sm") 0;
+      border-bottom: 1px solid $light-grey;
+      position: relative;
+      
+      img {
+        width: 50px;
+        height: auto;
+        margin-right: map-get($spacing, "md");
+      }
+      
+      .remove_from_cart_button {
+        position: absolute;
+        top: map-get($spacing, "sm");
+        right: 0;
+        color: $error-color;
+        font-size: map-get($font-sizes, "p");
+        text-decoration: none;
+        
+        &:hover {
+          color: darken($error-color, 10%);
+        }
+      }
+      
+      a:not(.remove_from_cart_button) {
+        color: $primary-text-color;
+        text-decoration: none;
+        font-size: map-get($font-sizes, "small");
+        margin-right: 20px;
+        
+        &:hover {
+          color: $primary-color-blue;
+        }
+      }
+      
+      .quantity {
+        font-size: map-get($font-sizes, "xs");
+        color: $text-muted;
+      }
+    }
+  }
+  
+  .woocommerce-mini-cart__total {
+    display: flex;
+    justify-content: space-between;
+    margin: map-get($spacing, "md") 0;
+    padding: map-get($spacing, "sm") 0;
+    border-top: 1px solid $light-grey;
+    border-bottom: 1px solid $light-grey;
+    font-weight: map-get($font-weights, "medium");
+  }
+  
+  .woocommerce-mini-cart__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: map-get($spacing, "sm");
+    
+    .button {
+      display: inline-block;
+      padding: map-get($spacing, "sm") map-get($spacing, "md");
+      background-color: $primary-color-blue;
+      color: $white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: map-get($border-radius, "sm");
+      font-weight: map-get($font-weights, "medium");
+      transition: map-get($transitions, "fast");
+      
+      &:hover, &:focus {
+        background-color: $primary-color-blue-hover;
+      }
+      
+      &.checkout {
+        background-color: $accent-green;
+        
+        &:hover, &:focus {
+          background-color: $accent-green-hover;
+        }
+      }
+    }
+  }
 }
 
 // =============================================================================
@@ -440,7 +688,8 @@
   .hamburger-icon .hamburger-inner::before,
   .hamburger-icon .hamburger-inner::after,
   .mobile-navigation,
-  .site-header {
+  .site-header,
+  .widget_shopping_cart .woocommerce-mini-cart__buttons .button {
     transition: none;
   }
 }
@@ -467,6 +716,21 @@
       text-decoration: none;
     }
   }
+  
+  .widget_shopping_cart .woocommerce-mini-cart__buttons .button {
+    border: 1px solid $black;
+  }
+  
+  .cart-count {
+    border: 1px solid $white;
+  }
+  
+  .mobile-navigation {
+    background-color: $white;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid $black;
+  }
 }
 
 // Print styles
@@ -489,7 +753,8 @@
   
   .main-navigation,
   .header-icons,
-  .mobile-navigation {
+  .mobile-navigation,
+  .cart-dropdown {
     display: none;
   }
   

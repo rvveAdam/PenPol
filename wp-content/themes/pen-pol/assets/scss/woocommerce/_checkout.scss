@@ -1,0 +1,1813 @@
+// ========================================
+// CHECKOUT VARIABLES
+// ========================================
+
+// Colors
+$checkout-primary: #132684;
+$checkout-text: #1a1a1a;
+$checkout-border: #f5f5f5;
+$checkout-bg-light: #F8F9FA;
+$checkout-bg-white: #ffffff;
+$checkout-error: #2551b1;
+$checkout-success: #27ae60;
+
+// Spacing
+$checkout-spacing-xs: 8px;
+$checkout-spacing-sm: 12px;
+$checkout-spacing-md: 16px;
+$checkout-spacing-lg: 20px;
+$checkout-spacing-xl: 24px;
+$checkout-spacing-xxl: 32px;
+$checkout-spacing-xxxl: 40px;
+
+// Border radius
+$checkout-radius-sm: 4px;
+$checkout-radius-md: 6px;
+$checkout-radius-lg: 8px;
+
+// Fonts
+$checkout-font-sm: 14px;
+$checkout-font-md: 16px;
+$checkout-font-lg: 18px;
+ 
+// Layout
+$checkout-max-width-form: 605px;
+$checkout-max-width-summary: 495px;
+
+// Breakpoints
+$checkout-mobile: 675px;
+$checkout-tablet: 1024px;
+
+// ========================================
+// CHECKOUT TEMPLATE
+// ========================================
+
+
+.checkout-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    // Ukryj domyślny header i footer motywu
+    .site-header,
+    .site-footer {
+        display: none;
+    }
+}
+
+
+// ========================================
+// ORDER PAY PAGE
+// ========================================
+
+.woocommerce-checkout.woocommerce-order-pay {
+    form#order_review {
+        padding: 20px;
+        max-width: 640px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: $checkout-bg-white;
+        border-radius: $checkout-radius-lg;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        
+        .shop_table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: $checkout-spacing-xl;
+            
+            // Nagłówki tabeli
+            thead {
+                border-bottom: 1px solid $checkout-border;
+                
+                th {
+                    font-size: $checkout-font-sm;
+                    font-weight: 600;
+                    color: $checkout-text;
+                    text-align: left;
+                    padding: $checkout-spacing-md 0;
+                    
+                    &.product-name {
+                        width: 60%;
+                    }
+                    
+                    &.product-quantity {
+                        width: 15%;
+                        text-align: center;
+                    }
+                    
+                    &.product-total {
+                        width: 25%;
+                        text-align: right;
+                    }
+                }
+            }
+            
+            // Ciało tabeli - lista produktów
+            tbody {
+                .order_item {
+                    border-bottom: 1px solid rgba($checkout-border, 0.5);
+                    
+                    td {
+                        padding: $checkout-spacing-sm 0;
+                        vertical-align: middle;
+                        font-size: $checkout-font-sm;
+                        
+                        &.product-name {
+                            color: $checkout-text;
+                            font-weight: 500;
+                            padding-right: $checkout-spacing-sm;
+                        }
+                        
+                        &.product-quantity {
+                            text-align: center;
+                            color: rgba($checkout-text, 0.8);
+                            
+                            strong {
+                                font-weight: 500;
+                            }
+                        }
+                        
+                        &.product-subtotal {
+                            text-align: right;
+                            font-weight: 600;
+                            color: $checkout-text;
+                        }
+                    }
+                    
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+            
+            // Stopka tabeli - podsumowania
+            tfoot {
+                tr {
+                    th, td {
+                        padding: $checkout-spacing-sm 0;
+                        font-size: $checkout-font-sm;
+                    }
+                    
+                    th {
+                        text-align: left;
+                        font-weight: 500;
+                        color: $checkout-text;
+                    }
+                    
+                    td {
+                        text-align: right;
+                        font-weight: 600;
+                        
+                        small {
+                            display: block;
+                            font-weight: 400;
+                            font-size: 11px;
+                            color: rgba($checkout-text, 0.7);
+                            margin-top: 2px;
+                        }
+                    }
+                    
+                    // Specjalne formatowanie dla wiersza "razem"
+                    &:nth-last-child(2) {
+                        th, td {
+                            padding-top: $checkout-spacing-md;
+                            font-size: $checkout-font-md;
+                            font-weight: 700;
+                            color: $checkout-primary;
+                        }
+                    }
+                    
+                    // Formatowanie dla ostatniego wiersza (metoda płatności)
+                    &:last-child {
+                        th, td {
+                            padding-top: $checkout-spacing-md;
+                            border-top: 1px solid $checkout-border;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Metody płatności
+        #payment {
+            margin-top: $checkout-spacing-xl;
+            
+            // Przycisk do płatności
+            #place_order {
+                width: 100%;
+                background-color: $checkout-primary;
+                color: white;
+                font-size: $checkout-font-md;
+                font-weight: 500;
+                padding: $checkout-spacing-md;
+                border-radius: $checkout-radius-md;
+                border: none;
+                margin-top: $checkout-spacing-md;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                
+                &:hover {
+                    background-color: darken($checkout-primary, 5%);
+                }
+            }
+        }
+    }
+    
+    // Responsywność na mobile
+    @media (max-width: $checkout-mobile) {
+        form#order_review {
+            padding: $checkout-spacing-md;
+            
+            .shop_table {
+                thead {
+                    th {
+                        font-size: 12px;
+                        
+                        &.product-name {
+                            width: 50%;
+                        }
+                        
+                        &.product-quantity {
+                            width: 20%;
+                        }
+                        
+                        &.product-total {
+                            width: 30%;
+                        }
+                    }
+                }
+                
+                tbody {
+                    .order_item {
+                        td {
+                            font-size: 12px;
+                        }
+                    }
+                }
+                
+                tfoot {
+                    tr {
+                        th, td {
+                            font-size: 12px;
+                        }
+                        
+                        &:nth-last-child(2) {
+                            th, td {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// ========================================
+// CHECKOUT HEADER
+// ========================================
+
+.checkout-header {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid $checkout-border;
+
+  &__main {
+    width: 55%;
+    display: flex;
+    justify-content: flex-end;
+
+    &--inner {
+      width: 100%;
+      max-width: $checkout-max-width-form;
+      padding: 0 $checkout-spacing-lg;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__right {
+    width: 45%;
+    display: flex;
+    justify-content: flex-start;
+
+    &--inner {
+      width: 100%;
+      max-width: $checkout-max-width-summary;
+      padding: 0 $checkout-spacing-lg;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end
+    }
+  }
+
+  &__logo-img {
+    max-height: 40px;
+    width: auto;
+    height: auto;
+  }
+
+  &__cart-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: $checkout-radius-lg;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+
+    &:hover {
+      background-color: rgba($checkout-text, 0.05);
+    }
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// ========================================
+// CHECKOUT CONTENT
+// ========================================
+
+.checkout-content {
+    flex: 1;
+    width: 100%;
+}
+
+// ========================================
+// CHECKOUT FOOTER
+// ========================================
+
+.checkout-footer {
+    border-top: 1px solid $checkout-border;
+    background-color: $checkout-bg-white;
+
+    &__container {
+        max-width: 1230px;
+        margin: 0 auto;
+        padding: 0 $checkout-spacing-lg;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__links {
+        display: flex;
+        gap: $checkout-spacing-xl;
+        align-items: center;
+    }
+
+    &__link {
+        font-size: $checkout-font-sm;
+        color: $checkout-text;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+
+@media (max-width: $checkout-mobile) {
+
+    .checkout-footer {
+        &__container {
+            padding: 0 $checkout-spacing-md;
+            height: 50px;
+        }
+
+        &__links {
+            gap: $checkout-spacing-md;
+        }
+
+        &__link {
+            font-size: 13px;
+        }
+    }
+}
+
+
+
+// ========================================
+// CHECKOUT LAYOUT
+// ========================================
+
+.woocommerce-checkout.woocommerce-page {
+    .site-header, 
+    .site-footer, 
+    .newsletter {
+        display: none;
+    }
+
+    .checkout {
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+
+        &__main {
+            width: 55%;
+            display: flex;
+            justify-content: flex-end;
+
+            &--inner {
+                width: 100%;
+                max-width: $checkout-max-width-form;
+                padding: $checkout-spacing-lg;
+                padding-top: $checkout-spacing-xxl;
+                padding-right: $checkout-spacing-xxxl;
+
+            }
+        }
+
+        &__summary {
+            width: 45%;
+            display: flex;
+            justify-content: flex-start;
+            border-left: 1px solid $checkout-border;
+            background-color: $checkout-bg-light;
+
+            &--inner {
+                width: 100%;
+                max-width: $checkout-max-width-summary;
+                padding: $checkout-spacing-lg;
+                padding-top: $checkout-spacing-xxl;
+                padding-left: $checkout-spacing-xxxl;
+
+
+                h3#order_review_heading {
+                    font-size: 22px;
+                    font-weight: 500;
+                    color: $checkout-text;
+                    margin-bottom: $checkout-spacing-sm;
+                }
+            }
+        }
+
+        &__section {
+            margin-bottom: $checkout-spacing-xxl;
+
+            &-title {
+                font-size: 22px;
+                font-weight: 500;
+                color: $checkout-text;
+                margin-bottom: $checkout-spacing-sm;
+                margin-top: $checkout-spacing-md;
+            }
+        }
+
+        @media (max-width: $checkout-tablet) {
+            flex-direction: column;
+
+            &__main,
+            &__summary {
+                width: 100%;
+                justify-content: center;
+
+                &--inner {
+                    width: 100%;
+                    max-width: $checkout-max-width-form;
+                    padding: $checkout-spacing-lg;
+                    padding-top: $checkout-spacing-xxl;
+                    padding-left: $checkout-spacing-lg;
+                    padding-right: $checkout-spacing-lg;
+                }
+
+            }
+
+            &__summary {
+                border-left: none;
+                border-top: 1px solid $checkout-border;
+            }
+        }
+    }
+
+    // ========================================
+    // FORM STYLES
+    // ========================================
+    
+    .col2-set {
+        display: block;
+        
+        .col-1,
+        .col-2 {
+            width: 100%;
+            float: none;
+        }
+    }
+
+    .woocommerce-billing-fields,
+    .woocommerce-shipping-fields {
+        
+        h3 {
+            font-size: 22px;
+            font-weight: 500;
+            color: $checkout-text;
+            margin-bottom: $checkout-spacing-sm;
+        }
+
+        .woocommerce-billing-fields__field-wrapper,
+        .woocommerce-shipping-fields__field-wrapper {
+            display: grid;
+            gap: $checkout-spacing-sm;
+            grid-template-columns: 1fr;
+            
+            @media (min-width: $checkout-mobile) {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+
+    .woocommerce-additional-fields {
+        .woocommerce-additional-fields__field-wrapper {
+            display: grid;
+            gap: $checkout-spacing-md;
+        }
+    }
+
+    // #billing_postcode_field, #billing_phone_field, #shipping_postcode_field  {
+    //     &.form-row {
+    //         grid-column: 1 / 2;
+    //     }
+    // }
+
+    // #billing_city_field, #billing_email_field, #shipping_city_field {
+    //     &.form-row {
+    //         grid-column: 2 / 3;
+    //     }
+    // }
+
+    // #billing_country_field, #billing_address_1_field, #billing_address_2_field {
+    //     &.form-row {
+    //         grid-column: 1 / -1;
+    //     }
+    // }
+
+    .form-row {
+        margin-bottom: 0 !important;
+        position: relative;
+        float: none !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        &.form-row-wide,
+        &[class*="address"],
+        &[class*="email"],
+        &[class*="phone"],
+        &[class*="country"],
+        &.notes {
+            @media (min-width: $checkout-mobile) {
+                grid-column: 1 / -1;
+            }
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: $checkout-text;
+            margin-bottom: 4px;
+            
+            .required {
+                color: $checkout-primary;
+                font-weight: normal;
+            }
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"],
+        select#billing_country,
+        textarea {
+            width: 100%;
+            padding: $checkout-spacing-sm $checkout-spacing-md;
+            border: 1px solid $checkout-border;
+            border-radius: $checkout-radius-md;
+            font-size: $checkout-font-md;
+            color: $checkout-text;
+            background-color: $checkout-bg-white;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            height: 48px;
+            font-family: inherit;
+
+            &:focus {
+                outline: none;
+                border-color: $checkout-primary;
+                box-shadow: 0 0 0 2px rgba($checkout-primary, 0.1);
+            }
+
+            &::placeholder {
+                color: lighten($checkout-text, 30%);
+            }
+        }
+
+        select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right $checkout-spacing-sm center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: $checkout-spacing-xxl;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            height: auto;
+        }
+
+        &.form-row-wide.create-account {
+            .woocommerce-form__label-for-checkbox {
+                display: flex;
+                align-items: flex-start;
+                gap: $checkout-spacing-sm;
+                cursor: pointer;
+                margin-bottom: 0;
+
+                input[type="checkbox"] {
+                    margin: 0;
+                    width: 18px;
+                    height: 18px;
+                    accent-color: $checkout-primary;
+                    cursor: pointer;
+                }
+
+                span {
+                    font-size: $checkout-font-sm;
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+
+    .woocommerce-additional-fields {
+        h3 {
+            font-size: $checkout-font-lg;
+            font-weight: 600;
+            color: $checkout-text;
+            margin-bottom: $checkout-spacing-lg;
+        }
+    }
+
+    .woocommerce-account-fields {
+        .create-account {
+            margin-top: $checkout-spacing-md;
+            padding-top: $checkout-spacing-md;
+            border-top: 1px solid lighten($checkout-border, 5%);
+        }
+    }
+
+    .select2-container {
+        .select2-selection--single {
+            height: 48px !important;
+            border: 1px solid $checkout-border !important;
+            border-radius: $checkout-radius-md !important;
+            
+            .select2-selection__rendered {
+                line-height: 46px !important;
+                padding-left: $checkout-spacing-md !important;
+                color: $checkout-text !important;
+            }
+
+            .select2-selection__arrow {
+                height: 46px !important;
+            }
+        }
+
+        &.select2-container--focus .select2-selection--single {
+            border-color: $checkout-primary !important;
+            box-shadow: 0 0 0 2px rgba($checkout-primary, 0.1) !important;
+        }
+    }
+
+    #ship-to-different-address {
+        margin-top: $checkout-spacing-sm;
+        margin-bottom: $checkout-spacing-lg;
+        
+        .woocommerce-form__label-for-checkbox {
+            display: flex;
+            align-items: center;
+            gap: $checkout-spacing-sm;
+            cursor: pointer;
+            margin-bottom: 0;
+            font-size: $checkout-font-md;
+            font-weight: 500;
+
+            input[type="checkbox"] {
+                margin: 0;
+                width: 18px;
+                height: 18px;
+                accent-color: $checkout-primary;
+                cursor: pointer;
+            }
+        }
+    }
+    
+
+    // ========================================
+    // ORDER SUMMARY / REVIEW ORDER
+    // ========================================
+
+    .woocommerce-checkout-review-order-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: $checkout-spacing-lg;
+        table-layout: fixed;
+
+        
+        tfoot, tfoot tr, tfoot th, tfoot td {
+            all: unset;
+        }
+
+        // flexbox fix
+        tbody,
+        tfoot {
+            display: flex;
+        }
+
+        tbody {
+            flex-direction: column;
+        }
+
+        tfoot {
+            flex-direction: column;
+            tr {
+            display: flex;
+            th,
+            td {
+                flex: 1 1 100%;
+                border-top: none;
+            }
+            }
+        }
+        
+
+        tbody {
+            tr {
+                &.cart_item {
+                    border-bottom: none;
+                }
+
+                td {
+                    padding: $checkout-spacing-md 0;
+                    vertical-align: top;
+
+                    &.product-thumbnail {
+                        width: 80px;
+                        padding-right: $checkout-spacing-md;
+                        position: relative;
+
+                        .product-thumbnail-wrapper {
+                            position: relative;
+                            display: inline-block;
+                        }
+
+                        .product-quantity-badge {
+                            position: absolute;
+                            top: -8px;
+                            right: -8px;
+                            background: rgba(0, 0, 0, 0.35);
+                            backdrop-filter: blur(1px);
+                            -webkit-backdrop-filter: blur(1px);
+                            color: white;
+                            border-radius: 50%;
+                            width: 24px;
+                            height: 24px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 12px;
+                            font-weight: 600;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+                            z-index: 1;
+                        }
+
+                        img {
+                            width: 70px;
+                            height: 70px;
+                            object-fit: cover;
+                            border-radius: $checkout-radius-md;
+                            border: 1px solid lighten($checkout-border, 5%);
+                        }
+                    }
+
+                    &.product-name {
+                        width: auto;
+
+                        .product-info {
+                            margin-bottom: $checkout-spacing-md;
+
+                            .product-title {
+                                font-size: $checkout-font-sm;
+                                font-weight: 500;
+                                color: $checkout-text;
+                                line-height: 1.4;
+                                margin-bottom: $checkout-spacing-xs;
+                            }
+
+                            dl {
+                                margin: 0;
+                                font-size: 12px;
+                                color: lighten($checkout-text, 30%);
+
+                                dt, dd {
+                                    display: inline;
+                                    margin: 0;
+                                }
+
+                                dt::after {
+                                    content: ': ';
+                                }
+
+                                dd::after {
+                                    content: ', ';
+                                    margin-right: $checkout-spacing-xs;
+                                }
+
+                                dd:last-child::after {
+                                    content: '';
+                                }
+                            }
+                        }
+
+                        .product-quantity {
+                            .quantity {
+                                display: flex;
+                                align-items: center;
+                                background: $checkout-bg-light;
+                                border-radius: 50px;
+                                padding: 4px;
+                                width: fit-content;
+                                border: 1px solid lighten($checkout-border, 5%);
+
+                                .qty {
+                                    width: 50px;
+                                    height: 36px;
+                                    border: none;
+                                    background: transparent;
+                                    text-align: center;
+                                    font-size: $checkout-font-sm;
+                                    font-weight: 500;
+                                    color: $checkout-text;
+                                    margin: 0 4px;
+
+                                    &:focus {
+                                        outline: none;
+                                    }
+
+                                    &::-webkit-outer-spin-button,
+                                    &::-webkit-inner-spin-button {
+                                        -webkit-appearance: none;
+                                        margin: 0;
+                                    }
+
+                                    &[type=number] {
+                                        -moz-appearance: textfield;
+                                    }
+                                }
+
+                                .qty-btn {
+                                    width: 36px;
+                                    height: 36px;
+                                    border: none;
+                                    background: $checkout-bg-white;
+                                    border-radius: 50%;
+                                    color: $checkout-text;
+                                    cursor: pointer;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    font-size: 16px;
+                                    font-weight: 600;
+                                    transition: all 0.2s ease;
+                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+                                    &:hover {
+                                        background: $checkout-primary;
+                                        color: white;
+                                        transform: scale(1.05);
+                                    }
+
+                                    &:disabled {
+                                        opacity: 0.4;
+                                        cursor: not-allowed;
+                                        transform: none;
+
+                                        &:hover {
+                                            background: $checkout-bg-white;
+                                            color: $checkout-text;
+                                            transform: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.product-total {
+                        width: 100px;
+                        text-align: right;
+                        font-weight: 600;
+                        color: $checkout-text;
+                        font-size: $checkout-font-md;
+                        padding-right: 0;
+                        padding-left: $checkout-spacing-md;
+                    }
+                }
+            }
+        }
+
+        tfoot {
+            tr {
+                &.cart-subtotal {
+                    border-top: 1px solid lighten($checkout-border, 5%);
+                    border-bottom: none;
+                }
+
+                &.shipping-total {
+                    border-bottom: 1px solid $checkout-border;
+                }
+
+                &.order-total {
+                    border-top: 1px solid $checkout-border;
+                    border-bottom: none;
+
+                    th, td {
+                        font-weight: 600;
+                        font-size: $checkout-font-lg;
+                        color: $checkout-text;
+                        padding-top: $checkout-spacing-md;
+                        padding-bottom: $checkout-spacing-md;
+                    }
+                }
+
+                th, td {
+                    padding: $checkout-spacing-sm 0;
+                    font-size: $checkout-font-sm;
+                }
+
+                th {
+                    font-weight: 500;
+                    color: $checkout-text;
+                    text-align: left;
+                    padding-left: 0;
+                    width: auto;
+                }
+
+                td {
+                    font-weight: 600;
+                    color: $checkout-text;
+                    text-align: right;
+                    padding-right: 0;
+                    width: 100px;
+
+                    .amount {
+                        font-weight: 600;
+                    }
+                }
+
+                &.cart-subtotal,
+                &.shipping-total {
+                    th, td {
+                        color: lighten($checkout-text, 15%);
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+// ========================================
+// SHIPPING & PAYMENT METHODS STYLES
+// ========================================
+// Import global variables from main checkout file
+
+.woocommerce-checkout.woocommerce-page {
+
+    // ========================================
+    // SHIPPING METHODS
+    // ========================================
+
+    .woocommerce-shipping-methods {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        > li {
+            position: relative;
+            margin: 0;
+            border: 1px solid #DEDEDE;
+            background-color: $checkout-bg-white;
+
+            // Single element
+            &:only-child {
+                border-radius: 7px;
+            }
+
+            // First element
+            &:first-child:not(:only-child) {
+                border-radius: 7px 7px 0 0;
+                border-bottom: none;
+            }
+
+            // Middle elements
+            &:not(:first-child):not(:last-child) {
+                border-radius: 0;
+                border-bottom: none;
+            }
+
+            // Last element
+            &:last-child:not(:only-child) {
+                border-radius: 0 0 7px 7px;
+            }
+
+            // When method is active, remove container border to avoid double border
+            &:has(> input[type="radio"].shipping_method:checked) {
+                border: none;
+            }
+
+            > input[type="radio"].shipping_method {
+                position: absolute;
+                opacity: 0;
+                pointer-events: none;
+
+                &:checked + label {
+                    background-color: rgba($checkout-primary, 0.05);
+                    border: 1px solid $checkout-primary;
+
+                    &::before {
+                        border-color: $checkout-primary;
+                        background-color: $checkout-primary;
+                    }
+
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            // Single element - active label gets full radius
+            &:only-child > input[type="radio"].shipping_method:checked + label {
+                border-radius: 7px;
+            }
+
+            // First element - active label gets top radius
+            &:first-child:not(:only-child) > input[type="radio"].shipping_method:checked + label {
+                border-radius: 7px 7px 0 0;
+            }
+
+            // Middle element - active label no radius
+            &:not(:first-child):not(:last-child) > input[type="radio"].shipping_method:checked + label {
+                border-radius: 0;
+            }
+
+            // Last element - active label gets bottom radius
+            &:last-child:not(:only-child) > input[type="radio"].shipping_method:checked + label {
+                border-radius: 0 0 7px 7px;
+            }
+
+            > label {
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                position: relative;
+                min-height: 60px;
+                background: transparent;
+                border: 1px solid transparent;
+                gap: 5px;
+                font-size: $checkout-font-sm;
+                color: $checkout-text;
+
+                &:hover {
+                    background-color: rgba($checkout-primary, 0.03);
+                }
+
+                // Custom radio button
+                &::before {
+                    content: '';
+                    width: 18px;
+                    height: 18px;
+                    border: 1px solid #DEDEDE;
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                    transition: all 0.2s ease;
+                    background-color: white;
+                    margin-right: 6px;
+                }
+
+                // Inner dot when active
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: #{$checkout-spacing-md + 5px};
+                    top: 50%;
+                    width: 8px;
+                    height: 8px;
+                    background: white;
+                    border-radius: 50%;
+                    transform: translateY(-50%);
+                    opacity: 0;
+                    transition: opacity 0.2s ease;
+                    z-index: 1;
+                }
+
+                // Logo/icon on the right
+                img {
+                    margin-left: auto !important;
+                    max-height: 24px;
+                    max-width: 60px;
+                    object-fit: contain;
+                }
+
+                .woocommerce-Price-amount {
+                    font-weight: 500;
+                    color: $checkout-primary;
+                    
+                }
+            }
+        }
+    }
+
+    // ========================================
+    // PAYMENT METHODS  
+    // ========================================
+
+    .wc_payment_methods.payment_methods.methods {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        > .wc_payment_method {
+            position: relative;
+            margin: 0;
+            border: 1px solid #DEDEDE;
+            background-color: $checkout-bg-white;
+
+            // Single element
+            &:only-child {
+                border-radius: 7px;
+            }
+
+            // First element
+            &:first-child:not(:only-child) {
+                border-radius: 7px 7px 0 0;
+                border-bottom: none;
+            }
+
+            // Middle elements
+            &:not(:first-child):not(:last-child) {
+                border-radius: 0;
+                border-bottom: none;
+            }
+
+            // Last element
+            &:last-child:not(:only-child) {
+                border-radius: 0 0 7px 7px;
+            }
+
+            // When method is active, remove container border to avoid double border
+            &:has(> input[type="radio"].input-radio:checked) {
+                border: none;
+            }
+
+            > input[type="radio"].input-radio {
+                position: absolute;
+                opacity: 0;
+                pointer-events: none;
+
+                &:checked + label {
+                    background-color: rgba($checkout-primary, 0.05);
+                    border: 1px solid $checkout-primary;
+
+                    &::before {
+                        border-color: $checkout-primary;
+                        background-color: $checkout-primary;
+                    }
+
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+
+                &:checked ~ .payment_box {
+                    display: block !important;
+                    margin: 0;
+                    padding: $checkout-spacing-md;
+                    background-color: $checkout-bg-light;
+                    border-left: 1px solid #DEDEDE;
+                    border-right: 1px solid #DEDEDE;
+                    border-top: none;
+                }
+            }
+
+            // Single element - active label gets full radius
+            &:only-child > input[type="radio"].input-radio:checked + label {
+                border-radius: 7px;
+            }
+
+            // First element - active label gets top radius
+            &:first-child:not(:only-child) > input[type="radio"].input-radio:checked + label {
+                border-radius: 7px 7px 0 0;
+            }
+
+            // Middle element - active label no radius
+            &:not(:first-child):not(:last-child) > input[type="radio"].input-radio:checked + label {
+                border-radius: 0;
+            }
+
+            // Last element - active label gets bottom radius
+            &:last-child:not(:only-child) > input[type="radio"].input-radio:checked + label {
+                border-radius: 0 0 7px 7px;
+            }
+
+            // Last element with payment box - label loses bottom radius, payment box gets it
+            &:last-child:not(:only-child) > input[type="radio"].input-radio:checked + label:has(~ .payment_box) {
+                border-radius: 0;
+            }
+
+            // Last element payment box - gets bottom radius and border
+            &:last-child:not(:only-child) > input[type="radio"].input-radio:checked ~ .payment_box {
+                border-radius: 0 0 7px 7px;
+                border-bottom: 1px solid #DEDEDE;
+            }
+
+            > label {
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                position: relative;
+                min-height: 50px;
+                background: transparent;
+                border: 1px solid transparent;
+                gap: $checkout-spacing-sm;
+                font-size: $checkout-font-sm;
+                color: $checkout-text;
+
+                &:hover {
+                    background-color: rgba($checkout-primary, 0.03);
+                }
+
+                // Custom radio button
+                &::before {
+                    content: '';
+                    width: 18px;
+                    height: 18px;
+                    border: 1px solid #DEDEDE;
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                    transition: all 0.2s ease;
+                    background-color: white;
+                }
+
+                // Inner dot when active
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: #{$checkout-spacing-md + 5px};
+                    top: 50%;
+                    width: 8px;
+                    height: 8px;
+                    background: white;
+                    border-radius: 50%;
+                    transform: translateY(-50%);
+                    opacity: 0;
+                    transition: opacity 0.2s ease;
+                    z-index: 1;
+                }
+
+                // Logo/icon on the right
+                img {
+                    margin-left: auto;
+                    max-height: 28px;
+                    max-width: 80px;
+                    object-fit: contain;
+                }
+            }
+
+            .payment_box {
+                display: none;
+                border-radius: 0;
+                
+                p {
+                    margin: 0;
+                    line-height: 1.4;
+                    font-size: $checkout-font-sm;
+                    color: $checkout-text;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ========================================
+// PACZKOMATY ITD.
+// ========================================
+
+.woocommerce-checkout.woocommerce-page {
+    .checkout {
+        #paczkomat_id_wrapper {
+            margin-top: 15px;
+            display: block;
+            padding: 0px;            
+            text-align: center;
+            max-width: 710px;
+
+            #paczkomat_id_field {
+                border-radius: 7px 7px 0 0;
+                padding: 30px;
+                border: 1px solid #ededed;
+                background: #fcfcfc;
+            }
+
+            #open-geowidget {
+                background-color: rgba($checkout-primary, 0.04);
+                border-radius: 0 0 7px 7px;
+                font-weight: 400;
+                color: $checkout-text;
+                width: 100%;
+                border: 1px solid $checkout-primary;
+            }
+        }
+    }
+}
+
+
+
+// ========================================
+// PLACE ORDER
+// ========================================
+
+
+.woocommerce-checkout.woocommerce-page, .woocommerce-checkout.woocommerce-order-pay  {
+    button#place_order {
+        background: $checkout-primary;
+        border: 0px;
+        border-radius: 12px;
+        width: 100%;
+        color: #fff;
+        padding: 10px 15px;
+        font-size: $checkout-font-lg;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: darken($checkout-primary, 5%);
+            color: #eee;
+        }
+    }
+
+    .woocommerce-privacy-policy-text {
+        p {
+            font-size: $checkout-font-sm;
+            margin-top: $checkout-spacing-xl;
+            margin-bottom: $checkout-spacing-xl;
+            color: $checkout-text;
+            a {
+                color: $checkout-primary;
+            }
+        }
+    }
+}
+
+
+
+
+// ========================================
+// CHECKOUT POPUPS
+// ========================================
+
+.woocommerce-checkout.woocommerce-page {
+    // Ukryj domyślne komunikaty
+    .woocommerce-form-login-toggle,
+    .woocommerce-form-coupon-toggle {
+        display: none;
+    }
+    
+    // Przyciski akcji
+    .checkout__actions {
+        display: flex;
+        gap: $checkout-spacing-sm;
+        margin-bottom: $checkout-spacing-lg;
+        width: 100%;
+        
+        .btn-login-toggle,
+        .btn-coupon-toggle {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: $checkout-spacing-xs;
+            background-color: rgba($checkout-primary, 0.05);
+            border: 1px solid $checkout-primary;
+            color: $checkout-text;
+            padding: $checkout-spacing-sm $checkout-spacing-md;
+            border-radius: $checkout-radius-md;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            
+            svg {
+                flex-shrink: 0;
+            }
+            
+            &:hover {
+                background-color: rgba($checkout-primary, 0.1);
+            }
+        }
+    }
+    
+    // Popup styles
+    .checkout-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        display: none;
+
+        .woocommerce-error,
+        .woocommerce-info,
+        .woocommerce-message {
+            margin-bottom: $checkout-spacing-sm;
+        }
+        
+        &.active {
+            display: block;
+        }
+        
+        &.closing {
+            .checkout-popup__content {
+                animation: popup-exit 0.3s ease forwards;
+            }
+            
+            .checkout-popup__overlay {
+                animation: overlay-fade-out 0.3s ease forwards;
+            }
+        }
+        
+        &__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(3px);
+            animation: overlay-fade-in 0.3s ease;
+        }
+        
+        &__content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: popup-appear 0.3s ease;
+            
+            h3 {
+                font-size: 22px;
+                font-weight: 500;
+                color: $checkout-text;
+                margin-bottom: $checkout-spacing-sm;
+            }
+            
+            .popup-error-message {
+                margin-bottom: $checkout-spacing-md;
+                
+                .woocommerce-error {
+                    background-color: #fff1f0;
+                    border-left: 3px solid $checkout-error;
+                    color: $checkout-error;
+                    padding: $checkout-spacing-sm $checkout-spacing-md;
+                    margin-bottom: $checkout-spacing-md;
+                    border-radius: $checkout-radius-sm;
+                    font-size: $checkout-font-sm;
+                    line-height: 1.4;
+                }
+            }
+            
+            .woocommerce-form-login,
+            .checkout_coupon {
+                display: block !important;
+                margin: 0;
+                padding: 0;
+                border: none;
+                
+                p {
+                    margin-bottom: $checkout-spacing-md;
+                    font-size: $checkout-font-sm;
+                }
+                
+                .form-row {
+                    margin-bottom: $checkout-spacing-sm !important;
+                    
+                    &.form-row-first,
+                    &.form-row-last {
+                        @media (min-width: $checkout-mobile) {
+                            width: 100%;
+                            float: none;
+                        }
+                    }
+                }
+                
+                button.button {
+                    background-color: $checkout-primary;
+                    color: white;
+                    border: none;
+                    padding: $checkout-spacing-sm $checkout-spacing-md;
+                    border-radius: $checkout-radius-md;
+                    cursor: pointer;
+                    transition: background-color 0.2s ease;
+                    width: 100%;
+                    
+                    &:hover {
+                        background-color: darken($checkout-primary, 5%);
+                    }
+                }
+            }
+            
+            .woocommerce-form-login {
+
+                p {
+                    font-size: $checkout-font-sm;
+                }
+
+                .woocommerce-form-login__rememberme {
+                    display: flex;
+                    align-items: center;
+                    gap: $checkout-spacing-xs;
+                    margin-bottom: $checkout-spacing-md;
+                    
+                    input[type="checkbox"] {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+        
+        &__close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: none;
+            font-size: 24px;
+            line-height: 1;
+            color: $checkout-text;
+            cursor: pointer;
+            background-color: $checkout-bg-light;
+            border-radius: 6px;
+            
+            &:hover {
+                color: $checkout-primary;
+            }
+        }
+    }
+}
+
+@keyframes popup-appear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes popup-exit {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+}
+
+@keyframes overlay-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes overlay-fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+// Prevent body scroll when popup is open
+body.popup-open {
+    overflow: hidden;
+}
+
+
+// ========================================
+// WOOCOMMERCE NOTIFICATIONS - CHECKOUT
+// ========================================
+
+.woocommerce-checkout.woocommerce-page {
+    .woocommerce-NoticeGroup {
+        margin-bottom: $checkout-spacing-lg;
+    }
+
+    // Nadpisanie box-shadow dla pól z błędami i sukcesu
+    .form-row.woocommerce-invalid input.input-text,
+    .form-row.woocommerce-validated input.input-text {
+        box-shadow: none;
+    }
+
+    // Główne komunikaty błędów
+    .woocommerce-error,
+    .woocommerce-info,
+    .woocommerce-message {
+        background-color: #FFF5F5;
+        border: 1px solid rgba($checkout-error, 0.15);
+        border-radius: $checkout-radius-md;
+        color: #480f06;
+        padding: $checkout-spacing-md;
+        margin: 0;
+        list-style: none;
+        font-size: $checkout-font-sm;
+        
+        li {
+            position: relative;
+            padding: 4px 0 4px 31px;
+            margin-bottom: 5px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+            
+            &::before {
+                content: "!";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 18px;
+                height: 18px;
+                background-color: transparent;
+                border: 1.5px solid $checkout-error;
+                color: $checkout-error;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                font-weight: bold;
+            }
+            
+            a {
+                color: #480f06;
+                text-decoration: none;
+                
+                strong {
+                    font-weight: 500;
+                }
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    
+    // Pojedynczy komunikat ostrzegawczy (jak na drugim obrazie)
+    .woocommerce-info {
+        display: flex;
+        align-items: center;
+        background-color: #FFF5F5;
+        padding: $checkout-spacing-md;
+        color: $checkout-error;
+        
+        &::before {
+            content: "!";
+            margin-right: $checkout-spacing-sm;
+            width: 18px;
+            height: 18px;
+            min-width: 20px;
+            background-color: transparent;
+            border: 1.5px solid $checkout-error;
+            color: $checkout-error;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    }
+    
+    // Success messages
+    .woocommerce-message {
+        display: flex;
+        align-items: center;
+        border: 1px solid rgba($checkout-success, 0.15);
+        color: $checkout-success;
+        background-color: #F0FFF4;
+        padding: $checkout-spacing-md;
+        
+        &::before {
+            content: "✓";
+            margin-right: $checkout-spacing-sm;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            background-color: transparent;
+            border: 1.5px solid $checkout-success;
+            color: $checkout-success;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+    }
+    
+    // Inline error messages below fields
+    .checkout-inline-error-message {
+        color: $checkout-error;
+        font-size: 11px;
+        margin-top: 3px;
+        font-weight: 400;
+    }
+    
+    // Form validation
+    .form-row {
+        &.woocommerce-invalid {
+            label {
+                color: $checkout-error;
+            }
+            
+            input, select, textarea {
+                border-color: rgba($checkout-error, 0.4);
+                background-color: rgba($checkout-error, 0.03);
+            }
+        }
+        
+        &.woocommerce-validated {
+            input, select, textarea {
+                border-color: rgba($checkout-success, 0.4);
+                background-color: rgba($checkout-success, 0.03);
+            }
+        }
+    }
+}

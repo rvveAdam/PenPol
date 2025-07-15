@@ -1,0 +1,780 @@
+/* 
+ * WooCommerce "Strona podziękowania" */
+
+/* -----------------------------------------
+   1. ZMIENNE GLOBALNE
+-------------------------------------------- */
+:root {
+  --myacc_primary: #132684;
+  --myacc_primary-light: #1a32a3;
+  --myacc_primary-dark: #0d1650;
+  --myacc_text: #1a1a1a;
+  --myacc_text-light: #8D8D8D;
+  --myacc_bg-light: #F8F9FA;
+  --myacc_white: #FFFFFF;
+  --myacc_border-radius: 8px;
+  --myacc_input-radius: 6px;
+  --myacc_box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --myacc_transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --myacc_padding-container: 30px;
+  --myacc_error: #dc2626;
+  --myacc_success: #059669;
+  --myacc_info: #2563eb;
+  --myacc_warning: #d97706;
+  --myacc_border-color: #E5E7EB;
+  
+  /* Dodatkowe zmienne dla thank you page */
+  --typage_container-max-width: 960px;
+  --typage_section-margin: 30px;
+  --typage_section-padding: 25px;
+  --typage_header-bg: var(--typage_primary-light);
+  --typage_header-border: var(--typage_primary);
+  --typage_table-header-bg: var(--typage_primary-light);
+  --typage_address-bg: var(--typage_white);
+  --typage_notice-bg: var(--typage_primary-light);
+  --typage_notice-border: var(--typage_primary);
+  --typage_badge-radius: 20px;
+}
+
+/* -----------------------------------------
+   2. RESETOWANIE STYLÓW WOOCOMMERCE
+-------------------------------------------- */
+.woocommerce-order h1, 
+.woocommerce-order h2, 
+.woocommerce-order h3, 
+.woocommerce-order h4, 
+.woocommerce-order h5, 
+.woocommerce-order h6 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--typage_text);
+}
+
+.woocommerce-order h1 { font-size: 2rem; }
+.woocommerce-order h2 { font-size: 1.5rem; }
+.woocommerce-order h3 { font-size: 1.25rem; }
+.woocommerce-order h4 { font-size: 1.125rem; }
+
+.woocommerce-order a {
+  color: var(--typage_text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--typage_transition);
+}
+
+.woocommerce-order a:hover {
+  color: var(--typage_primary);
+}
+
+.woocommerce-order p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* -----------------------------------------
+   3. UKŁAD GŁÓWNY
+-------------------------------------------- */
+.woocommerce-order {
+  max-width: var(--typage_container-max-width);
+  margin: 40px auto;
+  padding: var(--typage_padding-container) 15px;
+  color: var(--typage_text);
+  line-height: 1.5;
+}
+
+/* -----------------------------------------
+   4. WIADOMOŚĆ PODZIĘKOWANIA
+-------------------------------------------- */
+.woocommerce-notice--success {
+  display: block;
+  width: auto;
+  margin: 0 0 var(--typage_section-margin);
+  padding: 25px 30px;
+  background-color: var(--typage_notice-bg);
+  border-left: 5px solid var(--typage_notice-border);
+  border-radius: var(--typage_border-radius);
+  color: var(--typage_text);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: var(--typage_box-shadow);
+  position: relative;
+}
+
+/* -----------------------------------------
+   5. PODSUMOWANIE ZAMÓWIENIA
+-------------------------------------------- */
+/* Dodajemy animację sekwencyjną dla całego podsumowania */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.woocommerce-order-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin: 0 0 var(--typage_section-margin);
+  padding: 0;
+  list-style: none;
+  opacity: 0; /* Startujemy z przezroczystością */
+  animation: fadeInScale 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.woocommerce-order-overview li {
+  background-color: var(--typage_white);
+  border-radius: var(--typage_border-radius);
+  box-shadow: var(--typage_box-shadow);
+  padding: 20px;
+  border: 1px solid var(--typage_border-color);
+  position: relative;
+  overflow: hidden;
+  transition: var(--typage_transition);
+  opacity: 0; /* Elementy startują przezroczyste */
+  transform: translateY(15px); /* Lekkie przesunięcie w dół */
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.woocommerce-order-overview li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.woocommerce-order-overview li strong {
+  display: block;
+	font-weight: 500;
+  margin-top: 8px;
+  font-size: 1.1rem;
+  color: var(--typage_text);
+}
+
+.woocommerce-order-overview__order strong {
+  color: var(--typage_primary-dark) !important;
+  font-weight: 700;
+}
+
+.woocommerce-order-overview__total strong {
+  color: var(--typage_primary-dark) !important;
+  font-weight: 700;
+}
+
+/* Ikony dla poszczególnych pól */
+.woocommerce-order-overview li:before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+}
+
+.woocommerce-order-overview__order:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230D0A0A'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
+}
+
+.woocommerce-order-overview__date:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230D0A0A'%3E%3Cpath d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zm0-12H5V5h14v2zM7 11h5v5H7z'/%3E%3C/svg%3E");
+}
+
+.woocommerce-order-overview__email:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230D0A0A'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+}
+
+.woocommerce-order-overview__total:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230D0A0A'%3E%3Cpath d='M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z'/%3E%3C/svg%3E");
+}
+
+.woocommerce-order-overview__payment-method:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230D0A0A'%3E%3Cpath d='M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z'/%3E%3C/svg%3E");
+}
+
+/* Opóźnienia animacji dla poszczególnych elementów */
+.woocommerce-order-overview li:nth-child(1) { animation-delay: 0.3s; }
+.woocommerce-order-overview li:nth-child(2) { animation-delay: 0.4s; }
+.woocommerce-order-overview li:nth-child(3) { animation-delay: 0.5s; }
+.woocommerce-order-overview li:nth-child(4) { animation-delay: 0.6s; }
+.woocommerce-order-overview li:nth-child(5) { animation-delay: 0.7s; }
+
+/* -----------------------------------------
+   6. TABELA SZCZEGÓŁÓW ZAMÓWIENIA
+-------------------------------------------- */
+.woocommerce-order-details {
+  margin-bottom: var(--typage_section-margin);
+  background-color: var(--typage_white);
+  border-radius: var(--typage_border-radius);
+  box-shadow: var(--typage_box-shadow);
+  overflow: hidden;
+  border: 1px solid var(--typage_border-color);
+}
+
+.woocommerce-order-details__title {
+  padding: 20px var(--typage_section-padding);
+  margin: 0;
+  background-color: var(--typage_header-bg);
+  border-bottom: 1px solid var(--typage_header-border);
+  font-size: 1.25rem;
+  position: relative;
+}
+
+.woocommerce-order-details__title:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: var(--typage_section-padding);
+  width: 50px;
+  height: 3px;
+  background-color: var(--typage_primary);
+}
+
+.woocommerce-table--order-details {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.woocommerce-table--order-details th,
+.woocommerce-table--order-details td {
+  padding: 15px var(--typage_section-padding);
+	font-weight: 600;
+  border-bottom: 1px solid var(--typage_border-color);
+  text-align: left;
+}
+
+.woocommerce-table--order-details thead th {
+  background-color: var(--typage_table-header-bg);
+  font-weight: 600;
+}
+
+/* Prosty hover dla nazwy produktu */
+.woocommerce-table__product-name a:hover {
+  color: var(--typage_primary);
+}
+
+/* Lepsze wyróżnienie ilości sztuk */
+.product-quantity {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--typage_primary-light);
+  color: var(--typage_text);
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 8px;
+  font-size: 0.85rem;
+  min-width: 24px;
+  text-align: center;
+  border: 1px solid rgba(83, 65, 245, 0.3);
+  white-space: nowrap; /* Zapobiega zawijaniu */
+}
+
+@media (max-width: 768px) {
+  .woocommerce-table__product-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .product-quantity {
+    margin-left: 0;
+  }
+}
+
+/* Stylizacja tabeli podsumowania (footer) */
+.woocommerce-table--order-details tfoot {
+  position: relative;
+  background-color: var(--typage_bg-light);
+}
+
+/* Dodajemy odstęp między produktami a podsumowaniem */
+.woocommerce-table--order-details tfoot tr:first-child th,
+.woocommerce-table--order-details tfoot tr:first-child td {
+  border-top: 2px solid var(--typage_primary-light);
+}
+
+.woocommerce-table--order-details tfoot tr:first-child td,
+.woocommerce-table--order-details tfoot tr:first-child th {
+  padding-top: 20px;
+}
+
+.woocommerce-table--order-details tfoot th {
+  font-weight: 600;
+}
+
+/* Wyróżniamy wiersz z sumą zamówienia, nie ostatni wiersz */
+.woocommerce-table--order-details tfoot tr:nth-last-child(2) {
+  background-color: var(--typage_primary-light);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.woocommerce-table--order-details tfoot tr:nth-last-child(2) th,
+.woocommerce-table--order-details tfoot tr:nth-last-child(2) td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.woocommerce-table--order-details tfoot tr:nth-last-child(2) .woocommerce-Price-amount {
+  color: var(--typage_primary-dark);
+  font-size: 1.15rem;
+}
+
+/* Hover efekty dla wierszy tabeli */
+.woocommerce-table--order-details tbody tr {
+  transition: var(--typage_transition);
+}
+
+.woocommerce-table--order-details tbody tr:hover {
+  background-color: var(--typage_primary-light);
+}
+
+/* Ceny w tabeli */
+.woocommerce-Price-amount {
+  font-weight: 600;
+}
+
+.woocommerce-Price-currencySymbol {
+  font-size: 0.9em;
+  margin-left: 2px;
+}
+
+/* -----------------------------------------
+   7. DANE KLIENTA
+-------------------------------------------- */
+.woocommerce-customer-details {
+  margin-bottom: var(--typage_section-margin);
+}
+
+.woocommerce-columns--addresses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.woocommerce-column--billing-address,
+.woocommerce-column--shipping-address {
+  background-color: var(--typage_address-bg);
+  border-radius: var(--typage_border-radius);
+  box-shadow: var(--typage_box-shadow);
+  border: 1px solid var(--typage_border-color);
+  overflow: hidden;
+  transition: var(--typage_transition);
+}
+
+.woocommerce-column--billing-address:hover,
+.woocommerce-column--shipping-address:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.woocommerce-column__title {
+  padding: 15px 20px;
+  margin: 0;
+  background-color: var(--typage_header-bg);
+  border-bottom: 1px solid var(--typage_header-border);
+  font-size: 1.125rem;
+  position: relative;
+}
+
+.woocommerce-column__title:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 20px;
+  width: 40px;
+  height: 3px;
+  background-color: var(--typage_primary);
+}
+
+.woocommerce-column--billing-address address,
+.woocommerce-column--shipping-address address {
+  padding: 20px;
+  margin: 0;
+  line-height: 1.6;
+  font-style: normal;
+}
+
+.woocommerce-customer-details--phone,
+.woocommerce-customer-details--email {
+  margin: 10px 0 10px 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.woocommerce-customer-details--phone:before,
+.woocommerce-customer-details--email:before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
+}
+
+.woocommerce-customer-details--phone:before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23132684'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E") !important;
+  }
+  
+.woocommerce-customer-details--email:before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23132684'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E") !important;
+}
+
+/* -----------------------------------------
+   8. DODATKOWE INFORMACJE
+-------------------------------------------- */
+.woocommerce-order > p:not(.woocommerce-notice) {
+  padding: 15px 20px;
+  background-color: var(--typage_white);
+  border-radius: var(--typage_border-radius);
+  box-shadow: var(--typage_box-shadow);
+  border-left: 3px solid var(--typage_primary);
+  margin-bottom: var(--typage_section-margin);
+  width: auto;
+  display: block;
+}
+
+/* -----------------------------------------
+   9. ANIMACJE I EFEKTY
+-------------------------------------------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.woocommerce-order > * {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* -----------------------------------------
+   10. DODATKOWE ELEMENTY DLA PRZYSZŁOŚCI
+-------------------------------------------- */
+/* Przyciski */
+.typage-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--typage_primary);
+  color: var(--typage_text) !important;
+  font-weight: 600;
+  text-align: center;
+  border-radius: var(--typage_border-radius);
+  text-decoration: none;
+  transition: var(--typage_transition);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.typage-button:hover {
+  background-color: var(--typage_primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.typage-button--outline {
+  background-color: transparent;
+  border: 2px solid var(--typage_primary);
+}
+
+.typage-button--outline:hover {
+  background-color: var(--typage_primary-light);
+}
+
+/* Statusy zamówień */
+.typage-order-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: var(--typage_badge-radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.typage-order-status--processing {
+  background-color: var(--typage_info);
+  color: white;
+}
+
+.typage-order-status--completed {
+  background-color: var(--typage_success);
+  color: white;
+}
+
+.typage-order-status--on-hold {
+  background-color: var(--typage_warning);
+  color: white;
+}
+
+/* Śledzenie przesyłki */
+.typage-tracking {
+  background-color: var(--typage_white);
+  border-radius: var(--typage_border-radius);
+  box-shadow: var(--typage_box-shadow);
+  border: 1px solid var(--typage_border-color);
+  margin-bottom: var(--typage_section-margin);
+  overflow: hidden;
+}
+
+.typage-tracking__header {
+  padding: 15px 20px;
+  background-color: var(--typage_header-bg);
+  border-bottom: 1px solid var(--typage_header-border);
+  position: relative;
+}
+
+.typage-tracking__header:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 20px;
+  width: 40px;
+  height: 3px;
+  background-color: var(--typage_primary);
+}
+
+.typage-tracking__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.typage-tracking__content {
+  padding: 20px;
+}
+
+.typage-tracking__number {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Sugerowane produkty */
+.typage-suggested-products {
+  margin-top: 40px;
+}
+
+.typage-suggested-products__title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.typage-suggested-products__title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--typage_primary);
+}
+
+.typage-suggested-products__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Komponenty dla wiadomości */
+.typage-message {
+  padding: 15px 20px;
+  border-radius: var(--typage_border-radius);
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 50px;
+}
+
+.typage-message:before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.typage-message--info {
+  background-color: #e8f4fd;
+  border: 1px solid #bce0fd;
+  color: var(--typage_info);
+}
+
+.typage-message--info:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230a51a3'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+}
+
+.typage-message--success {
+  background-color: #e8f6ee;
+  border: 1px solid #b7e1cb;
+  color: var(--typage_success);
+}
+
+.typage-message--success:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230c6e3d'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");
+}
+
+.typage-message--warning {
+  background-color: #fef8e6;
+  border: 1px solid #faecc2;
+  color: var(--typage_warning);
+}
+
+.typage-message--warning:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b78103'%3E%3Cpath d='M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z'/%3E%3C/svg%3E");
+}
+
+.typage-message--error {
+  background-color: #fdeaea;
+  border: 1px solid #f8c9c9;
+  color: var(--typage_error);
+}
+
+.typage-message--error:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e2401c'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
+}
+
+/* Formularz newslettera */
+.typage-newsletter {
+  background-color: var(--typage_primary-light);
+  border-radius: var(--typage_border-radius);
+  padding: 30px;
+  margin-top: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.typage-newsletter:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: var(--typage_primary);
+}
+
+.typage-newsletter__title {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+
+.typage-newsletter__form {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.typage-newsletter__input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid var(--typage_border-color);
+  border-radius: var(--typage_input-radius) 0 0 var(--typage_input-radius);
+  font-size: 1rem;
+}
+
+.typage-newsletter__button {
+  padding: 12px 20px;
+  background-color: var(--typage_primary);
+  color: var(--typage_text);
+  font-weight: 600;
+  border: none;
+  border-radius: 0 var(--typage_input-radius) var(--typage_input-radius) 0;
+  cursor: pointer;
+  transition: var(--typage_transition);
+}
+
+.typage-newsletter__button:hover {
+  background-color: var(--typage_primary-dark);
+}
+
+/* -----------------------------------------
+   11. RESPONSYWNOŚĆ
+-------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --typage_section-padding: 20px;
+    --typage_section-margin: 25px;
+  }
+  
+  .woocommerce-order {
+    padding: 15px;
+  }
+  
+  .woocommerce-order-overview {
+    grid-template-columns: 1fr;
+  }
+  
+  .woocommerce-notice--success {
+    padding: 20px;
+    font-size: 1.1rem;
+  }
+  
+  .woocommerce-column__title {
+    padding: 12px 15px;
+  }
+  
+  .woocommerce-column--billing-address address,
+  .woocommerce-column--shipping-address address {
+    padding: 15px;
+  }
+  
+  .woocommerce-table--order-details th,
+  .woocommerce-table--order-details td {
+    padding: 12px 15px;
+  }
+  
+  .typage-suggested-products__grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  
+  .typage-newsletter {
+    padding: 20px;
+  }
+  
+  .typage-newsletter__form {
+    flex-direction: column;
+  }
+  
+  .typage-newsletter__input {
+    width: 100%;
+    border-radius: var(--typage_input-radius);
+    margin-bottom: 10px;
+  }
+  
+  .typage-newsletter__button {
+    width: 100%;
+    border-radius: var(--typage_input-radius);
+  }
+}
+
+@media (max-width: 480px) {
+  .woocommerce-notice--success {
+    padding: 15px;
+    font-size: 1rem;
+  }
+  
+  .woocommerce-order-details__title,
+  .woocommerce-column__title {
+    font-size: 1rem;
+  }
+  
+  .woocommerce-table--order-details {
+    font-size: 0.9rem;
+  }
+}
