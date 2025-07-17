@@ -1,0 +1,509 @@
+// =============================================================================
+// MEGA MENU - Rozbudowane menu z kafelkami i promocją
+// =============================================================================
+
+// Podstawowe style dla mega menu
+.mega-menu-wrapper {
+  position: fixed;
+  top: 90px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $white;
+  box-shadow: map-get($shadows, "lg");
+  border-radius: map-get($border-radius, "md");
+  z-index: map-get($z-index, "dropdown");
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px);
+  
+  // Gdy menu jest aktywne
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+// Ukryj ikonę chevron-down dla elementów bez klasy mm-content
+.main-navigation .menu-item-has-children:not(.mm-content) .menu-icon-dropdown {
+  display: none !important;
+}
+
+.mega-menu-container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  width: 100%;
+  padding: map-get($spacing, "lg") map-get($spacing, "xl");
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+// Główna zawartość menu (kolumny submenu)
+.mega-menu-content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  gap: map-get($spacing, "lg");
+  position: relative;
+}
+
+// Nagłówek mega menu
+.mega-menu-header {
+  margin-bottom: map-get($spacing, "md");
+  padding-bottom: map-get($spacing, "sm");
+  // Usunięto border-bottom
+  
+  .mega-menu-title {
+    font-size: 18px; // Zwiększono czcionkę z 16px na 18px
+    font-weight: 400;
+    color: $primary-text-color;
+    margin: 0;
+    font-family: $font-primary; // Outfit
+    
+    // Dodanie stylowania dla "Pen-Pol"
+    .brand-name {
+      font-family: $font-secondary; // Lora
+      font-weight: 400;
+      font-style: italic;
+    }
+  }
+}
+
+// Lewa strona - pierwsza kolumna submenu
+.mega-menu-primary {
+  flex: 0 0 270px;
+  display: flex;
+  flex-direction: column;
+  background-color: #F3F3F3;
+  border-radius: map-get($border-radius, "md");
+  padding: 15px;
+  margin-right: 15px; // Dodano odstęp 15px między kontenerami
+  
+  .sub-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    &.level-1 {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      
+      > li {
+        margin-bottom: 0;
+        list-style: none;
+        list-style-type: none;
+        
+        &::marker {
+          display: none;
+          content: "";
+        }
+        
+        // Kafelek submenu poziomu 1
+        > a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px; // Zmniejszono padding z 15px na 5px
+          background-color: transparent;
+          border-radius: map-get($border-radius, "md");
+          font-family: $font-primary; // Outfit
+          font-size: 14px;
+          font-weight: 400;
+          color: $primary-text-color;
+          text-decoration: none;
+          transition: color 0.3s ease;
+          position: relative;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px; // Zmieniono grubość z 2px na 1px
+            background-color: $medium-grey; // Zmieniono kolor z $primary-color-blue na szary
+            transition: width 0.3s ease;
+          }
+          
+          .menu-chevron-right {
+            margin-left: 15px; // Zwiększono odstęp z 10px na 15px
+            transition: transform 0.3s ease;
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+          }
+          
+          // Ukryj chevron-down.svg dodawany przez Walker
+          .menu-icon-dropdown {
+            display: none !important;
+          }
+          
+          &:hover,
+          &:focus {
+            color: $text-muted;
+            
+            &::after {
+              width: 100%;
+            }
+            
+            .menu-chevron-right {
+              transform: translateX(3px);
+              filter: grayscale(1) opacity(0.7);
+            }
+          }
+        }
+        
+        // Stan aktywny dla elementu poziomu 1
+        &:hover,
+        &:focus-within,
+        &.active {
+          > a {
+            color: $text-muted;
+            
+            &::after {
+              width: 100%;
+            }
+            
+            .menu-chevron-right {
+              transform: translateX(3px);
+              filter: grayscale(1) opacity(0.7);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Kontenery dla submenu różnych poziomów (2, 3, 4, 5)
+.mega-menu-submenu-container {
+  position: absolute;
+  background-color: #f3f3f3;
+  border-radius: map-get($border-radius, "md");
+  z-index: 2;
+  width: 270px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  // Stan po animacji (fade-in)
+  &.fade-in {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+  
+  // Zawartość kontenera submenu
+  &-content {
+    max-height: 100%;
+    overflow-y: auto;
+    display: flex;
+    align-items: center; // Wyśrodkowanie w pionie
+    justify-content: center; // Wyśrodkowanie w poziomie
+    height: 100%;
+    width: 100%;
+    
+    .submenu-items-list {
+      list-style: none !important; // Usunięto list-style-type: circle
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      
+      li {
+        margin-bottom: 0;
+        list-style: none !important;
+        list-style-type: none !important;
+        display: list-item;
+        
+        &::marker {
+          display: none !important;
+          content: "" !important;
+        }
+        
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px; // Zmniejszono padding z 15px na 5px, tak jak w depth1
+          background-color: transparent;
+          border-radius: map-get($border-radius, "md");
+          font-family: $font-primary; // Outfit
+          font-size: 14px;
+          font-weight: 400;
+          color: $primary-text-color;
+          text-decoration: none;
+          transition: color 0.3s ease;
+          position: relative;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px; // Zmieniono grubość z 2px na 1px
+            background-color: $medium-grey; // Zmieniono kolor z $primary-color-blue na szary
+            transition: width 0.3s ease;
+          }
+          
+          .menu-chevron-right {
+            margin-left: 15px; // Zwiększono odstęp z 10px na 15px
+            transition: transform 0.3s ease;
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+          }
+          
+          // Ukryj chevron-down.svg dodawany przez Walker
+          .menu-icon-dropdown {
+            display: none !important;
+          }
+          
+          &:hover,
+          &:focus {
+            color: $text-muted;
+            
+            &::after {
+              width: 100%;
+            }
+            
+            .menu-chevron-right {
+              transform: translateX(3px);
+              filter: grayscale(1) opacity(0.7);
+            }
+          }
+        }
+        
+        // Stan aktywny
+        &:hover,
+        &:focus-within,
+        &.active {
+          > a {
+            color: $text-muted;
+            
+            &::after {
+              width: 100%;
+            }
+            
+            .menu-chevron-right {
+              transform: translateX(3px);
+              filter: grayscale(1) opacity(0.7);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Pozycjonowanie kontenerów dla różnych poziomów
+  &[data-depth="2"] {
+    left: 320px; 
+    top: 50%;
+    transform: translateY(-50%);
+    height: 140px; 
+  }
+  
+  &[data-depth="3"] {
+    left: 620px; 
+    top: 50%;
+    transform: translateY(-50%);
+    height: 110px; 
+  }
+  
+  &[data-depth="4"] {
+    left: 920px; 
+    top: 50%;
+    transform: translateY(-50%);
+    height: 110px; 
+  }
+  
+  &[data-depth="5"] {
+    left: 1200px; 
+    transform: translateY(-50%);
+    height: 80px;
+  }
+}
+
+// Ukryj oryginalne submenu poziomu 2+ w pierwszej kolumnie
+.mega-menu-primary .sub-menu.level-2,
+.mega-menu-primary .sub-menu.level-3,
+.mega-menu-primary .sub-menu.level-4,
+.mega-menu-primary .sub-menu.level-5 {
+  display: none !important;
+}
+
+// Prawa strona - kafelek promocyjny
+.mega-menu-promo {
+  width: 320px;
+  flex: 0 0 320px;
+  background-color: $primary-color-blue;
+  border-radius: map-get($border-radius, "lg");
+  overflow: hidden;
+  color: $white;
+  margin-left: map-get($spacing, "xl");
+  padding: 20px; // Dodano padding 20px
+  display: flex; // Dodano flex dla układu dwóch kontenerów
+  flex-direction: row; // Zmieniono na row, aby obrazek był obok tekstu
+  align-items: center; // Wyśrodkowanie w pionie
+  gap: 20px; // Odstęp między treścią a obrazkiem
+  
+  // Kontener dla treści kafelka promocyjnego
+  &-content {
+    flex: 1; // Zajmuje dostępną przestrzeń
+    
+    // Nagłówek kafelka promocyjnego
+    &-heading {
+      font-size: map-get($font-sizes, "h5");
+      font-weight: map-get($font-weights, "bold");
+      margin: 0 0 map-get($spacing, "sm") 0;
+      color: $white;
+    }
+    
+    // Tekst kafelka promocyjnego
+    &-text {
+      font-size: map-get($font-sizes, "small");
+      line-height: map-get($line-heights, "relaxed");
+      
+      p {
+        margin: 0 0 map-get($spacing, "sm") 0;
+        color: $white;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  &-image {
+    flex: 1; 
+    aspect-ratio: 3/4; 
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  }
+}
+
+// Dodatkowe reguły dla usunięcia kropek list-style w każdym możliwym miejscu
+.mega-menu-submenu-container ul,
+.mega-menu-submenu-container li,
+.mega-menu-primary ul,
+.mega-menu-primary li,
+.submenu-items-list,
+.submenu-items-list li {
+  list-style: none !important;
+  list-style-type: none !important;
+  
+  &::marker {
+    display: none !important;
+    content: "" !important;
+  }
+}
+
+// Hover na pozycji menu głównego
+.main-navigation {
+  .menu-item-has-children[data-depth="0"] {
+    position: relative;
+    
+    // Styl dla aktywnej pozycji menu
+    &:hover, 
+    &:focus-within {
+      > a {
+        color: $primary-color-blue;
+        position: relative;
+        
+        // Podkreślenie
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: $primary-color-blue;
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+// Mega menu nie jest widoczne na mobile
+$desktop-breakpoint-minus-1: map-get($breakpoints, "desktop") - 1;
+@media (max-width: $desktop-breakpoint-minus-1) {
+  .mega-menu-wrapper {
+    display: none;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .mega-menu-wrapper,
+  .menu-chevron-right,
+  .mega-menu-promo-image img,
+  .main-navigation .menu-item-has-children[data-depth="0"] > a::after,
+  .mega-menu-submenu-container,
+  .mega-menu-submenu-container.fade-in,
+  .mega-menu-primary .sub-menu.level-1 > li > a::after,
+  .mega-menu-submenu-container .submenu-items-list li a::after {
+    transition: none;
+    transform: none;
+    animation: none;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .mega-menu-wrapper {
+    border: 1px solid $black;
+  }
+  
+  .mega-menu-primary .sub-menu.level-1 > li > a {
+    border: 1px solid $black;
+  }
+  
+  .mega-menu-submenu-container {
+    border: 1px solid $black;
+    
+    .submenu-items-list li a {
+      border: 1px solid $black;
+    }
+  }
+  
+  .mega-menu-promo {
+    border: 1px solid $white;
+  }
+  
+  .main-navigation .menu-item-has-children[data-depth="0"]:hover > a::after,
+  .main-navigation .menu-item-has-children[data-depth="0"]:focus-within > a::after {
+    background-color: $black;
+  }
+}
+
+// Print styles
+@media print {
+  .mega-menu-wrapper {
+    display: none !important;
+  }
+}

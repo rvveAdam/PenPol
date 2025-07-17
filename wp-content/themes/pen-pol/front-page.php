@@ -13,6 +13,7 @@ get_header();
     <?php get_template_part('template-parts/home/hero'); ?>
     <?php get_template_part('template-parts/home/categories'); ?>
     <?php get_template_part('template-parts/home/poradniki'); ?>
+    <?php get_template_part('template-parts/home/produkty-home'); ?>
     <?php get_template_part('template-parts/home/o-nas'); ?>
     <?php get_template_part('template-parts/global/faq'); ?>
     <?php get_template_part('template-parts/global/opinions'); ?>

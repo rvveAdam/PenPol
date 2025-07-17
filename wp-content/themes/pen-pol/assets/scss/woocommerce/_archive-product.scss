@@ -684,3 +684,579 @@
     display: none;
   }
 }
+
+// =============================================================================
+// PRODUCT FILTERS - FacetWP Integration
+// =============================================================================
+
+// Reset FacetWP stylów
+.facetwp-facet {
+  margin-bottom: 0 !important;
+}
+
+// Główny kontener filtrów
+.shop-archive {
+  &__filters-section {
+    position: relative;
+    margin-bottom: 40px;
+  }
+  
+  &__filter-status-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+    gap: 16px;
+    
+    @include tablet-up {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+  
+  &__filter-status {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  &__sorting {
+    .woocommerce-ordering {
+      margin: 0;
+      
+      select {
+        padding: 10px 16px;
+        border: 1px solid $light-grey;
+        border-radius: 8px;
+        background-color: #E6E6E6;
+        font-family: $font-primary;
+        font-size: map-get($font-sizes, "p");
+        font-weight: map-get($font-weights, "medium");
+        color: $primary-text-color;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%231a1a1a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        padding-right: 40px;
+        cursor: pointer;
+        min-width: 220px;
+        
+        &:hover, &:focus {
+          border-color: $primary-color-blue;
+          outline: none;
+        }
+        
+        &:focus-visible {
+          outline: $focus-width $focus-style $focus-color;
+          outline-offset: $focus-offset;
+        }
+      }
+    }
+  }
+  
+  &__selected-filters {
+    margin-bottom: 8px;
+    
+    .facetwp-selections {
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      li {
+        background-color: #E6E6E6;
+        border: #E6E6E6;
+        border-radius: 6px;
+        padding: 10px 16px;
+        font-size: map-get($font-sizes, "small");
+        display: flex;
+        align-items: center;
+        
+        .facetwp-selection-value {
+          margin-right: 4px;
+        }
+        
+        .facetwp-selection-remove {
+          color: $primary-color-blue;
+          font-weight: map-get($font-weights, "bold");
+          font-size: map-get($font-sizes, "small");
+          cursor: pointer;
+          
+          &:hover {
+            color: $primary-color-blue-hover;
+          }
+        }
+      }
+    }
+  }
+  
+  &__reset {
+    .facetwp-reset {
+      color: $primary-color-blue;
+      text-decoration: none;
+      font-size: map-get($font-sizes, "small");
+      font-weight: map-get($font-weights, "medium");
+      cursor: pointer;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  &__label {
+    font-family: $font-primary;
+    font-weight: map-get($font-weights, "semibold");
+    font-size: map-get($font-sizes, "p");
+    color: $primary-text-color;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  // Sekcja filtrów desktopowych
+  &__filters-desktop {
+    display: none;
+    
+    @include tablet-up {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  }
+  
+  // Pojedynczy item filtra
+  &__filter-item {
+    position: relative;
+    margin-bottom: 8px;
+    
+    &.active {
+      .shop-archive__filter-toggle svg {
+        transform: rotate(180deg);
+      }
+      
+      .shop-archive__filter-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  // Przycisk filtra
+  &__filter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid $light-grey;
+    border-radius: 8px;
+    background-color: #E6E6E6;
+    font-family: $font-primary;
+    font-size: map-get($font-sizes, "p");
+    font-weight: map-get($font-weights, "medium");
+    color: $primary-text-color;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      border-color: $primary-color-blue;
+    }
+    
+    svg {
+      transition: transform 0.2s ease;
+    }
+  }
+  
+  // Licznik filtrów
+  &__filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    background-color: $primary-color-blue;
+    border-radius: map-get($border-radius, "full");
+    color: $white;
+    font-size: map-get($font-sizes, "xs");
+    font-weight: map-get($font-weights, "semibold");
+    
+    &:empty {
+      display: none;
+    }
+  }
+  
+  // Panel zawartości filtra
+  &__filter-content {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 10;
+    min-width: 240px;
+    background-color: $white;
+    border-radius: map-get($border-radius, "md");
+    box-shadow: map-get($shadows, "md");
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  }
+  
+  // Przycisk filtrów mobilnych
+  &__mobile-trigger {
+    display: block;
+    margin-bottom: 16px;
+    
+    @include tablet-up {
+      display: none;
+    }
+    
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid $light-grey;
+      border-radius: 8px;
+      background-color: #E6E6E6;
+      font-family: $font-primary;
+      font-size: map-get($font-sizes, "p");
+      font-weight: map-get($font-weights, "medium");
+      color: $primary-text-color;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        border-color: $primary-color-blue;
+      }
+      
+      svg {
+        width: 16px;
+        height: 16px;
+        stroke: currentColor;
+      }
+    }
+  }
+  
+  &__mobile-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background-color: $primary-color-blue;
+    border-radius: map-get($border-radius, "full");
+    color: $white;
+    font-size: map-get($font-sizes, "xs");
+    font-weight: map-get($font-weights, "semibold");
+    
+    &:empty {
+      display: none;
+    }
+  }
+  
+  // Modal mobilny
+  &__mobile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: map-get($z-index, "modal");
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+    
+    &.active {
+      visibility: visible;
+      
+      .shop-archive__mobile-overlay {
+        opacity: 1;
+      }
+      
+      .shop-archive__mobile-container {
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  &__mobile-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($black, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+  
+  &__mobile-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $white;
+    border-top-left-radius: map-get($border-radius, "lg");
+    border-top-right-radius: map-get($border-radius, "lg");
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  &__mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid $light-grey;
+    flex-shrink: 0; // Zapobiega zmniejszaniu się nagłówka
+    
+    h3 {
+      font-family: $font-primary;
+      font-size: map-get($font-sizes, "h5");
+      font-weight: map-get($font-weights, "semibold");
+      margin: 0;
+    }
+    
+    button {
+      background: none;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+      border-radius: map-get($border-radius, "sm");
+      transition: background-color 0.2s ease;
+      
+      &:hover {
+        background-color: rgba($black, 0.05);
+      }
+      
+      svg {
+        width: 24px;
+        height: 24px;
+        stroke: $primary-text-color;
+      }
+    }
+  }
+  
+  &__mobile-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    -webkit-overflow-scrolling: touch;
+    
+    // Stylowanie facetów w modalu mobilnym
+    .facetwp-facet {
+      margin-bottom: 0 !important;
+      
+      // Checkboxy i radio buttony
+      .facetwp-checkbox,
+      .facetwp-radio {
+        display: block;
+        margin-bottom: 8px;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+        
+        input {
+          margin-right: 8px;
+        }
+        
+        label {
+          font-size: map-get($font-sizes, "small");
+          line-height: map-get($line-heights, "normal");
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+        }
+      }
+      
+      // Selecty
+      select {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid $light-grey;
+        border-radius: map-get($border-radius, "md");
+        font-size: map-get($font-sizes, "small");
+        background-color: $white;
+      }
+      
+      // Pola tekstowe (search)
+      input[type="text"],
+      input[type="search"] {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid $light-grey;
+        border-radius: map-get($border-radius, "md");
+        font-size: map-get($font-sizes, "small");
+        
+        &::placeholder {
+          color: $primary-text-color;
+        }
+      }
+      
+      // Linki (dla hierarchical facetów)
+      .facetwp-link {
+        display: block;
+        padding: 6px 0;
+        color: $primary-color-blue;
+        text-decoration: none;
+        border-bottom: 1px solid rgba($light-grey, 0.3);
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  &__mobile-filter {
+    margin-bottom: 24px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    h4 {
+      font-family: $font-primary;
+      font-size: map-get($font-sizes, "p");
+      font-weight: map-get($font-weights, "semibold");
+      margin: 0 0 12px 0;
+      color: $primary-text-color;
+    }
+  }
+  
+  &__mobile-footer {
+    padding: 16px 20px;
+    border-top: 1px solid $light-grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0; // Zapobiega zmniejszaniu się stopki
+    gap: 12px;
+    
+    button {
+      padding: 12px 24px;
+      border-radius: 8px;
+      background-color: $primary-color-blue;
+      color: $white;
+      font-family: $font-primary;
+      font-size: map-get($font-sizes, "p");
+      font-weight: map-get($font-weights, "medium");
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      
+      &:hover {
+        background-color: $primary-color-blue-hover;
+      }
+      
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+  }
+
+  // Obsługa wysokiego kontrastu
+  @media (prefers-contrast: high) {
+    &__filter-toggle,
+    &__mobile-trigger button,
+    &__sorting .woocommerce-ordering select {
+      border: 2px solid $black;
+    }
+    
+    &__filter-count,
+    &__mobile-count {
+      background-color: $black;
+      border: 1px solid $white;
+    }
+  }
+  
+  // Obsługa redukcji ruchu
+  @media (prefers-reduced-motion: reduce) {
+    &__filter-content,
+    &__mobile-container,
+    &__mobile-overlay,
+    &__filter-toggle svg {
+      transition: none;
+    }
+  }
+}
+
+// Stylowanie komponentów FacetWP w głównym interfejsie
+.facetwp-checkbox,
+.facetwp-radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: $font-primary;
+  font-size: map-get($font-sizes, "small");
+  cursor: pointer;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  .facetwp-counter {
+    margin-left: 5px;
+    color: $text-muted;
+    font-size: map-get($font-sizes, "xs");
+  }
+}
+
+// Stylowanie liczby wyników
+.facetwp-counts {
+  margin-bottom: 10px;
+  font-size: map-get($font-sizes, "small");
+  color: $text-muted;
+}
+
+// Stylowanie paginacji FacetWP
+.facetwp-pager {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  
+  a, span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: map-get($border-radius, "sm");
+    background-color: $white;
+    border: 1px solid $light-grey;
+    color: $primary-text-color;
+    text-decoration: none;
+    font-size: map-get($font-sizes, "small");
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: $background-color;
+    }
+    
+    &.active {
+      background-color: $primary-color-blue;
+      color: $white;
+      border-color: $primary-color-blue;
+    }
+  }
+}

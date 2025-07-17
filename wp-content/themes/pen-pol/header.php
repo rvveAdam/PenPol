@@ -47,6 +47,7 @@
 								'menu_class'     => 'menu-wrapper',
 								'theme_location' => 'menu-1',
 								'fallback_cb'    => false,
+								'walker'         => new Pen_Pol_Mega_Menu_Walker(), // Dodane: niestandardowy walker
 							)
 						);
 						?>
@@ -127,6 +128,7 @@
 								'menu_class'     => 'mobile-menu-wrapper',
 								'theme_location' => 'menu-1',
 								'fallback_cb'    => false,
+								'walker'         => new Pen_Pol_Mobile_Menu_Walker(), // Dodane: niestandardowy walker
 							)
 						);
 						?>

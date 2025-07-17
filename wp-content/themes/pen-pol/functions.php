@@ -266,8 +266,6 @@ function pen_pol_scripts() {
 	 */
 	require get_template_directory() . '/inc/customizer.php';
 
-
-
 	/**
 	 * Load Jetpack compatibility file.
 	 */
@@ -294,21 +292,6 @@ function wp_enqueue_woocommerce_style(){
 }
 add_action( 'wp_enqueue_scripts', 'wp_enqueue_woocommerce_style' );
 
-/**
- * Ograniczenie liczby wpisów na stronach archiwum do 5
- *
- * @param WP_Query $query Obiekt zapytania.
- */
-function pen_pol_archive_posts_per_page($query) {
-    // Tylko na front-endzie i tylko dla głównego zapytania
-    if (!is_admin() && $query->is_main_query()) {
-        // Dla archiwów, kategorii, tagów i strony głównej bloga
-        if ($query->is_archive() || $query->is_home()) {
-            $query->set('posts_per_page', 5);
-        }
-    }
-}
-add_action('pre_get_posts', 'pen_pol_archive_posts_per_page');
 
 /**
  * Dodaj obsługę ulubionych produktów
@@ -703,3 +686,547 @@ if ( ! function_exists( 'pen_pol_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
+
+add_action('init', 'start_session_for_compare');
+function start_session_for_compare() {
+    if (!session_id()) {
+        session_start();
+    }
+}
+
+// Enqueue scripts dla porównywania
+add_action('wp_enqueue_scripts', 'enqueue_compare_scripts');
+function enqueue_compare_scripts() {
+    wp_enqueue_script('compare-js', get_template_directory_uri() . '/assets/dist/compare.js', array('jquery'), '1.0.0', true);
+
+    // Przekaż dane do JavaScript
+    wp_localize_script('compare-js', 'compareData', array(
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('compare_products_nonce'),
+        'maxProducts' => 3,
+        'currentProducts' => get_compare_products()
+    ));
+}
+
+// Pobierz produkty z sesji
+function get_compare_products() {
+    return isset($_SESSION['compare_products']) ? $_SESSION['compare_products'] : array();
+}
+
+// Zapisz produkty do sesji
+function save_compare_products($products) {
+    $_SESSION['compare_products'] = array_slice($products, 0, 3); // Max 3 produkty
+}
+
+// AJAX: Aktualizuj produkty w sesji
+add_action('wp_ajax_update_compare_products', 'ajax_update_compare_products');
+add_action('wp_ajax_nopriv_update_compare_products', 'ajax_update_compare_products');
+function ajax_update_compare_products() {
+    check_ajax_referer('compare_products_nonce', 'nonce');
+
+    $products = isset($_POST['products']) ? array_map('sanitize_text_field', $_POST['products']) : array();
+
+    // Walidacja - sprawdź czy produkty istnieją
+    $validated_products = array();
+    foreach ($products as $product_id) {
+        if (get_post_status($product_id) === 'publish' && get_post_type($product_id) === 'product') {
+            $validated_products[] = $product_id;
+        }
+    }
+
+    save_compare_products($validated_products);
+
+    wp_send_json_success(array('products' => $validated_products));
+}
+
+/**
+ * Enqueue product filters script
+ */
+function pen_pol_product_filters_scripts() {
+    // Tylko na stronach archiwum produktów
+        wp_enqueue_script(
+            'pen-pol-product-filters',
+            get_template_directory_uri() . '/assets/dist/product-filters.js',
+            array('jquery'),
+            _S_VERSION,
+            true
+        );
+}
+add_action('wp_enqueue_scripts', 'pen_pol_product_filters_scripts');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// =====================================================================
+// MEGA MENU - POCZĄTEK
+// =====================================================================
+
+/**
+ * Modyfikacja Customizera do obsługi HTML w nagłówku promocji
+ * Dodaj/zastąp tę funkcję w pliku functions.php
+ */
+function pen_pol_mega_menu_customizer_options($wp_customize) {
+    // Dodaj sekcję dla mega-menu
+    $wp_customize->add_section('pen_pol_mega_menu', array(
+        'title'    => __('Mega Menu', 'pen-pol'),
+        'priority' => 120,
+    ));
+    
+    // Opcja włączenia/wyłączenia kafelka promocyjnego
+    $wp_customize->add_setting('mega_menu_promo_enabled', array(
+        'default'           => true,
+        'sanitize_callback' => 'pen_pol_sanitize_checkbox',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('mega_menu_promo_enabled', array(
+        'label'    => __('Włącz kafelek promocyjny', 'pen-pol'),
+        'section'  => 'pen_pol_mega_menu',
+        'type'     => 'checkbox',
+        'priority' => 10,
+    ));
+    
+    // Nagłówek promocji - z obsługą HTML
+    $wp_customize->add_setting('mega_menu_promo_heading', array(
+        'default'           => __('<span class="promo-highlight">Promocja!</span> 15% taniej', 'pen-pol'),
+        'sanitize_callback' => 'pen_pol_sanitize_html', // Własna funkcja sanityzacji
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('mega_menu_promo_heading', array(
+        'label'       => __('Nagłówek promocji (HTML dozwolony)', 'pen-pol'),
+        'description' => __('Możesz używać znaczników HTML np. &lt;span class="promo-highlight"&gt;Promocja!&lt;/span&gt;', 'pen-pol'),
+        'section'     => 'pen_pol_mega_menu',
+        'type'        => 'text',
+        'priority'    => 20,
+        'active_callback' => 'pen_pol_is_promo_enabled',
+    ));
+    
+    // Tekst promocji - bez zmian
+    $wp_customize->add_setting('mega_menu_promo_text', array(
+        'default'           => __('<p>Lekkie kołdry i poduszki</p>', 'pen-pol'),
+        'sanitize_callback' => 'wp_kses_post',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('mega_menu_promo_text', array(
+        'label'    => __('Tekst promocji', 'pen-pol'),
+        'section'  => 'pen_pol_mega_menu',
+        'type'     => 'textarea',
+        'priority' => 30,
+        'active_callback' => 'pen_pol_is_promo_enabled',
+    ));
+    
+    // Obrazek promocji - bez zmian
+    $wp_customize->add_setting('mega_menu_promo_image', array(
+        'default'           => get_template_directory_uri() . '/assets/images/promo-default.jpg',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'mega_menu_promo_image', array(
+        'label'    => __('Obrazek promocji', 'pen-pol'),
+        'section'  => 'pen_pol_mega_menu',
+        'priority' => 40,
+        'active_callback' => 'pen_pol_is_promo_enabled',
+    )));
+}
+add_action('customize_register', 'pen_pol_mega_menu_customizer_options');
+
+/**
+ * Funkcja sanityzacji dopuszczająca wybrane tagi HTML i atrybuty
+ */
+function pen_pol_sanitize_html($input) {
+    $allowed_html = array(
+        'span' => array(
+            'class' => array(),
+            'id' => array(),
+            'style' => array(),
+        ),
+        'em' => array(),
+        'strong' => array(),
+        'b' => array(),
+        'i' => array(),
+        'br' => array(),
+        'small' => array(),
+    );
+    
+    return wp_kses($input, $allowed_html);
+}
+
+/**
+ * Modyfikacja kodu w Walkerze menu przy wyświetlaniu nagłówka promocji
+ * Znajdź i zamień ten fragment w klasie Pen_Pol_Mega_Menu_Walker
+ */
+if (!empty($promo_heading)) {
+    // Używamy wp_kses żeby przepuścić tylko wybrane tagi HTML
+    $allowed_html = array(
+        'span' => array(
+            'class' => array(),
+            'id' => array(),
+            'style' => array(),
+        ),
+        'em' => array(),
+        'strong' => array(),
+        'b' => array(),
+        'i' => array(),
+        'br' => array(),
+        'small' => array(),
+    );
+    
+    $output .= '<h3 class="mega-menu-promo-content-heading">' . wp_kses($promo_heading, $allowed_html) . '</h3>';
+}
+
+/**
+ * Funkcja callback sprawdzająca, czy promocja jest włączona
+ */
+function pen_pol_is_promo_enabled() {
+    return get_theme_mod('mega_menu_promo_enabled', true);
+}
+
+/**
+ * Funkcja sanityzująca checkbox
+ */
+function pen_pol_sanitize_checkbox($checked) {
+    return ((isset($checked) && true == $checked) ? true : false);
+}
+
+/**
+ * Custom Nav Walker dla Mega Menu
+ */
+class Pen_Pol_Mega_Menu_Walker extends Walker_Nav_Menu {
+    // Zmienne pomocnicze do śledzenia pierwszego elementu
+    private $first_lvl_item = true;
+    private $parent_title = '';
+    
+    /**
+     * Starts the element output.
+     */
+    public function start_el(&$output, $data_object, $depth = 0, $args = null, $current_object_id = 0) {
+        // Inicjalizacja elementu
+        $menu_item = $data_object;
+
+        $indent = str_repeat("\t", $depth);
+        $classes = empty($menu_item->classes) ? array() : (array) $menu_item->classes;
+        $classes[] = 'menu-item-' . $menu_item->ID;
+        
+        // Sprawdzanie czy element ma dzieci (podrzędne elementy menu)
+        $has_children = $args->walker->has_children;
+        
+        if ($has_children) {
+            $classes[] = 'menu-item-has-children';
+        }
+        
+        // Filtrowanie klas CSS
+        $class_names = implode(' ', apply_filters('nav_menu_css_class', array_filter($classes), $menu_item, $args, $depth));
+        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+        
+        // ID elementu menu
+        $id = apply_filters('nav_menu_item_id', 'menu-item-' . $menu_item->ID, $menu_item, $args, $depth);
+        $id = $id ? ' id="' . esc_attr($id) . '"' : '';
+        
+        // Dodanie atrybutu data-depth
+        $data_depth = ' data-depth="' . esc_attr($depth) . '"';
+        
+        $output .= $indent . '<li' . $id . $class_names . $data_depth . '>';
+        
+        // Atrybuty elementu
+        $atts = array();
+        $atts['title']  = !empty($menu_item->attr_title) ? $menu_item->attr_title : '';
+        $atts['target'] = !empty($menu_item->target) ? $menu_item->target : '';
+        $atts['rel']    = !empty($menu_item->xfn) ? $menu_item->xfn : '';
+        $atts['href']   = !empty($menu_item->url) ? $menu_item->url : '';
+        
+        // Filtrowanie atrybutów
+        $atts = apply_filters('nav_menu_link_attributes', $atts, $menu_item, $args, $depth);
+        
+        // Budowanie atrybutów
+        $attributes = '';
+        foreach ($atts as $attr => $value) {
+            if (is_scalar($value) && '' !== $value && false !== $value) {
+                $value = ('href' === $attr) ? esc_url($value) : esc_attr($value);
+                $attributes .= ' ' . $attr . '="' . $value . '"';
+            }
+        }
+        
+        // Nazwa elementu menu
+        $title = apply_filters('the_title', $menu_item->title, $menu_item->ID);
+        $title = apply_filters('nav_menu_item_title', $title, $menu_item, $args, $depth);
+        
+        // Rozpoczęcie tagu a
+        $item_output = $args->before;
+        $item_output .= '<a' . $attributes . ' class="menu-link">';
+        $item_output .= $args->link_before . $title . $args->link_after;
+        
+        // Dodanie ikony chevron-down, jeśli element ma dzieci
+        if ($has_children) {
+            $item_output .= '<img src="' . esc_url(get_template_directory_uri() . '/assets/images/chevron-down.svg') . '" class="menu-icon-dropdown" alt="" aria-hidden="true">';
+        }
+        
+        $item_output .= '</a>';
+        $item_output .= $args->after;
+        
+        // Rozpoczęcie mega menu, jeśli element jest na najwyższym poziomie i ma dzieci
+        if ($depth === 0 && $has_children) {
+            $item_output .= '<div class="mega-menu-wrapper">';
+            $item_output .= '<div class="mega-menu-container">';
+            
+            // Ustaw zmienne pomocnicze
+            $this->first_lvl_item = true;
+            $this->parent_title = $title;
+            
+            // Przygotowanie kontenera na zawartość menu
+            $item_output .= '<div class="mega-menu-content">';
+            
+            // Kontener dla pierwszej kolumny submenu
+            $item_output .= '<div class="mega-menu-primary">';
+            $item_output .= '<div class="mega-menu-header"><h2 class="mega-menu-title">' . esc_html($title) . ' - Pen-Pol</h2></div>';
+        }
+        
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $menu_item, $depth, $args);
+    }
+    
+    /**
+     * Ends the element output, if needed.
+     */
+    public function end_el(&$output, $data_object, $depth = 0, $args = null) {
+        $menu_item = $data_object;
+        
+        // Jeśli element jest na poziomie 0 i ma dzieci, zamykamy mega-menu
+        if ($depth === 0 && in_array('menu-item-has-children', $menu_item->classes)) {
+            // Zamknięcie kontenera pierwszej kolumny
+            $output .= '</div>'; // Zamknięcie .mega-menu-primary
+            
+            // Dodanie kontenera na drugą kolumnę
+            $output .= '<div class="mega-menu-secondary"></div>';
+            
+            // Zamknięcie kontenera na zawartość menu
+            $output .= '</div>'; // Zamknięcie .mega-menu-content
+            
+            // Dodanie kafelka promocyjnego (używa opcji motywu)
+            $promo_enabled = get_theme_mod('mega_menu_promo_enabled', true);
+            
+            if ($promo_enabled) {
+                $promo_heading = get_theme_mod('mega_menu_promo_heading', 'Promocja! 15% taniej');
+                $promo_text = get_theme_mod('mega_menu_promo_text', '<p>Lekkie kołdry i poduszki</p>');
+                $promo_image = get_theme_mod('mega_menu_promo_image', get_template_directory_uri() . '/assets/images/promo-default.jpg');
+                
+                // Dodanie kafelka promocyjnego
+                $output .= '<div class="mega-menu-promo">';
+                
+                // Treść kafelka
+                $output .= '<div class="mega-menu-promo-content">';
+                
+                if (!empty($promo_heading)) {
+                    $output .= '<h3 class="mega-menu-promo-content-heading">' . esc_html($promo_heading) . '</h3>';
+                }
+                
+                if (!empty($promo_text)) {
+                    $output .= '<div class="mega-menu-promo-content-text">' . wp_kses_post($promo_text) . '</div>';
+                }
+                
+                $output .= '</div>'; // .mega-menu-promo-content
+                
+                // Obraz kafelka
+                $output .= '<div class="mega-menu-promo-image">';
+                if (!empty($promo_image)) {
+                    $output .= '<img src="' . esc_url($promo_image) . '" alt="Promocja">';
+                }
+                $output .= '</div>'; // .mega-menu-promo-image
+                
+                $output .= '</div>'; // .mega-menu-promo
+            }
+            
+            $output .= '</div>'; // Zamknięcie .mega-menu-container
+            $output .= '</div>'; // Zamknięcie .mega-menu-wrapper
+        }
+        
+        $output .= "</li>\n";
+    }
+    
+    /**
+     * Starts the level output.
+     */
+    public function start_lvl(&$output, $depth = 0, $args = null) {
+        $indent = str_repeat("\t", $depth);
+        
+        // Dodanie odpowiednich klas dla różnych poziomów menu
+        if ($depth === 0) {
+            $output .= "$indent<ul class=\"sub-menu level-1\">\n";
+        } else {
+            $output .= "$indent<ul class=\"sub-menu level-" . ($depth + 1) . "\">\n";
+        }
+    }
+}
+
+/**
+ * Custom Nav Walker dla Mobile Menu
+ */
+class Pen_Pol_Mobile_Menu_Walker extends Walker_Nav_Menu {
+    /**
+     * Starts the element output.
+     */
+    public function start_el(&$output, $data_object, $depth = 0, $args = null, $current_object_id = 0) {
+        // Inicjalizacja elementu
+        $menu_item = $data_object;
+
+        $indent = str_repeat("\t", $depth);
+        $classes = empty($menu_item->classes) ? array() : (array) $menu_item->classes;
+        $classes[] = 'menu-item-' . $menu_item->ID;
+        
+        // Sprawdzanie czy element ma dzieci (podrzędne elementy menu)
+        $has_children = $args->walker->has_children;
+        
+        if ($has_children) {
+            $classes[] = 'menu-item-has-children';
+        }
+        
+        // Filtrowanie klas CSS
+        $class_names = implode(' ', apply_filters('nav_menu_css_class', array_filter($classes), $menu_item, $args, $depth));
+        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+        
+        // ID elementu menu
+        $id = apply_filters('nav_menu_item_id', 'menu-item-' . $menu_item->ID, $menu_item, $args, $depth);
+        $id = $id ? ' id="' . esc_attr($id) . '"' : '';
+        
+        $output .= $indent . '<li' . $id . $class_names . '>';
+        
+        // Atrybuty elementu
+        $atts = array();
+        $atts['title']  = !empty($menu_item->attr_title) ? $menu_item->attr_title : '';
+        $atts['target'] = !empty($menu_item->target) ? $menu_item->target : '';
+        $atts['rel']    = !empty($menu_item->xfn) ? $menu_item->xfn : '';
+        $atts['href']   = !empty($menu_item->url) ? $menu_item->url : '';
+        
+        // Filtrowanie atrybutów
+        $atts = apply_filters('nav_menu_link_attributes', $atts, $menu_item, $args, $depth);
+        
+        // Budowanie atrybutów
+        $attributes = '';
+        foreach ($atts as $attr => $value) {
+            if (is_scalar($value) && '' !== $value && false !== $value) {
+                $value = ('href' === $attr) ? esc_url($value) : esc_attr($value);
+                $attributes .= ' ' . $attr . '="' . $value . '"';
+            }
+        }
+        
+        // Nazwa elementu menu
+        $title = apply_filters('the_title', $menu_item->title, $menu_item->ID);
+        $title = apply_filters('nav_menu_item_title', $title, $menu_item, $args, $depth);
+        
+        // Rozpoczęcie tagu a lub button dla elementów z dziećmi
+        $item_output = $args->before;
+        
+        if ($has_children) {
+            $item_output .= '<a' . $attributes . ' class="menu-link">' . $args->link_before . $title . $args->link_after . '</a>';
+            $item_output .= '<button class="mobile-submenu-toggle" aria-expanded="false">';
+            $item_output .= '<img src="' . esc_url(get_template_directory_uri() . '/assets/images/chevron-down.svg') . '" class="mobile-menu-icon-dropdown" alt="" aria-hidden="true">';
+            $item_output .= '</button>';
+        } else {
+            $item_output .= '<a' . $attributes . ' class="menu-link">';
+            $item_output .= $args->link_before . $title . $args->link_after;
+            $item_output .= '</a>';
+        }
+        
+        $item_output .= $args->after;
+        
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $menu_item, $depth, $args);
+    }
+    
+    /**
+     * Starts the level output.
+     */
+    public function start_lvl(&$output, $depth = 0, $args = null) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "$indent<ul class=\"sub-menu\" hidden>\n";
+    }
+}
+
+/**
+ * Zarejestruj i załaduj skrypty mega menu
+ */
+function pen_pol_mega_menu_scripts() {
+    wp_enqueue_script(
+        'pen-pol-mega-menu',
+        get_template_directory_uri() . '/assets/dist/mega-menu.js',
+        array('jquery'),
+        _S_VERSION,
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'pen_pol_mega_menu_scripts');
+
+/**
+ * Dodaj stylowanie mega-menu
+ */
+function pen_pol_add_mega_menu_styles() {
+    // Dodaj import do głównego pliku SCSS
+    $main_scss = get_template_directory() . '/assets/scss/main.scss';
+    if (file_exists($main_scss)) {
+        $content = file_get_contents($main_scss);
+        if (strpos($content, '@import "components/mega-menu"') === false) {
+            $content .= "\n// Import mega menu styles\n@import \"components/mega-menu\";\n";
+            file_put_contents($main_scss, $content);
+        }
+    }
+}
+add_action('after_setup_theme', 'pen_pol_add_mega_menu_styles');    
+
+/**
+ * Dodaj tę funkcję do pliku functions.php
+ * Ta funkcja wstrzykuje uniwersalny skrypt JavaScript, który interpretuje dowolny HTML
+ */
+function pen_pol_enable_html_in_promo() {
+    ?>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Poczekaj aż DOM się załaduje
+        setTimeout(function() {
+            // Znajdź nagłówek promocji
+            const promoHeadings = document.querySelectorAll(".mega-menu-promo-content-heading");
+            
+            promoHeadings.forEach(function(heading) {
+                // Sprawdź czy zawiera nieinterpretowany HTML
+                const text = heading.textContent;
+                if (text.includes("<") && text.includes(">")) {
+                    // Użyj innerHTML do prawidłowej interpretacji HTML
+                    // Zapisz obecną zawartość tekstową
+                    const htmlContent = text;
+                    
+                    // Zastąp zawartość tekstową zinterpretowanym HTML
+                    heading.innerHTML = htmlContent;
+                }
+            });
+        }, 100);
+    });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'pen_pol_enable_html_in_promo', 999);
+
+// =====================================================================
+// MEGA MENU - KONIEC
+// =====================================================================

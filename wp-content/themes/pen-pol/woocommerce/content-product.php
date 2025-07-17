@@ -153,6 +153,153 @@ $sale_price = $product->is_on_sale() ? $product->get_sale_price() : '';
                     </div>
                 </div>
             <?php endif; ?>
+
+            <?php
+            $product_id = $product->get_id();
+            $compare_products = function_exists('get_compare_products') ? get_compare_products() : [];
+            $is_in_compare = in_array($product_id, $compare_products);
+
+            $action = $is_in_compare ? 'remove-from-compare' : 'add-to-compare';
+            $text = $is_in_compare ? ('Usuń z porównania') : ('Dodaj do porównania');
+            $icon = $is_in_compare ? 'minus' : 'plus';
+            ?>
+
+            <button class="compare-button <?php echo esc_attr($action); ?>"
+                data-product-id="<?php echo esc_attr($product_id); ?>" title="<?php echo esc_attr($text); ?>">
+                <span><?php _e('Porównaj'); ?></span>
+            </button>
+
+            <style>
+            /* 
+            * Product Card - Compare Button Styles
+            * Przenieś ten kod do głównego pliku SCSS
+            */
+            @keyframes compareButtonFadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+            @keyframes compareButtonFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+            }
+
+            .product-card {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .product-card__wrapper {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .product-card__content {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                justify-content: space-between;
+                padding: 16px;
+            }
+
+            .product-card__details {
+                flex-grow: 1;
+           }
+
+            .product-card__footer {
+                margin-top: 12px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .product-card__price-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+            }
+        
+            /* Stylowanie przycisku porównania */
+            .product-card .compare-button {
+                visibility: hidden;
+                opacity: 0;
+                align-self: flex-end;
+                display: flex;
+                align-items: center;
+                background: transparent;
+                border: none;
+                padding: 0;
+                margin-top: 4px;
+                font-size: 14px;
+                color: #666666;
+                cursor: pointer;
+                transition: color 0.2s ease;
+            }
+
+            .product-card:hover .compare-button {
+                visibility: visible;
+                opacity: 1;
+                animation: compareButtonFadeIn 0.3s ease forwards;
+            }
+
+            .product-card .compare-button span {
+                margin-right: 8px;
+            }
+
+            .product-card .compare-button::after {
+                content: '';
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                border: 1px solid #666666;
+                border-radius: 2px;
+                position: relative;
+                top: 2px;
+                transition: border-color 0.2s ease, background-color 0.2s ease;
+            }
+
+            .product-card .compare-button.remove-from-compare::after {
+                background-color: #132684;
+                border-color: #132684;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8' fill='none'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            .product-card .compare-button:hover {
+                color: #132684;
+            }
+
+            .product-card .compare-button:hover::after {
+                border-color: #132684;
+            }
+
+            /* Dostępność */
+            @media (prefers-reduced-motion: reduce) {
+                .product-card .compare-button {
+                    transition: none;
+            }
+                
+            .product-card:hover .compare-button {
+                    animation: none;
+                }
+            }
+
+            .product-card .compare-button:focus-visible {
+                outline: 2px solid #2563eb;
+                outline-offset: 2px;
+                visibility: visible;
+                opacity: 1;
+            }
+
+            /* Ukrycie w porównywarce */
+            .porownywarka-table-layout .product-card .compare-button {
+                display: none;
+            }
+            </style>
+
         </div>
     </div>
 </div>

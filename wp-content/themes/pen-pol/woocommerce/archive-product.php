@@ -177,29 +177,125 @@ if ($current_category) {
     remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
     do_action('woocommerce_before_main_content');
     
-    // Wymuszone ustawienie 8 produktów na stronę
-    wc_set_loop_prop('per_page', 8);
-    // Dodanie klasy do kontenera produktów - dokładnie 4 kolumny
-    wc_set_loop_prop('columns', 4);
-
     if (woocommerce_product_loop()) {
-        // Filters section with custom container
+        // Definiuj dostępne filtry dla sklepu
+        $available_filters = array(
+            'typ_produktu' => 'Typ produktu',
+            'rozmiar' => 'Rozmiar',
+            'wypelnienie' => 'Wypełnienie',
+            'pozycja_spania' => 'Pozycja spania'
+        );
         ?>
+        
+        <!-- Filtry section with custom container -->
         <div class="shop-archive__filters">
             <div class="container">
-                <?php
-                /**
-                 * Hook: woocommerce_before_shop_loop.
-                 *
-                 * @hooked woocommerce_output_all_notices - 10
-                 * @hooked woocommerce_result_count - 20
-                 * @hooked woocommerce_catalog_ordering - 30
-                 */
-                do_action('woocommerce_before_shop_loop');
-                ?>
+                <div class="shop-archive__filters-section">
+                    <!-- Mobile filter button -->
+                    <div class="shop-archive__mobile-trigger">
+                        <button type="button" id="mobile-filter-open">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.5 4H13.5M4 8H12M6 12H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <?php esc_html_e('Filtry', 'pen-pol'); ?>
+                            <span class="shop-archive__mobile-count"></span>
+                        </button>
+                    </div>
+                    
+                    <!-- Desktop filters -->
+                    <div class="shop-archive__filters-desktop">
+                        <?php foreach ($available_filters as $filter_name => $filter_title): ?>
+                            <div class="shop-archive__filter-item" data-filter="<?php echo esc_attr($filter_name); ?>">
+                                <button type="button" class="shop-archive__filter-toggle">
+                                    <?php echo esc_html($filter_title); ?>
+                                    <span class="shop-archive__filter-count"></span>
+                                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                                <div class="shop-archive__filter-content">
+                                    <?php echo do_shortcode('[facetwp facet="' . esc_attr($filter_name) . '"]'); ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    
+                    <!-- Filter status and sorting container -->
+                    <div class="shop-archive__filter-status-container">
+                        <!-- Left side - filter status -->
+                        <div class="shop-archive__filter-status">
+                            <div class="shop-archive__label"><?php esc_html_e('FILTRY', 'pen-pol'); ?></div>
+                            <div class="shop-archive__selected-filters">
+                                <?php echo do_shortcode('[facetwp selections="true"]'); ?>
+                            </div>
+                            <div class="shop-archive__reset">
+                                <?php echo do_shortcode('[facetwp facet="reset"]'); ?>
+                            </div>
+                        </div>
+                        
+                        <!-- Right side - WooCommerce sorting -->
+                        <div class="shop-archive__sorting">
+                            <?php
+                            // Temporarily remove result count to only show ordering
+                            remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+                            // Only display the sorting dropdown
+                            woocommerce_catalog_ordering();
+                            // Restore result count for future use
+                            add_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hidden standard WooCommerce notices -->
+                <div class="shop-archive__woocommerce-notices" style="display: none;">
+                    <?php
+                    /**
+                     * Hook: woocommerce_before_shop_loop.
+                     * 
+                     * We're hiding this but keeping it to make sure all hooks run correctly
+                     * 
+                     * @hooked woocommerce_output_all_notices - 10
+                     * @hooked woocommerce_result_count - 20 (temporarily removed above)
+                     * @hooked woocommerce_catalog_ordering - 30 (displayed separately above)
+                     */
+                    do_action('woocommerce_before_shop_loop');
+                    ?>
+                </div>
             </div>
         </div>
 
+        <!-- Mobile filters modal -->
+        <div class="shop-archive__mobile-modal" id="mobile-filters-modal">
+            <div class="shop-archive__mobile-overlay" id="mobile-filter-close-overlay"></div>
+            <div class="shop-archive__mobile-container">
+                <div class="shop-archive__mobile-header">
+                    <h3><?php esc_html_e('Filtry', 'pen-pol'); ?></h3>
+                    <button type="button" id="mobile-filter-close">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="shop-archive__mobile-body">
+                    <?php foreach ($available_filters as $filter_name => $filter_title): ?>
+                        <div class="shop-archive__mobile-filter" data-filter="<?php echo esc_attr($filter_name); ?>">
+                            <h4><?php echo esc_html($filter_title); ?></h4>
+                            <?php echo do_shortcode('[facetwp facet="' . esc_attr($filter_name) . '"]'); ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="shop-archive__mobile-footer">
+                    <button type="button" id="mobile-filter-reset">
+                        <?php esc_html_e('Resetuj filtry', 'pen-pol'); ?>
+                    </button>
+                    <button type="button" id="mobile-filter-apply">
+                        <?php esc_html_e('Zastosuj', 'pen-pol'); ?>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
         <!-- Products section - używamy standardowego wyświetlania WooCommerce -->
         <div class="shop-archive__products">
             <div class="container">
@@ -274,40 +370,40 @@ if ($current_category) {
         <?php endif;
     }
     ?>
-</section>
 
-<!-- Test poduszki - dodaj przed zamknięciem </section> na końcu pliku archive-product.php -->
-<section class="shop-archive__test-poduszki">
-    <div class="container">
-        <div class="test-poduszki">
-            <div class="test-poduszki__content">
-                <h2 class="test-poduszki__heading">
-                    <span class="test-poduszki__heading-part test-poduszki__heading-part--serif">Nie wiesz, </span>
-                    <span class="test-poduszki__heading-part">jaką poduszkę wybrać?</span>
-                </h2>
-                <p class="test-poduszki__text">
-                    <strong>Zrób krótki test i znajdź idealną poduszkę dopasowaną do Twoich potrzeb!</strong>
-                    Odpowiedz na kilka pytań, a my dobierzemy najlepsze wypełnienie, twardość i rozmiar – tak, byś spał(a) wygodnie każdej nocy.
-                </p>
-                <a href="<?php echo esc_url(home_url('/test-poduszki/')); ?>" class="test-poduszki__button">
-                    Zaczynam Test! 
-                    <span class="test-poduszki__button-icon">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/arrow_top-right--black2.svg'); ?>" alt="" aria-hidden="true" width="14" height="14">
-                    </span>
-                </a>
-            </div>
-            <div class="test-poduszki__image-wrapper">
-                <img 
-                    src="<?php echo esc_url('/wp-content/uploads/2025/07/archiwum-zdjecie.png'); ?>" 
-                    alt="<?php esc_attr_e('Kobieta obejmująca poduszkę', 'pen-pol'); ?>"
-                    class="test-poduszki__image"
-                    width="500"
-                    height="300"
-                    loading="lazy"
-                >
+    <!-- Test poduszki - dodaj przed zamknięciem </section> na końcu pliku archive-product.php -->
+    <section class="shop-archive__test-poduszki">
+        <div class="container">
+            <div class="test-poduszki">
+                <div class="test-poduszki__content">
+                    <h2 class="test-poduszki__heading">
+                        <span class="test-poduszki__heading-part test-poduszki__heading-part--serif">Nie wiesz, </span>
+                        <span class="test-poduszki__heading-part">jaką poduszkę wybrać?</span>
+                    </h2>
+                    <p class="test-poduszki__text">
+                        <strong>Zrób krótki test i znajdź idealną poduszkę dopasowaną do Twoich potrzeb!</strong>
+                        Odpowiedz na kilka pytań, a my dobierzemy najlepsze wypełnienie, twardość i rozmiar – tak, byś spał(a) wygodnie każdej nocy.
+                    </p>
+                    <a href="<?php echo esc_url(home_url('/test-poduszki/')); ?>" class="test-poduszki__button">
+                        Zaczynam Test! 
+                        <span class="test-poduszki__button-icon">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/arrow_top-right--black2.svg'); ?>" alt="" aria-hidden="true" width="14" height="14">
+                        </span>
+                    </a>
+                </div>
+                <div class="test-poduszki__image-wrapper">
+                    <img 
+                        src="<?php echo esc_url('/wp-content/uploads/2025/07/archiwum-zdjecie.png'); ?>" 
+                        alt="<?php esc_attr_e('Kobieta obejmująca poduszkę', 'pen-pol'); ?>"
+                        class="test-poduszki__image"
+                        width="500"
+                        height="300"
+                        loading="lazy"
+                    >
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </section>
 
 <?php

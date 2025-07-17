@@ -620,7 +620,7 @@
 // =============================================================================
 
 .categories-wrapper {
-  background-color: $background-color;
+  background-color: $white;
   padding-block: $section-padding-block;
   padding-inline: $section-padding-inline;
   background-image: url('/wp-content/uploads/2025/07/Layer_1.png');
@@ -2303,6 +2303,635 @@ const accordionSwiper = new Swiper('.poradniki-accordion__panels .swiper', {
     
     &__form {
       display: none;
+    }
+  }
+}
+
+// =============================================================================
+// PRODUCTS HOME SECTION - Sekcja z kategoriami produktów i karuzelą na stronie głównej
+// =============================================================================
+
+.products-home {
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  position: relative;
+  overflow: hidden;
+  
+  // Dekoracyjne piórko w tle
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background-image: url('/wp-content/uploads/2025/07/Layer_1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
+    pointer-events: none;
+    z-index: 1;
+    
+    @include mobile-up {
+      width: 400px;
+      height: 400px;
+    }
+    
+    @include desktop-up {
+      width: 500px;
+      height: 500px;
+    }
+  }
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+  
+  // =============================================================================
+  // TOP SECTION - Nagłówki i tekst wprowadzający
+  // =============================================================================
+  
+  &__top {
+    position: relative;
+    z-index: 2;
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+  
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 4vw, 40px);
+    
+    @include desktop-up {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between; // Dodano rozłożenie elementów
+    }
+  }
+  
+  &__intro-left {
+    width: 100%;
+    
+    @include desktop-up {
+      width: 45%;
+    }
+  }
+  
+  &__intro-right {
+    width: 100%;
+    
+    @include desktop-up {
+      width: 35%; // Zmienione z 55% na 35%
+    }
+  }
+  
+  &__subheading {
+    font-family: $font-secondary;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+    color: $primary-text-color;
+    margin-bottom: clamp(8px, 2vw, 16px);
+  }
+  
+  &__heading {
+    font-family: $font-primary;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 400;
+    line-height: map-get($line-heights, "tight");
+    color: $primary-text-color;
+    margin: 0;
+  }
+  
+  &__text {
+    font-family: $font-primary;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: map-get($line-heights, "relaxed");
+    color: $primary-text-color;
+    
+    p {
+      margin-bottom: map-get($spacing, "lg");
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // =============================================================================
+  // CONTENT SECTION - Main content layout
+  // =============================================================================
+  
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    
+    @include desktop-up {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
+  
+  // =============================================================================
+  // MOBILE CATEGORY SELECTOR - Dropdown do wyboru kategorii na mobile
+  // =============================================================================
+  
+  &__mobile-selector {
+    display: block;
+    width: 100%;
+    margin-bottom: 30px;
+    
+    @include desktop-up {
+      display: none; // Ukrywamy na desktopie
+    }
+  }
+  
+  &__dropdown-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  &__mobile-dropdown {
+    width: 100%;
+    padding: 15px;
+    font-family: $font-primary;
+    font-size: 18px;
+    font-weight: 400;
+    color: $primary-text-color;
+    background-color: $white;
+    border: 1px solid $light-grey;
+    border-radius: map-get($border-radius, "md");
+    appearance: none;
+    cursor: pointer;
+    padding-right: 40px; // Miejsce na ikonę
+    
+    &:focus {
+      outline: $focus-width $focus-style $focus-color;
+      outline-offset: $focus-offset;
+    }
+  }
+  
+  &__dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: transform 0.3s ease;
+    
+    img {
+      width: 16px;
+      height: 16px;
+      display: block;
+      transition: transform 0.3s ease;
+      
+      &.rotate {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  
+  // =============================================================================
+  // TABS SECTION - Category tabs/accordion
+  // =============================================================================
+  
+  &__tabs {
+    width: 100%;
+    display: none;
+    
+    @include desktop-up {
+      display: flex;
+      width: 30%;
+      padding-right: 30px;
+      flex-direction: column;
+      gap: 10px; // Dodany gap między pozycjami w akordeonie
+    }
+  }
+  
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #1F1F1F;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    
+    &:hover, &.active {
+      background-color: $white;
+      border: 1px solid #1F1F1F;
+      border-radius: 8px;
+    }
+    
+    &-text {
+      font-family: $font-primary;
+      font-size: 20px;
+      font-weight: 200;
+      color: #1F1F1F;
+    }
+    
+    &-icon {
+      width: 15px;
+      height: 15px;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover .products-home__tab-icon,
+    &.active .products-home__tab-icon {
+      transform: rotate(45deg);
+    }
+  }
+  
+  // =============================================================================
+  // PANELS SECTION - Category info and products carousel
+  // =============================================================================
+  
+  &__panels {
+    width: 100%;
+    
+    @include desktop-up {
+      width: 70%;
+    }
+  }
+  
+  &__panel {
+    width: 100%;
+    transition: height 0.3s ease-out; // Dodane płynne przejście
+    
+    &.active {
+      display: block;
+    }
+    
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      transition: height 0.3s ease-out; // Dodane płynne przejście
+      
+      @include desktop-up {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 30px;
+        justify-content: space-between; // Rozpychanie elementów na pełną szerokość
+      }
+    }
+  }
+  
+  // =============================================================================
+  // CATEGORY CARD - Category information
+  // =============================================================================
+  
+  &__category-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    border-radius: map-get($border-radius, "lg");
+    box-shadow: map-get($shadows, "md");
+    overflow: hidden;
+    height: auto;
+    
+    @include desktop-up {
+      width: 40%; // Zmienione z 30% na 40% - szerszy kafelek
+      height: 100%;
+    }
+    
+    // Wersje karty kategorii na różne szerokości ekranu
+    &--desktop {
+      display: none;
+      
+      @include desktop-up {
+        display: flex;
+      }
+    }
+    
+    &--mobile {
+      display: flex;
+      height: 100%;
+      
+      @include desktop-up {
+        display: none;
+      }
+    }
+  }
+  
+  &__category-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  &__category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba($black, 0.2) 0%,
+      rgba($black, 0) 100%
+    );
+    z-index: 1;
+  }
+  
+  &__category-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  &__category-link {
+    position: absolute;
+    top: 50%; // Zmienione z bottom: 20px na top: 50%
+    left: 0;
+    right: 0;
+    transform: translateY(-50%); // Wycentrowanie w pionie
+    z-index: 2;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
+    text-align: center; // Wyśrodkowanie tekstu
+    
+    &:hover {
+      transform: translateY(calc(-50% - 5px)); // Dostosowane do nowej pozycji
+    }
+  }
+  
+  &__category-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-primary;
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 500;
+    color: $white;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  &__category-arrow {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+  }
+  
+  &__category-info {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; // Zmniejszone z 20px na 10px
+    flex-grow: 1;
+    text-align: left; // Zmienione na wyrównanie do lewej
+  }
+  
+  &__category-property {
+    margin-bottom: 8px;
+    text-align: left; // Upewnienie się, że tekst jest wyrównany do lewej
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__property-name {
+    font-family: $font-secondary;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: $text-light;
+    margin: 0 0 5px 0;
+  }
+  
+  &__property-value {
+    font-family: $font-primary;
+    font-size: 20px;
+    font-weight: 400;
+    color: $primary-text-color;
+  }
+  
+// =============================================================================
+// PRODUCTS CAROUSEL - Products display
+// =============================================================================
+
+&__products-wrapper {
+  width: 100%;
+  overflow: visible; // Pozwala karuzeli wychodzić poza kontener
+  
+  @include desktop-up {
+    width: 60%; // Zmniejszone z 70% na 60% (proporcjonalnie do zwiększenia kafelka kategorii)
+    margin-top: 0;
+  }
+}
+
+&__products-carousel {
+  width: 100%;
+  position: relative;
+  
+  // Pełna szerokość od początku sekcji do prawej krawędzi ekranu
+  .swiper-wrapper {
+    width: 100%;
+    align-items: stretch; // Dodane - wyrównanie wysokości slajdów
+  }
+  
+  // Dodane - naprawia problem z "dziurą" na początku karuzeli
+  &.swiper-container-initialized {
+    .swiper-slide-duplicate-active,
+    .swiper-slide-duplicate-next,
+    .swiper-slide-duplicate-prev {
+      visibility: visible !important;
+    }
+  }
+  
+  // Rozszerzenie karuzeli do prawej krawędzi ekranu na mobilnych urządzeniach
+  @include mobile-up {
+    width: calc(100% + $section-padding-inline); // Rozszerzenie o padding sekcji
+    margin-right: -$section-padding-inline; // Negatywny margin równy paddingowi
+  }
+  
+  @include tablet-up {
+    width: calc(100% + $section-padding-inline-tablet);
+    margin-right: -$section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    width: calc(100% + $section-padding-inline-desktop + ((100vw - $container-max-width) / 2));
+    margin-right: calc(-1 * ($section-padding-inline-desktop + ((100vw - $container-max-width) / 2)));
+  }
+  
+  .swiper-slide {
+    height: auto;
+    width: auto; // Dodane - pozwala na lepsze dopasowanie szerokości
+    
+    // Dodane dla lepszego renderowania pierwszego slajdu
+    &:first-child {
+      margin-left: 0;
+    }
+    
+    // Wersja mobilna - na pełną szerokość
+    &.products-home__category-slide {
+      @include desktop-up {
+        display: none; // Ukrywamy slajd kategorii na desktopie
+      }
+    }
+  }
+}
+
+&__no-products {
+  padding: 30px;
+  text-align: center;
+  font-family: $font-primary;
+  font-size: 18px;
+  color: $text-muted;
+}
+
+// Slajd kategorii w karuzeli na mobile
+&__category-slide {
+  height: auto;
+  
+  @include desktop-up {
+    display: none; // Ukrywamy slajd kategorii na desktopie
+  }
+}
+  
+  // =============================================================================
+  // MOBILE STYLES - Responsywność
+  // =============================================================================
+  
+  // Układ mobilny - kafelek kategorii i produkty w karuzeli
+  @include mobile-up {
+    &__panel-inner {
+      display: block; // Pełna szerokość dla karuzeli
+      overflow: visible;
+    }
+  }
+  
+  @include desktop-up {
+    &__panel-inner {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+  
+  // =============================================================================
+  // ACCESSIBILITY & PERFORMANCE
+  // =============================================================================
+  
+  // Reduced motion
+  @media (prefers-reduced-motion: reduce) {
+    &__tab,
+    &__category-link {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+    
+    &__tab:hover .products-home__tab-icon,
+    &__tab.active .products-home__tab-icon {
+      transform: none;
+    }
+    
+    &__dropdown-icon img.rotate {
+      transform: none;
+    }
+    
+    &__panel,
+    &__panel-inner,
+    &__products-wrapper,
+    &__products-carousel,
+    &__products-carousel .swiper-wrapper,
+    &__products-carousel .swiper-slide {
+      transition: none;
+    }
+  }
+  
+  // High contrast mode
+  @media (prefers-contrast: high) {
+    &__tab {
+      border: 2px solid $black;
+      
+      &:hover, &.active {
+        border: 2px solid $black;
+        background-color: $light-grey;
+      }
+    }
+    
+    &__category-card {
+      border: 2px solid $black;
+      box-shadow: none;
+    }
+    
+    &__category-title {
+      text-shadow: none;
+    }
+    
+    &__mobile-dropdown {
+      border: 2px solid $black;
+    }
+  }
+  
+  // Print styles
+  @media print {
+    background-color: $white;
+    padding: 20px;
+    
+    &::before {
+      display: none; // Ukryj piórko w wydruku
+    }
+    
+    &__wrapper {
+      display: block;
+    }
+    
+    &__tabs {
+      display: none;
+    }
+    
+    &__panel {
+      display: block !important;
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+      
+      &-inner {
+        display: block;
+      }
+    }
+    
+    &__category-card {
+      width: 100%;
+      margin-bottom: 20px;
+      box-shadow: none;
+      border: 1px solid $light-grey;
+    }
+    
+    &__products-wrapper {
+      width: 100%;
+      
+      .swiper-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .swiper-slide {
+        width: 50% !important;
+        margin-bottom: 20px;
+      }
     }
   }
 }

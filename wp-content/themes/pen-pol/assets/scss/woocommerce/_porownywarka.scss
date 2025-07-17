@@ -1,0 +1,526 @@
+// =============================================================================
+// PORÓWNYWARKA - layout tabelaryczny z produktami w pierwszym wierszu
+// =============================================================================
+
+.porownywarka-table-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  width: 100%;
+  gap: clamp(40px, 8vw, 80px);
+  padding-block: $section-padding-block;
+  padding-inline: $section-padding-inline;
+  position: relative;
+  
+  @include tablet-up {
+    padding-inline: $section-padding-inline-tablet;
+  }
+  
+  @include desktop-up {
+    padding-inline: $section-padding-inline-desktop;
+  }
+}
+
+.porownywarka-header {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacing, "md");
+}
+
+.empty-compare-state {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacing, "md");
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: $white;
+  box-shadow: map-get($shadows, "md");
+  padding: map-get($spacing, "3xl") map-get($spacing, "5xl");
+  width: 100%;
+  
+  @include tablet-up {
+    padding: map-get($spacing, "2xl") map-get($spacing, "3xl");
+  }
+  
+  @include mobile-up {
+    padding: map-get($spacing, "lg") map-get($spacing, "2xl");
+  }
+}
+
+// Główna tabela porównawcza z horizontal scroll
+.compare-table {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  min-width: 100%;
+
+  // Webkit scrollbar styling
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $light-grey;
+    border-radius: map-get($border-radius, "sm");
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $medium-grey;
+    border-radius: map-get($border-radius, "sm");
+
+    &:hover {
+      background: $dark-grey;
+    }
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: $medium-grey $light-grey;
+}
+
+// Wspólne style dla wierszy tabeli
+.products-table-row,
+.attribute-table-row {
+  display: grid;
+  grid-template-columns: 300px repeat(3, 1fr); // Zmiana na responsywne
+  gap: map-get($spacing, "md");
+  min-width: 800px; // Minimum width to ensure proper layout
+
+  @include desktop-up {
+    grid-template-columns: 300px repeat(3, 1fr); // Zmiana na responsywne
+    min-width: 900px;
+  }
+}
+
+// Wiersz z produktami
+.products-table-row {
+  margin-bottom: map-get($spacing, "2xl");
+
+  .row-label-cell {
+    padding: map-get($spacing, "2xl") map-get($spacing, "xl");
+    background: $white;
+    box-shadow: map-get($shadows, "md");
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: map-get($border-radius, "lg");
+    
+    @include tablet-up {
+      padding: map-get($spacing, "xl") map-get($spacing, "md");
+    }
+    
+    @include mobile-up {
+      padding: map-get($spacing, "md") map-get($spacing, "sm");
+    }
+
+    .compare-differents {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: map-get($spacing, "xs");
+
+      .point {
+        width: 15px;
+        height: 15px;
+        background-color: $primary-color-blue;
+        border-radius: 50%;
+        
+        @include mobile-up {
+          width: 12px;
+          height: 12px;
+        }
+      }
+
+      p {
+        @include mobile-up {
+          font-size: map-get($font-sizes, "small");
+        }
+      }
+    }
+
+    h2 {
+      font-size: map-get($font-sizes, "h5");
+      
+      @include tablet-up {
+        font-size: map-get($font-sizes, "h6");
+      }
+      
+      @include mobile-up {
+        font-size: map-get($font-sizes, "p");
+      }
+    }
+
+    span {
+      font-weight: map-get($font-weights, "bold");
+      color: $primary-color-blue;
+      font-size: map-get($font-sizes, "p");
+      
+      @include tablet-up {
+        font-size: map-get($font-sizes, "p");
+      }
+      
+      @include mobile-up {
+        font-size: map-get($font-sizes, "small");
+      }
+    }
+  }
+}
+
+// Komórka produktu w tabeli
+.product-table-cell {
+  width: 100%; // Zapewnia pełną szerokość
+  height: 100%; // Zapewnia pełną wysokość
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $white;
+  background: $white;
+  position: relative;
+  border-radius: map-get($border-radius, "lg");
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+// Placeholder dla pustej kolumny produktu
+.add-product-placeholder {
+  padding: map-get($spacing, "2xl") map-get($spacing, "md");
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  
+  @include tablet-up {
+    padding: map-get($spacing, "xl") map-get($spacing, "sm");
+    min-height: 150px;
+  }
+  
+  @include mobile-up {
+    padding: map-get($spacing, "md") map-get($spacing, "xs");
+    min-height: 120px;
+  }
+
+  .add-product-large {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $text-muted;
+    transition: map-get($transitions, "normal");
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      .plus-icon {
+        transform: scale(1.1);
+      }
+    }
+
+    .plus-icon {
+      width: 50px;
+      height: 50px;
+      border: 2px solid currentColor;
+      border-radius: map-get($border-radius, "lg");
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      margin: 0 auto map-get($spacing, "sm");
+      transition: map-get($transitions, "normal");
+      color: $text-muted;
+      
+      @include mobile-up {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+      }
+    }
+
+    span {
+      font-weight: map-get($font-weights, "medium");
+      color: inherit;
+      font-size: map-get($font-sizes, "small");
+      
+      @include mobile-up {
+        font-size: map-get($font-sizes, "xs");
+      }
+    }
+  }
+}
+
+.product-header-compare {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .compare-specific-actions {
+    position: absolute;
+    top: 46px;
+    right: 24px; 
+    z-index: map-get($z-index, "dropdown");
+    padding: 4px; 
+    width: 24px; 
+    height: 24px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    
+    @include mobile-up {
+      top: 46px; 
+      right: 24px; 
+      width: 24px; 
+      height: 24px; 
+      padding: 4px; 
+    }
+
+    a {
+      line-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      
+      img {
+        width: 18px; 
+        height: 18px; 
+      }
+    }
+  }
+
+  .fav-ivon {
+    top: 80px;
+    
+    @include mobile-up {
+      top: 60px;
+    }
+  }
+
+  .compare-button {
+    display: none;
+  }
+}
+
+// Wiersze z atrybutami
+.attribute-table-row {
+  transition: map-get($transitions, "fast");
+
+  &:hover {
+    background-color: rgba($primary-color-blue, 0.02);
+  }
+
+  &.has-differences {
+    .attribute-value.different {
+      color: $primary-color-blue;
+      font-weight: map-get($font-weights, "bold");
+      padding: map-get($spacing, "xs") map-get($spacing, "sm");
+      
+      @include mobile-up {
+        padding: map-get($spacing, "xs") map-get($spacing, "xs");
+      }
+    }
+  }
+}
+
+// Komórka etykiety wiersza
+.row-label-cell {
+  padding: map-get($spacing, "lg") map-get($spacing, "xl");
+  background: $white;
+  box-shadow: map-get($shadows, "md");
+  display: flex;
+  align-items: center;
+  border-radius: map-get($border-radius, "lg");
+  
+  @include tablet-up {
+    padding: map-get($spacing, "md") map-get($spacing, "lg");
+  }
+  
+  @include mobile-up {
+    padding: map-get($spacing, "sm") map-get($spacing, "md");
+  }
+
+  .attribute-name {
+    font-weight: map-get($font-weights, "semibold");
+    color: $primary-text-color;
+    font-size: map-get($font-sizes, "small");
+    line-height: map-get($line-heights, "normal");
+    
+    @include tablet-up {
+      font-size: map-get($font-sizes, "small");
+    }
+    
+    @include mobile-up {
+      font-size: map-get($font-sizes, "xs");
+    }
+  }
+}
+
+// Komórka wartości atrybutu
+.attribute-value-cell {
+  padding: map-get($spacing, "lg") map-get($spacing, "md");
+  background: $white;
+  box-shadow: map-get($shadows, "md");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60px;
+  border-radius: map-get($border-radius, "lg");
+  width: 100%;
+  
+  @include tablet-up {
+    padding: map-get($spacing, "md") map-get($spacing, "sm");
+    min-height: 50px;
+  }
+  
+  @include mobile-up {
+    padding: map-get($spacing, "sm") map-get($spacing, "xs");
+    min-height: 45px;
+  }
+
+  .attribute-value {
+    font-size: map-get($font-sizes, "small");
+    line-height: map-get($line-heights, "normal");
+    color: $primary-text-color;
+    word-break: break-word;
+    
+    @include tablet-up {
+      font-size: map-get($font-sizes, "small");
+    }
+    
+    @include mobile-up {
+      font-size: map-get($font-sizes, "xs");
+    }
+
+    &:empty::before {
+      content: "—";
+      color: rgba($primary-text-color, 0.3);
+    }
+  }
+}
+
+// Loading state
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 3px solid $light-grey;
+    border-top: 3px solid $primary-color-blue;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: map-get($z-index, "toast");
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & PERFORMANCE
+// =============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .porownywarka-table-layout {
+    .add-product-large {
+      &:hover {
+        .plus-icon {
+          transform: none;
+        }
+      }
+    }
+    
+    .product-header-compare {
+      .compare-specific-actions {
+        transition: none;
+      }
+    }
+    
+    .attribute-table-row {
+      transition: none;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .porownywarka-table-layout {
+    .row-label-cell,
+    .attribute-value-cell {
+      border: 2px solid $black;
+      box-shadow: none;
+    }
+    
+    .compare-differents .point {
+      border: 2px solid $black;
+    }
+    
+    .attribute-table-row.has-differences .attribute-value.different {
+      color: $black;
+      outline: 2px solid $primary-color-blue;
+      outline-offset: 2px;
+    }
+    
+    .add-product-large .plus-icon {
+      border: 2px solid $black;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .porownywarka-table-layout {
+    padding: map-get($spacing, "lg");
+    
+    .compare-table {
+      overflow: visible;
+    }
+    
+    .products-table-row,
+    .attribute-table-row {
+      page-break-inside: avoid;
+      display: table;
+      width: 100%;
+    }
+    
+    .row-label-cell,
+    .attribute-value-cell,
+    .product-table-cell {
+      box-shadow: none;
+      border: 1px solid $light-grey;
+    }
+    
+    .product-header-compare .compare-specific-actions {
+      display: none;
+    }
+    
+    .attribute-table-row.has-differences .attribute-value.different {
+      color: $black;
+      font-weight: map-get($font-weights, "bold");
+    }
+  }
+}
